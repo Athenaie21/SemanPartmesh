@@ -1,0 +1,23 @@
+name: neurcross
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.7
+  - pip
+  - numpy
+  - scipy
+  - trimesh
+  - mkl<2024
+  - intel-openmp
+  - pytorch=1.13.1
+  - torchvision=0.14.1
+  - torchaudio=0.13.1
+  - pytorch-cuda=11.7
+  - pip:
+      - safetensors==0.4.3
+      - torchinfo==1.8.0
+      - timm==0.9.12
+      - torch-kmeans==0.2.0

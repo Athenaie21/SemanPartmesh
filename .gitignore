@@ -1,0 +1,19 @@
+# Model checkpoints and weights
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+
+# Experiment results and logs
+exp_results/
+lightning_logs/
+wandb/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# Data (large datasets - add back if needed)
+# data/

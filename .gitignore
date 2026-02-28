@@ -17,3 +17,6 @@ __pycache__/
 
 # Data (large datasets - add back if needed)
 # data/
+
+# Model
+PartField/model/

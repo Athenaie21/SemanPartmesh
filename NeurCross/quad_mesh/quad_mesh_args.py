@@ -37,8 +37,9 @@ def add_args(parser):
     parser.add_argument('--morse_type', type=str, default='l1', help='divergence term norm l1 | l2')
     parser.add_argument('--morse_decay', type=str, default='linear',
                         help='divergence term importance decay none | step | linear')
-    parser.add_argument('--loss_weights', nargs='+', type=float, default=[7e3, 6e2, 10, 5e1, 30, 3],
-                        help='loss terms weights sdf | inter | normal | eikonal | div | morse')
+    parser.add_argument('--loss_weights', nargs='+', type=float, default=[7e3, 6e2, 10, 5e1, 30, 3, 20],
+                        help='loss terms weights sdf | inter | normal | eikonal | div | morse | semantic')
+    parser.add_argument('--part_feat_path', type=str, default=None, help='path to precomputed PartField features (.npy)')
     parser.add_argument('--morse_near', action='store_true')
     parser.add_argument('--weight_for_morse', action='store_true',
                         help='if true, Weighting A according to the distance of the sampling point')

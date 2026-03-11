@@ -66,11 +66,29 @@ vertex_neighbors_list = utils.calculate_same_neighbors_verts(vertex_neighbors)
 ###################################################################################
 axis_angle_R_mat_list = utils.get_rotation_matrix(vertex_neighbors_list, vertex_neighbors, args.data_path)
 
+semantic_grad_dir_tensor = None
+semantic_grad_weight_tensor = None
+
+if args.part_feat_path is not None:
+    part_features = np.load(args.part_feat_path)  # (N_faces, 448)
+
+    face_centers = train_set.points       # already centered & scaled
+    face_normals = train_set.mnfld_n
+
+    from utils.semantic_utils import compute_semantic_gradient
+    grad_dir, grad_weight = compute_semantic_gradient(
+        face_centers, face_normals, vertex_neighbors, part_features
+    )
+    semantic_grad_dir_tensor = torch.tensor(grad_dir, dtype=torch.float32).to(device)
+    semantic_grad_weight_tensor = torch.tensor(grad_weight, dtype=torch.float32).to(device)
+
 criterion = MorseLoss(weights=args.loss_weights, loss_type=args.loss_type, div_decay=args.morse_decay,
                       div_type=args.morse_type,
                       vertex_neighbors_list=vertex_neighbors_list,
-                      vertex_neighbors=vertex_neighbors, axis_angle_R_mat_list=axis_angle_R_mat_list, device=device
-                      )
+                      vertex_neighbors=vertex_neighbors, axis_angle_R_mat_list=axis_angle_R_mat_list,
+                      device=device,
+                      semantic_grad_dir=semantic_grad_dir_tensor,
+                      semantic_grad_weight=semantic_grad_weight_tensor)
 
 # For each epoch
 for epoch in range(args.num_epochs):
@@ -137,3 +155,5 @@ for epoch in range(args.num_epochs):
 
         criterion.update_morse_weight(epoch * args.n_samples + batch_idx, args.num_epochs * args.n_samples,
                                       args.decay_params)  # assumes batch size of 1
+
+torch.save(net.state_dict(), os.path.join(logdir, file_name + '_model.pth'))

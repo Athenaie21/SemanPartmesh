@@ -20,3 +20,8 @@ __pycache__/
 
 # Model
 PartField/model/
+Baseline/
+googletest/
+input/
+libigl/
+libQEx/

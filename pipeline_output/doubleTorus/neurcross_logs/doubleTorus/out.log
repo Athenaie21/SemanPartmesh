@@ -1,0 +1,1271 @@
+input params: 
+Namespace(batch_size=1, data_path='/root/SemanPartMesh/NeurCross/data/doubleTorus/input/doubleTorus.ply', decay_params=[3, 0.2, 3, 0.4, 0.001, 0], decoder_hidden_dim=256, decoder_n_hidden_layers=4, featureLine_threshold=1.0, grad_clip_norm=10.0, grid_res=256, init_type='siren', latent_size=0, load_path=None, logdir='/root/SemanPartMesh/pipeline_output/doubleTorus/neurcross_logs', loss_type='siren_wo_n_w_morse_w_theta', loss_weights=[7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5e-05, model_name='model', morse_decay='linear', morse_near=True, morse_type='l1', n_points=15000, n_samples=10000, nl='sine', nonmnfld_sample_type='gaussian', num_epochs=1, output_any=False, part_feat_path='/root/SemanPartMesh/pipeline_output/doubleTorus/partfield_features/part_feat_doubleTorus_0_batch.npy', relax_morse=0.5, seed=3627473, sphere_init_params=[1.6, 0.1], udf=False, use_morse_nonmnfld_grad=True, use_vertices=False, weight_for_morse=False)
+Number of parameters in the current model:4374082
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [   0/10000 (0%)] Loss: 693.55798 = L_Mnfld: 636.05287 + L_NonMnfld: 0.53956 + L_Eknl: 34.26456 + L_Morse: 3.94040 + L_thetaHessian: 15.21598 + L_thetaNeighbor: 1.37489
+Epoch: 0 [   0/10000 (0%)] Unweighted L_s : L_Mnfld: 0.09086 + L_NonMnfld: 0.00090 + L_Eknl: 0.68529 + L_Morse: 1.31347 + L_thetaHessian: 1.52160 + L_thetaNeighbor: 0.04583
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [  10/10000 (0%)] Loss: 175.66505 = L_Mnfld: 115.35410 + L_NonMnfld: 4.04513 + L_Eknl: 36.09285 + L_Morse: 3.91758 + L_thetaHessian: 13.07727 + L_thetaNeighbor: 1.33417
+Epoch: 0 [  10/10000 (0%)] Unweighted L_s : L_Mnfld: 0.01648 + L_NonMnfld: 0.00674 + L_Eknl: 0.72186 + L_Morse: 1.30586 + L_thetaHessian: 1.30773 + L_thetaNeighbor: 0.04447
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [  20/10000 (0%)] Loss: 150.09966 = L_Mnfld: 96.04849 + L_NonMnfld: 0.27661 + L_Eknl: 34.47890 + L_Morse: 4.31221 + L_thetaHessian: 11.81827 + L_thetaNeighbor: 1.30779
+Epoch: 0 [  20/10000 (0%)] Unweighted L_s : L_Mnfld: 0.01372 + L_NonMnfld: 0.00046 + L_Eknl: 0.68958 + L_Morse: 1.43740 + L_thetaHessian: 1.18183 + L_thetaNeighbor: 0.04359
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [  30/10000 (0%)] Loss: 115.89890 = L_Mnfld: 63.47457 + L_NonMnfld: 1.05926 + L_Eknl: 34.53362 + L_Morse: 3.75085 + L_thetaHessian: 9.97524 + L_thetaNeighbor: 1.31439
+Epoch: 0 [  30/10000 (0%)] Unweighted L_s : L_Mnfld: 0.00907 + L_NonMnfld: 0.00177 + L_Eknl: 0.69067 + L_Morse: 1.25028 + L_thetaHessian: 0.99752 + L_thetaNeighbor: 0.04381
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [  40/10000 (0%)] Loss: 106.71250 = L_Mnfld: 57.31882 + L_NonMnfld: 0.76652 + L_Eknl: 33.59855 + L_Morse: 3.14948 + L_thetaHessian: 8.79153 + L_thetaNeighbor: 1.33595
+Epoch: 0 [  40/10000 (0%)] Unweighted L_s : L_Mnfld: 0.00819 + L_NonMnfld: 0.00128 + L_Eknl: 0.67197 + L_Morse: 1.04983 + L_thetaHessian: 0.87915 + L_thetaNeighbor: 0.04453
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [  50/10000 (0%)] Loss: 100.69825 = L_Mnfld: 55.11297 + L_NonMnfld: 0.13403 + L_Eknl: 31.42298 + L_Morse: 2.90299 + L_thetaHessian: 8.05551 + L_thetaNeighbor: 1.35518
+Epoch: 0 [  50/10000 (0%)] Unweighted L_s : L_Mnfld: 0.00787 + L_NonMnfld: 0.00022 + L_Eknl: 0.62846 + L_Morse: 0.96766 + L_thetaHessian: 0.80555 + L_thetaNeighbor: 0.04517
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [  60/10000 (1%)] Loss: 85.41775 = L_Mnfld: 41.73845 + L_NonMnfld: 0.35933 + L_Eknl: 30.33264 + L_Morse: 2.58876 + L_thetaHessian: 7.39852 + L_thetaNeighbor: 1.39742
+Epoch: 0 [  60/10000 (1%)] Unweighted L_s : L_Mnfld: 0.00596 + L_NonMnfld: 0.00060 + L_Eknl: 0.60665 + L_Morse: 0.86292 + L_thetaHessian: 0.73985 + L_thetaNeighbor: 0.04658
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [  70/10000 (1%)] Loss: 77.99616 = L_Mnfld: 36.71489 + L_NonMnfld: 0.25748 + L_Eknl: 28.91686 + L_Morse: 2.34650 + L_thetaHessian: 6.72220 + L_thetaNeighbor: 1.42151
+Epoch: 0 [  70/10000 (1%)] Unweighted L_s : L_Mnfld: 0.00524 + L_NonMnfld: 0.00043 + L_Eknl: 0.57834 + L_Morse: 0.78217 + L_thetaHessian: 0.67222 + L_thetaNeighbor: 0.04738
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [  80/10000 (1%)] Loss: 79.53403 = L_Mnfld: 41.02948 + L_NonMnfld: 0.06615 + L_Eknl: 26.60240 + L_Morse: 2.30420 + L_thetaHessian: 6.46567 + L_thetaNeighbor: 1.44956
+Epoch: 0 [  80/10000 (1%)] Unweighted L_s : L_Mnfld: 0.00586 + L_NonMnfld: 0.00011 + L_Eknl: 0.53205 + L_Morse: 0.76807 + L_thetaHessian: 0.64657 + L_thetaNeighbor: 0.04832
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [  90/10000 (1%)] Loss: 64.26553 = L_Mnfld: 27.39684 + L_NonMnfld: 0.14069 + L_Eknl: 25.29096 + L_Morse: 2.25124 + L_thetaHessian: 6.12268 + L_thetaNeighbor: 1.47967
+Epoch: 0 [  90/10000 (1%)] Unweighted L_s : L_Mnfld: 0.00391 + L_NonMnfld: 0.00023 + L_Eknl: 0.50582 + L_Morse: 0.75041 + L_thetaHessian: 0.61227 + L_thetaNeighbor: 0.04932
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 100/10000 (1%)] Loss: 68.55652 = L_Mnfld: 33.53386 + L_NonMnfld: 0.10527 + L_Eknl: 23.82342 + L_Morse: 2.21419 + L_thetaHessian: 5.72186 + L_thetaNeighbor: 1.53977
+Epoch: 0 [ 100/10000 (1%)] Unweighted L_s : L_Mnfld: 0.00479 + L_NonMnfld: 0.00018 + L_Eknl: 0.47647 + L_Morse: 0.73806 + L_thetaHessian: 0.57219 + L_thetaNeighbor: 0.05133
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 110/10000 (1%)] Loss: 69.20929 = L_Mnfld: 36.91058 + L_NonMnfld: 0.02728 + L_Eknl: 21.25640 + L_Morse: 2.22523 + L_thetaHessian: 5.78434 + L_thetaNeighbor: 1.55649
+Epoch: 0 [ 110/10000 (1%)] Unweighted L_s : L_Mnfld: 0.00527 + L_NonMnfld: 0.00005 + L_Eknl: 0.42513 + L_Morse: 0.74174 + L_thetaHessian: 0.57843 + L_thetaNeighbor: 0.05188
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 120/10000 (1%)] Loss: 59.49351 = L_Mnfld: 28.22439 + L_NonMnfld: 0.06727 + L_Eknl: 20.27681 + L_Morse: 2.28028 + L_thetaHessian: 5.60128 + L_thetaNeighbor: 1.53950
+Epoch: 0 [ 120/10000 (1%)] Unweighted L_s : L_Mnfld: 0.00403 + L_NonMnfld: 0.00011 + L_Eknl: 0.40554 + L_Morse: 0.76009 + L_thetaHessian: 0.56013 + L_thetaNeighbor: 0.05132
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 130/10000 (1%)] Loss: 61.01054 = L_Mnfld: 31.17533 + L_NonMnfld: 0.05943 + L_Eknl: 18.98541 + L_Morse: 2.23671 + L_thetaHessian: 5.49786 + L_thetaNeighbor: 1.51680
+Epoch: 0 [ 130/10000 (1%)] Unweighted L_s : L_Mnfld: 0.00445 + L_NonMnfld: 0.00010 + L_Eknl: 0.37971 + L_Morse: 0.74557 + L_thetaHessian: 0.54979 + L_thetaNeighbor: 0.05056
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 140/10000 (1%)] Loss: 63.27573 = L_Mnfld: 34.82060 + L_NonMnfld: 0.02323 + L_Eknl: 17.57182 + L_Morse: 2.21320 + L_thetaHessian: 5.67011 + L_thetaNeighbor: 1.53186
+Epoch: 0 [ 140/10000 (1%)] Unweighted L_s : L_Mnfld: 0.00497 + L_NonMnfld: 0.00004 + L_Eknl: 0.35144 + L_Morse: 0.73773 + L_thetaHessian: 0.56701 + L_thetaNeighbor: 0.05106
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 150/10000 (2%)] Loss: 54.23896 = L_Mnfld: 25.60951 + L_NonMnfld: 0.05629 + L_Eknl: 17.66942 + L_Morse: 2.22281 + L_thetaHessian: 5.69226 + L_thetaNeighbor: 1.52626
+Epoch: 0 [ 150/10000 (2%)] Unweighted L_s : L_Mnfld: 0.00366 + L_NonMnfld: 0.00009 + L_Eknl: 0.35339 + L_Morse: 0.74094 + L_thetaHessian: 0.56923 + L_thetaNeighbor: 0.05088
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 160/10000 (2%)] Loss: 57.26587 = L_Mnfld: 29.50953 + L_NonMnfld: 0.04799 + L_Eknl: 17.00023 + L_Morse: 2.18202 + L_thetaHessian: 5.37596 + L_thetaNeighbor: 1.52692
+Epoch: 0 [ 160/10000 (2%)] Unweighted L_s : L_Mnfld: 0.00422 + L_NonMnfld: 0.00008 + L_Eknl: 0.34000 + L_Morse: 0.72734 + L_thetaHessian: 0.53760 + L_thetaNeighbor: 0.05090
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 170/10000 (2%)] Loss: 59.93232 = L_Mnfld: 32.72334 + L_NonMnfld: 0.02098 + L_Eknl: 16.17049 + L_Morse: 2.16868 + L_thetaHessian: 5.60968 + L_thetaNeighbor: 1.54091
+Epoch: 0 [ 170/10000 (2%)] Unweighted L_s : L_Mnfld: 0.00467 + L_NonMnfld: 0.00003 + L_Eknl: 0.32341 + L_Morse: 0.72289 + L_thetaHessian: 0.56097 + L_thetaNeighbor: 0.05136
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 180/10000 (2%)] Loss: 53.63623 = L_Mnfld: 26.47553 + L_NonMnfld: 0.03700 + L_Eknl: 16.25010 + L_Morse: 2.26096 + L_thetaHessian: 5.61612 + L_thetaNeighbor: 1.48775
+Epoch: 0 [ 180/10000 (2%)] Unweighted L_s : L_Mnfld: 0.00378 + L_NonMnfld: 0.00006 + L_Eknl: 0.32500 + L_Morse: 0.75365 + L_thetaHessian: 0.56161 + L_thetaNeighbor: 0.04959
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 190/10000 (2%)] Loss: 53.28606 = L_Mnfld: 26.20445 + L_NonMnfld: 0.05125 + L_Eknl: 16.34975 + L_Morse: 2.15346 + L_thetaHessian: 5.45933 + L_thetaNeighbor: 1.49869
+Epoch: 0 [ 190/10000 (2%)] Unweighted L_s : L_Mnfld: 0.00374 + L_NonMnfld: 0.00009 + L_Eknl: 0.32700 + L_Morse: 0.71782 + L_thetaHessian: 0.54593 + L_thetaNeighbor: 0.04996
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 200/10000 (2%)] Loss: 73.82286 = L_Mnfld: 45.34628 + L_NonMnfld: 0.02145 + L_Eknl: 16.09882 + L_Morse: 2.61702 + L_thetaHessian: 6.69598 + L_thetaNeighbor: 1.62099
+Epoch: 0 [ 200/10000 (2%)] Unweighted L_s : L_Mnfld: 0.00648 + L_NonMnfld: 0.00004 + L_Eknl: 0.32198 + L_Morse: 0.87234 + L_thetaHessian: 0.66960 + L_thetaNeighbor: 0.05403
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 210/10000 (2%)] Loss: 67.24937 = L_Mnfld: 37.60418 + L_NonMnfld: 0.03375 + L_Eknl: 16.39325 + L_Morse: 2.65468 + L_thetaHessian: 7.39630 + L_thetaNeighbor: 1.64785
+Epoch: 0 [ 210/10000 (2%)] Unweighted L_s : L_Mnfld: 0.00537 + L_NonMnfld: 0.00006 + L_Eknl: 0.32787 + L_Morse: 0.88489 + L_thetaHessian: 0.73963 + L_thetaNeighbor: 0.05493
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 220/10000 (2%)] Loss: 52.70345 = L_Mnfld: 24.89437 + L_NonMnfld: 0.02643 + L_Eknl: 15.09587 + L_Morse: 2.53444 + L_thetaHessian: 7.22581 + L_thetaNeighbor: 1.55858
+Epoch: 0 [ 220/10000 (2%)] Unweighted L_s : L_Mnfld: 0.00356 + L_NonMnfld: 0.00004 + L_Eknl: 0.30192 + L_Morse: 0.84481 + L_thetaHessian: 0.72258 + L_thetaNeighbor: 0.05195
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 230/10000 (2%)] Loss: 54.46840 = L_Mnfld: 26.92327 + L_NonMnfld: 0.03450 + L_Eknl: 15.03099 + L_Morse: 2.49155 + L_thetaHessian: 7.00621 + L_thetaNeighbor: 1.53140
+Epoch: 0 [ 230/10000 (2%)] Unweighted L_s : L_Mnfld: 0.00385 + L_NonMnfld: 0.00006 + L_Eknl: 0.30062 + L_Morse: 0.83052 + L_thetaHessian: 0.70062 + L_thetaNeighbor: 0.05105
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 240/10000 (2%)] Loss: 59.69884 = L_Mnfld: 31.21486 + L_NonMnfld: 0.02672 + L_Eknl: 14.75524 + L_Morse: 2.78148 + L_thetaHessian: 8.00528 + L_thetaNeighbor: 1.51690
+Epoch: 0 [ 240/10000 (2%)] Unweighted L_s : L_Mnfld: 0.00446 + L_NonMnfld: 0.00004 + L_Eknl: 0.29510 + L_Morse: 0.92716 + L_thetaHessian: 0.80053 + L_thetaNeighbor: 0.05056
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 250/10000 (2%)] Loss: 53.63545 = L_Mnfld: 26.87687 + L_NonMnfld: 0.04031 + L_Eknl: 14.46104 + L_Morse: 2.46839 + L_thetaHessian: 6.88927 + L_thetaNeighbor: 1.47769
+Epoch: 0 [ 250/10000 (2%)] Unweighted L_s : L_Mnfld: 0.00384 + L_NonMnfld: 0.00007 + L_Eknl: 0.28922 + L_Morse: 0.82280 + L_thetaHessian: 0.68893 + L_thetaNeighbor: 0.04926
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 260/10000 (3%)] Loss: 61.47768 = L_Mnfld: 32.62447 + L_NonMnfld: 0.03857 + L_Eknl: 15.80305 + L_Morse: 2.56578 + L_thetaHessian: 7.58426 + L_thetaNeighbor: 1.48770
+Epoch: 0 [ 260/10000 (3%)] Unweighted L_s : L_Mnfld: 0.00466 + L_NonMnfld: 0.00006 + L_Eknl: 0.31606 + L_Morse: 0.85526 + L_thetaHessian: 0.75843 + L_thetaNeighbor: 0.04959
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 270/10000 (3%)] Loss: 50.58334 = L_Mnfld: 24.45638 + L_NonMnfld: 0.03658 + L_Eknl: 14.14510 + L_Morse: 2.39770 + L_thetaHessian: 6.66279 + L_thetaNeighbor: 1.49223
+Epoch: 0 [ 270/10000 (3%)] Unweighted L_s : L_Mnfld: 0.00349 + L_NonMnfld: 0.00006 + L_Eknl: 0.28290 + L_Morse: 0.79923 + L_thetaHessian: 0.66628 + L_thetaNeighbor: 0.04974
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 280/10000 (3%)] Loss: 53.72728 = L_Mnfld: 27.71146 + L_NonMnfld: 0.02578 + L_Eknl: 13.88900 + L_Morse: 2.39906 + L_thetaHessian: 6.73230 + L_thetaNeighbor: 1.55342
+Epoch: 0 [ 280/10000 (3%)] Unweighted L_s : L_Mnfld: 0.00396 + L_NonMnfld: 0.00004 + L_Eknl: 0.27778 + L_Morse: 0.79969 + L_thetaHessian: 0.67323 + L_thetaNeighbor: 0.05178
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 290/10000 (3%)] Loss: 53.51690 = L_Mnfld: 26.22215 + L_NonMnfld: 0.03879 + L_Eknl: 14.43038 + L_Morse: 2.54697 + L_thetaHessian: 7.22010 + L_thetaNeighbor: 1.57670
+Epoch: 0 [ 290/10000 (3%)] Unweighted L_s : L_Mnfld: 0.00375 + L_NonMnfld: 0.00006 + L_Eknl: 0.28861 + L_Morse: 0.84899 + L_thetaHessian: 0.72201 + L_thetaNeighbor: 0.05256
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 300/10000 (3%)] Loss: 42.02621 = L_Mnfld: 16.80494 + L_NonMnfld: 0.03411 + L_Eknl: 13.74226 + L_Morse: 2.27869 + L_thetaHessian: 6.24969 + L_thetaNeighbor: 1.47107
+Epoch: 0 [ 300/10000 (3%)] Unweighted L_s : L_Mnfld: 0.00240 + L_NonMnfld: 0.00006 + L_Eknl: 0.27485 + L_Morse: 0.75956 + L_thetaHessian: 0.62497 + L_thetaNeighbor: 0.04904
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 310/10000 (3%)] Loss: 40.75990 = L_Mnfld: 16.68778 + L_NonMnfld: 0.02100 + L_Eknl: 13.12441 + L_Morse: 2.21406 + L_thetaHessian: 5.77825 + L_thetaNeighbor: 1.45475
+Epoch: 0 [ 310/10000 (3%)] Unweighted L_s : L_Mnfld: 0.00238 + L_NonMnfld: 0.00004 + L_Eknl: 0.26249 + L_Morse: 0.73802 + L_thetaHessian: 0.57783 + L_thetaNeighbor: 0.04849
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 320/10000 (3%)] Loss: 36.50632 = L_Mnfld: 13.06269 + L_NonMnfld: 0.02978 + L_Eknl: 12.99274 + L_Morse: 2.08150 + L_thetaHessian: 5.38706 + L_thetaNeighbor: 1.44535
+Epoch: 0 [ 320/10000 (3%)] Unweighted L_s : L_Mnfld: 0.00187 + L_NonMnfld: 0.00005 + L_Eknl: 0.25985 + L_Morse: 0.69383 + L_thetaHessian: 0.53871 + L_thetaNeighbor: 0.04818
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 330/10000 (3%)] Loss: 39.02441 = L_Mnfld: 15.87407 + L_NonMnfld: 0.02286 + L_Eknl: 12.67780 + L_Morse: 2.10478 + L_thetaHessian: 5.39317 + L_thetaNeighbor: 1.44017
+Epoch: 0 [ 330/10000 (3%)] Unweighted L_s : L_Mnfld: 0.00227 + L_NonMnfld: 0.00004 + L_Eknl: 0.25356 + L_Morse: 0.70159 + L_thetaHessian: 0.53932 + L_thetaNeighbor: 0.04801
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 340/10000 (3%)] Loss: 35.40070 = L_Mnfld: 12.51847 + L_NonMnfld: 0.04030 + L_Eknl: 12.55128 + L_Morse: 2.05818 + L_thetaHessian: 5.26945 + L_thetaNeighbor: 1.44845
+Epoch: 0 [ 340/10000 (3%)] Unweighted L_s : L_Mnfld: 0.00179 + L_NonMnfld: 0.00007 + L_Eknl: 0.25103 + L_Morse: 0.68606 + L_thetaHessian: 0.52695 + L_thetaNeighbor: 0.04828
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 350/10000 (4%)] Loss: 37.30746 = L_Mnfld: 14.44980 + L_NonMnfld: 0.02790 + L_Eknl: 12.58447 + L_Morse: 2.03196 + L_thetaHessian: 5.26260 + L_thetaNeighbor: 1.44211
+Epoch: 0 [ 350/10000 (4%)] Unweighted L_s : L_Mnfld: 0.00206 + L_NonMnfld: 0.00005 + L_Eknl: 0.25169 + L_Morse: 0.67732 + L_thetaHessian: 0.52626 + L_thetaNeighbor: 0.04807
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 360/10000 (4%)] Loss: 36.65803 = L_Mnfld: 13.73611 + L_NonMnfld: 0.04846 + L_Eknl: 12.70389 + L_Morse: 2.01133 + L_thetaHessian: 5.20761 + L_thetaNeighbor: 1.43773
+Epoch: 0 [ 360/10000 (4%)] Unweighted L_s : L_Mnfld: 0.00196 + L_NonMnfld: 0.00008 + L_Eknl: 0.25408 + L_Morse: 0.67044 + L_thetaHessian: 0.52076 + L_thetaNeighbor: 0.04792
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 370/10000 (4%)] Loss: 36.59562 = L_Mnfld: 14.14374 + L_NonMnfld: 0.01777 + L_Eknl: 12.21827 + L_Morse: 2.03909 + L_thetaHessian: 5.22287 + L_thetaNeighbor: 1.43736
+Epoch: 0 [ 370/10000 (4%)] Unweighted L_s : L_Mnfld: 0.00202 + L_NonMnfld: 0.00003 + L_Eknl: 0.24437 + L_Morse: 0.67970 + L_thetaHessian: 0.52229 + L_thetaNeighbor: 0.04791
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 380/10000 (4%)] Loss: 34.38646 = L_Mnfld: 12.07864 + L_NonMnfld: 0.04043 + L_Eknl: 12.22460 + L_Morse: 1.98708 + L_thetaHessian: 5.09786 + L_thetaNeighbor: 1.43422
+Epoch: 0 [ 380/10000 (4%)] Unweighted L_s : L_Mnfld: 0.00173 + L_NonMnfld: 0.00007 + L_Eknl: 0.24449 + L_Morse: 0.66236 + L_thetaHessian: 0.50979 + L_thetaNeighbor: 0.04781
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 390/10000 (4%)] Loss: 34.32033 = L_Mnfld: 11.95481 + L_NonMnfld: 0.02522 + L_Eknl: 12.16791 + L_Morse: 2.02375 + L_thetaHessian: 5.18730 + L_thetaNeighbor: 1.44277
+Epoch: 0 [ 390/10000 (4%)] Unweighted L_s : L_Mnfld: 0.00171 + L_NonMnfld: 0.00004 + L_Eknl: 0.24336 + L_Morse: 0.67458 + L_thetaHessian: 0.51873 + L_thetaNeighbor: 0.04809
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 400/10000 (4%)] Loss: 33.94692 = L_Mnfld: 11.64936 + L_NonMnfld: 0.02517 + L_Eknl: 12.17525 + L_Morse: 2.00570 + L_thetaHessian: 5.12257 + L_thetaNeighbor: 1.44214
+Epoch: 0 [ 400/10000 (4%)] Unweighted L_s : L_Mnfld: 0.00166 + L_NonMnfld: 0.00004 + L_Eknl: 0.24350 + L_Morse: 0.66857 + L_thetaHessian: 0.51226 + L_thetaNeighbor: 0.04807
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 410/10000 (4%)] Loss: 33.11285 = L_Mnfld: 11.03991 + L_NonMnfld: 0.02530 + L_Eknl: 12.05984 + L_Morse: 1.96937 + L_thetaHessian: 5.05669 + L_thetaNeighbor: 1.43886
+Epoch: 0 [ 410/10000 (4%)] Unweighted L_s : L_Mnfld: 0.00158 + L_NonMnfld: 0.00004 + L_Eknl: 0.24120 + L_Morse: 0.65646 + L_thetaHessian: 0.50567 + L_thetaNeighbor: 0.04796
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 420/10000 (4%)] Loss: 32.93863 = L_Mnfld: 11.18435 + L_NonMnfld: 0.02751 + L_Eknl: 11.81020 + L_Morse: 1.95466 + L_thetaHessian: 5.00810 + L_thetaNeighbor: 1.43413
+Epoch: 0 [ 420/10000 (4%)] Unweighted L_s : L_Mnfld: 0.00160 + L_NonMnfld: 0.00005 + L_Eknl: 0.23620 + L_Morse: 0.65155 + L_thetaHessian: 0.50081 + L_thetaNeighbor: 0.04780
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 430/10000 (4%)] Loss: 32.75166 = L_Mnfld: 11.05046 + L_NonMnfld: 0.02062 + L_Eknl: 11.71524 + L_Morse: 1.97013 + L_thetaHessian: 5.03618 + L_thetaNeighbor: 1.44041
+Epoch: 0 [ 430/10000 (4%)] Unweighted L_s : L_Mnfld: 0.00158 + L_NonMnfld: 0.00003 + L_Eknl: 0.23430 + L_Morse: 0.65671 + L_thetaHessian: 0.50362 + L_thetaNeighbor: 0.04801
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 440/10000 (4%)] Loss: 32.82738 = L_Mnfld: 10.75701 + L_NonMnfld: 0.03354 + L_Eknl: 12.04430 + L_Morse: 1.97077 + L_thetaHessian: 5.05952 + L_thetaNeighbor: 1.43746
+Epoch: 0 [ 440/10000 (4%)] Unweighted L_s : L_Mnfld: 0.00154 + L_NonMnfld: 0.00006 + L_Eknl: 0.24089 + L_Morse: 0.65692 + L_thetaHessian: 0.50595 + L_thetaNeighbor: 0.04792
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 450/10000 (4%)] Loss: 32.83798 = L_Mnfld: 11.11393 + L_NonMnfld: 0.02456 + L_Eknl: 11.76878 + L_Morse: 1.94417 + L_thetaHessian: 5.02042 + L_thetaNeighbor: 1.43886
+Epoch: 0 [ 450/10000 (4%)] Unweighted L_s : L_Mnfld: 0.00159 + L_NonMnfld: 0.00004 + L_Eknl: 0.23538 + L_Morse: 0.64806 + L_thetaHessian: 0.50204 + L_thetaNeighbor: 0.04796
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 460/10000 (5%)] Loss: 32.28144 = L_Mnfld: 10.68531 + L_NonMnfld: 0.02427 + L_Eknl: 11.64386 + L_Morse: 1.95006 + L_thetaHessian: 5.02378 + L_thetaNeighbor: 1.43945
+Epoch: 0 [ 460/10000 (5%)] Unweighted L_s : L_Mnfld: 0.00153 + L_NonMnfld: 0.00004 + L_Eknl: 0.23288 + L_Morse: 0.65002 + L_thetaHessian: 0.50238 + L_thetaNeighbor: 0.04798
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 470/10000 (5%)] Loss: 31.93381 = L_Mnfld: 10.43744 + L_NonMnfld: 0.02205 + L_Eknl: 11.51605 + L_Morse: 1.96327 + L_thetaHessian: 5.04254 + L_thetaNeighbor: 1.43663
+Epoch: 0 [ 470/10000 (5%)] Unweighted L_s : L_Mnfld: 0.00149 + L_NonMnfld: 0.00004 + L_Eknl: 0.23032 + L_Morse: 0.65442 + L_thetaHessian: 0.50425 + L_thetaNeighbor: 0.04789
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 480/10000 (5%)] Loss: 32.65802 = L_Mnfld: 11.03673 + L_NonMnfld: 0.02864 + L_Eknl: 11.72317 + L_Morse: 1.92835 + L_thetaHessian: 4.96371 + L_thetaNeighbor: 1.44421
+Epoch: 0 [ 480/10000 (5%)] Unweighted L_s : L_Mnfld: 0.00158 + L_NonMnfld: 0.00005 + L_Eknl: 0.23446 + L_Morse: 0.64278 + L_thetaHessian: 0.49637 + L_thetaNeighbor: 0.04814
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 490/10000 (5%)] Loss: 31.89058 = L_Mnfld: 10.43165 + L_NonMnfld: 0.02452 + L_Eknl: 11.49065 + L_Morse: 1.94623 + L_thetaHessian: 5.03001 + L_thetaNeighbor: 1.44067
+Epoch: 0 [ 490/10000 (5%)] Unweighted L_s : L_Mnfld: 0.00149 + L_NonMnfld: 0.00004 + L_Eknl: 0.22981 + L_Morse: 0.64874 + L_thetaHessian: 0.50300 + L_thetaNeighbor: 0.04802
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 500/10000 (5%)] Loss: 31.40128 = L_Mnfld: 10.06808 + L_NonMnfld: 0.02953 + L_Eknl: 11.44074 + L_Morse: 1.92661 + L_thetaHessian: 4.97673 + L_thetaNeighbor: 1.43943
+Epoch: 0 [ 500/10000 (5%)] Unweighted L_s : L_Mnfld: 0.00144 + L_NonMnfld: 0.00005 + L_Eknl: 0.22881 + L_Morse: 0.64220 + L_thetaHessian: 0.49767 + L_thetaNeighbor: 0.04798
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 510/10000 (5%)] Loss: 31.72279 = L_Mnfld: 10.43824 + L_NonMnfld: 0.02419 + L_Eknl: 11.36137 + L_Morse: 1.93267 + L_thetaHessian: 5.00875 + L_thetaNeighbor: 1.43841
+Epoch: 0 [ 510/10000 (5%)] Unweighted L_s : L_Mnfld: 0.00149 + L_NonMnfld: 0.00004 + L_Eknl: 0.22723 + L_Morse: 0.64422 + L_thetaHessian: 0.50087 + L_thetaNeighbor: 0.04795
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 520/10000 (5%)] Loss: 31.45718 = L_Mnfld: 10.11046 + L_NonMnfld: 0.02707 + L_Eknl: 11.57194 + L_Morse: 1.88252 + L_thetaHessian: 4.89211 + L_thetaNeighbor: 1.43568
+Epoch: 0 [ 520/10000 (5%)] Unweighted L_s : L_Mnfld: 0.00144 + L_NonMnfld: 0.00005 + L_Eknl: 0.23144 + L_Morse: 0.62751 + L_thetaHessian: 0.48921 + L_thetaNeighbor: 0.04786
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 530/10000 (5%)] Loss: 30.46467 = L_Mnfld: 9.48628 + L_NonMnfld: 0.02672 + L_Eknl: 11.13152 + L_Morse: 1.91320 + L_thetaHessian: 4.94120 + L_thetaNeighbor: 1.44116
+Epoch: 0 [ 530/10000 (5%)] Unweighted L_s : L_Mnfld: 0.00136 + L_NonMnfld: 0.00004 + L_Eknl: 0.22263 + L_Morse: 0.63773 + L_thetaHessian: 0.49412 + L_thetaNeighbor: 0.04804
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 540/10000 (5%)] Loss: 31.36696 = L_Mnfld: 10.09270 + L_NonMnfld: 0.02949 + L_Eknl: 11.45060 + L_Morse: 1.90464 + L_thetaHessian: 4.92952 + L_thetaNeighbor: 1.44286
+Epoch: 0 [ 540/10000 (5%)] Unweighted L_s : L_Mnfld: 0.00144 + L_NonMnfld: 0.00005 + L_Eknl: 0.22901 + L_Morse: 0.63488 + L_thetaHessian: 0.49295 + L_thetaNeighbor: 0.04810
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 550/10000 (6%)] Loss: 30.36300 = L_Mnfld: 9.33406 + L_NonMnfld: 0.02007 + L_Eknl: 11.22068 + L_Morse: 1.89814 + L_thetaHessian: 4.92785 + L_thetaNeighbor: 1.43889
+Epoch: 0 [ 550/10000 (6%)] Unweighted L_s : L_Mnfld: 0.00133 + L_NonMnfld: 0.00003 + L_Eknl: 0.22441 + L_Morse: 0.63271 + L_thetaHessian: 0.49278 + L_thetaNeighbor: 0.04796
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 560/10000 (6%)] Loss: 30.18118 = L_Mnfld: 9.28166 + L_NonMnfld: 0.03065 + L_Eknl: 11.18481 + L_Morse: 1.86555 + L_thetaHessian: 4.85166 + L_thetaNeighbor: 1.43856
+Epoch: 0 [ 560/10000 (6%)] Unweighted L_s : L_Mnfld: 0.00133 + L_NonMnfld: 0.00005 + L_Eknl: 0.22370 + L_Morse: 0.62185 + L_thetaHessian: 0.48517 + L_thetaNeighbor: 0.04795
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 570/10000 (6%)] Loss: 30.34637 = L_Mnfld: 9.59514 + L_NonMnfld: 0.02964 + L_Eknl: 11.05372 + L_Morse: 1.86192 + L_thetaHessian: 4.83461 + L_thetaNeighbor: 1.43783
+Epoch: 0 [ 570/10000 (6%)] Unweighted L_s : L_Mnfld: 0.00137 + L_NonMnfld: 0.00005 + L_Eknl: 0.22107 + L_Morse: 0.62064 + L_thetaHessian: 0.48346 + L_thetaNeighbor: 0.04793
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 580/10000 (6%)] Loss: 30.31704 = L_Mnfld: 9.47919 + L_NonMnfld: 0.02748 + L_Eknl: 11.13843 + L_Morse: 1.86266 + L_thetaHessian: 4.84550 + L_thetaNeighbor: 1.43742
+Epoch: 0 [ 580/10000 (6%)] Unweighted L_s : L_Mnfld: 0.00135 + L_NonMnfld: 0.00005 + L_Eknl: 0.22277 + L_Morse: 0.62089 + L_thetaHessian: 0.48455 + L_thetaNeighbor: 0.04791
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 590/10000 (6%)] Loss: 29.27428 = L_Mnfld: 8.62878 + L_NonMnfld: 0.01960 + L_Eknl: 11.00129 + L_Morse: 1.85313 + L_thetaHessian: 4.80086 + L_thetaNeighbor: 1.43316
+Epoch: 0 [ 590/10000 (6%)] Unweighted L_s : L_Mnfld: 0.00123 + L_NonMnfld: 0.00003 + L_Eknl: 0.22003 + L_Morse: 0.61771 + L_thetaHessian: 0.48009 + L_thetaNeighbor: 0.04777
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 600/10000 (6%)] Loss: 29.47953 = L_Mnfld: 8.86617 + L_NonMnfld: 0.02492 + L_Eknl: 10.99581 + L_Morse: 1.84375 + L_thetaHessian: 4.79287 + L_thetaNeighbor: 1.43829
+Epoch: 0 [ 600/10000 (6%)] Unweighted L_s : L_Mnfld: 0.00127 + L_NonMnfld: 0.00004 + L_Eknl: 0.21992 + L_Morse: 0.61458 + L_thetaHessian: 0.47929 + L_thetaNeighbor: 0.04794
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 610/10000 (6%)] Loss: 29.25925 = L_Mnfld: 8.71890 + L_NonMnfld: 0.02219 + L_Eknl: 10.93824 + L_Morse: 1.83950 + L_thetaHessian: 4.77194 + L_thetaNeighbor: 1.43519
+Epoch: 0 [ 610/10000 (6%)] Unweighted L_s : L_Mnfld: 0.00125 + L_NonMnfld: 0.00004 + L_Eknl: 0.21876 + L_Morse: 0.61317 + L_thetaHessian: 0.47719 + L_thetaNeighbor: 0.04784
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 620/10000 (6%)] Loss: 30.12363 = L_Mnfld: 9.63617 + L_NonMnfld: 0.02462 + L_Eknl: 10.89617 + L_Morse: 1.83823 + L_thetaHessian: 4.76924 + L_thetaNeighbor: 1.43575
+Epoch: 0 [ 620/10000 (6%)] Unweighted L_s : L_Mnfld: 0.00138 + L_NonMnfld: 0.00004 + L_Eknl: 0.21792 + L_Morse: 0.61274 + L_thetaHessian: 0.47692 + L_thetaNeighbor: 0.04786
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 630/10000 (6%)] Loss: 28.38015 = L_Mnfld: 7.95626 + L_NonMnfld: 0.01807 + L_Eknl: 10.84270 + L_Morse: 1.83483 + L_thetaHessian: 4.75820 + L_thetaNeighbor: 1.43183
+Epoch: 0 [ 630/10000 (6%)] Unweighted L_s : L_Mnfld: 0.00114 + L_NonMnfld: 0.00003 + L_Eknl: 0.21685 + L_Morse: 0.61161 + L_thetaHessian: 0.47582 + L_thetaNeighbor: 0.04773
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 640/10000 (6%)] Loss: 30.72623 = L_Mnfld: 9.78157 + L_NonMnfld: 0.03724 + L_Eknl: 11.36795 + L_Morse: 1.82628 + L_thetaHessian: 4.74455 + L_thetaNeighbor: 1.43329
+Epoch: 0 [ 640/10000 (6%)] Unweighted L_s : L_Mnfld: 0.00140 + L_NonMnfld: 0.00006 + L_Eknl: 0.22736 + L_Morse: 0.60876 + L_thetaHessian: 0.47446 + L_thetaNeighbor: 0.04778
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 650/10000 (6%)] Loss: 28.52752 = L_Mnfld: 8.13848 + L_NonMnfld: 0.01686 + L_Eknl: 10.83965 + L_Morse: 1.83135 + L_thetaHessian: 4.73689 + L_thetaNeighbor: 1.43426
+Epoch: 0 [ 650/10000 (6%)] Unweighted L_s : L_Mnfld: 0.00116 + L_NonMnfld: 0.00003 + L_Eknl: 0.21679 + L_Morse: 0.61045 + L_thetaHessian: 0.47369 + L_thetaNeighbor: 0.04781
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 660/10000 (7%)] Loss: 30.62140 = L_Mnfld: 10.23943 + L_NonMnfld: 0.02753 + L_Eknl: 10.85383 + L_Morse: 1.81069 + L_thetaHessian: 4.72708 + L_thetaNeighbor: 1.43380
+Epoch: 0 [ 660/10000 (7%)] Unweighted L_s : L_Mnfld: 0.00146 + L_NonMnfld: 0.00005 + L_Eknl: 0.21708 + L_Morse: 0.60356 + L_thetaHessian: 0.47271 + L_thetaNeighbor: 0.04779
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 670/10000 (7%)] Loss: 27.24788 = L_Mnfld: 7.03957 + L_NonMnfld: 0.02109 + L_Eknl: 10.66636 + L_Morse: 1.82153 + L_thetaHessian: 4.73650 + L_thetaNeighbor: 1.43186
+Epoch: 0 [ 670/10000 (7%)] Unweighted L_s : L_Mnfld: 0.00101 + L_NonMnfld: 0.00004 + L_Eknl: 0.21333 + L_Morse: 0.60718 + L_thetaHessian: 0.47365 + L_thetaNeighbor: 0.04773
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 680/10000 (7%)] Loss: 30.42772 = L_Mnfld: 10.16860 + L_NonMnfld: 0.02520 + L_Eknl: 10.76236 + L_Morse: 1.80644 + L_thetaHessian: 4.68564 + L_thetaNeighbor: 1.43277
+Epoch: 0 [ 680/10000 (7%)] Unweighted L_s : L_Mnfld: 0.00145 + L_NonMnfld: 0.00004 + L_Eknl: 0.21525 + L_Morse: 0.60215 + L_thetaHessian: 0.46856 + L_thetaNeighbor: 0.04776
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 690/10000 (7%)] Loss: 26.62745 = L_Mnfld: 6.48635 + L_NonMnfld: 0.02313 + L_Eknl: 10.63716 + L_Morse: 1.80873 + L_thetaHessian: 4.71093 + L_thetaNeighbor: 1.43271
+Epoch: 0 [ 690/10000 (7%)] Unweighted L_s : L_Mnfld: 0.00093 + L_NonMnfld: 0.00004 + L_Eknl: 0.21274 + L_Morse: 0.60291 + L_thetaHessian: 0.47109 + L_thetaNeighbor: 0.04776
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 700/10000 (7%)] Loss: 30.53004 = L_Mnfld: 10.36314 + L_NonMnfld: 0.02709 + L_Eknl: 10.69652 + L_Morse: 1.80299 + L_thetaHessian: 4.67270 + L_thetaNeighbor: 1.43184
+Epoch: 0 [ 700/10000 (7%)] Unweighted L_s : L_Mnfld: 0.00148 + L_NonMnfld: 0.00005 + L_Eknl: 0.21393 + L_Morse: 0.60100 + L_thetaHessian: 0.46727 + L_thetaNeighbor: 0.04773
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 710/10000 (7%)] Loss: 26.23619 = L_Mnfld: 6.15567 + L_NonMnfld: 0.01983 + L_Eknl: 10.61578 + L_Morse: 1.79990 + L_thetaHessian: 4.68136 + L_thetaNeighbor: 1.43164
+Epoch: 0 [ 710/10000 (7%)] Unweighted L_s : L_Mnfld: 0.00088 + L_NonMnfld: 0.00003 + L_Eknl: 0.21232 + L_Morse: 0.59997 + L_thetaHessian: 0.46814 + L_thetaNeighbor: 0.04772
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 720/10000 (7%)] Loss: 30.69509 = L_Mnfld: 10.61982 + L_NonMnfld: 0.02302 + L_Eknl: 10.61936 + L_Morse: 1.79846 + L_thetaHessian: 4.67698 + L_thetaNeighbor: 1.43249
+Epoch: 0 [ 720/10000 (7%)] Unweighted L_s : L_Mnfld: 0.00152 + L_NonMnfld: 0.00004 + L_Eknl: 0.21239 + L_Morse: 0.59949 + L_thetaHessian: 0.46770 + L_thetaNeighbor: 0.04775
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 730/10000 (7%)] Loss: 25.65821 = L_Mnfld: 5.67583 + L_NonMnfld: 0.01732 + L_Eknl: 10.57156 + L_Morse: 1.78117 + L_thetaHessian: 4.64979 + L_thetaNeighbor: 1.42997
+Epoch: 0 [ 730/10000 (7%)] Unweighted L_s : L_Mnfld: 0.00081 + L_NonMnfld: 0.00003 + L_Eknl: 0.21143 + L_Morse: 0.59372 + L_thetaHessian: 0.46498 + L_thetaNeighbor: 0.04767
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 740/10000 (7%)] Loss: 30.92073 = L_Mnfld: 10.93914 + L_NonMnfld: 0.02857 + L_Eknl: 10.53003 + L_Morse: 1.79168 + L_thetaHessian: 4.67343 + L_thetaNeighbor: 1.43227
+Epoch: 0 [ 740/10000 (7%)] Unweighted L_s : L_Mnfld: 0.00156 + L_NonMnfld: 0.00005 + L_Eknl: 0.21060 + L_Morse: 0.59723 + L_thetaHessian: 0.46734 + L_thetaNeighbor: 0.04774
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 750/10000 (8%)] Loss: 25.83838 = L_Mnfld: 5.90015 + L_NonMnfld: 0.01993 + L_Eknl: 10.49152 + L_Morse: 1.78797 + L_thetaHessian: 4.68691 + L_thetaNeighbor: 1.43401
+Epoch: 0 [ 750/10000 (8%)] Unweighted L_s : L_Mnfld: 0.00084 + L_NonMnfld: 0.00003 + L_Eknl: 0.20983 + L_Morse: 0.59599 + L_thetaHessian: 0.46869 + L_thetaNeighbor: 0.04780
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 760/10000 (8%)] Loss: 30.61116 = L_Mnfld: 10.60649 + L_NonMnfld: 0.02797 + L_Eknl: 10.42462 + L_Morse: 1.83091 + L_thetaHessian: 4.75246 + L_thetaNeighbor: 1.43400
+Epoch: 0 [ 760/10000 (8%)] Unweighted L_s : L_Mnfld: 0.00152 + L_NonMnfld: 0.00005 + L_Eknl: 0.20849 + L_Morse: 0.61030 + L_thetaHessian: 0.47525 + L_thetaNeighbor: 0.04780
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 770/10000 (8%)] Loss: 27.94723 = L_Mnfld: 7.85843 + L_NonMnfld: 0.01456 + L_Eknl: 10.49414 + L_Morse: 1.82654 + L_thetaHessian: 4.79946 + L_thetaNeighbor: 1.43389
+Epoch: 0 [ 770/10000 (8%)] Unweighted L_s : L_Mnfld: 0.00112 + L_NonMnfld: 0.00002 + L_Eknl: 0.20988 + L_Morse: 0.60885 + L_thetaHessian: 0.47995 + L_thetaNeighbor: 0.04780
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 780/10000 (8%)] Loss: 28.61064 = L_Mnfld: 8.64363 + L_NonMnfld: 0.01976 + L_Eknl: 10.31599 + L_Morse: 1.85258 + L_thetaHessian: 4.80447 + L_thetaNeighbor: 1.43835
+Epoch: 0 [ 780/10000 (8%)] Unweighted L_s : L_Mnfld: 0.00123 + L_NonMnfld: 0.00003 + L_Eknl: 0.20632 + L_Morse: 0.61753 + L_thetaHessian: 0.48045 + L_thetaNeighbor: 0.04794
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 790/10000 (8%)] Loss: 28.85125 = L_Mnfld: 8.85555 + L_NonMnfld: 0.01532 + L_Eknl: 10.45331 + L_Morse: 1.80985 + L_thetaHessian: 4.76628 + L_thetaNeighbor: 1.43888
+Epoch: 0 [ 790/10000 (8%)] Unweighted L_s : L_Mnfld: 0.00127 + L_NonMnfld: 0.00003 + L_Eknl: 0.20907 + L_Morse: 0.60328 + L_thetaHessian: 0.47663 + L_thetaNeighbor: 0.04796
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 800/10000 (8%)] Loss: 28.44359 = L_Mnfld: 8.57820 + L_NonMnfld: 0.02599 + L_Eknl: 10.32924 + L_Morse: 1.81464 + L_thetaHessian: 4.73120 + L_thetaNeighbor: 1.43403
+Epoch: 0 [ 800/10000 (8%)] Unweighted L_s : L_Mnfld: 0.00123 + L_NonMnfld: 0.00004 + L_Eknl: 0.20658 + L_Morse: 0.60488 + L_thetaHessian: 0.47312 + L_thetaNeighbor: 0.04780
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 810/10000 (8%)] Loss: 28.31361 = L_Mnfld: 8.51382 + L_NonMnfld: 0.01684 + L_Eknl: 10.26548 + L_Morse: 1.82131 + L_thetaHessian: 4.72902 + L_thetaNeighbor: 1.43323
+Epoch: 0 [ 810/10000 (8%)] Unweighted L_s : L_Mnfld: 0.00122 + L_NonMnfld: 0.00003 + L_Eknl: 0.20531 + L_Morse: 0.60710 + L_thetaHessian: 0.47290 + L_thetaNeighbor: 0.04777
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 820/10000 (8%)] Loss: 28.97020 = L_Mnfld: 9.11140 + L_NonMnfld: 0.02170 + L_Eknl: 10.36181 + L_Morse: 1.80091 + L_thetaHessian: 4.71164 + L_thetaNeighbor: 1.43204
+Epoch: 0 [ 820/10000 (8%)] Unweighted L_s : L_Mnfld: 0.00130 + L_NonMnfld: 0.00004 + L_Eknl: 0.20724 + L_Morse: 0.60030 + L_thetaHessian: 0.47116 + L_thetaNeighbor: 0.04773
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 830/10000 (8%)] Loss: 27.53122 = L_Mnfld: 7.80075 + L_NonMnfld: 0.01784 + L_Eknl: 10.22881 + L_Morse: 1.80108 + L_thetaHessian: 4.73054 + L_thetaNeighbor: 1.43400
+Epoch: 0 [ 830/10000 (8%)] Unweighted L_s : L_Mnfld: 0.00111 + L_NonMnfld: 0.00003 + L_Eknl: 0.20458 + L_Morse: 0.60036 + L_thetaHessian: 0.47305 + L_thetaNeighbor: 0.04780
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 840/10000 (8%)] Loss: 29.16137 = L_Mnfld: 9.40576 + L_NonMnfld: 0.02912 + L_Eknl: 10.29118 + L_Morse: 1.78812 + L_thetaHessian: 4.68800 + L_thetaNeighbor: 1.43407
+Epoch: 0 [ 840/10000 (8%)] Unweighted L_s : L_Mnfld: 0.00134 + L_NonMnfld: 0.00005 + L_Eknl: 0.20582 + L_Morse: 0.59604 + L_thetaHessian: 0.46880 + L_thetaNeighbor: 0.04780
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 850/10000 (8%)] Loss: 27.55998 = L_Mnfld: 7.85421 + L_NonMnfld: 0.01408 + L_Eknl: 10.22194 + L_Morse: 1.80011 + L_thetaHessian: 4.72037 + L_thetaNeighbor: 1.43424
+Epoch: 0 [ 850/10000 (8%)] Unweighted L_s : L_Mnfld: 0.00112 + L_NonMnfld: 0.00002 + L_Eknl: 0.20444 + L_Morse: 0.60004 + L_thetaHessian: 0.47204 + L_thetaNeighbor: 0.04781
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 860/10000 (9%)] Loss: 29.05728 = L_Mnfld: 9.12032 + L_NonMnfld: 0.03013 + L_Eknl: 10.46778 + L_Morse: 1.78184 + L_thetaHessian: 4.70572 + L_thetaNeighbor: 1.43712
+Epoch: 0 [ 860/10000 (9%)] Unweighted L_s : L_Mnfld: 0.00130 + L_NonMnfld: 0.00005 + L_Eknl: 0.20936 + L_Morse: 0.59395 + L_thetaHessian: 0.47057 + L_thetaNeighbor: 0.04790
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 870/10000 (9%)] Loss: 26.67044 = L_Mnfld: 7.18354 + L_NonMnfld: 0.01546 + L_Eknl: 10.08836 + L_Morse: 1.77054 + L_thetaHessian: 4.64066 + L_thetaNeighbor: 1.43247
+Epoch: 0 [ 870/10000 (9%)] Unweighted L_s : L_Mnfld: 0.00103 + L_NonMnfld: 0.00003 + L_Eknl: 0.20177 + L_Morse: 0.59018 + L_thetaHessian: 0.46407 + L_thetaNeighbor: 0.04775
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 880/10000 (9%)] Loss: 29.75948 = L_Mnfld: 9.90404 + L_NonMnfld: 0.01749 + L_Eknl: 10.33962 + L_Morse: 1.82958 + L_thetaHessian: 4.67565 + L_thetaNeighbor: 1.43336
+Epoch: 0 [ 880/10000 (9%)] Unweighted L_s : L_Mnfld: 0.00141 + L_NonMnfld: 0.00003 + L_Eknl: 0.20679 + L_Morse: 0.60986 + L_thetaHessian: 0.46757 + L_thetaNeighbor: 0.04778
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 890/10000 (9%)] Loss: 26.62999 = L_Mnfld: 7.10211 + L_NonMnfld: 0.01716 + L_Eknl: 10.07577 + L_Morse: 1.78827 + L_thetaHessian: 4.67998 + L_thetaNeighbor: 1.43018
+Epoch: 0 [ 890/10000 (9%)] Unweighted L_s : L_Mnfld: 0.00101 + L_NonMnfld: 0.00003 + L_Eknl: 0.20152 + L_Morse: 0.59609 + L_thetaHessian: 0.46800 + L_thetaNeighbor: 0.04767
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 900/10000 (9%)] Loss: 29.50718 = L_Mnfld: 9.52738 + L_NonMnfld: 0.02506 + L_Eknl: 10.51681 + L_Morse: 1.76605 + L_thetaHessian: 4.73343 + L_thetaNeighbor: 1.44666
+Epoch: 0 [ 900/10000 (9%)] Unweighted L_s : L_Mnfld: 0.00136 + L_NonMnfld: 0.00004 + L_Eknl: 0.21034 + L_Morse: 0.58868 + L_thetaHessian: 0.47334 + L_thetaNeighbor: 0.04822
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 910/10000 (9%)] Loss: 26.61903 = L_Mnfld: 7.10865 + L_NonMnfld: 0.01240 + L_Eknl: 10.06502 + L_Morse: 1.78871 + L_thetaHessian: 4.66896 + L_thetaNeighbor: 1.43102
+Epoch: 0 [ 910/10000 (9%)] Unweighted L_s : L_Mnfld: 0.00102 + L_NonMnfld: 0.00002 + L_Eknl: 0.20130 + L_Morse: 0.59624 + L_thetaHessian: 0.46690 + L_thetaNeighbor: 0.04770
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 920/10000 (9%)] Loss: 29.04109 = L_Mnfld: 9.57383 + L_NonMnfld: 0.02270 + L_Eknl: 10.03092 + L_Morse: 1.77866 + L_thetaHessian: 4.64408 + L_thetaNeighbor: 1.43176
+Epoch: 0 [ 920/10000 (9%)] Unweighted L_s : L_Mnfld: 0.00137 + L_NonMnfld: 0.00004 + L_Eknl: 0.20062 + L_Morse: 0.59289 + L_thetaHessian: 0.46441 + L_thetaNeighbor: 0.04773
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 930/10000 (9%)] Loss: 26.31265 = L_Mnfld: 6.70862 + L_NonMnfld: 0.01813 + L_Eknl: 10.17577 + L_Morse: 1.77291 + L_thetaHessian: 4.65693 + L_thetaNeighbor: 1.43026
+Epoch: 0 [ 930/10000 (9%)] Unweighted L_s : L_Mnfld: 0.00096 + L_NonMnfld: 0.00003 + L_Eknl: 0.20352 + L_Morse: 0.59097 + L_thetaHessian: 0.46569 + L_thetaNeighbor: 0.04768
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 940/10000 (9%)] Loss: 29.00489 = L_Mnfld: 9.51829 + L_NonMnfld: 0.01854 + L_Eknl: 10.07387 + L_Morse: 1.76627 + L_thetaHessian: 4.67191 + L_thetaNeighbor: 1.43514
+Epoch: 0 [ 940/10000 (9%)] Unweighted L_s : L_Mnfld: 0.00136 + L_NonMnfld: 0.00003 + L_Eknl: 0.20148 + L_Morse: 0.58876 + L_thetaHessian: 0.46719 + L_thetaNeighbor: 0.04784
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 950/10000 (10%)] Loss: 25.92043 = L_Mnfld: 6.58169 + L_NonMnfld: 0.01661 + L_Eknl: 9.92866 + L_Morse: 1.75889 + L_thetaHessian: 4.68548 + L_thetaNeighbor: 1.44066
+Epoch: 0 [ 950/10000 (10%)] Unweighted L_s : L_Mnfld: 0.00094 + L_NonMnfld: 0.00003 + L_Eknl: 0.19857 + L_Morse: 0.58630 + L_thetaHessian: 0.46855 + L_thetaNeighbor: 0.04802
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 960/10000 (10%)] Loss: 28.68301 = L_Mnfld: 9.48707 + L_NonMnfld: 0.02034 + L_Eknl: 9.77733 + L_Morse: 1.76796 + L_thetaHessian: 4.67408 + L_thetaNeighbor: 1.43735
+Epoch: 0 [ 960/10000 (10%)] Unweighted L_s : L_Mnfld: 0.00136 + L_NonMnfld: 0.00003 + L_Eknl: 0.19555 + L_Morse: 0.58932 + L_thetaHessian: 0.46741 + L_thetaNeighbor: 0.04791
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 970/10000 (10%)] Loss: 26.59330 = L_Mnfld: 7.09376 + L_NonMnfld: 0.01449 + L_Eknl: 10.01801 + L_Morse: 1.78330 + L_thetaHessian: 4.69929 + L_thetaNeighbor: 1.43462
+Epoch: 0 [ 970/10000 (10%)] Unweighted L_s : L_Mnfld: 0.00101 + L_NonMnfld: 0.00002 + L_Eknl: 0.20036 + L_Morse: 0.59443 + L_thetaHessian: 0.46993 + L_thetaNeighbor: 0.04782
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 980/10000 (10%)] Loss: 29.13325 = L_Mnfld: 9.41075 + L_NonMnfld: 0.02127 + L_Eknl: 10.28968 + L_Morse: 1.76621 + L_thetaHessian: 4.68559 + L_thetaNeighbor: 1.43511
+Epoch: 0 [ 980/10000 (10%)] Unweighted L_s : L_Mnfld: 0.00134 + L_NonMnfld: 0.00004 + L_Eknl: 0.20579 + L_Morse: 0.58874 + L_thetaHessian: 0.46856 + L_thetaNeighbor: 0.04784
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [ 990/10000 (10%)] Loss: 27.40915 = L_Mnfld: 7.91963 + L_NonMnfld: 0.01601 + L_Eknl: 10.02414 + L_Morse: 1.78100 + L_thetaHessian: 4.69601 + L_thetaNeighbor: 1.43643
+Epoch: 0 [ 990/10000 (10%)] Unweighted L_s : L_Mnfld: 0.00113 + L_NonMnfld: 0.00003 + L_Eknl: 0.20048 + L_Morse: 0.59367 + L_thetaHessian: 0.46960 + L_thetaNeighbor: 0.04788
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1000/10000 (10%)] Loss: 28.87488 = L_Mnfld: 9.40722 + L_NonMnfld: 0.02112 + L_Eknl: 9.88559 + L_Morse: 1.80703 + L_thetaHessian: 4.76076 + L_thetaNeighbor: 1.43554
+Epoch: 0 [1000/10000 (10%)] Unweighted L_s : L_Mnfld: 0.00134 + L_NonMnfld: 0.00004 + L_Eknl: 0.19771 + L_Morse: 0.60234 + L_thetaHessian: 0.47608 + L_thetaNeighbor: 0.04785
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1010/10000 (10%)] Loss: 27.98883 = L_Mnfld: 8.56473 + L_NonMnfld: 0.01836 + L_Eknl: 9.87869 + L_Morse: 1.79478 + L_thetaHessian: 4.74994 + L_thetaNeighbor: 1.43603
+Epoch: 0 [1010/10000 (10%)] Unweighted L_s : L_Mnfld: 0.00122 + L_NonMnfld: 0.00003 + L_Eknl: 0.19757 + L_Morse: 0.59826 + L_thetaHessian: 0.47499 + L_thetaNeighbor: 0.04787
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1020/10000 (10%)] Loss: 27.88547 = L_Mnfld: 8.32830 + L_NonMnfld: 0.01544 + L_Eknl: 10.07493 + L_Morse: 1.78073 + L_thetaHessian: 4.72507 + L_thetaNeighbor: 1.43557
+Epoch: 0 [1020/10000 (10%)] Unweighted L_s : L_Mnfld: 0.00119 + L_NonMnfld: 0.00003 + L_Eknl: 0.20150 + L_Morse: 0.59358 + L_thetaHessian: 0.47251 + L_thetaNeighbor: 0.04785
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1030/10000 (10%)] Loss: 28.33652 = L_Mnfld: 9.04121 + L_NonMnfld: 0.01371 + L_Eknl: 9.84059 + L_Morse: 1.77255 + L_thetaHessian: 4.71309 + L_thetaNeighbor: 1.43360
+Epoch: 0 [1030/10000 (10%)] Unweighted L_s : L_Mnfld: 0.00129 + L_NonMnfld: 0.00002 + L_Eknl: 0.19681 + L_Morse: 0.59085 + L_thetaHessian: 0.47131 + L_thetaNeighbor: 0.04779
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1040/10000 (10%)] Loss: 27.47146 = L_Mnfld: 8.29350 + L_NonMnfld: 0.01842 + L_Eknl: 9.76296 + L_Morse: 1.76288 + L_thetaHessian: 4.67166 + L_thetaNeighbor: 1.43061
+Epoch: 0 [1040/10000 (10%)] Unweighted L_s : L_Mnfld: 0.00118 + L_NonMnfld: 0.00003 + L_Eknl: 0.19526 + L_Morse: 0.58763 + L_thetaHessian: 0.46717 + L_thetaNeighbor: 0.04769
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1050/10000 (10%)] Loss: 27.23247 = L_Mnfld: 7.90353 + L_NonMnfld: 0.01261 + L_Eknl: 9.85407 + L_Morse: 1.77654 + L_thetaHessian: 4.68867 + L_thetaNeighbor: 1.43756
+Epoch: 0 [1050/10000 (10%)] Unweighted L_s : L_Mnfld: 0.00113 + L_NonMnfld: 0.00002 + L_Eknl: 0.19708 + L_Morse: 0.59218 + L_thetaHessian: 0.46887 + L_thetaNeighbor: 0.04792
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1060/10000 (11%)] Loss: 27.31084 = L_Mnfld: 8.25691 + L_NonMnfld: 0.01609 + L_Eknl: 9.70240 + L_Morse: 1.73750 + L_thetaHessian: 4.60171 + L_thetaNeighbor: 1.43559
+Epoch: 0 [1060/10000 (11%)] Unweighted L_s : L_Mnfld: 0.00118 + L_NonMnfld: 0.00003 + L_Eknl: 0.19405 + L_Morse: 0.57917 + L_thetaHessian: 0.46017 + L_thetaNeighbor: 0.04785
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1070/10000 (11%)] Loss: 26.97264 = L_Mnfld: 7.89055 + L_NonMnfld: 0.01617 + L_Eknl: 9.73999 + L_Morse: 1.73764 + L_thetaHessian: 4.63860 + L_thetaNeighbor: 1.43520
+Epoch: 0 [1070/10000 (11%)] Unweighted L_s : L_Mnfld: 0.00113 + L_NonMnfld: 0.00003 + L_Eknl: 0.19480 + L_Morse: 0.57921 + L_thetaHessian: 0.46386 + L_thetaNeighbor: 0.04784
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1080/10000 (11%)] Loss: 27.54649 = L_Mnfld: 8.30897 + L_NonMnfld: 0.01553 + L_Eknl: 9.83501 + L_Morse: 1.77683 + L_thetaHessian: 4.63632 + L_thetaNeighbor: 1.43056
+Epoch: 0 [1080/10000 (11%)] Unweighted L_s : L_Mnfld: 0.00119 + L_NonMnfld: 0.00003 + L_Eknl: 0.19670 + L_Morse: 0.59228 + L_thetaHessian: 0.46363 + L_thetaNeighbor: 0.04769
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1090/10000 (11%)] Loss: 26.72240 = L_Mnfld: 7.78429 + L_NonMnfld: 0.01845 + L_Eknl: 9.57230 + L_Morse: 1.72969 + L_thetaHessian: 4.67191 + L_thetaNeighbor: 1.44405
+Epoch: 0 [1090/10000 (11%)] Unweighted L_s : L_Mnfld: 0.00111 + L_NonMnfld: 0.00003 + L_Eknl: 0.19145 + L_Morse: 0.57656 + L_thetaHessian: 0.46719 + L_thetaNeighbor: 0.04814
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1100/10000 (11%)] Loss: 27.63194 = L_Mnfld: 8.69775 + L_NonMnfld: 0.01632 + L_Eknl: 9.63137 + L_Morse: 1.73163 + L_thetaHessian: 4.57809 + L_thetaNeighbor: 1.42846
+Epoch: 0 [1100/10000 (11%)] Unweighted L_s : L_Mnfld: 0.00124 + L_NonMnfld: 0.00003 + L_Eknl: 0.19263 + L_Morse: 0.57721 + L_thetaHessian: 0.45781 + L_thetaNeighbor: 0.04762
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1110/10000 (11%)] Loss: 25.83717 = L_Mnfld: 7.00414 + L_NonMnfld: 0.01505 + L_Eknl: 9.53442 + L_Morse: 1.72246 + L_thetaHessian: 4.58186 + L_thetaNeighbor: 1.42984
+Epoch: 0 [1110/10000 (11%)] Unweighted L_s : L_Mnfld: 0.00100 + L_NonMnfld: 0.00003 + L_Eknl: 0.19069 + L_Morse: 0.57415 + L_thetaHessian: 0.45819 + L_thetaNeighbor: 0.04766
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1120/10000 (11%)] Loss: 27.74010 = L_Mnfld: 8.88656 + L_NonMnfld: 0.01826 + L_Eknl: 9.54558 + L_Morse: 1.72708 + L_thetaHessian: 4.58356 + L_thetaNeighbor: 1.43019
+Epoch: 0 [1120/10000 (11%)] Unweighted L_s : L_Mnfld: 0.00127 + L_NonMnfld: 0.00003 + L_Eknl: 0.19091 + L_Morse: 0.57569 + L_thetaHessian: 0.45836 + L_thetaNeighbor: 0.04767
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1130/10000 (11%)] Loss: 25.86098 = L_Mnfld: 7.10343 + L_NonMnfld: 0.01464 + L_Eknl: 9.44239 + L_Morse: 1.72362 + L_thetaHessian: 4.59184 + L_thetaNeighbor: 1.43279
+Epoch: 0 [1130/10000 (11%)] Unweighted L_s : L_Mnfld: 0.00101 + L_NonMnfld: 0.00002 + L_Eknl: 0.18885 + L_Morse: 0.57454 + L_thetaHessian: 0.45918 + L_thetaNeighbor: 0.04776
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1140/10000 (11%)] Loss: 27.31532 = L_Mnfld: 8.47054 + L_NonMnfld: 0.01526 + L_Eknl: 9.56797 + L_Morse: 1.71136 + L_thetaHessian: 4.60264 + L_thetaNeighbor: 1.43859
+Epoch: 0 [1140/10000 (11%)] Unweighted L_s : L_Mnfld: 0.00121 + L_NonMnfld: 0.00003 + L_Eknl: 0.19136 + L_Morse: 0.57045 + L_thetaHessian: 0.46026 + L_thetaNeighbor: 0.04795
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1150/10000 (12%)] Loss: 25.70941 = L_Mnfld: 6.84891 + L_NonMnfld: 0.01390 + L_Eknl: 9.54971 + L_Morse: 1.71505 + L_thetaHessian: 4.58520 + L_thetaNeighbor: 1.43156
+Epoch: 0 [1150/10000 (12%)] Unweighted L_s : L_Mnfld: 0.00098 + L_NonMnfld: 0.00002 + L_Eknl: 0.19099 + L_Morse: 0.57168 + L_thetaHessian: 0.45852 + L_thetaNeighbor: 0.04772
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1160/10000 (12%)] Loss: 27.47693 = L_Mnfld: 8.54690 + L_NonMnfld: 0.02532 + L_Eknl: 9.60004 + L_Morse: 1.71692 + L_thetaHessian: 4.59609 + L_thetaNeighbor: 1.43593
+Epoch: 0 [1160/10000 (12%)] Unweighted L_s : L_Mnfld: 0.00122 + L_NonMnfld: 0.00004 + L_Eknl: 0.19200 + L_Morse: 0.57231 + L_thetaHessian: 0.45961 + L_thetaNeighbor: 0.04786
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1170/10000 (12%)] Loss: 25.54259 = L_Mnfld: 6.70331 + L_NonMnfld: 0.01305 + L_Eknl: 9.55246 + L_Morse: 1.71373 + L_thetaHessian: 4.57291 + L_thetaNeighbor: 1.43514
+Epoch: 0 [1170/10000 (12%)] Unweighted L_s : L_Mnfld: 0.00096 + L_NonMnfld: 0.00002 + L_Eknl: 0.19105 + L_Morse: 0.57124 + L_thetaHessian: 0.45729 + L_thetaNeighbor: 0.04784
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1180/10000 (12%)] Loss: 27.67069 = L_Mnfld: 8.94651 + L_NonMnfld: 0.01781 + L_Eknl: 9.42060 + L_Morse: 1.71826 + L_thetaHessian: 4.59740 + L_thetaNeighbor: 1.43788
+Epoch: 0 [1180/10000 (12%)] Unweighted L_s : L_Mnfld: 0.00128 + L_NonMnfld: 0.00003 + L_Eknl: 0.18841 + L_Morse: 0.57275 + L_thetaHessian: 0.45974 + L_thetaNeighbor: 0.04793
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1190/10000 (12%)] Loss: 26.55859 = L_Mnfld: 7.62877 + L_NonMnfld: 0.01401 + L_Eknl: 9.48509 + L_Morse: 1.71734 + L_thetaHessian: 4.78657 + L_thetaNeighbor: 1.47251
+Epoch: 0 [1190/10000 (12%)] Unweighted L_s : L_Mnfld: 0.00109 + L_NonMnfld: 0.00002 + L_Eknl: 0.18970 + L_Morse: 0.57245 + L_thetaHessian: 0.47866 + L_thetaNeighbor: 0.04908
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1200/10000 (12%)] Loss: 27.63845 = L_Mnfld: 8.69386 + L_NonMnfld: 0.01925 + L_Eknl: 9.54255 + L_Morse: 1.75930 + L_thetaHessian: 4.68354 + L_thetaNeighbor: 1.44123
+Epoch: 0 [1200/10000 (12%)] Unweighted L_s : L_Mnfld: 0.00124 + L_NonMnfld: 0.00003 + L_Eknl: 0.19085 + L_Morse: 0.58643 + L_thetaHessian: 0.46835 + L_thetaNeighbor: 0.04804
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1210/10000 (12%)] Loss: 26.60068 = L_Mnfld: 7.81591 + L_NonMnfld: 0.01582 + L_Eknl: 9.46289 + L_Morse: 1.72187 + L_thetaHessian: 4.58142 + L_thetaNeighbor: 1.43124
+Epoch: 0 [1210/10000 (12%)] Unweighted L_s : L_Mnfld: 0.00112 + L_NonMnfld: 0.00003 + L_Eknl: 0.18926 + L_Morse: 0.57396 + L_thetaHessian: 0.45814 + L_thetaNeighbor: 0.04771
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1220/10000 (12%)] Loss: 28.00213 = L_Mnfld: 9.16187 + L_NonMnfld: 0.01533 + L_Eknl: 9.43959 + L_Morse: 1.76630 + L_thetaHessian: 4.67030 + L_thetaNeighbor: 1.43806
+Epoch: 0 [1220/10000 (12%)] Unweighted L_s : L_Mnfld: 0.00131 + L_NonMnfld: 0.00003 + L_Eknl: 0.18879 + L_Morse: 0.58877 + L_thetaHessian: 0.46703 + L_thetaNeighbor: 0.04794
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1230/10000 (12%)] Loss: 25.98169 = L_Mnfld: 7.41286 + L_NonMnfld: 0.01116 + L_Eknl: 9.27334 + L_Morse: 1.71418 + L_thetaHessian: 4.59578 + L_thetaNeighbor: 1.43189
+Epoch: 0 [1230/10000 (12%)] Unweighted L_s : L_Mnfld: 0.00106 + L_NonMnfld: 0.00002 + L_Eknl: 0.18547 + L_Morse: 0.57139 + L_thetaHessian: 0.45958 + L_thetaNeighbor: 0.04773
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1240/10000 (12%)] Loss: 27.59460 = L_Mnfld: 9.02682 + L_NonMnfld: 0.01599 + L_Eknl: 9.21066 + L_Morse: 1.76024 + L_thetaHessian: 4.61483 + L_thetaNeighbor: 1.42917
+Epoch: 0 [1240/10000 (12%)] Unweighted L_s : L_Mnfld: 0.00129 + L_NonMnfld: 0.00003 + L_Eknl: 0.18421 + L_Morse: 0.58675 + L_thetaHessian: 0.46148 + L_thetaNeighbor: 0.04764
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1250/10000 (12%)] Loss: 25.49828 = L_Mnfld: 6.95185 + L_NonMnfld: 0.01347 + L_Eknl: 9.23701 + L_Morse: 1.71301 + L_thetaHessian: 4.60301 + L_thetaNeighbor: 1.42901
+Epoch: 0 [1250/10000 (12%)] Unweighted L_s : L_Mnfld: 0.00099 + L_NonMnfld: 0.00002 + L_Eknl: 0.18474 + L_Morse: 0.57100 + L_thetaHessian: 0.46030 + L_thetaNeighbor: 0.04763
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1260/10000 (13%)] Loss: 27.54494 = L_Mnfld: 8.80033 + L_NonMnfld: 0.01914 + L_Eknl: 9.36835 + L_Morse: 1.74449 + L_thetaHessian: 4.66385 + L_thetaNeighbor: 1.44553
+Epoch: 0 [1260/10000 (13%)] Unweighted L_s : L_Mnfld: 0.00126 + L_NonMnfld: 0.00003 + L_Eknl: 0.18737 + L_Morse: 0.58150 + L_thetaHessian: 0.46638 + L_thetaNeighbor: 0.04818
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1270/10000 (13%)] Loss: 25.64422 = L_Mnfld: 6.98122 + L_NonMnfld: 0.01847 + L_Eknl: 9.35872 + L_Morse: 1.71548 + L_thetaHessian: 4.60553 + L_thetaNeighbor: 1.43421
+Epoch: 0 [1270/10000 (13%)] Unweighted L_s : L_Mnfld: 0.00100 + L_NonMnfld: 0.00003 + L_Eknl: 0.18717 + L_Morse: 0.57183 + L_thetaHessian: 0.46055 + L_thetaNeighbor: 0.04781
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1280/10000 (13%)] Loss: 27.41582 = L_Mnfld: 8.86875 + L_NonMnfld: 0.01535 + L_Eknl: 9.21707 + L_Morse: 1.72787 + L_thetaHessian: 4.61878 + L_thetaNeighbor: 1.43305
+Epoch: 0 [1280/10000 (13%)] Unweighted L_s : L_Mnfld: 0.00127 + L_NonMnfld: 0.00003 + L_Eknl: 0.18434 + L_Morse: 0.57596 + L_thetaHessian: 0.46188 + L_thetaNeighbor: 0.04777
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1290/10000 (13%)] Loss: 26.20061 = L_Mnfld: 7.51485 + L_NonMnfld: 0.01464 + L_Eknl: 9.30952 + L_Morse: 1.74737 + L_thetaHessian: 4.64240 + L_thetaNeighbor: 1.43152
+Epoch: 0 [1290/10000 (13%)] Unweighted L_s : L_Mnfld: 0.00107 + L_NonMnfld: 0.00002 + L_Eknl: 0.18619 + L_Morse: 0.58246 + L_thetaHessian: 0.46424 + L_thetaNeighbor: 0.04772
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1300/10000 (13%)] Loss: 27.52551 = L_Mnfld: 8.86414 + L_NonMnfld: 0.01444 + L_Eknl: 9.30923 + L_Morse: 1.73703 + L_thetaHessian: 4.62057 + L_thetaNeighbor: 1.43613
+Epoch: 0 [1300/10000 (13%)] Unweighted L_s : L_Mnfld: 0.00127 + L_NonMnfld: 0.00002 + L_Eknl: 0.18618 + L_Morse: 0.57901 + L_thetaHessian: 0.46206 + L_thetaNeighbor: 0.04787
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1310/10000 (13%)] Loss: 26.34899 = L_Mnfld: 7.81063 + L_NonMnfld: 0.01026 + L_Eknl: 9.16894 + L_Morse: 1.73030 + L_thetaHessian: 4.62374 + L_thetaNeighbor: 1.43837
+Epoch: 0 [1310/10000 (13%)] Unweighted L_s : L_Mnfld: 0.00112 + L_NonMnfld: 0.00002 + L_Eknl: 0.18338 + L_Morse: 0.57677 + L_thetaHessian: 0.46237 + L_thetaNeighbor: 0.04795
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1320/10000 (13%)] Loss: 27.12601 = L_Mnfld: 8.59179 + L_NonMnfld: 0.01690 + L_Eknl: 9.23276 + L_Morse: 1.70932 + L_thetaHessian: 4.58424 + L_thetaNeighbor: 1.43422
+Epoch: 0 [1320/10000 (13%)] Unweighted L_s : L_Mnfld: 0.00123 + L_NonMnfld: 0.00003 + L_Eknl: 0.18466 + L_Morse: 0.56977 + L_thetaHessian: 0.45842 + L_thetaNeighbor: 0.04781
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1330/10000 (13%)] Loss: 26.13765 = L_Mnfld: 7.54257 + L_NonMnfld: 0.01389 + L_Eknl: 9.25801 + L_Morse: 1.72387 + L_thetaHessian: 4.60838 + L_thetaNeighbor: 1.43128
+Epoch: 0 [1330/10000 (13%)] Unweighted L_s : L_Mnfld: 0.00108 + L_NonMnfld: 0.00002 + L_Eknl: 0.18516 + L_Morse: 0.57462 + L_thetaHessian: 0.46084 + L_thetaNeighbor: 0.04771
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1340/10000 (13%)] Loss: 27.66298 = L_Mnfld: 8.87041 + L_NonMnfld: 0.02054 + L_Eknl: 9.45373 + L_Morse: 1.72724 + L_thetaHessian: 4.63559 + L_thetaNeighbor: 1.43153
+Epoch: 0 [1340/10000 (13%)] Unweighted L_s : L_Mnfld: 0.00127 + L_NonMnfld: 0.00003 + L_Eknl: 0.18907 + L_Morse: 0.57575 + L_thetaHessian: 0.46356 + L_thetaNeighbor: 0.04772
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1350/10000 (14%)] Loss: 25.49207 = L_Mnfld: 6.95370 + L_NonMnfld: 0.01037 + L_Eknl: 9.21822 + L_Morse: 1.71528 + L_thetaHessian: 4.59834 + L_thetaNeighbor: 1.43461
+Epoch: 0 [1350/10000 (14%)] Unweighted L_s : L_Mnfld: 0.00099 + L_NonMnfld: 0.00002 + L_Eknl: 0.18436 + L_Morse: 0.57176 + L_thetaHessian: 0.45983 + L_thetaNeighbor: 0.04782
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1360/10000 (14%)] Loss: 27.11050 = L_Mnfld: 8.66301 + L_NonMnfld: 0.02290 + L_Eknl: 9.04584 + L_Morse: 1.73844 + L_thetaHessian: 4.65160 + L_thetaNeighbor: 1.43077
+Epoch: 0 [1360/10000 (14%)] Unweighted L_s : L_Mnfld: 0.00124 + L_NonMnfld: 0.00004 + L_Eknl: 0.18092 + L_Morse: 0.57948 + L_thetaHessian: 0.46516 + L_thetaNeighbor: 0.04769
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1370/10000 (14%)] Loss: 26.18488 = L_Mnfld: 7.70291 + L_NonMnfld: 0.01003 + L_Eknl: 9.16798 + L_Morse: 1.71420 + L_thetaHessian: 4.60507 + L_thetaNeighbor: 1.43737
+Epoch: 0 [1370/10000 (14%)] Unweighted L_s : L_Mnfld: 0.00110 + L_NonMnfld: 0.00002 + L_Eknl: 0.18336 + L_Morse: 0.57140 + L_thetaHessian: 0.46051 + L_thetaNeighbor: 0.04791
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1380/10000 (14%)] Loss: 27.09004 = L_Mnfld: 8.60940 + L_NonMnfld: 0.02140 + L_Eknl: 9.11164 + L_Morse: 1.74437 + L_thetaHessian: 4.62184 + L_thetaNeighbor: 1.43132
+Epoch: 0 [1380/10000 (14%)] Unweighted L_s : L_Mnfld: 0.00123 + L_NonMnfld: 0.00004 + L_Eknl: 0.18223 + L_Morse: 0.58146 + L_thetaHessian: 0.46218 + L_thetaNeighbor: 0.04771
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1390/10000 (14%)] Loss: 25.84703 = L_Mnfld: 7.42389 + L_NonMnfld: 0.01356 + L_Eknl: 9.13966 + L_Morse: 1.70585 + L_thetaHessian: 4.58017 + L_thetaNeighbor: 1.43380
+Epoch: 0 [1390/10000 (14%)] Unweighted L_s : L_Mnfld: 0.00106 + L_NonMnfld: 0.00002 + L_Eknl: 0.18279 + L_Morse: 0.56862 + L_thetaHessian: 0.45802 + L_thetaNeighbor: 0.04779
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1400/10000 (14%)] Loss: 27.50235 = L_Mnfld: 9.13494 + L_NonMnfld: 0.01476 + L_Eknl: 9.06488 + L_Morse: 1.71697 + L_thetaHessian: 4.60304 + L_thetaNeighbor: 1.43100
+Epoch: 0 [1400/10000 (14%)] Unweighted L_s : L_Mnfld: 0.00130 + L_NonMnfld: 0.00002 + L_Eknl: 0.18130 + L_Morse: 0.57232 + L_thetaHessian: 0.46030 + L_thetaNeighbor: 0.04770
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1410/10000 (14%)] Loss: 26.10530 = L_Mnfld: 7.90235 + L_NonMnfld: 0.01389 + L_Eknl: 8.90403 + L_Morse: 1.70561 + L_thetaHessian: 4.57881 + L_thetaNeighbor: 1.43382
+Epoch: 0 [1410/10000 (14%)] Unweighted L_s : L_Mnfld: 0.00113 + L_NonMnfld: 0.00002 + L_Eknl: 0.17808 + L_Morse: 0.56854 + L_thetaHessian: 0.45788 + L_thetaNeighbor: 0.04779
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1420/10000 (14%)] Loss: 27.37558 = L_Mnfld: 9.00477 + L_NonMnfld: 0.01555 + L_Eknl: 9.07006 + L_Morse: 1.71948 + L_thetaHessian: 4.58521 + L_thetaNeighbor: 1.43006
+Epoch: 0 [1420/10000 (14%)] Unweighted L_s : L_Mnfld: 0.00129 + L_NonMnfld: 0.00003 + L_Eknl: 0.18140 + L_Morse: 0.57316 + L_thetaHessian: 0.45852 + L_thetaNeighbor: 0.04767
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1430/10000 (14%)] Loss: 26.14424 = L_Mnfld: 7.76743 + L_NonMnfld: 0.01221 + L_Eknl: 9.10571 + L_Morse: 1.70230 + L_thetaHessian: 4.58774 + L_thetaNeighbor: 1.43175
+Epoch: 0 [1430/10000 (14%)] Unweighted L_s : L_Mnfld: 0.00111 + L_NonMnfld: 0.00002 + L_Eknl: 0.18211 + L_Morse: 0.56743 + L_thetaHessian: 0.45877 + L_thetaNeighbor: 0.04772
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1440/10000 (14%)] Loss: 27.06318 = L_Mnfld: 8.62103 + L_NonMnfld: 0.01549 + L_Eknl: 9.11698 + L_Morse: 1.71942 + L_thetaHessian: 4.64500 + L_thetaNeighbor: 1.43850
+Epoch: 0 [1440/10000 (14%)] Unweighted L_s : L_Mnfld: 0.00123 + L_NonMnfld: 0.00003 + L_Eknl: 0.18234 + L_Morse: 0.57314 + L_thetaHessian: 0.46450 + L_thetaNeighbor: 0.04795
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1450/10000 (14%)] Loss: 25.66932 = L_Mnfld: 7.30256 + L_NonMnfld: 0.01805 + L_Eknl: 9.12083 + L_Morse: 1.69485 + L_thetaHessian: 4.54220 + L_thetaNeighbor: 1.43597
+Epoch: 0 [1450/10000 (14%)] Unweighted L_s : L_Mnfld: 0.00104 + L_NonMnfld: 0.00003 + L_Eknl: 0.18242 + L_Morse: 0.56495 + L_thetaHessian: 0.45422 + L_thetaNeighbor: 0.04787
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1460/10000 (15%)] Loss: 26.97509 = L_Mnfld: 8.57638 + L_NonMnfld: 0.01693 + L_Eknl: 9.12492 + L_Morse: 1.70740 + L_thetaHessian: 4.59588 + L_thetaNeighbor: 1.43110
+Epoch: 0 [1460/10000 (15%)] Unweighted L_s : L_Mnfld: 0.00123 + L_NonMnfld: 0.00003 + L_Eknl: 0.18250 + L_Morse: 0.56913 + L_thetaHessian: 0.45959 + L_thetaNeighbor: 0.04770
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1470/10000 (15%)] Loss: 25.86877 = L_Mnfld: 7.58894 + L_NonMnfld: 0.01048 + L_Eknl: 9.03080 + L_Morse: 1.69684 + L_thetaHessian: 4.57302 + L_thetaNeighbor: 1.42944
+Epoch: 0 [1470/10000 (15%)] Unweighted L_s : L_Mnfld: 0.00108 + L_NonMnfld: 0.00002 + L_Eknl: 0.18062 + L_Morse: 0.56561 + L_thetaHessian: 0.45730 + L_thetaNeighbor: 0.04765
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1480/10000 (15%)] Loss: 27.03954 = L_Mnfld: 8.73513 + L_NonMnfld: 0.01212 + L_Eknl: 8.97493 + L_Morse: 1.73132 + L_thetaHessian: 4.63300 + L_thetaNeighbor: 1.43957
+Epoch: 0 [1480/10000 (15%)] Unweighted L_s : L_Mnfld: 0.00125 + L_NonMnfld: 0.00002 + L_Eknl: 0.17950 + L_Morse: 0.57711 + L_thetaHessian: 0.46330 + L_thetaNeighbor: 0.04799
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1490/10000 (15%)] Loss: 26.37449 = L_Mnfld: 8.17303 + L_NonMnfld: 0.01237 + L_Eknl: 8.89007 + L_Morse: 1.73216 + L_thetaHessian: 4.59806 + L_thetaNeighbor: 1.43296
+Epoch: 0 [1490/10000 (15%)] Unweighted L_s : L_Mnfld: 0.00117 + L_NonMnfld: 0.00002 + L_Eknl: 0.17780 + L_Morse: 0.57739 + L_thetaHessian: 0.45981 + L_thetaNeighbor: 0.04777
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1500/10000 (15%)] Loss: 27.50166 = L_Mnfld: 9.30194 + L_NonMnfld: 0.01391 + L_Eknl: 8.89926 + L_Morse: 1.72587 + L_thetaHessian: 4.56829 + L_thetaNeighbor: 1.43356
+Epoch: 0 [1500/10000 (15%)] Unweighted L_s : L_Mnfld: 0.00133 + L_NonMnfld: 0.00002 + L_Eknl: 0.17799 + L_Morse: 0.57529 + L_thetaHessian: 0.45683 + L_thetaNeighbor: 0.04779
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1510/10000 (15%)] Loss: 27.98993 = L_Mnfld: 9.58899 + L_NonMnfld: 0.01309 + L_Eknl: 8.95927 + L_Morse: 1.76852 + L_thetaHessian: 4.72148 + L_thetaNeighbor: 1.44988
+Epoch: 0 [1510/10000 (15%)] Unweighted L_s : L_Mnfld: 0.00137 + L_NonMnfld: 0.00002 + L_Eknl: 0.17919 + L_Morse: 0.58951 + L_thetaHessian: 0.47215 + L_thetaNeighbor: 0.04833
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1520/10000 (15%)] Loss: 27.76884 = L_Mnfld: 8.99139 + L_NonMnfld: 0.02562 + L_Eknl: 9.20107 + L_Morse: 1.71506 + L_thetaHessian: 4.76330 + L_thetaNeighbor: 1.49121
+Epoch: 0 [1520/10000 (15%)] Unweighted L_s : L_Mnfld: 0.00128 + L_NonMnfld: 0.00004 + L_Eknl: 0.18402 + L_Morse: 0.57169 + L_thetaHessian: 0.47633 + L_thetaNeighbor: 0.04971
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1530/10000 (15%)] Loss: 26.61486 = L_Mnfld: 8.22038 + L_NonMnfld: 0.01319 + L_Eknl: 8.98400 + L_Morse: 1.69859 + L_thetaHessian: 4.70776 + L_thetaNeighbor: 1.46668
+Epoch: 0 [1530/10000 (15%)] Unweighted L_s : L_Mnfld: 0.00117 + L_NonMnfld: 0.00002 + L_Eknl: 0.17968 + L_Morse: 0.56620 + L_thetaHessian: 0.47078 + L_thetaNeighbor: 0.04889
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1540/10000 (15%)] Loss: 27.76607 = L_Mnfld: 9.29313 + L_NonMnfld: 0.01570 + L_Eknl: 9.03552 + L_Morse: 1.75824 + L_thetaHessian: 4.65544 + L_thetaNeighbor: 1.44642
+Epoch: 0 [1540/10000 (15%)] Unweighted L_s : L_Mnfld: 0.00133 + L_NonMnfld: 0.00003 + L_Eknl: 0.18071 + L_Morse: 0.58608 + L_thetaHessian: 0.46554 + L_thetaNeighbor: 0.04821
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1550/10000 (16%)] Loss: 25.89052 = L_Mnfld: 7.68187 + L_NonMnfld: 0.00956 + L_Eknl: 8.91007 + L_Morse: 1.71113 + L_thetaHessian: 4.61075 + L_thetaNeighbor: 1.43773
+Epoch: 0 [1550/10000 (16%)] Unweighted L_s : L_Mnfld: 0.00110 + L_NonMnfld: 0.00002 + L_Eknl: 0.17820 + L_Morse: 0.57038 + L_thetaHessian: 0.46107 + L_thetaNeighbor: 0.04792
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1560/10000 (16%)] Loss: 27.55534 = L_Mnfld: 9.31842 + L_NonMnfld: 0.01674 + L_Eknl: 8.92785 + L_Morse: 1.71333 + L_thetaHessian: 4.61050 + L_thetaNeighbor: 1.43005
+Epoch: 0 [1560/10000 (16%)] Unweighted L_s : L_Mnfld: 0.00133 + L_NonMnfld: 0.00003 + L_Eknl: 0.17856 + L_Morse: 0.57111 + L_thetaHessian: 0.46105 + L_thetaNeighbor: 0.04767
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1570/10000 (16%)] Loss: 25.09971 = L_Mnfld: 6.91951 + L_NonMnfld: 0.01423 + L_Eknl: 8.83983 + L_Morse: 1.71388 + L_thetaHessian: 4.60434 + L_thetaNeighbor: 1.43330
+Epoch: 0 [1570/10000 (16%)] Unweighted L_s : L_Mnfld: 0.00099 + L_NonMnfld: 0.00002 + L_Eknl: 0.17680 + L_Morse: 0.57129 + L_thetaHessian: 0.46043 + L_thetaNeighbor: 0.04778
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1580/10000 (16%)] Loss: 27.14223 = L_Mnfld: 8.81253 + L_NonMnfld: 0.01175 + L_Eknl: 8.94435 + L_Morse: 1.74875 + L_thetaHessian: 4.63242 + L_thetaNeighbor: 1.42992
+Epoch: 0 [1580/10000 (16%)] Unweighted L_s : L_Mnfld: 0.00126 + L_NonMnfld: 0.00002 + L_Eknl: 0.17889 + L_Morse: 0.58292 + L_thetaHessian: 0.46324 + L_thetaNeighbor: 0.04766
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1590/10000 (16%)] Loss: 25.30895 = L_Mnfld: 7.27076 + L_NonMnfld: 0.01040 + L_Eknl: 8.72321 + L_Morse: 1.73281 + L_thetaHessian: 4.58241 + L_thetaNeighbor: 1.42982
+Epoch: 0 [1590/10000 (16%)] Unweighted L_s : L_Mnfld: 0.00104 + L_NonMnfld: 0.00002 + L_Eknl: 0.17446 + L_Morse: 0.57760 + L_thetaHessian: 0.45824 + L_thetaNeighbor: 0.04766
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1600/10000 (16%)] Loss: 28.16859 = L_Mnfld: 9.75974 + L_NonMnfld: 0.01624 + L_Eknl: 9.06368 + L_Morse: 1.72104 + L_thetaHessian: 4.64281 + L_thetaNeighbor: 1.43002
+Epoch: 0 [1600/10000 (16%)] Unweighted L_s : L_Mnfld: 0.00139 + L_NonMnfld: 0.00003 + L_Eknl: 0.18127 + L_Morse: 0.57368 + L_thetaHessian: 0.46428 + L_thetaNeighbor: 0.04767
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1610/10000 (16%)] Loss: 27.40462 = L_Mnfld: 9.15712 + L_NonMnfld: 0.01387 + L_Eknl: 8.74901 + L_Morse: 1.75938 + L_thetaHessian: 4.71100 + L_thetaNeighbor: 1.43931
+Epoch: 0 [1610/10000 (16%)] Unweighted L_s : L_Mnfld: 0.00131 + L_NonMnfld: 0.00002 + L_Eknl: 0.17498 + L_Morse: 0.58646 + L_thetaHessian: 0.47110 + L_thetaNeighbor: 0.04798
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1620/10000 (16%)] Loss: 26.43474 = L_Mnfld: 8.07323 + L_NonMnfld: 0.02099 + L_Eknl: 8.94596 + L_Morse: 1.74252 + L_thetaHessian: 4.67927 + L_thetaNeighbor: 1.43688
+Epoch: 0 [1620/10000 (16%)] Unweighted L_s : L_Mnfld: 0.00115 + L_NonMnfld: 0.00003 + L_Eknl: 0.17892 + L_Morse: 0.58084 + L_thetaHessian: 0.46793 + L_thetaNeighbor: 0.04790
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1630/10000 (16%)] Loss: 26.99701 = L_Mnfld: 8.86200 + L_NonMnfld: 0.01015 + L_Eknl: 8.72303 + L_Morse: 1.76473 + L_thetaHessian: 4.68386 + L_thetaNeighbor: 1.43802
+Epoch: 0 [1630/10000 (16%)] Unweighted L_s : L_Mnfld: 0.00127 + L_NonMnfld: 0.00002 + L_Eknl: 0.17446 + L_Morse: 0.58824 + L_thetaHessian: 0.46839 + L_thetaNeighbor: 0.04793
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1640/10000 (16%)] Loss: 26.41957 = L_Mnfld: 8.27326 + L_NonMnfld: 0.01469 + L_Eknl: 8.79749 + L_Morse: 1.73625 + L_thetaHessian: 4.60400 + L_thetaNeighbor: 1.43324
+Epoch: 0 [1640/10000 (16%)] Unweighted L_s : L_Mnfld: 0.00118 + L_NonMnfld: 0.00002 + L_Eknl: 0.17595 + L_Morse: 0.57875 + L_thetaHessian: 0.46040 + L_thetaNeighbor: 0.04777
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1650/10000 (16%)] Loss: 26.22143 = L_Mnfld: 8.14579 + L_NonMnfld: 0.00890 + L_Eknl: 8.73392 + L_Morse: 1.73303 + L_thetaHessian: 4.60566 + L_thetaNeighbor: 1.42976
+Epoch: 0 [1650/10000 (16%)] Unweighted L_s : L_Mnfld: 0.00116 + L_NonMnfld: 0.00001 + L_Eknl: 0.17468 + L_Morse: 0.57768 + L_thetaHessian: 0.46057 + L_thetaNeighbor: 0.04766
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1660/10000 (17%)] Loss: 25.85784 = L_Mnfld: 7.82629 + L_NonMnfld: 0.01699 + L_Eknl: 8.74877 + L_Morse: 1.69886 + L_thetaHessian: 4.58921 + L_thetaNeighbor: 1.42812
+Epoch: 0 [1660/10000 (17%)] Unweighted L_s : L_Mnfld: 0.00112 + L_NonMnfld: 0.00003 + L_Eknl: 0.17498 + L_Morse: 0.56629 + L_thetaHessian: 0.45892 + L_thetaNeighbor: 0.04760
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1670/10000 (17%)] Loss: 25.50392 = L_Mnfld: 7.51263 + L_NonMnfld: 0.01103 + L_Eknl: 8.72043 + L_Morse: 1.69663 + L_thetaHessian: 4.60274 + L_thetaNeighbor: 1.42805
+Epoch: 0 [1670/10000 (17%)] Unweighted L_s : L_Mnfld: 0.00107 + L_NonMnfld: 0.00002 + L_Eknl: 0.17441 + L_Morse: 0.56554 + L_thetaHessian: 0.46027 + L_thetaNeighbor: 0.04760
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1680/10000 (17%)] Loss: 26.84061 = L_Mnfld: 8.72703 + L_NonMnfld: 0.01206 + L_Eknl: 8.79855 + L_Morse: 1.73573 + L_thetaHessian: 4.58597 + L_thetaNeighbor: 1.43022
+Epoch: 0 [1680/10000 (17%)] Unweighted L_s : L_Mnfld: 0.00125 + L_NonMnfld: 0.00002 + L_Eknl: 0.17597 + L_Morse: 0.57858 + L_thetaHessian: 0.45860 + L_thetaNeighbor: 0.04767
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1690/10000 (17%)] Loss: 25.73490 = L_Mnfld: 7.77208 + L_NonMnfld: 0.01009 + L_Eknl: 8.70109 + L_Morse: 1.71428 + L_thetaHessian: 4.56968 + L_thetaNeighbor: 1.43277
+Epoch: 0 [1690/10000 (17%)] Unweighted L_s : L_Mnfld: 0.00111 + L_NonMnfld: 0.00002 + L_Eknl: 0.17402 + L_Morse: 0.57143 + L_thetaHessian: 0.45697 + L_thetaNeighbor: 0.04776
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1700/10000 (17%)] Loss: 26.85071 = L_Mnfld: 8.54423 + L_NonMnfld: 0.01300 + L_Eknl: 9.02842 + L_Morse: 1.70888 + L_thetaHessian: 4.57934 + L_thetaNeighbor: 1.42731
+Epoch: 0 [1700/10000 (17%)] Unweighted L_s : L_Mnfld: 0.00122 + L_NonMnfld: 0.00002 + L_Eknl: 0.18057 + L_Morse: 0.56963 + L_thetaHessian: 0.45793 + L_thetaNeighbor: 0.04758
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1710/10000 (17%)] Loss: 25.83507 = L_Mnfld: 7.78210 + L_NonMnfld: 0.01302 + L_Eknl: 8.68132 + L_Morse: 1.74936 + L_thetaHessian: 4.62697 + L_thetaNeighbor: 1.43092
+Epoch: 0 [1710/10000 (17%)] Unweighted L_s : L_Mnfld: 0.00111 + L_NonMnfld: 0.00002 + L_Eknl: 0.17363 + L_Morse: 0.58312 + L_thetaHessian: 0.46270 + L_thetaNeighbor: 0.04770
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1720/10000 (17%)] Loss: 30.19815 = L_Mnfld: 11.72640 + L_NonMnfld: 0.01146 + L_Eknl: 8.63559 + L_Morse: 1.96735 + L_thetaHessian: 4.86088 + L_thetaNeighbor: 1.44140
+Epoch: 0 [1720/10000 (17%)] Unweighted L_s : L_Mnfld: 0.00168 + L_NonMnfld: 0.00002 + L_Eknl: 0.17271 + L_Morse: 0.65578 + L_thetaHessian: 0.48609 + L_thetaNeighbor: 0.04805
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1730/10000 (17%)] Loss: 37.68285 = L_Mnfld: 18.50236 + L_NonMnfld: 0.00755 + L_Eknl: 8.98093 + L_Morse: 2.01152 + L_thetaHessian: 5.10985 + L_thetaNeighbor: 1.53667
+Epoch: 0 [1730/10000 (17%)] Unweighted L_s : L_Mnfld: 0.00264 + L_NonMnfld: 0.00001 + L_Eknl: 0.17962 + L_Morse: 0.67051 + L_thetaHessian: 0.51098 + L_thetaNeighbor: 0.05122
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1740/10000 (17%)] Loss: 42.36737 = L_Mnfld: 21.12298 + L_NonMnfld: 0.01987 + L_Eknl: 10.08653 + L_Morse: 2.22653 + L_thetaHessian: 5.89184 + L_thetaNeighbor: 1.65190
+Epoch: 0 [1740/10000 (17%)] Unweighted L_s : L_Mnfld: 0.00302 + L_NonMnfld: 0.00003 + L_Eknl: 0.20173 + L_Morse: 0.74218 + L_thetaHessian: 0.58918 + L_thetaNeighbor: 0.05506
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1750/10000 (18%)] Loss: 48.65240 = L_Mnfld: 24.89483 + L_NonMnfld: 0.01586 + L_Eknl: 10.23900 + L_Morse: 2.84206 + L_thetaHessian: 7.74223 + L_thetaNeighbor: 1.54135
+Epoch: 0 [1750/10000 (18%)] Unweighted L_s : L_Mnfld: 0.00356 + L_NonMnfld: 0.00003 + L_Eknl: 0.20478 + L_Morse: 0.94735 + L_thetaHessian: 0.77422 + L_thetaNeighbor: 0.05138
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1760/10000 (18%)] Loss: 47.46784 = L_Mnfld: 23.59925 + L_NonMnfld: 0.00684 + L_Eknl: 10.10016 + L_Morse: 2.93128 + L_thetaHessian: 7.92342 + L_thetaNeighbor: 1.47424
+Epoch: 0 [1760/10000 (18%)] Unweighted L_s : L_Mnfld: 0.00337 + L_NonMnfld: 0.00001 + L_Eknl: 0.20200 + L_Morse: 0.97709 + L_thetaHessian: 0.79234 + L_thetaNeighbor: 0.04914
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1770/10000 (18%)] Loss: 40.21927 = L_Mnfld: 17.06386 + L_NonMnfld: 0.02335 + L_Eknl: 10.45577 + L_Morse: 2.56732 + L_thetaHessian: 7.19149 + L_thetaNeighbor: 1.47844
+Epoch: 0 [1770/10000 (18%)] Unweighted L_s : L_Mnfld: 0.00244 + L_NonMnfld: 0.00004 + L_Eknl: 0.20912 + L_Morse: 0.85577 + L_thetaHessian: 0.71915 + L_thetaNeighbor: 0.04928
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1780/10000 (18%)] Loss: 37.54641 = L_Mnfld: 15.85910 + L_NonMnfld: 0.01719 + L_Eknl: 9.86409 + L_Morse: 2.36683 + L_thetaHessian: 6.52850 + L_thetaNeighbor: 1.47262
+Epoch: 0 [1780/10000 (18%)] Unweighted L_s : L_Mnfld: 0.00227 + L_NonMnfld: 0.00003 + L_Eknl: 0.19728 + L_Morse: 0.78894 + L_thetaHessian: 0.65285 + L_thetaNeighbor: 0.04909
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1790/10000 (18%)] Loss: 42.56873 = L_Mnfld: 19.39642 + L_NonMnfld: 0.01596 + L_Eknl: 10.60546 + L_Morse: 2.50606 + L_thetaHessian: 7.16800 + L_thetaNeighbor: 1.48218
+Epoch: 0 [1790/10000 (18%)] Unweighted L_s : L_Mnfld: 0.00277 + L_NonMnfld: 0.00003 + L_Eknl: 0.21211 + L_Morse: 0.83535 + L_thetaHessian: 0.71680 + L_thetaNeighbor: 0.04941
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1800/10000 (18%)] Loss: 37.50382 = L_Mnfld: 15.71548 + L_NonMnfld: 0.01901 + L_Eknl: 9.99026 + L_Morse: 2.37301 + L_thetaHessian: 6.49027 + L_thetaNeighbor: 1.45040
+Epoch: 0 [1800/10000 (18%)] Unweighted L_s : L_Mnfld: 0.00225 + L_NonMnfld: 0.00003 + L_Eknl: 0.19981 + L_Morse: 0.79100 + L_thetaHessian: 0.64903 + L_thetaNeighbor: 0.04835
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1810/10000 (18%)] Loss: 34.48634 = L_Mnfld: 13.92968 + L_NonMnfld: 0.02144 + L_Eknl: 9.77678 + L_Morse: 2.12611 + L_thetaHessian: 5.71507 + L_thetaNeighbor: 1.44351
+Epoch: 0 [1810/10000 (18%)] Unweighted L_s : L_Mnfld: 0.00199 + L_NonMnfld: 0.00004 + L_Eknl: 0.19554 + L_Morse: 0.70870 + L_thetaHessian: 0.57151 + L_thetaNeighbor: 0.04812
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1820/10000 (18%)] Loss: 32.09284 = L_Mnfld: 12.49169 + L_NonMnfld: 0.01069 + L_Eknl: 9.20466 + L_Morse: 2.02765 + L_thetaHessian: 5.42067 + L_thetaNeighbor: 1.43092
+Epoch: 0 [1820/10000 (18%)] Unweighted L_s : L_Mnfld: 0.00178 + L_NonMnfld: 0.00002 + L_Eknl: 0.18409 + L_Morse: 0.67588 + L_thetaHessian: 0.54207 + L_thetaNeighbor: 0.04770
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1830/10000 (18%)] Loss: 29.60117 = L_Mnfld: 10.55197 + L_NonMnfld: 0.01907 + L_Eknl: 9.26539 + L_Morse: 1.85507 + L_thetaHessian: 4.94230 + L_thetaNeighbor: 1.42565
+Epoch: 0 [1830/10000 (18%)] Unweighted L_s : L_Mnfld: 0.00151 + L_NonMnfld: 0.00003 + L_Eknl: 0.18531 + L_Morse: 0.61836 + L_thetaHessian: 0.49423 + L_thetaNeighbor: 0.04752
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1840/10000 (18%)] Loss: 27.89714 = L_Mnfld: 9.24038 + L_NonMnfld: 0.01514 + L_Eknl: 9.07785 + L_Morse: 1.81210 + L_thetaHessian: 4.79567 + L_thetaNeighbor: 1.42514
+Epoch: 0 [1840/10000 (18%)] Unweighted L_s : L_Mnfld: 0.00132 + L_NonMnfld: 0.00003 + L_Eknl: 0.18156 + L_Morse: 0.60403 + L_thetaHessian: 0.47957 + L_thetaNeighbor: 0.04750
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1850/10000 (18%)] Loss: 27.41144 = L_Mnfld: 9.09067 + L_NonMnfld: 0.02685 + L_Eknl: 8.88596 + L_Morse: 1.77244 + L_thetaHessian: 4.66540 + L_thetaNeighbor: 1.42418
+Epoch: 0 [1850/10000 (18%)] Unweighted L_s : L_Mnfld: 0.00130 + L_NonMnfld: 0.00004 + L_Eknl: 0.17772 + L_Morse: 0.59081 + L_thetaHessian: 0.46654 + L_thetaNeighbor: 0.04747
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1860/10000 (19%)] Loss: 26.09945 = L_Mnfld: 7.94481 + L_NonMnfld: 0.01560 + L_Eknl: 8.85150 + L_Morse: 1.73756 + L_thetaHessian: 4.56814 + L_thetaNeighbor: 1.42876
+Epoch: 0 [1860/10000 (19%)] Unweighted L_s : L_Mnfld: 0.00113 + L_NonMnfld: 0.00003 + L_Eknl: 0.17703 + L_Morse: 0.57919 + L_thetaHessian: 0.45681 + L_thetaNeighbor: 0.04763
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1870/10000 (19%)] Loss: 26.47575 = L_Mnfld: 8.43465 + L_NonMnfld: 0.02031 + L_Eknl: 8.80116 + L_Morse: 1.72462 + L_thetaHessian: 4.51714 + L_thetaNeighbor: 1.42612
+Epoch: 0 [1870/10000 (19%)] Unweighted L_s : L_Mnfld: 0.00120 + L_NonMnfld: 0.00003 + L_Eknl: 0.17602 + L_Morse: 0.57487 + L_thetaHessian: 0.45171 + L_thetaNeighbor: 0.04754
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1880/10000 (19%)] Loss: 26.67624 = L_Mnfld: 8.76281 + L_NonMnfld: 0.01134 + L_Eknl: 8.74997 + L_Morse: 1.69644 + L_thetaHessian: 4.47729 + L_thetaNeighbor: 1.42683
+Epoch: 0 [1880/10000 (19%)] Unweighted L_s : L_Mnfld: 0.00125 + L_NonMnfld: 0.00002 + L_Eknl: 0.17500 + L_Morse: 0.56548 + L_thetaHessian: 0.44773 + L_thetaNeighbor: 0.04756
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1890/10000 (19%)] Loss: 25.85138 = L_Mnfld: 8.05092 + L_NonMnfld: 0.02219 + L_Eknl: 8.68518 + L_Morse: 1.67114 + L_thetaHessian: 4.44270 + L_thetaNeighbor: 1.42876
+Epoch: 0 [1890/10000 (19%)] Unweighted L_s : L_Mnfld: 0.00115 + L_NonMnfld: 0.00004 + L_Eknl: 0.17370 + L_Morse: 0.55705 + L_thetaHessian: 0.44427 + L_thetaNeighbor: 0.04763
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1900/10000 (19%)] Loss: 24.51297 = L_Mnfld: 6.73123 + L_NonMnfld: 0.01292 + L_Eknl: 8.70729 + L_Morse: 1.67580 + L_thetaHessian: 4.40708 + L_thetaNeighbor: 1.42776
+Epoch: 0 [1900/10000 (19%)] Unweighted L_s : L_Mnfld: 0.00096 + L_NonMnfld: 0.00002 + L_Eknl: 0.17415 + L_Morse: 0.55860 + L_thetaHessian: 0.44071 + L_thetaNeighbor: 0.04759
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1910/10000 (19%)] Loss: 26.21529 = L_Mnfld: 8.44042 + L_NonMnfld: 0.01589 + L_Eknl: 8.70568 + L_Morse: 1.67220 + L_thetaHessian: 4.40151 + L_thetaNeighbor: 1.42992
+Epoch: 0 [1910/10000 (19%)] Unweighted L_s : L_Mnfld: 0.00121 + L_NonMnfld: 0.00003 + L_Eknl: 0.17411 + L_Morse: 0.55740 + L_thetaHessian: 0.44015 + L_thetaNeighbor: 0.04766
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1920/10000 (19%)] Loss: 24.68954 = L_Mnfld: 6.98951 + L_NonMnfld: 0.01314 + L_Eknl: 8.64220 + L_Morse: 1.66402 + L_thetaHessian: 4.39574 + L_thetaNeighbor: 1.42967
+Epoch: 0 [1920/10000 (19%)] Unweighted L_s : L_Mnfld: 0.00100 + L_NonMnfld: 0.00002 + L_Eknl: 0.17284 + L_Morse: 0.55467 + L_thetaHessian: 0.43957 + L_thetaNeighbor: 0.04766
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1930/10000 (19%)] Loss: 25.25641 = L_Mnfld: 7.60801 + L_NonMnfld: 0.01837 + L_Eknl: 8.59445 + L_Morse: 1.65815 + L_thetaHessian: 4.39411 + L_thetaNeighbor: 1.43000
+Epoch: 0 [1930/10000 (19%)] Unweighted L_s : L_Mnfld: 0.00109 + L_NonMnfld: 0.00003 + L_Eknl: 0.17189 + L_Morse: 0.55272 + L_thetaHessian: 0.43941 + L_thetaNeighbor: 0.04767
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1940/10000 (19%)] Loss: 24.70017 = L_Mnfld: 7.04812 + L_NonMnfld: 0.01479 + L_Eknl: 8.66395 + L_Morse: 1.64298 + L_thetaHessian: 4.33350 + L_thetaNeighbor: 1.42776
+Epoch: 0 [1940/10000 (19%)] Unweighted L_s : L_Mnfld: 0.00101 + L_NonMnfld: 0.00002 + L_Eknl: 0.17328 + L_Morse: 0.54766 + L_thetaHessian: 0.43335 + L_thetaNeighbor: 0.04759
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1950/10000 (20%)] Loss: 25.75344 = L_Mnfld: 8.12820 + L_NonMnfld: 0.01615 + L_Eknl: 8.64385 + L_Morse: 1.62793 + L_thetaHessian: 4.34989 + L_thetaNeighbor: 1.42990
+Epoch: 0 [1950/10000 (20%)] Unweighted L_s : L_Mnfld: 0.00116 + L_NonMnfld: 0.00003 + L_Eknl: 0.17288 + L_Morse: 0.54264 + L_thetaHessian: 0.43499 + L_thetaNeighbor: 0.04766
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1960/10000 (20%)] Loss: 24.87034 = L_Mnfld: 7.28017 + L_NonMnfld: 0.01528 + L_Eknl: 8.58142 + L_Morse: 1.64965 + L_thetaHessian: 4.35000 + L_thetaNeighbor: 1.42836
+Epoch: 0 [1960/10000 (20%)] Unweighted L_s : L_Mnfld: 0.00104 + L_NonMnfld: 0.00003 + L_Eknl: 0.17163 + L_Morse: 0.54988 + L_thetaHessian: 0.43500 + L_thetaNeighbor: 0.04761
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1970/10000 (20%)] Loss: 25.68052 = L_Mnfld: 8.01302 + L_NonMnfld: 0.02487 + L_Eknl: 8.71462 + L_Morse: 1.61796 + L_thetaHessian: 4.32099 + L_thetaNeighbor: 1.42589
+Epoch: 0 [1970/10000 (20%)] Unweighted L_s : L_Mnfld: 0.00114 + L_NonMnfld: 0.00004 + L_Eknl: 0.17429 + L_Morse: 0.53932 + L_thetaHessian: 0.43210 + L_thetaNeighbor: 0.04753
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1980/10000 (20%)] Loss: 24.36537 = L_Mnfld: 6.93256 + L_NonMnfld: 0.01124 + L_Eknl: 8.45009 + L_Morse: 1.63990 + L_thetaHessian: 4.34195 + L_thetaNeighbor: 1.43072
+Epoch: 0 [1980/10000 (20%)] Unweighted L_s : L_Mnfld: 0.00099 + L_NonMnfld: 0.00002 + L_Eknl: 0.16900 + L_Morse: 0.54663 + L_thetaHessian: 0.43420 + L_thetaNeighbor: 0.04769
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [1990/10000 (20%)] Loss: 25.32218 = L_Mnfld: 7.93957 + L_NonMnfld: 0.01966 + L_Eknl: 8.42781 + L_Morse: 1.63326 + L_thetaHessian: 4.30927 + L_thetaNeighbor: 1.42688
+Epoch: 0 [1990/10000 (20%)] Unweighted L_s : L_Mnfld: 0.00113 + L_NonMnfld: 0.00003 + L_Eknl: 0.16856 + L_Morse: 0.54442 + L_thetaHessian: 0.43093 + L_thetaNeighbor: 0.04756
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 20.0], lr=5.000e-05
+Epoch: 0 [2000/10000 (20%)] Loss: 24.38035 = L_Mnfld: 6.93138 + L_NonMnfld: 0.01324 + L_Eknl: 8.49359 + L_Morse: 1.65898 + L_thetaHessian: 4.29234 + L_thetaNeighbor: 1.42705
+Epoch: 0 [2000/10000 (20%)] Unweighted L_s : L_Mnfld: 0.00099 + L_NonMnfld: 0.00002 + L_Eknl: 0.16987 + L_Morse: 0.55299 + L_thetaHessian: 0.42923 + L_thetaNeighbor: 0.04757
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.9865045, 20.0], lr=5.000e-05
+Epoch: 0 [2010/10000 (20%)] Loss: 25.17525 = L_Mnfld: 7.86221 + L_NonMnfld: 0.01625 + L_Eknl: 8.41944 + L_Morse: 1.61121 + L_thetaHessian: 4.27618 + L_thetaNeighbor: 1.42652
+Epoch: 0 [2010/10000 (20%)] Unweighted L_s : L_Mnfld: 0.00112 + L_NonMnfld: 0.00003 + L_Eknl: 0.16839 + L_Morse: 0.53950 + L_thetaHessian: 0.42762 + L_thetaNeighbor: 0.04755
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.9715095000000002, 20.0], lr=5.000e-05
+Epoch: 0 [2020/10000 (20%)] Loss: 23.92766 = L_Mnfld: 6.52427 + L_NonMnfld: 0.01505 + L_Eknl: 8.52604 + L_Morse: 1.58891 + L_thetaHessian: 4.28089 + L_thetaNeighbor: 1.42961
+Epoch: 0 [2020/10000 (20%)] Unweighted L_s : L_Mnfld: 0.00093 + L_NonMnfld: 0.00003 + L_Eknl: 0.17052 + L_Morse: 0.53471 + L_thetaHessian: 0.42809 + L_thetaNeighbor: 0.04765
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.9565145000000004, 20.0], lr=5.000e-05
+Epoch: 0 [2030/10000 (20%)] Loss: 25.06877 = L_Mnfld: 7.90156 + L_NonMnfld: 0.02158 + L_Eknl: 8.37595 + L_Morse: 1.54943 + L_thetaHessian: 4.22574 + L_thetaNeighbor: 1.43131
+Epoch: 0 [2030/10000 (20%)] Unweighted L_s : L_Mnfld: 0.00113 + L_NonMnfld: 0.00004 + L_Eknl: 0.16752 + L_Morse: 0.52407 + L_thetaHessian: 0.42257 + L_thetaNeighbor: 0.04771
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.9415195, 20.0], lr=5.000e-05
+Epoch: 0 [2040/10000 (20%)] Loss: 23.12665 = L_Mnfld: 5.96922 + L_NonMnfld: 0.01636 + L_Eknl: 8.35712 + L_Morse: 1.56163 + L_thetaHessian: 4.23064 + L_thetaNeighbor: 1.42870
+Epoch: 0 [2040/10000 (20%)] Unweighted L_s : L_Mnfld: 0.00085 + L_NonMnfld: 0.00003 + L_Eknl: 0.16714 + L_Morse: 0.53089 + L_thetaHessian: 0.42306 + L_thetaNeighbor: 0.04762
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.9265245, 20.0], lr=5.000e-05
+Epoch: 0 [2050/10000 (20%)] Loss: 25.31011 = L_Mnfld: 8.12285 + L_NonMnfld: 0.01422 + L_Eknl: 8.44341 + L_Morse: 1.53345 + L_thetaHessian: 4.19432 + L_thetaNeighbor: 1.42808
+Epoch: 0 [2050/10000 (20%)] Unweighted L_s : L_Mnfld: 0.00116 + L_NonMnfld: 0.00002 + L_Eknl: 0.16887 + L_Morse: 0.52398 + L_thetaHessian: 0.41943 + L_thetaNeighbor: 0.04760
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.9115295000000003, 20.0], lr=5.000e-05
+Epoch: 0 [2060/10000 (21%)] Loss: 22.71835 = L_Mnfld: 5.54740 + L_NonMnfld: 0.01400 + L_Eknl: 8.39142 + L_Morse: 1.55053 + L_thetaHessian: 4.21565 + L_thetaNeighbor: 1.42752
+Epoch: 0 [2060/10000 (21%)] Unweighted L_s : L_Mnfld: 0.00079 + L_NonMnfld: 0.00002 + L_Eknl: 0.16783 + L_Morse: 0.53255 + L_thetaHessian: 0.42157 + L_thetaNeighbor: 0.04758
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.8965345, 20.0], lr=5.000e-05
+Epoch: 0 [2070/10000 (21%)] Loss: 25.63859 = L_Mnfld: 8.46915 + L_NonMnfld: 0.01839 + L_Eknl: 8.37063 + L_Morse: 1.54720 + L_thetaHessian: 4.24133 + L_thetaNeighbor: 1.42752
+Epoch: 0 [2070/10000 (21%)] Unweighted L_s : L_Mnfld: 0.00121 + L_NonMnfld: 0.00003 + L_Eknl: 0.16741 + L_Morse: 0.53415 + L_thetaHessian: 0.42413 + L_thetaNeighbor: 0.04758
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.8815395, 20.0], lr=5.000e-05
+Epoch: 0 [2080/10000 (21%)] Loss: 23.02966 = L_Mnfld: 5.87082 + L_NonMnfld: 0.01752 + L_Eknl: 8.34925 + L_Morse: 1.53967 + L_thetaHessian: 4.25360 + L_thetaNeighbor: 1.42792
+Epoch: 0 [2080/10000 (21%)] Unweighted L_s : L_Mnfld: 0.00084 + L_NonMnfld: 0.00003 + L_Eknl: 0.16699 + L_Morse: 0.53432 + L_thetaHessian: 0.42536 + L_thetaNeighbor: 0.04760
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.8665445000000003, 20.0], lr=5.000e-05
+Epoch: 0 [2090/10000 (21%)] Loss: 25.94390 = L_Mnfld: 8.63240 + L_NonMnfld: 0.01574 + L_Eknl: 8.36210 + L_Morse: 1.59599 + L_thetaHessian: 4.34852 + L_thetaNeighbor: 1.42711
+Epoch: 0 [2090/10000 (21%)] Unweighted L_s : L_Mnfld: 0.00123 + L_NonMnfld: 0.00003 + L_Eknl: 0.16724 + L_Morse: 0.55676 + L_thetaHessian: 0.43485 + L_thetaNeighbor: 0.04757
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.8515495, 20.0], lr=5.000e-05
+Epoch: 0 [2100/10000 (21%)] Loss: 25.65138 = L_Mnfld: 8.25941 + L_NonMnfld: 0.01049 + L_Eknl: 8.39635 + L_Morse: 1.61291 + L_thetaHessian: 4.39163 + L_thetaNeighbor: 1.42974
+Epoch: 0 [2100/10000 (21%)] Unweighted L_s : L_Mnfld: 0.00118 + L_NonMnfld: 0.00002 + L_Eknl: 0.16793 + L_Morse: 0.56563 + L_thetaHessian: 0.43916 + L_thetaNeighbor: 0.04766
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.8365545, 20.0], lr=5.000e-05
+Epoch: 0 [2110/10000 (21%)] Loss: 24.75801 = L_Mnfld: 7.48041 + L_NonMnfld: 0.01839 + L_Eknl: 8.41971 + L_Morse: 1.53932 + L_thetaHessian: 4.30350 + L_thetaNeighbor: 1.42823
+Epoch: 0 [2110/10000 (21%)] Unweighted L_s : L_Mnfld: 0.00107 + L_NonMnfld: 0.00003 + L_Eknl: 0.16839 + L_Morse: 0.54267 + L_thetaHessian: 0.43035 + L_thetaNeighbor: 0.04761
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.8215595, 20.0], lr=5.000e-05
+Epoch: 0 [2120/10000 (21%)] Loss: 24.29041 = L_Mnfld: 6.99508 + L_NonMnfld: 0.01042 + L_Eknl: 8.39296 + L_Morse: 1.57901 + L_thetaHessian: 4.32710 + L_thetaNeighbor: 1.42866
+Epoch: 0 [2120/10000 (21%)] Unweighted L_s : L_Mnfld: 0.00100 + L_NonMnfld: 0.00002 + L_Eknl: 0.16786 + L_Morse: 0.55962 + L_thetaHessian: 0.43271 + L_thetaNeighbor: 0.04762
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.8065645, 20.0], lr=5.000e-05
+Epoch: 0 [2130/10000 (21%)] Loss: 24.87893 = L_Mnfld: 7.71210 + L_NonMnfld: 0.02381 + L_Eknl: 8.35032 + L_Morse: 1.53370 + L_thetaHessian: 4.27377 + L_thetaNeighbor: 1.42888
+Epoch: 0 [2130/10000 (21%)] Unweighted L_s : L_Mnfld: 0.00110 + L_NonMnfld: 0.00004 + L_Eknl: 0.16701 + L_Morse: 0.54647 + L_thetaHessian: 0.42738 + L_thetaNeighbor: 0.04763
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.7915695, 20.0], lr=5.000e-05
+Epoch: 0 [2140/10000 (21%)] Loss: 23.22609 = L_Mnfld: 6.14459 + L_NonMnfld: 0.01577 + L_Eknl: 8.31370 + L_Morse: 1.50347 + L_thetaHessian: 4.24809 + L_thetaNeighbor: 1.42833
+Epoch: 0 [2140/10000 (21%)] Unweighted L_s : L_Mnfld: 0.00088 + L_NonMnfld: 0.00003 + L_Eknl: 0.16627 + L_Morse: 0.53857 + L_thetaHessian: 0.42481 + L_thetaNeighbor: 0.04761
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.7765745, 20.0], lr=5.000e-05
+Epoch: 0 [2150/10000 (22%)] Loss: 24.48777 = L_Mnfld: 7.48511 + L_NonMnfld: 0.01562 + L_Eknl: 8.28285 + L_Morse: 1.46580 + L_thetaHessian: 4.25283 + L_thetaNeighbor: 1.42934
+Epoch: 0 [2150/10000 (22%)] Unweighted L_s : L_Mnfld: 0.00107 + L_NonMnfld: 0.00003 + L_Eknl: 0.16566 + L_Morse: 0.52792 + L_thetaHessian: 0.42528 + L_thetaNeighbor: 0.04764
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.7615795, 20.0], lr=5.000e-05
+Epoch: 0 [2160/10000 (22%)] Loss: 23.59540 = L_Mnfld: 6.55193 + L_NonMnfld: 0.01382 + L_Eknl: 8.27563 + L_Morse: 1.49429 + L_thetaHessian: 4.26698 + L_thetaNeighbor: 1.42633
+Epoch: 0 [2160/10000 (22%)] Unweighted L_s : L_Mnfld: 0.00094 + L_NonMnfld: 0.00002 + L_Eknl: 0.16551 + L_Morse: 0.54110 + L_thetaHessian: 0.42670 + L_thetaNeighbor: 0.04754
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.7465845, 20.0], lr=5.000e-05
+Epoch: 0 [2170/10000 (22%)] Loss: 24.94583 = L_Mnfld: 7.93653 + L_NonMnfld: 0.01692 + L_Eknl: 8.26704 + L_Morse: 1.47895 + L_thetaHessian: 4.25836 + L_thetaNeighbor: 1.42724
+Epoch: 0 [2170/10000 (22%)] Unweighted L_s : L_Mnfld: 0.00113 + L_NonMnfld: 0.00003 + L_Eknl: 0.16534 + L_Morse: 0.53847 + L_thetaHessian: 0.42584 + L_thetaNeighbor: 0.04757
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.7315895, 20.0], lr=5.000e-05
+Epoch: 0 [2180/10000 (22%)] Loss: 23.73455 = L_Mnfld: 6.69483 + L_NonMnfld: 0.02002 + L_Eknl: 8.28036 + L_Morse: 1.47411 + L_thetaHessian: 4.26990 + L_thetaNeighbor: 1.42775
+Epoch: 0 [2180/10000 (22%)] Unweighted L_s : L_Mnfld: 0.00096 + L_NonMnfld: 0.00003 + L_Eknl: 0.16561 + L_Morse: 0.53965 + L_thetaHessian: 0.42699 + L_thetaNeighbor: 0.04759
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.7165945, 20.0], lr=5.000e-05
+Epoch: 0 [2190/10000 (22%)] Loss: 24.60198 = L_Mnfld: 7.71208 + L_NonMnfld: 0.02296 + L_Eknl: 8.14942 + L_Morse: 1.46484 + L_thetaHessian: 4.27073 + L_thetaNeighbor: 1.42784
+Epoch: 0 [2190/10000 (22%)] Unweighted L_s : L_Mnfld: 0.00110 + L_NonMnfld: 0.00004 + L_Eknl: 0.16299 + L_Morse: 0.53922 + L_thetaHessian: 0.42707 + L_thetaNeighbor: 0.04759
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.7015995, 20.0], lr=5.000e-05
+Epoch: 0 [2200/10000 (22%)] Loss: 23.52764 = L_Mnfld: 6.61352 + L_NonMnfld: 0.01334 + L_Eknl: 8.18416 + L_Morse: 1.44339 + L_thetaHessian: 4.28569 + L_thetaNeighbor: 1.43003
+Epoch: 0 [2200/10000 (22%)] Unweighted L_s : L_Mnfld: 0.00094 + L_NonMnfld: 0.00002 + L_Eknl: 0.16368 + L_Morse: 0.53427 + L_thetaHessian: 0.42857 + L_thetaNeighbor: 0.04767
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.6866045, 20.0], lr=5.000e-05
+Epoch: 0 [2210/10000 (22%)] Loss: 24.89063 = L_Mnfld: 7.95737 + L_NonMnfld: 0.01637 + L_Eknl: 8.23168 + L_Morse: 1.43883 + L_thetaHessian: 4.25949 + L_thetaNeighbor: 1.43031
+Epoch: 0 [2210/10000 (22%)] Unweighted L_s : L_Mnfld: 0.00114 + L_NonMnfld: 0.00003 + L_Eknl: 0.16463 + L_Morse: 0.53556 + L_thetaHessian: 0.42595 + L_thetaNeighbor: 0.04768
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.6716095, 20.0], lr=5.000e-05
+Epoch: 0 [2220/10000 (22%)] Loss: 23.12404 = L_Mnfld: 6.13429 + L_NonMnfld: 0.01145 + L_Eknl: 8.26712 + L_Morse: 1.44375 + L_thetaHessian: 4.28524 + L_thetaNeighbor: 1.42573
+Epoch: 0 [2220/10000 (22%)] Unweighted L_s : L_Mnfld: 0.00088 + L_NonMnfld: 0.00002 + L_Eknl: 0.16534 + L_Morse: 0.54040 + L_thetaHessian: 0.42852 + L_thetaNeighbor: 0.04752
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.6566145000000003, 20.0], lr=5.000e-05
+Epoch: 0 [2230/10000 (22%)] Loss: 24.92028 = L_Mnfld: 8.01616 + L_NonMnfld: 0.01135 + L_Eknl: 8.24661 + L_Morse: 1.42057 + L_thetaHessian: 4.24412 + L_thetaNeighbor: 1.42586
+Epoch: 0 [2230/10000 (22%)] Unweighted L_s : L_Mnfld: 0.00115 + L_NonMnfld: 0.00002 + L_Eknl: 0.16493 + L_Morse: 0.53473 + L_thetaHessian: 0.42441 + L_thetaNeighbor: 0.04753
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.6416195000000005, 20.0], lr=5.000e-05
+Epoch: 0 [2240/10000 (22%)] Loss: 23.11343 = L_Mnfld: 6.27821 + L_NonMnfld: 0.01365 + L_Eknl: 8.11323 + L_Morse: 1.43708 + L_thetaHessian: 4.27961 + L_thetaNeighbor: 1.42585
+Epoch: 0 [2240/10000 (22%)] Unweighted L_s : L_Mnfld: 0.00090 + L_NonMnfld: 0.00002 + L_Eknl: 0.16226 + L_Morse: 0.54401 + L_thetaHessian: 0.42796 + L_thetaNeighbor: 0.04753
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.6266245, 20.0], lr=5.000e-05
+Epoch: 0 [2250/10000 (22%)] Loss: 24.67098 = L_Mnfld: 7.79306 + L_NonMnfld: 0.01947 + L_Eknl: 8.19608 + L_Morse: 1.40608 + L_thetaHessian: 4.25723 + L_thetaNeighbor: 1.42887
+Epoch: 0 [2250/10000 (22%)] Unweighted L_s : L_Mnfld: 0.00111 + L_NonMnfld: 0.00003 + L_Eknl: 0.16392 + L_Morse: 0.53532 + L_thetaHessian: 0.42572 + L_thetaNeighbor: 0.04763
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.6116295000000003, 20.0], lr=5.000e-05
+Epoch: 0 [2260/10000 (23%)] Loss: 23.31828 = L_Mnfld: 6.51636 + L_NonMnfld: 0.01327 + L_Eknl: 8.14511 + L_Morse: 1.40323 + L_thetaHessian: 4.25647 + L_thetaNeighbor: 1.42812
+Epoch: 0 [2260/10000 (23%)] Unweighted L_s : L_Mnfld: 0.00093 + L_NonMnfld: 0.00002 + L_Eknl: 0.16290 + L_Morse: 0.53730 + L_thetaHessian: 0.42565 + L_thetaNeighbor: 0.04760
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.5966345000000004, 20.0], lr=5.000e-05
+Epoch: 0 [2270/10000 (23%)] Loss: 24.01425 = L_Mnfld: 7.23646 + L_NonMnfld: 0.01469 + L_Eknl: 8.14818 + L_Morse: 1.38671 + L_thetaHessian: 4.23104 + L_thetaNeighbor: 1.42602
+Epoch: 0 [2270/10000 (23%)] Unweighted L_s : L_Mnfld: 0.00103 + L_NonMnfld: 0.00002 + L_Eknl: 0.16296 + L_Morse: 0.53404 + L_thetaHessian: 0.42310 + L_thetaNeighbor: 0.04753
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.5816395000000005, 20.0], lr=5.000e-05
+Epoch: 0 [2280/10000 (23%)] Loss: 23.14815 = L_Mnfld: 6.36133 + L_NonMnfld: 0.01494 + L_Eknl: 8.12264 + L_Morse: 1.40784 + L_thetaHessian: 4.25443 + L_thetaNeighbor: 1.42306
+Epoch: 0 [2280/10000 (23%)] Unweighted L_s : L_Mnfld: 0.00091 + L_NonMnfld: 0.00002 + L_Eknl: 0.16245 + L_Morse: 0.54533 + L_thetaHessian: 0.42544 + L_thetaNeighbor: 0.04744
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.5666445, 20.0], lr=5.000e-05
+Epoch: 0 [2290/10000 (23%)] Loss: 24.11043 = L_Mnfld: 7.44037 + L_NonMnfld: 0.01613 + L_Eknl: 8.05935 + L_Morse: 1.36327 + L_thetaHessian: 4.25492 + L_thetaNeighbor: 1.43824
+Epoch: 0 [2290/10000 (23%)] Unweighted L_s : L_Mnfld: 0.00106 + L_NonMnfld: 0.00003 + L_Eknl: 0.16119 + L_Morse: 0.53115 + L_thetaHessian: 0.42549 + L_thetaNeighbor: 0.04794
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.5516495000000003, 20.0], lr=5.000e-05
+Epoch: 0 [2300/10000 (23%)] Loss: 22.80280 = L_Mnfld: 6.13179 + L_NonMnfld: 0.01754 + L_Eknl: 8.08448 + L_Morse: 1.36226 + L_thetaHessian: 4.22264 + L_thetaNeighbor: 1.42937
+Epoch: 0 [2300/10000 (23%)] Unweighted L_s : L_Mnfld: 0.00088 + L_NonMnfld: 0.00003 + L_Eknl: 0.16169 + L_Morse: 0.53387 + L_thetaHessian: 0.42226 + L_thetaNeighbor: 0.04765
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.5366545, 20.0], lr=5.000e-05
+Epoch: 0 [2310/10000 (23%)] Loss: 24.75757 = L_Mnfld: 8.04076 + L_NonMnfld: 0.01662 + L_Eknl: 8.17657 + L_Morse: 1.33438 + L_thetaHessian: 4.18120 + L_thetaNeighbor: 1.42577
+Epoch: 0 [2310/10000 (23%)] Unweighted L_s : L_Mnfld: 0.00115 + L_NonMnfld: 0.00003 + L_Eknl: 0.16353 + L_Morse: 0.52604 + L_thetaHessian: 0.41812 + L_thetaNeighbor: 0.04753
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.5216595, 20.0], lr=5.000e-05
+Epoch: 0 [2320/10000 (23%)] Loss: 22.62402 = L_Mnfld: 6.20102 + L_NonMnfld: 0.01000 + L_Eknl: 7.89782 + L_Morse: 1.33687 + L_thetaHessian: 4.17783 + L_thetaNeighbor: 1.42333
+Epoch: 0 [2320/10000 (23%)] Unweighted L_s : L_Mnfld: 0.00089 + L_NonMnfld: 0.00002 + L_Eknl: 0.15796 + L_Morse: 0.53016 + L_thetaHessian: 0.41778 + L_thetaNeighbor: 0.04744
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.5066645000000003, 20.0], lr=5.000e-05
+Epoch: 0 [2330/10000 (23%)] Loss: 25.01544 = L_Mnfld: 8.39420 + L_NonMnfld: 0.01155 + L_Eknl: 8.10292 + L_Morse: 1.31957 + L_thetaHessian: 4.20512 + L_thetaNeighbor: 1.42527
+Epoch: 0 [2330/10000 (23%)] Unweighted L_s : L_Mnfld: 0.00120 + L_NonMnfld: 0.00002 + L_Eknl: 0.16206 + L_Morse: 0.52642 + L_thetaHessian: 0.42051 + L_thetaNeighbor: 0.04751
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.4916695000000004, 20.0], lr=5.000e-05
+Epoch: 0 [2340/10000 (23%)] Loss: 22.97771 = L_Mnfld: 6.26159 + L_NonMnfld: 0.01110 + L_Eknl: 8.04861 + L_Morse: 1.38777 + L_thetaHessian: 4.27133 + L_thetaNeighbor: 1.42281
+Epoch: 0 [2340/10000 (23%)] Unweighted L_s : L_Mnfld: 0.00089 + L_NonMnfld: 0.00002 + L_Eknl: 0.16097 + L_Morse: 0.55696 + L_thetaHessian: 0.42713 + L_thetaNeighbor: 0.04743
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.4766745, 20.0], lr=5.000e-05
+Epoch: 0 [2350/10000 (24%)] Loss: 24.24159 = L_Mnfld: 7.69314 + L_NonMnfld: 0.01312 + L_Eknl: 7.88829 + L_Morse: 1.36980 + L_thetaHessian: 4.28608 + L_thetaNeighbor: 1.42274
+Epoch: 0 [2350/10000 (24%)] Unweighted L_s : L_Mnfld: 0.00110 + L_NonMnfld: 0.00002 + L_Eknl: 0.15777 + L_Morse: 0.55308 + L_thetaHessian: 0.42861 + L_thetaNeighbor: 0.04742
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.4616795000000002, 20.0], lr=5.000e-05
+Epoch: 0 [2360/10000 (24%)] Loss: 23.85611 = L_Mnfld: 7.06800 + L_NonMnfld: 0.01446 + L_Eknl: 8.09637 + L_Morse: 1.38286 + L_thetaHessian: 4.31203 + L_thetaNeighbor: 1.42817
+Epoch: 0 [2360/10000 (24%)] Unweighted L_s : L_Mnfld: 0.00101 + L_NonMnfld: 0.00002 + L_Eknl: 0.16193 + L_Morse: 0.56175 + L_thetaHessian: 0.43120 + L_thetaNeighbor: 0.04761
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.4466845, 20.0], lr=5.000e-05
+Epoch: 0 [2370/10000 (24%)] Loss: 24.24829 = L_Mnfld: 7.47385 + L_NonMnfld: 0.01363 + L_Eknl: 8.10749 + L_Morse: 1.39119 + L_thetaHessian: 4.25977 + L_thetaNeighbor: 1.42429
+Epoch: 0 [2370/10000 (24%)] Unweighted L_s : L_Mnfld: 0.00107 + L_NonMnfld: 0.00002 + L_Eknl: 0.16215 + L_Morse: 0.56860 + L_thetaHessian: 0.42598 + L_thetaNeighbor: 0.04748
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.4316895, 20.0], lr=5.000e-05
+Epoch: 0 [2380/10000 (24%)] Loss: 23.23623 = L_Mnfld: 6.77311 + L_NonMnfld: 0.01076 + L_Eknl: 7.86009 + L_Morse: 1.34051 + L_thetaHessian: 4.24967 + L_thetaNeighbor: 1.42330
+Epoch: 0 [2380/10000 (24%)] Unweighted L_s : L_Mnfld: 0.00097 + L_NonMnfld: 0.00002 + L_Eknl: 0.15720 + L_Morse: 0.55127 + L_thetaHessian: 0.42497 + L_thetaNeighbor: 0.04744
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.4166945, 20.0], lr=5.000e-05
+Epoch: 0 [2390/10000 (24%)] Loss: 24.18225 = L_Mnfld: 7.71535 + L_NonMnfld: 0.01577 + L_Eknl: 7.92525 + L_Morse: 1.31066 + L_thetaHessian: 4.22032 + L_thetaNeighbor: 1.42572
+Epoch: 0 [2390/10000 (24%)] Unweighted L_s : L_Mnfld: 0.00110 + L_NonMnfld: 0.00003 + L_Eknl: 0.15850 + L_Morse: 0.54233 + L_thetaHessian: 0.42203 + L_thetaNeighbor: 0.04752
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.4016995000000003, 20.0], lr=5.000e-05
+Epoch: 0 [2400/10000 (24%)] Loss: 22.84954 = L_Mnfld: 6.45266 + L_NonMnfld: 0.01578 + L_Eknl: 7.88423 + L_Morse: 1.29040 + L_thetaHessian: 4.22146 + L_thetaNeighbor: 1.42367
+Epoch: 0 [2400/10000 (24%)] Unweighted L_s : L_Mnfld: 0.00092 + L_NonMnfld: 0.00003 + L_Eknl: 0.15768 + L_Morse: 0.53729 + L_thetaHessian: 0.42215 + L_thetaNeighbor: 0.04746
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.3867045, 20.0], lr=5.000e-05
+Epoch: 0 [2410/10000 (24%)] Loss: 24.06680 = L_Mnfld: 7.76372 + L_NonMnfld: 0.01416 + L_Eknl: 7.84664 + L_Morse: 1.27872 + L_thetaHessian: 4.16414 + L_thetaNeighbor: 1.42265
+Epoch: 0 [2410/10000 (24%)] Unweighted L_s : L_Mnfld: 0.00111 + L_NonMnfld: 0.00002 + L_Eknl: 0.15693 + L_Morse: 0.53577 + L_thetaHessian: 0.41641 + L_thetaNeighbor: 0.04742
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.3717095, 20.0], lr=5.000e-05
+Epoch: 0 [2420/10000 (24%)] Loss: 22.43712 = L_Mnfld: 6.20569 + L_NonMnfld: 0.01038 + L_Eknl: 7.82464 + L_Morse: 1.25127 + L_thetaHessian: 4.15090 + L_thetaNeighbor: 1.42410
+Epoch: 0 [2420/10000 (24%)] Unweighted L_s : L_Mnfld: 0.00089 + L_NonMnfld: 0.00002 + L_Eknl: 0.15649 + L_Morse: 0.52758 + L_thetaHessian: 0.41509 + L_thetaNeighbor: 0.04747
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.3567145, 20.0], lr=5.000e-05
+Epoch: 0 [2430/10000 (24%)] Loss: 24.32376 = L_Mnfld: 7.94292 + L_NonMnfld: 0.01555 + L_Eknl: 7.97240 + L_Morse: 1.23752 + L_thetaHessian: 4.18195 + L_thetaNeighbor: 1.43332
+Epoch: 0 [2430/10000 (24%)] Unweighted L_s : L_Mnfld: 0.00113 + L_NonMnfld: 0.00003 + L_Eknl: 0.15945 + L_Morse: 0.52510 + L_thetaHessian: 0.41820 + L_thetaNeighbor: 0.04778
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.3417195, 20.0], lr=5.000e-05
+Epoch: 0 [2440/10000 (24%)] Loss: 21.96926 = L_Mnfld: 5.64940 + L_NonMnfld: 0.01375 + L_Eknl: 7.87064 + L_Morse: 1.25053 + L_thetaHessian: 4.17966 + L_thetaNeighbor: 1.42236
+Epoch: 0 [2440/10000 (24%)] Unweighted L_s : L_Mnfld: 0.00081 + L_NonMnfld: 0.00002 + L_Eknl: 0.15741 + L_Morse: 0.53402 + L_thetaHessian: 0.41797 + L_thetaNeighbor: 0.04741
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.3267245, 20.0], lr=5.000e-05
+Epoch: 0 [2450/10000 (24%)] Loss: 24.09892 = L_Mnfld: 7.79922 + L_NonMnfld: 0.01697 + L_Eknl: 7.84732 + L_Morse: 1.24552 + L_thetaHessian: 4.18307 + L_thetaNeighbor: 1.42547
+Epoch: 0 [2450/10000 (24%)] Unweighted L_s : L_Mnfld: 0.00111 + L_NonMnfld: 0.00003 + L_Eknl: 0.15695 + L_Morse: 0.53531 + L_thetaHessian: 0.41831 + L_thetaNeighbor: 0.04752
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.3117295, 20.0], lr=5.000e-05
+Epoch: 0 [2460/10000 (25%)] Loss: 22.33124 = L_Mnfld: 6.03191 + L_NonMnfld: 0.01245 + L_Eknl: 7.82717 + L_Morse: 1.23758 + L_thetaHessian: 4.21580 + L_thetaNeighbor: 1.42986
+Epoch: 0 [2460/10000 (25%)] Unweighted L_s : L_Mnfld: 0.00086 + L_NonMnfld: 0.00002 + L_Eknl: 0.15654 + L_Morse: 0.53535 + L_thetaHessian: 0.42158 + L_thetaNeighbor: 0.04766
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.2967345, 20.0], lr=5.000e-05
+Epoch: 0 [2470/10000 (25%)] Loss: 24.26198 = L_Mnfld: 8.00211 + L_NonMnfld: 0.01666 + L_Eknl: 7.79013 + L_Morse: 1.26014 + L_thetaHessian: 4.21257 + L_thetaNeighbor: 1.42288
+Epoch: 0 [2470/10000 (25%)] Unweighted L_s : L_Mnfld: 0.00114 + L_NonMnfld: 0.00003 + L_Eknl: 0.15580 + L_Morse: 0.54867 + L_thetaHessian: 0.42126 + L_thetaNeighbor: 0.04743
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.2817395, 20.0], lr=5.000e-05
+Epoch: 0 [2480/10000 (25%)] Loss: 23.08371 = L_Mnfld: 6.76193 + L_NonMnfld: 0.01451 + L_Eknl: 7.80108 + L_Morse: 1.26381 + L_thetaHessian: 4.24555 + L_thetaNeighbor: 1.43139
+Epoch: 0 [2480/10000 (25%)] Unweighted L_s : L_Mnfld: 0.00097 + L_NonMnfld: 0.00002 + L_Eknl: 0.15602 + L_Morse: 0.55388 + L_thetaHessian: 0.42456 + L_thetaNeighbor: 0.04771
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.2667445, 20.0], lr=5.000e-05
+Epoch: 0 [2490/10000 (25%)] Loss: 23.94097 = L_Mnfld: 7.71159 + L_NonMnfld: 0.01768 + L_Eknl: 7.75220 + L_Morse: 1.25154 + L_thetaHessian: 4.20406 + L_thetaNeighbor: 1.42405
+Epoch: 0 [2490/10000 (25%)] Unweighted L_s : L_Mnfld: 0.00110 + L_NonMnfld: 0.00003 + L_Eknl: 0.15504 + L_Morse: 0.55213 + L_thetaHessian: 0.42041 + L_thetaNeighbor: 0.04747
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.2517495, 20.0], lr=5.000e-05
+Epoch: 0 [2500/10000 (25%)] Loss: 22.76976 = L_Mnfld: 6.54821 + L_NonMnfld: 0.01047 + L_Eknl: 7.74905 + L_Morse: 1.22588 + L_thetaHessian: 4.24595 + L_thetaNeighbor: 1.42430
+Epoch: 0 [2500/10000 (25%)] Unweighted L_s : L_Mnfld: 0.00094 + L_NonMnfld: 0.00002 + L_Eknl: 0.15498 + L_Morse: 0.54441 + L_thetaHessian: 0.42460 + L_thetaNeighbor: 0.04748
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.2367545, 20.0], lr=5.000e-05
+Epoch: 0 [2510/10000 (25%)] Loss: 23.68413 = L_Mnfld: 7.47987 + L_NonMnfld: 0.01562 + L_Eknl: 7.77928 + L_Morse: 1.21331 + L_thetaHessian: 4.21824 + L_thetaNeighbor: 1.42242
+Epoch: 0 [2510/10000 (25%)] Unweighted L_s : L_Mnfld: 0.00107 + L_NonMnfld: 0.00003 + L_Eknl: 0.15559 + L_Morse: 0.54244 + L_thetaHessian: 0.42182 + L_thetaNeighbor: 0.04741
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.2217595, 20.0], lr=5.000e-05
+Epoch: 0 [2520/10000 (25%)] Loss: 22.64716 = L_Mnfld: 6.43925 + L_NonMnfld: 0.01407 + L_Eknl: 7.77727 + L_Morse: 1.19688 + L_thetaHessian: 4.19661 + L_thetaNeighbor: 1.42123
+Epoch: 0 [2520/10000 (25%)] Unweighted L_s : L_Mnfld: 0.00092 + L_NonMnfld: 0.00002 + L_Eknl: 0.15555 + L_Morse: 0.53871 + L_thetaHessian: 0.41966 + L_thetaNeighbor: 0.04737
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.2067645000000002, 20.0], lr=5.000e-05
+Epoch: 0 [2530/10000 (25%)] Loss: 23.98833 = L_Mnfld: 7.80807 + L_NonMnfld: 0.01573 + L_Eknl: 7.74979 + L_Morse: 1.21897 + L_thetaHessian: 4.21863 + L_thetaNeighbor: 1.42782
+Epoch: 0 [2530/10000 (25%)] Unweighted L_s : L_Mnfld: 0.00112 + L_NonMnfld: 0.00003 + L_Eknl: 0.15500 + L_Morse: 0.55238 + L_thetaHessian: 0.42186 + L_thetaNeighbor: 0.04759
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.1917695, 20.0], lr=5.000e-05
+Epoch: 0 [2540/10000 (25%)] Loss: 22.08765 = L_Mnfld: 6.06169 + L_NonMnfld: 0.01104 + L_Eknl: 7.67684 + L_Morse: 1.17734 + L_thetaHessian: 4.17208 + L_thetaNeighbor: 1.42612
+Epoch: 0 [2540/10000 (25%)] Unweighted L_s : L_Mnfld: 0.00087 + L_NonMnfld: 0.00002 + L_Eknl: 0.15354 + L_Morse: 0.53717 + L_thetaHessian: 0.41721 + L_thetaNeighbor: 0.04754
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.1767745, 20.0], lr=5.000e-05
+Epoch: 0 [2550/10000 (26%)] Loss: 24.07353 = L_Mnfld: 7.96215 + L_NonMnfld: 0.01537 + L_Eknl: 7.77024 + L_Morse: 1.18325 + L_thetaHessian: 4.16149 + L_thetaNeighbor: 1.42374
+Epoch: 0 [2550/10000 (26%)] Unweighted L_s : L_Mnfld: 0.00114 + L_NonMnfld: 0.00003 + L_Eknl: 0.15540 + L_Morse: 0.54358 + L_thetaHessian: 0.41615 + L_thetaNeighbor: 0.04746
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.1617794999999997, 20.0], lr=5.000e-05
+Epoch: 0 [2560/10000 (26%)] Loss: 21.38036 = L_Mnfld: 5.49944 + L_NonMnfld: 0.01131 + L_Eknl: 7.60194 + L_Morse: 1.15455 + L_thetaHessian: 4.11077 + L_thetaNeighbor: 1.42031
+Epoch: 0 [2560/10000 (26%)] Unweighted L_s : L_Mnfld: 0.00079 + L_NonMnfld: 0.00002 + L_Eknl: 0.15204 + L_Morse: 0.53407 + L_thetaHessian: 0.41108 + L_thetaNeighbor: 0.04734
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.1467845, 20.0], lr=5.000e-05
+Epoch: 0 [2570/10000 (26%)] Loss: 23.77810 = L_Mnfld: 7.80110 + L_NonMnfld: 0.02113 + L_Eknl: 7.67131 + L_Morse: 1.14981 + L_thetaHessian: 4.12249 + L_thetaNeighbor: 1.42159
+Epoch: 0 [2570/10000 (26%)] Unweighted L_s : L_Mnfld: 0.00111 + L_NonMnfld: 0.00004 + L_Eknl: 0.15343 + L_Morse: 0.53559 + L_thetaHessian: 0.41225 + L_thetaNeighbor: 0.04739
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.1317895, 20.0], lr=5.000e-05
+Epoch: 0 [2580/10000 (26%)] Loss: 21.44888 = L_Mnfld: 5.58785 + L_NonMnfld: 0.01538 + L_Eknl: 7.57748 + L_Morse: 1.15554 + L_thetaHessian: 4.09887 + L_thetaNeighbor: 1.41972
+Epoch: 0 [2580/10000 (26%)] Unweighted L_s : L_Mnfld: 0.00080 + L_NonMnfld: 0.00003 + L_Eknl: 0.15155 + L_Morse: 0.54205 + L_thetaHessian: 0.40989 + L_thetaNeighbor: 0.04732
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.1167945, 20.0], lr=5.000e-05
+Epoch: 0 [2590/10000 (26%)] Loss: 24.54144 = L_Mnfld: 8.64564 + L_NonMnfld: 0.01634 + L_Eknl: 7.61939 + L_Morse: 1.14231 + L_thetaHessian: 4.10382 + L_thetaNeighbor: 1.42121
+Epoch: 0 [2590/10000 (26%)] Unweighted L_s : L_Mnfld: 0.00124 + L_NonMnfld: 0.00003 + L_Eknl: 0.15239 + L_Morse: 0.53964 + L_thetaHessian: 0.41038 + L_thetaNeighbor: 0.04737
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.1017995, 20.0], lr=5.000e-05
+Epoch: 0 [2600/10000 (26%)] Loss: 22.58961 = L_Mnfld: 6.37042 + L_NonMnfld: 0.01092 + L_Eknl: 7.72117 + L_Morse: 1.22250 + L_thetaHessian: 4.26544 + L_thetaNeighbor: 1.43101
+Epoch: 0 [2600/10000 (26%)] Unweighted L_s : L_Mnfld: 0.00091 + L_NonMnfld: 0.00002 + L_Eknl: 0.15442 + L_Morse: 0.58164 + L_thetaHessian: 0.42654 + L_thetaNeighbor: 0.04770
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.0868045, 20.0], lr=5.000e-05
+Epoch: 0 [2610/10000 (26%)] Loss: 24.90736 = L_Mnfld: 8.20256 + L_NonMnfld: 0.01319 + L_Eknl: 7.87630 + L_Morse: 1.32896 + L_thetaHessian: 4.46726 + L_thetaNeighbor: 1.45895
+Epoch: 0 [2610/10000 (26%)] Unweighted L_s : L_Mnfld: 0.00117 + L_NonMnfld: 0.00002 + L_Eknl: 0.15753 + L_Morse: 0.63684 + L_thetaHessian: 0.44673 + L_thetaNeighbor: 0.04863
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.0718094999999996, 20.0], lr=5.000e-05
+Epoch: 0 [2620/10000 (26%)] Loss: 24.07897 = L_Mnfld: 7.71770 + L_NonMnfld: 0.00841 + L_Eknl: 7.60775 + L_Morse: 1.27835 + L_thetaHessian: 4.51002 + L_thetaNeighbor: 1.44522
+Epoch: 0 [2620/10000 (26%)] Unweighted L_s : L_Mnfld: 0.00110 + L_NonMnfld: 0.00001 + L_Eknl: 0.15216 + L_Morse: 0.61702 + L_thetaHessian: 0.45100 + L_thetaNeighbor: 0.04817
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.0568144999999998, 20.0], lr=5.000e-05
+Epoch: 0 [2630/10000 (26%)] Loss: 24.57322 = L_Mnfld: 8.17637 + L_NonMnfld: 0.01309 + L_Eknl: 7.72858 + L_Morse: 1.22892 + L_thetaHessian: 4.41883 + L_thetaNeighbor: 1.43828
+Epoch: 0 [2630/10000 (26%)] Unweighted L_s : L_Mnfld: 0.00117 + L_NonMnfld: 0.00002 + L_Eknl: 0.15457 + L_Morse: 0.59749 + L_thetaHessian: 0.44188 + L_thetaNeighbor: 0.04794
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.0418195, 20.0], lr=5.000e-05
+Epoch: 0 [2640/10000 (26%)] Loss: 24.04062 = L_Mnfld: 7.74563 + L_NonMnfld: 0.00952 + L_Eknl: 7.66368 + L_Morse: 1.24866 + L_thetaHessian: 4.35998 + L_thetaNeighbor: 1.43061
+Epoch: 0 [2640/10000 (26%)] Unweighted L_s : L_Mnfld: 0.00111 + L_NonMnfld: 0.00002 + L_Eknl: 0.15327 + L_Morse: 0.61154 + L_thetaHessian: 0.43600 + L_thetaNeighbor: 0.04769
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.0268245, 20.0], lr=5.000e-05
+Epoch: 0 [2650/10000 (26%)] Loss: 23.89883 = L_Mnfld: 7.80055 + L_NonMnfld: 0.01264 + L_Eknl: 7.60874 + L_Morse: 1.18636 + L_thetaHessian: 4.30640 + L_thetaNeighbor: 1.42451
+Epoch: 0 [2650/10000 (26%)] Unweighted L_s : L_Mnfld: 0.00111 + L_NonMnfld: 0.00002 + L_Eknl: 0.15217 + L_Morse: 0.58533 + L_thetaHessian: 0.43064 + L_thetaNeighbor: 0.04748
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.0118294999999997, 20.0], lr=5.000e-05
+Epoch: 0 [2660/10000 (27%)] Loss: 22.80913 = L_Mnfld: 6.76708 + L_NonMnfld: 0.01072 + L_Eknl: 7.64823 + L_Morse: 1.13593 + L_thetaHessian: 4.25068 + L_thetaNeighbor: 1.42874
+Epoch: 0 [2660/10000 (27%)] Unweighted L_s : L_Mnfld: 0.00097 + L_NonMnfld: 0.00002 + L_Eknl: 0.15296 + L_Morse: 0.56463 + L_thetaHessian: 0.42507 + L_thetaNeighbor: 0.04762
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.9968344999999998, 20.0], lr=5.000e-05
+Epoch: 0 [2670/10000 (27%)] Loss: 23.70505 = L_Mnfld: 7.70318 + L_NonMnfld: 0.01355 + L_Eknl: 7.58973 + L_Morse: 1.13532 + L_thetaHessian: 4.27992 + L_thetaNeighbor: 1.42884
+Epoch: 0 [2670/10000 (27%)] Unweighted L_s : L_Mnfld: 0.00110 + L_NonMnfld: 0.00002 + L_Eknl: 0.15179 + L_Morse: 0.56856 + L_thetaHessian: 0.42799 + L_thetaNeighbor: 0.04763
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.9818394999999998, 20.0], lr=5.000e-05
+Epoch: 0 [2680/10000 (27%)] Loss: 22.55115 = L_Mnfld: 6.60316 + L_NonMnfld: 0.01763 + L_Eknl: 7.54105 + L_Morse: 1.13286 + L_thetaHessian: 4.27741 + L_thetaNeighbor: 1.42073
+Epoch: 0 [2680/10000 (27%)] Unweighted L_s : L_Mnfld: 0.00094 + L_NonMnfld: 0.00003 + L_Eknl: 0.15082 + L_Morse: 0.57162 + L_thetaHessian: 0.42774 + L_thetaNeighbor: 0.04736
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.9668445000000006, 20.0], lr=5.000e-05
+Epoch: 0 [2690/10000 (27%)] Loss: 24.58584 = L_Mnfld: 8.51752 + L_NonMnfld: 0.01061 + L_Eknl: 7.58414 + L_Morse: 1.14947 + L_thetaHessian: 4.35648 + L_thetaNeighbor: 1.43316
+Epoch: 0 [2690/10000 (27%)] Unweighted L_s : L_Mnfld: 0.00122 + L_NonMnfld: 0.00002 + L_Eknl: 0.15168 + L_Morse: 0.58442 + L_thetaHessian: 0.43565 + L_thetaNeighbor: 0.04777
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.9518495000000005, 20.0], lr=5.000e-05
+Epoch: 0 [2700/10000 (27%)] Loss: 22.79261 = L_Mnfld: 6.95114 + L_NonMnfld: 0.01062 + L_Eknl: 7.35805 + L_Morse: 1.15715 + L_thetaHessian: 4.28961 + L_thetaNeighbor: 1.42394
+Epoch: 0 [2700/10000 (27%)] Unweighted L_s : L_Mnfld: 0.00099 + L_NonMnfld: 0.00002 + L_Eknl: 0.14716 + L_Morse: 0.59285 + L_thetaHessian: 0.42896 + L_thetaNeighbor: 0.04746
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.9368545000000006, 20.0], lr=5.000e-05
+Epoch: 0 [2710/10000 (27%)] Loss: 24.68132 = L_Mnfld: 8.57493 + L_NonMnfld: 0.01633 + L_Eknl: 7.61740 + L_Morse: 1.14904 + L_thetaHessian: 4.32298 + L_thetaNeighbor: 1.42429
+Epoch: 0 [2710/10000 (27%)] Unweighted L_s : L_Mnfld: 0.00122 + L_NonMnfld: 0.00003 + L_Eknl: 0.15235 + L_Morse: 0.59325 + L_thetaHessian: 0.43230 + L_thetaNeighbor: 0.04748
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.9218595000000005, 20.0], lr=5.000e-05
+Epoch: 0 [2720/10000 (27%)] Loss: 23.74370 = L_Mnfld: 7.76787 + L_NonMnfld: 0.01341 + L_Eknl: 7.48928 + L_Morse: 1.13350 + L_thetaHessian: 4.34443 + L_thetaNeighbor: 1.42397
+Epoch: 0 [2720/10000 (27%)] Unweighted L_s : L_Mnfld: 0.00111 + L_NonMnfld: 0.00002 + L_Eknl: 0.14979 + L_Morse: 0.58980 + L_thetaHessian: 0.43444 + L_thetaNeighbor: 0.04747
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.9068645000000006, 20.0], lr=5.000e-05
+Epoch: 0 [2730/10000 (27%)] Loss: 24.31026 = L_Mnfld: 8.24962 + L_NonMnfld: 0.01325 + L_Eknl: 7.49809 + L_Morse: 1.19772 + L_thetaHessian: 4.37208 + L_thetaNeighbor: 1.42351
+Epoch: 0 [2730/10000 (27%)] Unweighted L_s : L_Mnfld: 0.00118 + L_NonMnfld: 0.00002 + L_Eknl: 0.14996 + L_Morse: 0.62811 + L_thetaHessian: 0.43721 + L_thetaNeighbor: 0.04745
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.8918695000000005, 20.0], lr=5.000e-05
+Epoch: 0 [2740/10000 (27%)] Loss: 23.98045 = L_Mnfld: 8.12545 + L_NonMnfld: 0.00760 + L_Eknl: 7.40759 + L_Morse: 1.12548 + L_thetaHessian: 4.31136 + L_thetaNeighbor: 1.42878
+Epoch: 0 [2740/10000 (27%)] Unweighted L_s : L_Mnfld: 0.00116 + L_NonMnfld: 0.00001 + L_Eknl: 0.14815 + L_Morse: 0.59490 + L_thetaHessian: 0.43114 + L_thetaNeighbor: 0.04763
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.8768745000000004, 20.0], lr=5.000e-05
+Epoch: 0 [2750/10000 (28%)] Loss: 23.51381 = L_Mnfld: 7.62523 + L_NonMnfld: 0.01502 + L_Eknl: 7.44789 + L_Morse: 1.11724 + L_thetaHessian: 4.31821 + L_thetaNeighbor: 1.42049
+Epoch: 0 [2750/10000 (28%)] Unweighted L_s : L_Mnfld: 0.00109 + L_NonMnfld: 0.00003 + L_Eknl: 0.14896 + L_Morse: 0.59527 + L_thetaHessian: 0.43182 + L_thetaNeighbor: 0.04735
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.8618795000000006, 20.0], lr=5.000e-05
+Epoch: 0 [2760/10000 (28%)] Loss: 22.63313 = L_Mnfld: 6.78612 + L_NonMnfld: 0.01906 + L_Eknl: 7.39971 + L_Morse: 1.12844 + L_thetaHessian: 4.29931 + L_thetaNeighbor: 1.41927
+Epoch: 0 [2760/10000 (28%)] Unweighted L_s : L_Mnfld: 0.00097 + L_NonMnfld: 0.00003 + L_Eknl: 0.14799 + L_Morse: 0.60608 + L_thetaHessian: 0.42993 + L_thetaNeighbor: 0.04731
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.8468845000000005, 20.0], lr=5.000e-05
+Epoch: 0 [2770/10000 (28%)] Loss: 23.83665 = L_Mnfld: 8.05009 + L_NonMnfld: 0.01022 + L_Eknl: 7.41076 + L_Morse: 1.08271 + L_thetaHessian: 4.27354 + L_thetaNeighbor: 1.42416
+Epoch: 0 [2770/10000 (28%)] Unweighted L_s : L_Mnfld: 0.00115 + L_NonMnfld: 0.00002 + L_Eknl: 0.14822 + L_Morse: 0.58624 + L_thetaHessian: 0.42735 + L_thetaNeighbor: 0.04747
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.8318895000000004, 20.0], lr=5.000e-05
+Epoch: 0 [2780/10000 (28%)] Loss: 22.58202 = L_Mnfld: 6.85104 + L_NonMnfld: 0.01201 + L_Eknl: 7.32545 + L_Morse: 1.10536 + L_thetaHessian: 4.28921 + L_thetaNeighbor: 1.41588
+Epoch: 0 [2780/10000 (28%)] Unweighted L_s : L_Mnfld: 0.00098 + L_NonMnfld: 0.00002 + L_Eknl: 0.14651 + L_Morse: 0.60340 + L_thetaHessian: 0.42892 + L_thetaNeighbor: 0.04720
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.8168945000000005, 20.0], lr=5.000e-05
+Epoch: 0 [2790/10000 (28%)] Loss: 23.54126 = L_Mnfld: 7.88278 + L_NonMnfld: 0.01212 + L_Eknl: 7.33899 + L_Morse: 1.05737 + L_thetaHessian: 4.26669 + L_thetaNeighbor: 1.42238
+Epoch: 0 [2790/10000 (28%)] Unweighted L_s : L_Mnfld: 0.00113 + L_NonMnfld: 0.00002 + L_Eknl: 0.14678 + L_Morse: 0.58197 + L_thetaHessian: 0.42667 + L_thetaNeighbor: 0.04741
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.8018995000000004, 20.0], lr=5.000e-05
+Epoch: 0 [2800/10000 (28%)] Loss: 22.79021 = L_Mnfld: 7.09614 + L_NonMnfld: 0.01300 + L_Eknl: 7.30626 + L_Morse: 1.07904 + L_thetaHessian: 4.29165 + L_thetaNeighbor: 1.41902
+Epoch: 0 [2800/10000 (28%)] Unweighted L_s : L_Mnfld: 0.00101 + L_NonMnfld: 0.00002 + L_Eknl: 0.14613 + L_Morse: 0.59883 + L_thetaHessian: 0.42916 + L_thetaNeighbor: 0.04730
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.7869045000000006, 20.0], lr=5.000e-05
+Epoch: 0 [2810/10000 (28%)] Loss: 23.43752 = L_Mnfld: 7.75921 + L_NonMnfld: 0.01921 + L_Eknl: 7.30581 + L_Morse: 1.05575 + L_thetaHessian: 4.30806 + L_thetaNeighbor: 1.42373
+Epoch: 0 [2810/10000 (28%)] Unweighted L_s : L_Mnfld: 0.00111 + L_NonMnfld: 0.00003 + L_Eknl: 0.14612 + L_Morse: 0.59083 + L_thetaHessian: 0.43081 + L_thetaNeighbor: 0.04746
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.7719095000000005, 20.0], lr=5.000e-05
+Epoch: 0 [2820/10000 (28%)] Loss: 23.20277 = L_Mnfld: 7.40490 + L_NonMnfld: 0.01245 + L_Eknl: 7.31449 + L_Morse: 1.09903 + L_thetaHessian: 4.38774 + L_thetaNeighbor: 1.43143
+Epoch: 0 [2820/10000 (28%)] Unweighted L_s : L_Mnfld: 0.00106 + L_NonMnfld: 0.00002 + L_Eknl: 0.14629 + L_Morse: 0.62025 + L_thetaHessian: 0.43877 + L_thetaNeighbor: 0.04771
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.7569145000000004, 20.0], lr=5.000e-05
+Epoch: 0 [2830/10000 (28%)] Loss: 23.81325 = L_Mnfld: 8.19316 + L_NonMnfld: 0.01319 + L_Eknl: 7.25070 + L_Morse: 1.05530 + L_thetaHessian: 4.27293 + L_thetaNeighbor: 1.42405
+Epoch: 0 [2830/10000 (28%)] Unweighted L_s : L_Mnfld: 0.00117 + L_NonMnfld: 0.00002 + L_Eknl: 0.14501 + L_Morse: 0.60066 + L_thetaHessian: 0.42729 + L_thetaNeighbor: 0.04747
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.7419195000000003, 20.0], lr=5.000e-05
+Epoch: 0 [2840/10000 (28%)] Loss: 22.49361 = L_Mnfld: 7.00545 + L_NonMnfld: 0.01086 + L_Eknl: 7.18618 + L_Morse: 1.03954 + L_thetaHessian: 4.25247 + L_thetaNeighbor: 1.41771
+Epoch: 0 [2840/10000 (28%)] Unweighted L_s : L_Mnfld: 0.00100 + L_NonMnfld: 0.00002 + L_Eknl: 0.14372 + L_Morse: 0.59678 + L_thetaHessian: 0.42525 + L_thetaNeighbor: 0.04726
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.7269245000000004, 20.0], lr=5.000e-05
+Epoch: 0 [2850/10000 (28%)] Loss: 23.87753 = L_Mnfld: 8.19328 + L_NonMnfld: 0.00888 + L_Eknl: 7.37045 + L_Morse: 1.04457 + L_thetaHessian: 4.26746 + L_thetaNeighbor: 1.42390
+Epoch: 0 [2850/10000 (28%)] Unweighted L_s : L_Mnfld: 0.00117 + L_NonMnfld: 0.00001 + L_Eknl: 0.14741 + L_Morse: 0.60488 + L_thetaHessian: 0.42675 + L_thetaNeighbor: 0.04746
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.7119295000000003, 20.0], lr=5.000e-05
+Epoch: 0 [2860/10000 (29%)] Loss: 22.57586 = L_Mnfld: 7.07890 + L_NonMnfld: 0.01264 + L_Eknl: 7.18396 + L_Morse: 1.03292 + L_thetaHessian: 4.25584 + L_thetaNeighbor: 1.42430
+Epoch: 0 [2860/10000 (29%)] Unweighted L_s : L_Mnfld: 0.00101 + L_NonMnfld: 0.00002 + L_Eknl: 0.14368 + L_Morse: 0.60336 + L_thetaHessian: 0.42558 + L_thetaNeighbor: 0.04748
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.6969345000000005, 20.0], lr=5.000e-05
+Epoch: 0 [2870/10000 (29%)] Loss: 23.18221 = L_Mnfld: 7.71419 + L_NonMnfld: 0.01575 + L_Eknl: 7.16126 + L_Morse: 1.01759 + L_thetaHessian: 4.25372 + L_thetaNeighbor: 1.42327
+Epoch: 0 [2870/10000 (29%)] Unweighted L_s : L_Mnfld: 0.00110 + L_NonMnfld: 0.00003 + L_Eknl: 0.14323 + L_Morse: 0.59966 + L_thetaHessian: 0.42537 + L_thetaNeighbor: 0.04744
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.6819395000000004, 20.0], lr=5.000e-05
+Epoch: 0 [2880/10000 (29%)] Loss: 22.74246 = L_Mnfld: 7.15231 + L_NonMnfld: 0.01135 + L_Eknl: 7.23899 + L_Morse: 1.04504 + L_thetaHessian: 4.26832 + L_thetaNeighbor: 1.42439
+Epoch: 0 [2880/10000 (29%)] Unweighted L_s : L_Mnfld: 0.00102 + L_NonMnfld: 0.00002 + L_Eknl: 0.14478 + L_Morse: 0.62133 + L_thetaHessian: 0.42683 + L_thetaNeighbor: 0.04748
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.6669445000000005, 20.0], lr=5.000e-05
+Epoch: 0 [2890/10000 (29%)] Loss: 23.27403 = L_Mnfld: 7.70566 + L_NonMnfld: 0.01916 + L_Eknl: 7.16691 + L_Morse: 1.03164 + L_thetaHessian: 4.31003 + L_thetaNeighbor: 1.42328
+Epoch: 0 [2890/10000 (29%)] Unweighted L_s : L_Mnfld: 0.00110 + L_NonMnfld: 0.00003 + L_Eknl: 0.14334 + L_Morse: 0.61888 + L_thetaHessian: 0.43100 + L_thetaNeighbor: 0.04744
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.6519495000000002, 20.0], lr=5.000e-05
+Epoch: 0 [2900/10000 (29%)] Loss: 22.65323 = L_Mnfld: 7.17178 + L_NonMnfld: 0.01211 + L_Eknl: 7.12121 + L_Morse: 1.03270 + L_thetaHessian: 4.32881 + L_thetaNeighbor: 1.43247
+Epoch: 0 [2900/10000 (29%)] Unweighted L_s : L_Mnfld: 0.00102 + L_NonMnfld: 0.00002 + L_Eknl: 0.14242 + L_Morse: 0.62514 + L_thetaHessian: 0.43288 + L_thetaNeighbor: 0.04775
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.6369545000000003, 20.0], lr=5.000e-05
+Epoch: 0 [2910/10000 (29%)] Loss: 23.45868 = L_Mnfld: 8.00727 + L_NonMnfld: 0.00887 + L_Eknl: 7.13349 + L_Morse: 1.01718 + L_thetaHessian: 4.28351 + L_thetaNeighbor: 1.42047
+Epoch: 0 [2910/10000 (29%)] Unweighted L_s : L_Mnfld: 0.00114 + L_NonMnfld: 0.00001 + L_Eknl: 0.14267 + L_Morse: 0.62139 + L_thetaHessian: 0.42835 + L_thetaNeighbor: 0.04735
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.6219595000000002, 20.0], lr=5.000e-05
+Epoch: 0 [2920/10000 (29%)] Loss: 22.55266 = L_Mnfld: 7.24031 + L_NonMnfld: 0.01601 + L_Eknl: 7.00846 + L_Morse: 1.00616 + L_thetaHessian: 4.27944 + L_thetaNeighbor: 1.42276
+Epoch: 0 [2920/10000 (29%)] Unweighted L_s : L_Mnfld: 0.00103 + L_NonMnfld: 0.00003 + L_Eknl: 0.14017 + L_Morse: 0.62034 + L_thetaHessian: 0.42794 + L_thetaNeighbor: 0.04743
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.6069645000000004, 20.0], lr=5.000e-05
+Epoch: 0 [2930/10000 (29%)] Loss: 23.81554 = L_Mnfld: 8.46685 + L_NonMnfld: 0.01272 + L_Eknl: 7.06513 + L_Morse: 1.00191 + L_thetaHessian: 4.27519 + L_thetaNeighbor: 1.42233
+Epoch: 0 [2930/10000 (29%)] Unweighted L_s : L_Mnfld: 0.00121 + L_NonMnfld: 0.00002 + L_Eknl: 0.14130 + L_Morse: 0.62348 + L_thetaHessian: 0.42752 + L_thetaNeighbor: 0.04741
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.5919695000000003, 20.0], lr=5.000e-05
+Epoch: 0 [2940/10000 (29%)] Loss: 22.59775 = L_Mnfld: 7.26093 + L_NonMnfld: 0.01210 + L_Eknl: 7.00149 + L_Morse: 1.02469 + L_thetaHessian: 4.25954 + L_thetaNeighbor: 1.41709
+Epoch: 0 [2940/10000 (29%)] Unweighted L_s : L_Mnfld: 0.00104 + L_NonMnfld: 0.00002 + L_Eknl: 0.14003 + L_Morse: 0.64366 + L_thetaHessian: 0.42595 + L_thetaNeighbor: 0.04724
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.5769745000000004, 20.0], lr=5.000e-05
+Epoch: 0 [2950/10000 (30%)] Loss: 22.86230 = L_Mnfld: 7.66527 + L_NonMnfld: 0.01802 + L_Eknl: 7.00403 + L_Morse: 0.94830 + L_thetaHessian: 4.19912 + L_thetaNeighbor: 1.42169
+Epoch: 0 [2950/10000 (30%)] Unweighted L_s : L_Mnfld: 0.00110 + L_NonMnfld: 0.00003 + L_Eknl: 0.14008 + L_Morse: 0.60134 + L_thetaHessian: 0.41991 + L_thetaNeighbor: 0.04739
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.5619795000000003, 20.0], lr=5.000e-05
+Epoch: 0 [2960/10000 (30%)] Loss: 22.30401 = L_Mnfld: 7.02689 + L_NonMnfld: 0.01224 + L_Eknl: 6.91703 + L_Morse: 1.05429 + L_thetaHessian: 4.29200 + L_thetaNeighbor: 1.42335
+Epoch: 0 [2960/10000 (30%)] Unweighted L_s : L_Mnfld: 0.00100 + L_NonMnfld: 0.00002 + L_Eknl: 0.13834 + L_Morse: 0.67497 + L_thetaHessian: 0.42920 + L_thetaNeighbor: 0.04744
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.5469845000000004, 20.0], lr=5.000e-05
+Epoch: 0 [2970/10000 (30%)] Loss: 22.86114 = L_Mnfld: 7.68726 + L_NonMnfld: 0.01260 + L_Eknl: 6.92805 + L_Morse: 0.95001 + L_thetaHessian: 4.25315 + L_thetaNeighbor: 1.41743
+Epoch: 0 [2970/10000 (30%)] Unweighted L_s : L_Mnfld: 0.00110 + L_NonMnfld: 0.00002 + L_Eknl: 0.13856 + L_Morse: 0.61410 + L_thetaHessian: 0.42531 + L_thetaNeighbor: 0.04725
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.5319895000000001, 20.0], lr=5.000e-05
+Epoch: 0 [2980/10000 (30%)] Loss: 22.77176 = L_Mnfld: 7.53154 + L_NonMnfld: 0.01101 + L_Eknl: 6.93670 + L_Morse: 0.99772 + L_thetaHessian: 4.28666 + L_thetaNeighbor: 1.41727
+Epoch: 0 [2980/10000 (30%)] Unweighted L_s : L_Mnfld: 0.00108 + L_NonMnfld: 0.00002 + L_Eknl: 0.13873 + L_Morse: 0.65126 + L_thetaHessian: 0.42867 + L_thetaNeighbor: 0.04724
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.5169945000000002, 20.0], lr=5.000e-05
+Epoch: 0 [2990/10000 (30%)] Loss: 22.64472 = L_Mnfld: 7.36899 + L_NonMnfld: 0.01147 + L_Eknl: 7.02856 + L_Morse: 0.95554 + L_thetaHessian: 4.25028 + L_thetaNeighbor: 1.41725
+Epoch: 0 [2990/10000 (30%)] Unweighted L_s : L_Mnfld: 0.00105 + L_NonMnfld: 0.00002 + L_Eknl: 0.14057 + L_Morse: 0.62989 + L_thetaHessian: 0.42503 + L_thetaNeighbor: 0.04724
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.5019995000000002, 20.0], lr=5.000e-05
+Epoch: 0 [3000/10000 (30%)] Loss: 21.70111 = L_Mnfld: 6.57910 + L_NonMnfld: 0.01406 + L_Eknl: 6.89266 + L_Morse: 0.95934 + L_thetaHessian: 4.24109 + L_thetaNeighbor: 1.42099
+Epoch: 0 [3000/10000 (30%)] Unweighted L_s : L_Mnfld: 0.00094 + L_NonMnfld: 0.00002 + L_Eknl: 0.13785 + L_Morse: 0.63871 + L_thetaHessian: 0.42411 + L_thetaNeighbor: 0.04737
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.4870045000000003, 20.0], lr=5.000e-05
+Epoch: 0 [3010/10000 (30%)] Loss: 23.40067 = L_Mnfld: 8.25957 + L_NonMnfld: 0.01559 + L_Eknl: 6.88263 + L_Morse: 0.97041 + L_thetaHessian: 4.24676 + L_thetaNeighbor: 1.41778
+Epoch: 0 [3010/10000 (30%)] Unweighted L_s : L_Mnfld: 0.00118 + L_NonMnfld: 0.00003 + L_Eknl: 0.13765 + L_Morse: 0.65260 + L_thetaHessian: 0.42468 + L_thetaNeighbor: 0.04726
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.4720095000000002, 20.0], lr=5.000e-05
+Epoch: 0 [3020/10000 (30%)] Loss: 22.43354 = L_Mnfld: 7.39751 + L_NonMnfld: 0.01014 + L_Eknl: 6.76387 + L_Morse: 0.98218 + L_thetaHessian: 4.25959 + L_thetaNeighbor: 1.42074
+Epoch: 0 [3020/10000 (30%)] Unweighted L_s : L_Mnfld: 0.00106 + L_NonMnfld: 0.00002 + L_Eknl: 0.13528 + L_Morse: 0.66724 + L_thetaHessian: 0.42596 + L_thetaNeighbor: 0.04736
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.4570145, 20.0], lr=5.000e-05
+Epoch: 0 [3030/10000 (30%)] Loss: 23.02735 = L_Mnfld: 7.98340 + L_NonMnfld: 0.01028 + L_Eknl: 6.82472 + L_Morse: 0.91872 + L_thetaHessian: 4.25394 + L_thetaNeighbor: 1.41932
+Epoch: 0 [3030/10000 (30%)] Unweighted L_s : L_Mnfld: 0.00114 + L_NonMnfld: 0.00002 + L_Eknl: 0.13649 + L_Morse: 0.63055 + L_thetaHessian: 0.42539 + L_thetaNeighbor: 0.04731
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.4420195000000002, 20.0], lr=5.000e-05
+Epoch: 0 [3040/10000 (30%)] Loss: 21.83505 = L_Mnfld: 6.90998 + L_NonMnfld: 0.00829 + L_Eknl: 6.69257 + L_Morse: 0.94001 + L_thetaHessian: 4.26671 + L_thetaNeighbor: 1.42021
+Epoch: 0 [3040/10000 (30%)] Unweighted L_s : L_Mnfld: 0.00099 + L_NonMnfld: 0.00001 + L_Eknl: 0.13385 + L_Morse: 0.65187 + L_thetaHessian: 0.42667 + L_thetaNeighbor: 0.04734
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.4270245, 20.0], lr=5.000e-05
+Epoch: 0 [3050/10000 (30%)] Loss: 22.47440 = L_Mnfld: 7.56852 + L_NonMnfld: 0.01359 + L_Eknl: 6.66452 + L_Morse: 0.94527 + L_thetaHessian: 4.23646 + L_thetaNeighbor: 1.42213
+Epoch: 0 [3050/10000 (30%)] Unweighted L_s : L_Mnfld: 0.00108 + L_NonMnfld: 0.00002 + L_Eknl: 0.13329 + L_Morse: 0.66241 + L_thetaHessian: 0.42365 + L_thetaNeighbor: 0.04740
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.4120295, 20.0], lr=5.000e-05
+Epoch: 0 [3060/10000 (31%)] Loss: 21.81336 = L_Mnfld: 7.08147 + L_NonMnfld: 0.01018 + L_Eknl: 6.57234 + L_Morse: 0.90545 + L_thetaHessian: 4.21857 + L_thetaNeighbor: 1.41741
+Epoch: 0 [3060/10000 (31%)] Unweighted L_s : L_Mnfld: 0.00101 + L_NonMnfld: 0.00002 + L_Eknl: 0.13145 + L_Morse: 0.64124 + L_thetaHessian: 0.42186 + L_thetaNeighbor: 0.04725
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.3970345, 20.0], lr=5.000e-05
+Epoch: 0 [3070/10000 (31%)] Loss: 22.82635 = L_Mnfld: 7.94276 + L_NonMnfld: 0.01041 + L_Eknl: 6.64422 + L_Morse: 0.95473 + L_thetaHessian: 4.23615 + L_thetaNeighbor: 1.42485
+Epoch: 0 [3070/10000 (31%)] Unweighted L_s : L_Mnfld: 0.00113 + L_NonMnfld: 0.00002 + L_Eknl: 0.13288 + L_Morse: 0.68340 + L_thetaHessian: 0.42362 + L_thetaNeighbor: 0.04749
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.3820395, 20.0], lr=5.000e-05
+Epoch: 0 [3080/10000 (31%)] Loss: 21.88673 = L_Mnfld: 7.13625 + L_NonMnfld: 0.00889 + L_Eknl: 6.52031 + L_Morse: 0.93359 + L_thetaHessian: 4.23433 + L_thetaNeighbor: 1.42564
+Epoch: 0 [3080/10000 (31%)] Unweighted L_s : L_Mnfld: 0.00102 + L_NonMnfld: 0.00001 + L_Eknl: 0.13041 + L_Morse: 0.67552 + L_thetaHessian: 0.42343 + L_thetaNeighbor: 0.04752
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.3670445, 20.0], lr=5.000e-05
+Epoch: 0 [3090/10000 (31%)] Loss: 23.41002 = L_Mnfld: 8.54765 + L_NonMnfld: 0.00795 + L_Eknl: 6.66026 + L_Morse: 0.90544 + L_thetaHessian: 4.23554 + L_thetaNeighbor: 1.41819
+Epoch: 0 [3090/10000 (31%)] Unweighted L_s : L_Mnfld: 0.00122 + L_NonMnfld: 0.00001 + L_Eknl: 0.13321 + L_Morse: 0.66233 + L_thetaHessian: 0.42355 + L_thetaNeighbor: 0.04727
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.3520495000000001, 20.0], lr=5.000e-05
+Epoch: 0 [3100/10000 (31%)] Loss: 21.83245 = L_Mnfld: 7.12248 + L_NonMnfld: 0.01609 + L_Eknl: 6.57607 + L_Morse: 0.86350 + L_thetaHessian: 4.24441 + L_thetaNeighbor: 1.42327
+Epoch: 0 [3100/10000 (31%)] Unweighted L_s : L_Mnfld: 0.00102 + L_NonMnfld: 0.00003 + L_Eknl: 0.13152 + L_Morse: 0.63866 + L_thetaHessian: 0.42444 + L_thetaNeighbor: 0.04744
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.3370545, 20.0], lr=5.000e-05
+Epoch: 0 [3110/10000 (31%)] Loss: 22.38703 = L_Mnfld: 7.57283 + L_NonMnfld: 0.01186 + L_Eknl: 6.65950 + L_Morse: 0.87350 + L_thetaHessian: 4.22690 + L_thetaNeighbor: 1.42213
+Epoch: 0 [3110/10000 (31%)] Unweighted L_s : L_Mnfld: 0.00108 + L_NonMnfld: 0.00002 + L_Eknl: 0.13319 + L_Morse: 0.65330 + L_thetaHessian: 0.42269 + L_thetaNeighbor: 0.04740
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.3220595000000002, 20.0], lr=5.000e-05
+Epoch: 0 [3120/10000 (31%)] Loss: 21.31541 = L_Mnfld: 6.74127 + L_NonMnfld: 0.00855 + L_Eknl: 6.41969 + L_Morse: 0.90274 + L_thetaHessian: 4.20596 + L_thetaNeighbor: 1.42175
+Epoch: 0 [3120/10000 (31%)] Unweighted L_s : L_Mnfld: 0.00096 + L_NonMnfld: 0.00001 + L_Eknl: 0.12839 + L_Morse: 0.68283 + L_thetaHessian: 0.42060 + L_thetaNeighbor: 0.04739
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.3070644999999999, 20.0], lr=5.000e-05
+Epoch: 0 [3130/10000 (31%)] Loss: 22.23887 = L_Mnfld: 7.64894 + L_NonMnfld: 0.01293 + L_Eknl: 6.54279 + L_Morse: 0.85033 + L_thetaHessian: 4.15681 + L_thetaNeighbor: 1.42073
+Epoch: 0 [3130/10000 (31%)] Unweighted L_s : L_Mnfld: 0.00109 + L_NonMnfld: 0.00002 + L_Eknl: 0.13086 + L_Morse: 0.65057 + L_thetaHessian: 0.41568 + L_thetaNeighbor: 0.04736
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.2920695, 20.0], lr=5.000e-05
+Epoch: 0 [3140/10000 (31%)] Loss: 20.75055 = L_Mnfld: 6.16952 + L_NonMnfld: 0.01365 + L_Eknl: 6.49337 + L_Morse: 0.86808 + L_thetaHessian: 4.17739 + L_thetaNeighbor: 1.42094
+Epoch: 0 [3140/10000 (31%)] Unweighted L_s : L_Mnfld: 0.00088 + L_NonMnfld: 0.00002 + L_Eknl: 0.12987 + L_Morse: 0.67185 + L_thetaHessian: 0.41774 + L_thetaNeighbor: 0.04736
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.2770745, 20.0], lr=5.000e-05
+Epoch: 0 [3150/10000 (32%)] Loss: 23.33060 = L_Mnfld: 8.58611 + L_NonMnfld: 0.01187 + L_Eknl: 6.57615 + L_Morse: 0.84505 + L_thetaHessian: 4.24354 + L_thetaNeighbor: 1.43560
+Epoch: 0 [3150/10000 (32%)] Unweighted L_s : L_Mnfld: 0.00123 + L_NonMnfld: 0.00002 + L_Eknl: 0.13152 + L_Morse: 0.66171 + L_thetaHessian: 0.42435 + L_thetaNeighbor: 0.04785
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.2620795, 20.0], lr=5.000e-05
+Epoch: 0 [3160/10000 (32%)] Loss: 21.84820 = L_Mnfld: 7.22304 + L_NonMnfld: 0.01242 + L_Eknl: 6.38045 + L_Morse: 0.87193 + L_thetaHessian: 4.27069 + L_thetaNeighbor: 1.43415
+Epoch: 0 [3160/10000 (32%)] Unweighted L_s : L_Mnfld: 0.00103 + L_NonMnfld: 0.00002 + L_Eknl: 0.12761 + L_Morse: 0.69087 + L_thetaHessian: 0.42707 + L_thetaNeighbor: 0.04780
+

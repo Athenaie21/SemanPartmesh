@@ -4,6 +4,28 @@ import torch.nn as nn
 
 import utils.utils as utils
 
+def semantic_alignment_loss(vector_alpha, semantic_grad_dir, semantic_grad_weight):
+    """
+    Penalize cross field vectors that are neither parallel nor perpendicular
+    to the semantic gradient direction. Uses sin^2(2*theta) which is zero
+    at 0 and 90 degrees, maximized at 45 degrees.
+
+    Args:
+        vector_alpha: (N, 1, 3) cross field direction (normalized)
+        semantic_grad_dir: (N, 3) semantic gradient direction (normalized)
+        semantic_grad_weight: (N,) boundary strength in [0, 1]
+    Returns:
+        scalar loss
+    """
+    alpha = vector_alpha.squeeze(1)                       # (N, 3)
+    cos_theta = (alpha * semantic_grad_dir).sum(dim=-1)   # (N,)
+    cos_sq = cos_theta ** 2
+
+    # sin^2(2*theta) = 4 * cos^2(theta) * sin^2(theta)
+    penalty = 4.0 * cos_sq * (1.0 - cos_sq)
+
+    loss = (semantic_grad_weight * penalty).mean()
+    return loss
 
 def eikonal_loss(nonmnfld_grad, mnfld_grad, eikonal_type='abs'):
     # Compute the eikonal loss that penalises when ||grad(f)|| != 1 for points on and off the manifold
@@ -26,10 +48,11 @@ def eikonal_loss(nonmnfld_grad, mnfld_grad, eikonal_type='abs'):
 class MorseLoss_quad_mesh(nn.Module):
     def __init__(self, weights=None, loss_type='siren_wo_n_w_morse', div_decay='none',
                  div_type='l1', vertex_neighbors_list=None,
-                 vertex_neighbors=None, axis_angle_R_mat_list=None, device=None):
+                 vertex_neighbors=None, axis_angle_R_mat_list=None, device=None,
+                 semantic_grad_dir=None, semantic_grad_weight=None):
         super().__init__()
         if weights is None:
-            weights = [7e3, 6e2, 10, 5e1, 30, 3]
+            weights = [7e3, 6e2, 10, 5e1, 30, 3, 20]
         self.weights = weights  # sdf, intern, normal, eikonal, div
         self.loss_type = loss_type
         self.div_decay = div_decay
@@ -39,6 +62,8 @@ class MorseLoss_quad_mesh(nn.Module):
         self.vertex_neighbors = vertex_neighbors
         self.axis_angle_R_mat_list = axis_angle_R_mat_list
         self.device = device
+        self.semantic_grad_dir = semantic_grad_dir
+        self.semantic_grad_weight = semantic_grad_weight
 
 
 
@@ -119,7 +144,13 @@ class MorseLoss_quad_mesh(nn.Module):
 
         theta_hessian_term = torch.tensor([0.0], device=self.device)
         theta_neighbors_term = torch.tensor([0.0], device=self.device)
-
+        semantic_align_term = torch.tensor([0.0], device=self.device)
+        if self.semantic_grad_dir is not None:
+            semantic_align_term = semantic_alignment_loss(
+                vector_alpha,
+                self.semantic_grad_dir,
+                self.semantic_grad_weight
+            )
         for i in range(len(self.vertex_neighbors_list)):
             idx = torch.tensor(self.vertex_neighbors_list[i]).to(self.device)
 
@@ -173,7 +204,7 @@ class MorseLoss_quad_mesh(nn.Module):
         if self.loss_type == 'siren_wo_n_w_morse_w_theta':
             loss = self.weights[0] * sdf_term + self.weights[1] * inter_term + self.weights[3] * eikonal_term + \
                    self.weights[5] * morse_loss + self.weights[2] * theta_hessian_term + self.weights[
-                       4] * theta_neighbors_term
+                       4] * theta_neighbors_term + self.weights[6] * semantic_align_term
         else:
             print(self.loss_type)
             raise Warning("unrecognized loss type")
@@ -181,7 +212,8 @@ class MorseLoss_quad_mesh(nn.Module):
 
         return {"loss": loss, 'sdf_term': sdf_term, 'inter_term': inter_term,
                 'eikonal_term': eikonal_term, 'normals_loss': normal_term, 'morse_term': morse_loss,
-                'theta_hessian_term': theta_hessian_term, 'theta_neighbors_term': theta_neighbors_term}
+                'theta_hessian_term': theta_hessian_term, 'theta_neighbors_term': theta_neighbors_term,
+                'semantic_align_term': semantic_align_term}
 
     def update_morse_weight(self, current_iteration, n_iterations, params=None):
         # `params`` should be (start_weight, *optional middle, end_weight) where optional middle is of the form [percent, value]*

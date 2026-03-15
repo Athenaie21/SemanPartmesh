@@ -10,6 +10,8 @@ Two statistics are returned:
     * **max**  – worst-case absolute deviation.
 """
 
+import os
+
 import numpy as np
 import trimesh
 
@@ -104,15 +106,31 @@ def compute_angle_distortion_from_file(quad_mesh_path):
 
 
 def _load_quad_faces_from_obj(obj_path):
-    """Parse an OBJ file and return only quad faces as (F, 4) array."""
+    """Parse an OBJ file and return only valid quad faces as (F, 4) array.
+
+    Skips faces that reference out-of-range vertex indices (a known libQEx
+    artefact on some meshes).
+    """
+    n_verts = 0
     quads = []
     with open(obj_path, "r") as f:
         for line in f:
-            if line.startswith("f "):
+            if line.startswith("v "):
+                n_verts += 1
+            elif line.startswith("f "):
                 parts = line.strip().split()
                 indices = [int(p.split("/")[0]) - 1 for p in parts[1:]]
                 if len(indices) == 4:
                     quads.append(indices)
-    if quads:
-        return np.array(quads, dtype=np.int64)
-    return None
+
+    if not quads:
+        return None
+
+    arr = np.array(quads, dtype=np.int64)
+    valid = np.all((arr >= 0) & (arr < n_verts), axis=1)
+    if valid.sum() < len(arr):
+        n_bad = len(arr) - int(valid.sum())
+        print(f"  WARNING: skipped {n_bad} quad face(s) with out-of-range "
+              f"vertex indices in {os.path.basename(obj_path)}")
+    arr = arr[valid]
+    return arr if len(arr) > 0 else None

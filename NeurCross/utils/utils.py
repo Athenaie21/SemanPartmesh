@@ -146,20 +146,46 @@ def transform_vectors_only_rotation(verct, trans):
     return transformed_vectors
 
 
-def original_the_edge_information_to_face_neighbor_list(face_adjacency, edge_info, neighbors_each_face):
+def original_the_edge_information_to_face_neighbor_list(face_adjacency, edge_info, neighbors_each_face,
+                                                        return_missing_mask=False):
     info_map = {
         (min(f1, f2), max(f1, f2)): angle
         for (f1, f2), angle in zip(face_adjacency, edge_info)
     }
 
-    R = [[info_map[(min(f, n), max(f, n))] for n in neighbors] for f, neighbors in enumerate(neighbors_each_face)]
-    R = np.array(R)
+    mapped = []
+    missing_mask = []
+    for f, neighbors in enumerate(neighbors_each_face):
+        row = []
+        row_missing = []
+        for n in neighbors:
+            key = (min(f, n), max(f, n))
+            if key in info_map:
+                row.append(info_map[key])
+                row_missing.append(False)
+            else:
+                # Tolerate non-edge neighbors from CAD/non-manifold meshes.
+                # For vector-valued edge_info (rotation axis), use zeros then
+                # patch with a fallback axis later in get_rotation_matrix().
+                if edge_info.ndim == 2:
+                    row.append(np.zeros(edge_info.shape[1], dtype=edge_info.dtype))
+                else:
+                    row.append(0.0)
+                row_missing.append(True)
+        mapped.append(row)
+        missing_mask.append(row_missing)
+
+    R = np.array(mapped, dtype=edge_info.dtype if hasattr(edge_info, "dtype") else None)
+    missing_mask = np.array(missing_mask, dtype=bool)
+
+    if return_missing_mask:
+        return R, missing_mask
 
     return R
 
 
 def batch_axis_angle_to_rotation_matrix_only_rotation(axes, thetas):
-    axes = axes / np.linalg.norm(axes, axis=-1, keepdims=True)
+    axes = axes / (np.linalg.norm(axes, axis=-1, keepdims=True) + 1e-8)
 
 
     vx = axes[..., 0]
@@ -211,16 +237,25 @@ def get_rotation_matrix(vertex_neighbors_list, vertex_neighbors, mesh_path):
         desired_rota_axis_direction = np.cross(face_normals_i_neighbor, face_normals_i)
 
         # map the rota_axis on the edge to the face
-        rota_axis_map_to_face = original_the_edge_information_to_face_neighbor_list(face_adjacency, rota_axis,
-                                                                                    vertex_neighbors_i)
+        rota_axis_map_to_face, missing_axis_mask = original_the_edge_information_to_face_neighbor_list(
+            face_adjacency, rota_axis, vertex_neighbors_i, return_missing_mask=True
+        )
+        if np.any(missing_axis_mask):
+            fallback_axis = desired_rota_axis_direction.copy()
+            fallback_axis /= (np.linalg.norm(fallback_axis, axis=-1, keepdims=True) + 1e-8)
+            rota_axis_map_to_face[missing_axis_mask] = fallback_axis[missing_axis_mask]
+
         desired_axis_dot_axis = np.einsum('ijk,ijk->ij', desired_rota_axis_direction, rota_axis_map_to_face)
         flag = (desired_axis_dot_axis < 0)
         rota_axis_map_to_face[flag] = -rota_axis_map_to_face[flag]
 
         # map the dihedral angles on the edge to the face
-        dihedral_angle_map_to_face = original_the_edge_information_to_face_neighbor_list(face_adjacency,
-                                                                                         face_adjacency_angles,
-                                                                                         vertex_neighbors_i)
+        dihedral_angle_map_to_face, missing_angle_mask = original_the_edge_information_to_face_neighbor_list(
+            face_adjacency, face_adjacency_angles, vertex_neighbors_i, return_missing_mask=True
+        )
+        if np.any(missing_angle_mask):
+            # Missing edge-adjacency angle -> zero rotation (identity).
+            dihedral_angle_map_to_face[missing_angle_mask] = 0.0
 
         axis_angle_R_mat = batch_axis_angle_to_rotation_matrix_only_rotation(rota_axis_map_to_face,
                                                                              dihedral_angle_map_to_face)

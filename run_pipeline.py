@@ -11,6 +11,7 @@ Supports both single-mesh and batch (directory) modes.
 
 Usage
 -----
+    python run_pipeline.py --input_dir history_input/
     python run_pipeline.py --input_dir input/
     python run_pipeline.py --input_mesh input/armadillo.obj
 """
@@ -20,6 +21,7 @@ import sys
 import shutil
 import argparse
 import subprocess
+from datetime import datetime
 
 import numpy as np
 import trimesh
@@ -33,7 +35,7 @@ QUAD_EXTRACT_BIN = os.path.join(
 PARTFIELD_NATIVE_EXTS = {".obj", ".glb", ".off"}
 ALL_MESH_EXTS = {".obj", ".glb", ".off", ".ply", ".stl"}
 
-DEFAULT_MAX_FACES = 30000
+DEFAULT_MAX_FACES = 100001
 
 
 # ---------------------------------------------------------------------------
@@ -118,19 +120,37 @@ def parse_args():
     p.add_argument("--num_epochs", type=int, default=1)
     p.add_argument("--lr", type=float, default=5e-5)
     p.add_argument("--loss_weights", nargs="+", type=float,
-                   default=[7e3, 6e2, 10, 5e1, 30, 3, 20],
+                   default=[7e3, 6e2, 10, 5e1, 30, 3, 500],
                    help="[sdf, inter, theta_hess, eikonal, theta_neigh, "
                         "morse, semantic]")
+    p.add_argument("--semantic_boundary_weight", type=float, default=1.0,
+                   help="Internal weight for semantic boundary alignment")
+    p.add_argument("--semantic_intra_weight", type=float, default=1.0,
+                   help="Internal weight for semantic intra-part consistency")
+    p.add_argument("--semantic_neighbor_weight", type=float, default=1.0,
+                   help="Internal weight for semantic-aware neighbor smoothness")
+    p.add_argument("--semantic_cross_part_gamma", type=float, default=0.2,
+                   help="Neighbor smoothness attenuation across semantic parts")
 
     # -- Quad Extraction (Stage 3) -----------------------------------------
     p.add_argument("--gradient_size", type=float, default=30.0,
                    help="MIQ gradient size (controls quad density)")
+    p.add_argument("--size_field_path", default=None,
+                   help="Optional per-face or per-vertex local size field text file "
+                        "for Stage 3 extraction")
+    p.add_argument("--size_field_strength", type=float, default=0.25,
+                   help="Strength of local size adaptation in Stage 3")
+    p.add_argument("--size_field_smooth_iters", type=int, default=6,
+                   help="Face-neighbor smoothing iterations for the Stage 3 size field")
     p.add_argument("--skip_extract", action="store_true",
                    help="Skip Stage 3 (quad mesh extraction)")
 
     # -- General ------------------------------------------------------------
     p.add_argument("--output_dir", default="pipeline_output",
-                   help="Root directory for all outputs")
+                   help="Root directory for all outputs "
+                        "(a timestamp suffix is appended automatically)")
+    p.add_argument("--no_timestamp", action="store_true",
+                   help="Do not append timestamp to output_dir")
     p.add_argument("--skip_partfield", action="store_true",
                    help="Skip Stage 1; only valid with --input_mesh")
     p.add_argument("--part_feat_path", default=None,
@@ -322,6 +342,10 @@ def run_neurcross(input_mesh, feat_path, mesh_name, args):
         "--num_epochs",     str(args.num_epochs),
         "--lr",             str(args.lr),
         "--loss_weights",   *[str(w) for w in args.loss_weights],
+        "--semantic_boundary_weight", str(args.semantic_boundary_weight),
+        "--semantic_intra_weight", str(args.semantic_intra_weight),
+        "--semantic_neighbor_weight", str(args.semantic_neighbor_weight),
+        "--semantic_cross_part_gamma", str(args.semantic_cross_part_gamma),
         "--morse_near",
     ]
 
@@ -356,76 +380,42 @@ def find_latest_crossfield(crossfield_dir):
     return max(files, key=iter_num)
 
 
-def run_quad_extract(input_mesh, crossfield_txt, output_obj, args,
-                     gradient_size=None, timeout=600):
-    """Call the C++ extract_quad_mesh tool.
-
-    Returns output_obj on success, None on failure.
-    """
+def run_quad_extract(input_mesh, crossfield_txt, output_obj, args):
+    """Call the C++ extract_quad_mesh tool."""
     if not os.path.isfile(QUAD_EXTRACT_BIN):
         sys.exit(f"Quad extraction binary not found: {QUAD_EXTRACT_BIN}\n"
                  f"  Build it with: cd quad_extract/build && cmake .. && make")
-
-    gs = gradient_size if gradient_size is not None else args.gradient_size
 
     cmd = [
         QUAD_EXTRACT_BIN,
         os.path.abspath(input_mesh),
         os.path.abspath(crossfield_txt),
         os.path.abspath(output_obj),
-        str(gs),
+        str(args.gradient_size),
     ]
+    if args.size_field_path:
+        cmd.extend([
+            f"--size_field={os.path.abspath(args.size_field_path)}",
+            f"--size_strength={args.size_field_strength}",
+            f"--size_smooth_iters={args.size_field_smooth_iters}",
+        ])
 
     print(f"\n[Stage 3] Quad extraction")
     print(f"  binary      : {QUAD_EXTRACT_BIN}")
     print(f"  input mesh  : {input_mesh}")
     print(f"  cross field : {crossfield_txt}")
     print(f"  output      : {output_obj}")
-    print(f"  gradient_size: {gs}  timeout: {timeout}s\n")
+    print(f"  gradient_size: {args.gradient_size}\n")
+    if args.size_field_path:
+        print(f"  size_field  : {args.size_field_path}")
+        print(f"  size_strength: {args.size_field_strength}")
+        print(f"  smooth_iters : {args.size_field_smooth_iters}\n")
 
     env = os.environ.copy()
     env["LD_LIBRARY_PATH"] = (
         "/usr/lib/x86_64-linux-gnu:" + env.get("LD_LIBRARY_PATH", ""))
-    subprocess.run(cmd, env=env, check=True, timeout=timeout)
+    subprocess.run(cmd, env=env, check=True)
     return output_obj
-
-
-def run_quad_extract_with_retry(input_mesh, crossfield_dir, output_obj, args):
-    """Try quad extraction with multiple gradient sizes and cross-field
-    iterations, returning the first successful output path or None."""
-    gradient_sizes = [args.gradient_size, 50.0, 15.0, 80.0]
-    seen = set()
-    gradient_sizes = [g for g in gradient_sizes
-                      if not (g in seen or seen.add(g))]
-
-    import glob as _glob
-    cf_files = sorted(
-        _glob.glob(os.path.join(crossfield_dir, "*_iter_*.txt")),
-        key=lambda f: int(
-            os.path.splitext(os.path.basename(f))[0].rsplit("_iter_", 1)[1]),
-        reverse=True,
-    )
-    if not cf_files:
-        print(f"  WARNING: No cross field found in {crossfield_dir}")
-        return None
-
-    for cf_txt in cf_files[:3]:
-        cf_label = os.path.basename(cf_txt)
-        for gs in gradient_sizes:
-            print(f"\n  >> Trying cross_field={cf_label}  gradient_size={gs}")
-            try:
-                run_quad_extract(input_mesh, cf_txt, output_obj, args,
-                                 gradient_size=gs, timeout=600)
-                if os.path.isfile(output_obj) and os.path.getsize(output_obj) > 0:
-                    print(f"  >> SUCCESS with {cf_label} gs={gs}")
-                    return output_obj
-            except subprocess.TimeoutExpired:
-                print(f"  >> TIMEOUT with {cf_label} gs={gs}")
-            except subprocess.CalledProcessError as e:
-                print(f"  >> FAILED with {cf_label} gs={gs}: {e}")
-
-    print(f"  WARNING: All extraction attempts failed.")
-    return None
 
 
 # ---------------------------------------------------------------------------
@@ -449,6 +439,11 @@ def verify_features(feat_path, expected_faces, name):
 
 def main():
     args = parse_args()
+
+    if not args.no_timestamp:
+        ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+        args.output_dir = f"{args.output_dir}_{ts}"
+
     os.makedirs(args.output_dir, exist_ok=True)
 
     mesh_paths = collect_meshes(args)
@@ -539,6 +534,11 @@ def main():
                   + "-" * (45 - len(basename)))
 
             cross_field_dir = os.path.join(r["logdir"], "save_crossField")
+            cf_txt = find_latest_crossfield(cross_field_dir)
+            if cf_txt is None:
+                print(f"  WARNING: No cross field found in {cross_field_dir}")
+                print(f"           Skipping quad extraction for {basename}")
+                continue
 
             input_mesh_obj = r["input"]
             ext = os.path.splitext(input_mesh_obj)[1].lower()
@@ -550,9 +550,12 @@ def main():
                 input_mesh_obj = obj_path
 
             output_obj = os.path.join(quad_output_dir, f"{basename}_quad.obj")
-            result_path = run_quad_extract_with_retry(
-                input_mesh_obj, cross_field_dir, output_obj, args)
-            results[basename]["quad_mesh"] = result_path
+            try:
+                run_quad_extract(input_mesh_obj, cf_txt, output_obj, args)
+                results[basename]["quad_mesh"] = output_obj
+            except subprocess.CalledProcessError as e:
+                print(f"  ERROR: Quad extraction failed for {basename}: {e}")
+                results[basename]["quad_mesh"] = None
     else:
         print("\n[Stage 3] Skipped (--skip_extract)")
 

@@ -25,3 +25,5 @@ googletest/
 input/
 libigl/
 libQEx/
+history_input/
+pipeline_output*/

@@ -3,6 +3,7 @@ import sys
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 import numpy as np
 import torch
 import torch.optim as optim
@@ -68,6 +69,7 @@ axis_angle_R_mat_list = utils.get_rotation_matrix(vertex_neighbors_list, vertex_
 
 semantic_grad_dir_tensor = None
 semantic_grad_weight_tensor = None
+semantic_labels_tensor = None
 
 if args.part_feat_path is not None:
     part_features = np.load(args.part_feat_path)  # (N_faces, 448)
@@ -82,13 +84,37 @@ if args.part_feat_path is not None:
     semantic_grad_dir_tensor = torch.tensor(grad_dir, dtype=torch.float32).to(device)
     semantic_grad_weight_tensor = torch.tensor(grad_weight, dtype=torch.float32).to(device)
 
+    try:
+        from eval.label_utils import cluster_features
+
+        label_result = cluster_features(part_features, method="best_silhouette")
+        semantic_labels = label_result["labels"]
+        if semantic_labels is not None and len(semantic_labels) == len(face_centers):
+            semantic_labels_tensor = torch.tensor(semantic_labels, dtype=torch.long).to(device)
+            utils.log_string(
+                "Semantic pseudo labels: K={}, silhouette={:.4f}".format(
+                    label_result["k"], label_result["silhouette"]
+                ),
+                log_file
+            )
+    except Exception as exc:
+        utils.log_string(
+            "Semantic label clustering skipped: {}".format(exc),
+            log_file
+        )
+
 criterion = MorseLoss(weights=args.loss_weights, loss_type=args.loss_type, div_decay=args.morse_decay,
                       div_type=args.morse_type,
                       vertex_neighbors_list=vertex_neighbors_list,
                       vertex_neighbors=vertex_neighbors, axis_angle_R_mat_list=axis_angle_R_mat_list,
                       device=device,
                       semantic_grad_dir=semantic_grad_dir_tensor,
-                      semantic_grad_weight=semantic_grad_weight_tensor)
+                      semantic_grad_weight=semantic_grad_weight_tensor,
+                      semantic_labels=semantic_labels_tensor,
+                      semantic_boundary_weight=args.semantic_boundary_weight,
+                      semantic_intra_weight=args.semantic_intra_weight,
+                      semantic_neighbor_weight=args.semantic_neighbor_weight,
+                      semantic_cross_part_gamma=args.semantic_cross_part_gamma)
 
 # For each epoch
 for epoch in range(args.num_epochs):
@@ -135,22 +161,34 @@ for epoch in range(args.num_epochs):
             weights = criterion.weights
             utils.log_string("Weights: {}, lr={:.3e}".format(weights, lr), log_file)
             utils.log_string('Epoch: {} [{:4d}/{} ({:.0f}%)] Loss: {:.5f} = L_Mnfld: {:.5f} + '
-                             'L_NonMnfld: {:.5f} + L_Eknl: {:.5f} + L_Morse: {:.5f} + L_thetaHessian: {:.5f} + L_thetaNeighbor: {:.5f}'.format(
+                             'L_NonMnfld: {:.5f} + L_Eknl: {:.5f} + L_Morse: {:.5f} + L_thetaHessian: {:.5f} + '
+                             'L_thetaNeighbor: {:.5f} + L_Semantic: {:.5f}'.format(
                 epoch, batch_idx * args.batch_size, len(train_set), 100. * batch_idx / args.n_samples,
                 loss_dict["loss"].item(), weights[0] * loss_dict["sdf_term"].item(),
                        weights[1] * loss_dict["inter_term"].item(),
                        weights[3] * loss_dict["eikonal_term"].item(), weights[5] * loss_dict["morse_term"].item(),
                        weights[2] * loss_dict["theta_hessian_term"].item(),
-                       weights[4] * loss_dict['theta_neighbors_term'].item()
+                       weights[4] * loss_dict['theta_neighbors_term'].item(),
+                       weights[6] * loss_dict['semantic_loss'].item()
             ),
                 log_file)
             utils.log_string('Epoch: {} [{:4d}/{} ({:.0f}%)] Unweighted L_s : L_Mnfld: {:.5f} + '
-                             'L_NonMnfld: {:.5f} + L_Eknl: {:.5f} + L_Morse: {:.5f} + L_thetaHessian: {:.5f} + L_thetaNeighbor: {:.5f}'.format(
+                             'L_NonMnfld: {:.5f} + L_Eknl: {:.5f} + L_Morse: {:.5f} + L_thetaHessian: {:.5f} + '
+                             'L_thetaNeighbor: {:.5f} + L_Semantic: {:.5f}'.format(
                 epoch, batch_idx * args.batch_size, len(train_set), 100. * batch_idx / args.n_samples,
                 loss_dict["sdf_term"].item(), loss_dict["inter_term"].item(),
                 loss_dict["eikonal_term"].item(), loss_dict["morse_term"].item(),
-                loss_dict['theta_hessian_term'].item(), loss_dict['theta_neighbors_term'].item()),
+                loss_dict['theta_hessian_term'].item(), loss_dict['theta_neighbors_term'].item(),
+                loss_dict['semantic_loss'].item()),
                 log_file)
+            utils.log_string(
+                'Semantic terms: boundary={:.5f}, intra={:.5f}, neighbor={:.5f}'.format(
+                    loss_dict['semantic_boundary_term'].item(),
+                    loss_dict['semantic_intra_term'].item(),
+                    loss_dict['semantic_neighbor_term'].item()
+                ),
+                log_file
+            )
             utils.log_string('', log_file)
 
         criterion.update_morse_weight(epoch * args.n_samples + batch_idx, args.num_epochs * args.n_samples,

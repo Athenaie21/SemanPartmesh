@@ -40,6 +40,14 @@ def add_args(parser):
     parser.add_argument('--loss_weights', nargs='+', type=float, default=[7e3, 6e2, 10, 5e1, 30, 3, 20],
                         help='loss terms weights sdf | inter | normal | eikonal | div | morse | semantic')
     parser.add_argument('--part_feat_path', type=str, default=None, help='path to precomputed PartField features (.npy)')
+    parser.add_argument('--semantic_boundary_weight', type=float, default=1.0,
+                        help='internal weight for semantic boundary alignment')
+    parser.add_argument('--semantic_intra_weight', type=float, default=1.0,
+                        help='internal weight for semantic intra-part consistency')
+    parser.add_argument('--semantic_neighbor_weight', type=float, default=1.0,
+                        help='internal weight for semantic-aware neighbor smoothness')
+    parser.add_argument('--semantic_cross_part_gamma', type=float, default=0.2,
+                        help='neighbor smoothness attenuation across semantic parts')
     parser.add_argument('--morse_near', action='store_true')
     parser.add_argument('--weight_for_morse', action='store_true',
                         help='if true, Weighting A according to the distance of the sampling point')

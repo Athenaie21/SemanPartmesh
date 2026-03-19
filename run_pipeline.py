@@ -18,6 +18,7 @@ Usage
 
 import os
 import sys
+import json
 import shutil
 import argparse
 import subprocess
@@ -26,9 +27,17 @@ from datetime import datetime
 import numpy as np
 import trimesh
 
+from build_complexity_map import (
+    compute_semantic_component,
+    get_face_neighbors,
+    robust_normalize,
+)
+from eval.label_utils import cluster_features
+
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 PARTFIELD_DIR = os.path.join(PROJECT_ROOT, "PartField")
 NEURCROSS_DIR = os.path.join(PROJECT_ROOT, "NeurCross")
+EXTRACT_QUAD_PY = os.path.join(PROJECT_ROOT, "extract_quad.py")
 QUAD_EXTRACT_BIN = os.path.join(
     PROJECT_ROOT, "quad_extract", "build", "extract_quad_mesh")
 
@@ -120,7 +129,7 @@ def parse_args():
     p.add_argument("--num_epochs", type=int, default=1)
     p.add_argument("--lr", type=float, default=5e-5)
     p.add_argument("--loss_weights", nargs="+", type=float,
-                   default=[7e3, 6e2, 10, 5e1, 30, 3, 500],
+                   default=[7e3, 6e2, 10, 5e1, 30, 3, 1000],
                    help="[sdf, inter, theta_hess, eikonal, theta_neigh, "
                         "morse, semantic]")
     p.add_argument("--semantic_boundary_weight", type=float, default=1.0,
@@ -138,10 +147,56 @@ def parse_args():
     p.add_argument("--size_field_path", default=None,
                    help="Optional per-face or per-vertex local size field text file "
                         "for Stage 3 extraction")
-    p.add_argument("--size_field_strength", type=float, default=0.25,
+    p.add_argument("--size_field_strength", type=float, default=0.75,
                    help="Strength of local size adaptation in Stage 3")
     p.add_argument("--size_field_smooth_iters", type=int, default=6,
                    help="Face-neighbor smoothing iterations for the Stage 3 size field")
+    p.add_argument("--disable_semantic_size_field", action="store_true",
+                   help="Disable automatic semantic size-field generation for Stage 3")
+    p.add_argument("--semantic_size_k", type=int, default=None,
+                   help="Fixed cluster count for semantic size-field generation")
+    p.add_argument("--semantic_size_k_min", type=int, default=2,
+                   help="Minimum K when auto-selecting semantic clusters for size field")
+    p.add_argument("--semantic_size_k_max", type=int, default=15,
+                   help="Maximum K when auto-selecting semantic clusters for size field")
+    p.add_argument("--semantic_size_grad_mix", type=float, default=0.7,
+                   help="Blend between PartField gradient strength and pseudo-label boundaries")
+    p.add_argument("--semantic_size_robust_percentile", type=float, default=95.0,
+                   help="Robust percentile used to normalize semantic complexity")
+    p.add_argument("--semantic_size_min", type=float, default=0.35,
+                   help="Minimum relative size in semantically complex regions")
+    p.add_argument("--semantic_size_max", type=float, default=1.0,
+                   help="Maximum relative size in semantically simple regions")
+    p.add_argument("--semantic_size_save_vis", action="store_true",
+                   help="Export a colored semantic complexity preview mesh for debugging")
+    p.add_argument("--disable_auto_sweep", action="store_true",
+                   help="Disable safer Stage 3 auto-sweep extraction")
+    p.add_argument("--disable_extract_retry", action="store_true",
+                   help="Disable fallback retry extraction with alternative settings")
+    p.add_argument("--disable_size_field_relax", action="store_true",
+                   help="Disable automatic relaxation when a size field makes extraction unstable")
+    p.add_argument("--sweep_values", nargs="+", type=float, default=None,
+                   help="Optional gradient_size sweep values for safer extraction")
+    p.add_argument("--keep_sweep_outputs", action="store_true",
+                   help="Keep all intermediate sweep OBJ files")
+    p.add_argument("--min_quads", type=int, default=None,
+                   help="Minimum acceptable quad count during safer extraction")
+    p.add_argument("--max_ad", type=float, default=15.0,
+                   help="Maximum acceptable mean angle distortion during safer extraction")
+    p.add_argument("--min_jr", type=float, default=0.15,
+                   help="Minimum acceptable Jacobian ratio during safer extraction")
+    p.add_argument("--catmull_clark_iters", type=int, default=0,
+                   help="Fixed Catmull-Clark subdivision iterations after extraction")
+    p.add_argument("--target_quad_ratio", type=float, default=0.5,
+                   help="Target final quad count as a ratio of input triangle faces")
+    p.add_argument("--max_catmull_clark_iters", type=int, default=2,
+                   help="Maximum automatic Catmull-Clark subdivision iterations")
+    p.add_argument("--disable_chunked_extract", action="store_true",
+                   help="Disable chunked extraction for assembled meshes")
+    p.add_argument("--extract_chunk_min_faces", type=int, default=200,
+                   help="Minimum face count required for a semantic extraction chunk")
+    p.add_argument("--extract_chunk_max_chunks", type=int, default=24,
+                   help="Maximum number of extraction chunks before falling back to global extraction")
     p.add_argument("--skip_extract", action="store_true",
                    help="Skip Stage 3 (quad mesh extraction)")
 
@@ -380,42 +435,437 @@ def find_latest_crossfield(crossfield_dir):
     return max(files, key=iter_num)
 
 
-def run_quad_extract(input_mesh, crossfield_txt, output_obj, args):
-    """Call the C++ extract_quad_mesh tool."""
-    if not os.path.isfile(QUAD_EXTRACT_BIN):
-        sys.exit(f"Quad extraction binary not found: {QUAD_EXTRACT_BIN}\n"
-                 f"  Build it with: cd quad_extract/build && cmake .. && make")
+def get_face_connected_components(mesh):
+    face_count = len(mesh.faces)
+    if face_count == 0:
+        return []
 
+    neighbors = get_face_neighbors(mesh)
+    visited = np.zeros(face_count, dtype=bool)
+    components = []
+
+    for seed in range(face_count):
+        if visited[seed]:
+            continue
+        stack = [seed]
+        visited[seed] = True
+        component = []
+        while stack:
+            current = stack.pop()
+            component.append(current)
+            for neighbor in neighbors[current]:
+                neighbor = int(neighbor)
+                if not visited[neighbor]:
+                    visited[neighbor] = True
+                    stack.append(neighbor)
+        components.append(np.asarray(sorted(component), dtype=np.int64))
+
+    components.sort(key=len, reverse=True)
+    return components
+
+
+def split_face_mask_into_connected_chunks(neighbors, mask):
+    mask = np.asarray(mask, dtype=bool)
+    visited = np.zeros(len(mask), dtype=bool)
+    chunks = []
+
+    valid_ids = np.flatnonzero(mask)
+    for seed in valid_ids:
+        if visited[seed]:
+            continue
+        stack = [int(seed)]
+        visited[seed] = True
+        chunk = []
+        while stack:
+            current = stack.pop()
+            chunk.append(current)
+            for neighbor in neighbors[current]:
+                neighbor = int(neighbor)
+                if mask[neighbor] and not visited[neighbor]:
+                    visited[neighbor] = True
+                    stack.append(neighbor)
+        chunks.append(np.asarray(sorted(chunk), dtype=np.int64))
+
+    chunks.sort(key=len, reverse=True)
+    return chunks
+
+
+def compute_semantic_face_chunks(mesh, feat_path, args):
+    features = np.load(feat_path)
+    face_count = len(mesh.faces)
+    if len(features) != face_count:
+        raise ValueError(
+            f"Feature count ({len(features)}) does not match face count ({face_count}).")
+
+    if args.semantic_size_k is not None:
+        from sklearn.cluster import KMeans
+        feat_norm = np.linalg.norm(features, axis=-1, keepdims=True)
+        features_norm = features / np.clip(feat_norm, 1e-12, None)
+        labels = KMeans(
+            n_clusters=args.semantic_size_k,
+            n_init=5,
+            random_state=42
+        ).fit_predict(features_norm).astype(np.int64)
+    else:
+        result = cluster_features(
+            features,
+            k_range=(args.semantic_size_k_min, args.semantic_size_k_max),
+            method="best_silhouette"
+        )
+        labels = result["labels"]
+
+    if labels is None:
+        return None
+
+    neighbors = get_face_neighbors(mesh)
+    chunks = []
+    for label in np.unique(labels):
+        label_mask = labels == label
+        chunks.extend(split_face_mask_into_connected_chunks(neighbors, label_mask))
+
+    if len(chunks) <= 1:
+        return None
+    if len(chunks) > args.extract_chunk_max_chunks:
+        return None
+    if any(len(chunk) < args.extract_chunk_min_faces for chunk in chunks):
+        return None
+
+    chunks.sort(key=len, reverse=True)
+    return chunks
+
+
+def plan_extraction_chunks(mesh, feat_path, args):
+    if args.disable_chunked_extract:
+        return [np.arange(len(mesh.faces), dtype=np.int64)], "global"
+
+    components = get_face_connected_components(mesh)
+    if len(components) > 1:
+        return components, "connected_components"
+
+    if feat_path is not None:
+        semantic_chunks = compute_semantic_face_chunks(mesh, feat_path, args)
+        if semantic_chunks is not None:
+            return semantic_chunks, "semantic_parts"
+
+    return [np.arange(len(mesh.faces), dtype=np.int64)], "global"
+
+
+def build_face_subset_mesh(mesh, face_ids):
+    face_ids = np.asarray(face_ids, dtype=np.int64)
+    subset_faces = np.asarray(mesh.faces, dtype=np.int64)[face_ids]
+    used_vertices, inverse = np.unique(subset_faces.reshape(-1), return_inverse=True)
+    subset_vertices = np.asarray(mesh.vertices)[used_vertices]
+    subset_faces = inverse.reshape(-1, subset_faces.shape[1])
+    return trimesh.Trimesh(vertices=subset_vertices, faces=subset_faces, process=False)
+
+
+def write_face_subset_obj(mesh, face_ids, output_path):
+    os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
+    subset_mesh = build_face_subset_mesh(mesh, face_ids)
+    subset_mesh.export(output_path)
+    return output_path
+
+
+def load_crossfield_rows(crossfield_txt):
+    rows = np.loadtxt(crossfield_txt, dtype=np.float64)
+    rows = np.atleast_2d(rows)
+    if rows.shape[1] != 6:
+        raise ValueError(f"Expected cross-field with 6 columns, got shape {rows.shape}")
+    return rows
+
+
+def write_subset_crossfield(rows, face_ids, output_path):
+    os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
+    np.savetxt(output_path, rows[np.asarray(face_ids, dtype=np.int64)], fmt="%.8f")
+    return output_path
+
+
+def write_subset_scalar_field(values, face_ids, output_path):
+    os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
+    np.savetxt(output_path, values[np.asarray(face_ids, dtype=np.int64)], fmt="%.8f")
+    return output_path
+
+
+def load_quad_obj(path):
+    vertices = []
+    quads = []
+    with open(path, "r") as f:
+        for line in f:
+            if line.startswith("v "):
+                parts = line.strip().split()
+                vertices.append([float(parts[1]), float(parts[2]), float(parts[3])])
+            elif line.startswith("f "):
+                parts = line.strip().split()[1:]
+                indices = [int(p.split("/")[0]) - 1 for p in parts]
+                if len(indices) == 4:
+                    quads.append(indices)
+
+    if not vertices or not quads:
+        raise ValueError(f"No valid quad data in {path}")
+    return np.asarray(vertices, dtype=np.float64), np.asarray(quads, dtype=np.int64)
+
+
+def write_quad_obj(path, vertices, quads):
+    os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
+    with open(path, "w") as f:
+        for vertex in np.asarray(vertices, dtype=np.float64):
+            f.write(f"v {vertex[0]:.12g} {vertex[1]:.12g} {vertex[2]:.12g}\n")
+        for quad in np.asarray(quads, dtype=np.int64):
+            f.write(f"f {quad[0] + 1} {quad[1] + 1} {quad[2] + 1} {quad[3] + 1}\n")
+
+
+def merge_quad_chunks(chunk_obj_paths, output_path):
+    merged_vertices = []
+    merged_quads = []
+    vertex_offset = 0
+
+    for chunk_path in chunk_obj_paths:
+        vertices, quads = load_quad_obj(chunk_path)
+        merged_vertices.append(vertices)
+        merged_quads.append(quads + vertex_offset)
+        vertex_offset += len(vertices)
+
+    vertices = np.vstack(merged_vertices)
+    quads = np.vstack(merged_quads)
+    write_quad_obj(output_path, vertices, quads)
+    return output_path
+
+
+def run_chunked_quad_extract(input_mesh, feat_path, crossfield_txt, output_obj, args,
+                             size_field_path=None):
+    mesh = trimesh.load_mesh(input_mesh, process=False)
+    chunks, strategy = plan_extraction_chunks(mesh, feat_path, args)
+
+    if len(chunks) <= 1:
+        run_quad_extract(input_mesh, crossfield_txt, output_obj, args,
+                         size_field_path=size_field_path)
+        return {
+            "strategy": strategy,
+            "n_chunks": 1,
+            "chunk_face_counts": [int(len(chunks[0]))],
+            "chunk_dir": None,
+        }
+
+    print(f"  extraction strategy: {strategy} ({len(chunks)} chunks)")
+    print(f"  chunk face counts  : {[int(len(chunk)) for chunk in chunks]}")
+
+    crossfield_rows = load_crossfield_rows(crossfield_txt)
+    if len(crossfield_rows) != len(mesh.faces):
+        raise ValueError(
+            f"Cross-field row count ({len(crossfield_rows)}) does not match face count ({len(mesh.faces)}).")
+
+    size_values = None
+    if size_field_path is not None:
+        size_values = np.loadtxt(size_field_path, dtype=np.float64)
+        size_values = np.asarray(size_values, dtype=np.float64).reshape(-1)
+        if len(size_values) != len(mesh.faces):
+            raise ValueError(
+                f"Size-field row count ({len(size_values)}) does not match face count ({len(mesh.faces)}).")
+
+    chunk_root = os.path.splitext(output_obj)[0] + "_chunks"
+    chunk_input_dir = os.path.join(chunk_root, "inputs")
+    chunk_output_dir = os.path.join(chunk_root, "outputs")
+    os.makedirs(chunk_input_dir, exist_ok=True)
+    os.makedirs(chunk_output_dir, exist_ok=True)
+
+    chunk_outputs = []
+    for chunk_idx, face_ids in enumerate(chunks):
+        chunk_name = f"chunk_{chunk_idx:03d}"
+        chunk_mesh = os.path.join(chunk_input_dir, f"{chunk_name}.obj")
+        chunk_crossfield = os.path.join(chunk_input_dir, f"{chunk_name}_crossfield.txt")
+        chunk_output = os.path.join(chunk_output_dir, f"{chunk_name}_quad.obj")
+
+        write_face_subset_obj(mesh, face_ids, chunk_mesh)
+        write_subset_crossfield(crossfield_rows, face_ids, chunk_crossfield)
+
+        chunk_size_field = None
+        if size_values is not None:
+            chunk_size_field = os.path.join(chunk_input_dir, f"{chunk_name}_size.txt")
+            write_subset_scalar_field(size_values, face_ids, chunk_size_field)
+
+        run_quad_extract(chunk_mesh, chunk_crossfield, chunk_output, args,
+                         size_field_path=chunk_size_field)
+        chunk_outputs.append(chunk_output)
+
+    merge_quad_chunks(chunk_outputs, output_obj)
+    return {
+        "strategy": strategy,
+        "n_chunks": int(len(chunks)),
+        "chunk_face_counts": [int(len(chunk)) for chunk in chunks],
+        "chunk_dir": chunk_root,
+    }
+
+
+def run_quad_extract(input_mesh, crossfield_txt, output_obj, args, size_field_path=None):
+    """Run safer quad extraction through extract_quad.py."""
+    if not os.path.isfile(EXTRACT_QUAD_PY):
+        sys.exit(f"Quad extraction script not found: {EXTRACT_QUAD_PY}")
+    active_size_field_path = size_field_path or args.size_field_path
     cmd = [
-        QUAD_EXTRACT_BIN,
-        os.path.abspath(input_mesh),
-        os.path.abspath(crossfield_txt),
-        os.path.abspath(output_obj),
-        str(args.gradient_size),
+        sys.executable,
+        EXTRACT_QUAD_PY,
+        "--mesh", os.path.abspath(input_mesh),
+        "--crossfield", os.path.abspath(crossfield_txt),
+        "--output", os.path.abspath(output_obj),
+        "--gradient_size", str(args.gradient_size),
+        "--timeout", "600",
+        "--max_ad", str(args.max_ad),
+        "--min_jr", str(args.min_jr),
     ]
-    if args.size_field_path:
+    if args.min_quads is not None:
+        cmd.extend(["--min_quads", str(args.min_quads)])
+    if active_size_field_path:
         cmd.extend([
-            f"--size_field={os.path.abspath(args.size_field_path)}",
-            f"--size_strength={args.size_field_strength}",
-            f"--size_smooth_iters={args.size_field_smooth_iters}",
+            "--size_field", os.path.abspath(active_size_field_path),
+            "--size_field_strength", str(args.size_field_strength),
+            "--size_field_smooth_iters", str(args.size_field_smooth_iters),
         ])
+        if not args.disable_size_field_relax:
+            cmd.append("--size_field_relax")
+    if not args.disable_auto_sweep:
+        cmd.append("--auto_sweep")
+    if args.sweep_values:
+        cmd.extend(["--sweep_values", *[str(v) for v in args.sweep_values]])
+    if args.keep_sweep_outputs:
+        cmd.append("--keep_sweep_outputs")
+    if not args.disable_extract_retry:
+        cmd.append("--retry")
+    if args.catmull_clark_iters > 0:
+        cmd.extend(["--catmull_clark_iters", str(args.catmull_clark_iters)])
+    if args.target_quad_ratio is not None:
+        cmd.extend(["--target_quad_ratio", str(args.target_quad_ratio)])
+    if args.max_catmull_clark_iters is not None:
+        cmd.extend(["--max_catmull_clark_iters", str(args.max_catmull_clark_iters)])
 
     print(f"\n[Stage 3] Quad extraction")
-    print(f"  binary      : {QUAD_EXTRACT_BIN}")
+    print(f"  script      : {EXTRACT_QUAD_PY}")
+    print(f"  python      : {sys.executable}")
     print(f"  input mesh  : {input_mesh}")
     print(f"  cross field : {crossfield_txt}")
     print(f"  output      : {output_obj}")
     print(f"  gradient_size: {args.gradient_size}\n")
-    if args.size_field_path:
-        print(f"  size_field  : {args.size_field_path}")
+    if active_size_field_path:
+        print(f"  size_field  : {active_size_field_path}")
         print(f"  size_strength: {args.size_field_strength}")
         print(f"  smooth_iters : {args.size_field_smooth_iters}\n")
 
+    print(f"  auto_sweep  : {not args.disable_auto_sweep}")
+    print(f"  retry       : {not args.disable_extract_retry}")
+    print(f"  min_quads   : {'default' if args.min_quads is None else args.min_quads}")
+    print(f"  max_ad      : {args.max_ad}")
+    print(f"  min_jr      : {args.min_jr}\n")
+    print(f"  cc_iters    : {args.catmull_clark_iters}")
+    print(f"  target_ratio: {args.target_quad_ratio}")
+    print(f"  cc_max_auto : {args.max_catmull_clark_iters}\n")
+
     env = os.environ.copy()
-    env["LD_LIBRARY_PATH"] = (
-        "/usr/lib/x86_64-linux-gnu:" + env.get("LD_LIBRARY_PATH", ""))
     subprocess.run(cmd, env=env, check=True)
     return output_obj
+
+
+def export_scalar_preview(mesh, values, output_path):
+    values = np.asarray(values, dtype=np.float64).reshape(-1)
+    if len(values) != len(mesh.faces):
+        raise ValueError(
+            f"Value count ({len(values)}) does not match face count ({len(mesh.faces)}).")
+
+    anchors = np.array([0.0, 0.33, 0.66, 1.0], dtype=np.float64)
+    colors = np.array([
+        [24, 34, 84],
+        [53, 196, 233],
+        [244, 208, 63],
+        [192, 57, 43],
+    ], dtype=np.float64)
+
+    rgba = np.zeros((len(values), 4), dtype=np.uint8)
+    clipped = np.clip(values, 0.0, 1.0)
+    for c in range(3):
+        rgba[:, c] = np.interp(clipped, anchors, colors[:, c]).astype(np.uint8)
+    rgba[:, 3] = 255
+
+    preview_mesh = mesh.copy()
+    preview_mesh.visual.face_colors = rgba
+    preview_mesh.export(output_path)
+
+
+def build_semantic_size_field(mesh_path, feat_path, basename, output_root, args):
+    mesh = trimesh.load_mesh(mesh_path, process=False)
+    face_count = len(mesh.faces)
+    features = np.load(feat_path)
+    if len(features) != face_count:
+        raise ValueError(
+            f"[{basename}] Feature count ({len(features)}) does not match face count ({face_count}).")
+    if args.semantic_size_min <= 0.0 or args.semantic_size_min > args.semantic_size_max:
+        raise ValueError("Require 0 < semantic_size_min <= semantic_size_max.")
+
+    vertex_neighbors = get_face_neighbors(mesh)
+    semantic_args = argparse.Namespace(
+        k=args.semantic_size_k,
+        k_min=args.semantic_size_k_min,
+        k_max=args.semantic_size_k_max,
+        semantic_grad_mix=args.semantic_size_grad_mix,
+    )
+    semantic_info = compute_semantic_component(mesh, features, vertex_neighbors, semantic_args)
+    semantic_complexity = robust_normalize(
+        semantic_info["raw"], percentile=args.semantic_size_robust_percentile)
+    size_hint = args.semantic_size_max - semantic_complexity * (
+        args.semantic_size_max - args.semantic_size_min
+    )
+
+    size_dir = os.path.join(output_root, "semantic_size_fields")
+    os.makedirs(size_dir, exist_ok=True)
+    size_txt = os.path.join(size_dir, f"{basename}_semantic_size.txt")
+    np.savetxt(size_txt, size_hint, fmt="%.8f")
+
+    summary = {
+        "mesh": os.path.abspath(mesh_path),
+        "features": os.path.abspath(feat_path),
+        "face_count": int(face_count),
+        "k_used": int(semantic_info["k_used"]),
+        "silhouette": semantic_info["silhouette"],
+        "n_boundary_edges": int(semantic_info["n_boundary_edges"]),
+        "semantic_grad_mix": float(args.semantic_size_grad_mix),
+        "robust_percentile": float(args.semantic_size_robust_percentile),
+        "size_min": float(args.semantic_size_min),
+        "size_max": float(args.semantic_size_max),
+        "complexity_stats": {
+            "min": float(semantic_complexity.min()),
+            "max": float(semantic_complexity.max()),
+            "mean": float(semantic_complexity.mean()),
+            "p90": float(np.percentile(semantic_complexity, 90)),
+            "p95": float(np.percentile(semantic_complexity, 95)),
+        },
+        "size_hint_stats": {
+            "min": float(size_hint.min()),
+            "max": float(size_hint.max()),
+            "mean": float(size_hint.mean()),
+            "p10": float(np.percentile(size_hint, 10)),
+            "p50": float(np.percentile(size_hint, 50)),
+        },
+    }
+    summary_path = os.path.join(size_dir, f"{basename}_semantic_size_summary.json")
+    with open(summary_path, "w") as f:
+        import json
+        json.dump(summary, f, indent=2)
+
+    preview_path = None
+    if args.semantic_size_save_vis:
+        preview_path = os.path.join(size_dir, f"{basename}_semantic_complexity.ply")
+        export_scalar_preview(mesh, semantic_complexity, preview_path)
+
+    silhouette_str = "n/a"
+    if semantic_info["silhouette"] is not None:
+        silhouette_str = f"{semantic_info['silhouette']:.4f}"
+    print(f"  semantic size field: {size_txt}")
+    print(f"  semantic clusters  : K={semantic_info['k_used']}, "
+          f"silhouette={silhouette_str}")
+    print(f"  size range         : [{size_hint.min():.4f}, {size_hint.max():.4f}]")
+
+    return {
+        "size_field_path": size_txt,
+        "summary_path": summary_path,
+        "preview_path": preview_path,
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -549,10 +999,35 @@ def main():
                 mesh.export(obj_path)
                 input_mesh_obj = obj_path
 
+            active_size_field = args.size_field_path
+            semantic_size_meta = None
+            if active_size_field is None and not args.disable_semantic_size_field:
+                semantic_size_meta = build_semantic_size_field(
+                    r["input"], r["features"], basename, args.output_dir, args)
+                active_size_field = semantic_size_meta["size_field_path"]
+                results[basename]["semantic_size_field"] = active_size_field
+                results[basename]["semantic_size_summary"] = semantic_size_meta["summary_path"]
+                if semantic_size_meta["preview_path"] is not None:
+                    results[basename]["semantic_size_preview"] = semantic_size_meta["preview_path"]
+            elif active_size_field is not None:
+                results[basename]["semantic_size_field"] = active_size_field
+
             output_obj = os.path.join(quad_output_dir, f"{basename}_quad.obj")
             try:
-                run_quad_extract(input_mesh_obj, cf_txt, output_obj, args)
+                extract_meta = run_chunked_quad_extract(
+                    input_mesh_obj,
+                    r["features"],
+                    cf_txt,
+                    output_obj,
+                    args,
+                    size_field_path=active_size_field
+                )
                 results[basename]["quad_mesh"] = output_obj
+                results[basename]["extract_strategy"] = extract_meta["strategy"]
+                results[basename]["extract_chunks"] = extract_meta["n_chunks"]
+                results[basename]["extract_chunk_faces"] = extract_meta["chunk_face_counts"]
+                if extract_meta["chunk_dir"] is not None:
+                    results[basename]["extract_chunk_dir"] = extract_meta["chunk_dir"]
             except subprocess.CalledProcessError as e:
                 print(f"  ERROR: Quad extraction failed for {basename}: {e}")
                 results[basename]["quad_mesh"] = None
@@ -570,6 +1045,8 @@ def main():
     print(f"  partfield_input/        Staged mesh files for PartField")
     print(f"  partfield_features/     Per-face features (.npy) + PCA vis (.ply)")
     print(f"  neurcross_logs/         NeurCross training results")
+    print(f"  semantic_size_fields/   Auto-generated semantic size fields (.txt/.json)")
+    print(f"  quad_meshes/*_chunks/   Per-chunk extraction intermediates when chunking is used")
     print(f"  quad_meshes/            Extracted quad meshes (.obj)")
     print()
     for name, r in results.items():
@@ -577,6 +1054,12 @@ def main():
         print(f"  [{name}]")
         print(f"    features   : {os.path.relpath(r['features'], abs_output)}")
         print(f"    cross field: {os.path.relpath(cross_field_dir, abs_output)}/")
+        sf = r.get("semantic_size_field")
+        if sf and os.path.isfile(sf):
+            print(f"    size field : {os.path.relpath(sf, abs_output)}")
+        strategy = r.get("extract_strategy")
+        if strategy:
+            print(f"    extraction : {strategy} ({r.get('extract_chunks', 1)} chunks)")
         qm = r.get("quad_mesh")
         if qm and os.path.isfile(qm):
             print(f"    quad mesh  : {os.path.relpath(qm, abs_output)}")

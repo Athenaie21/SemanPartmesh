@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-INPUT_DIR="${1:-${ROOT_DIR}/history_input}"
+INPUT_DIR="${1:-${ROOT_DIR}/10wan}"
 OUTPUT_DIR="${2:-${ROOT_DIR}/pipeline_output/baseline_logs}"
 PYTHON_BIN="${PYTHON_BIN:-/root/.conda/envs/neurcross/bin/python}"
 CUDA_DEVICE="${CUDA_DEVICE:-1}"
@@ -12,7 +12,7 @@ QUAD_MESH_DIR="${ROOT_DIR}/Baseline/NeurCross/quad_mesh"
 TRAIN_PY="${QUAD_MESH_DIR}/train_quad_mesh.py"
 
 N_SAMPLES="${N_SAMPLES:-10000}"
-N_POINTS="${N_POINTS:-15000}"
+N_POINTS="${N_POINTS:-10}"
 NUM_EPOCHS="${NUM_EPOCHS:-1}"
 LR="${LR:-5e-5}"
 LOSS_WEIGHTS="${LOSS_WEIGHTS:-7000 600 10 50 30 3}"

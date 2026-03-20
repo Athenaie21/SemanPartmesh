@@ -68,14 +68,13 @@ def parse_args():
     p.add_argument("--gradient_size", type=float, default=30.0,
                    help="MIQ gradient size — controls quad density (default: 30.0)")
     p.add_argument("--size_field", default=None,
-                   help="Optional per-face or per-vertex local size/density text file.")
+                   help="Deprecated and ignored. Extraction now follows the pure MIQ -> libQEx pipeline.")
     p.add_argument("--size_field_strength", type=float, default=0.25,
-                   help="Strength of local size adaptation in [0, +inf). "
-                        "0 disables local adaptation while preserving the file load path.")
+                   help="Deprecated and ignored.")
     p.add_argument("--size_field_smooth_iters", type=int, default=6,
-                   help="Number of face-neighbor smoothing iterations for the local size field.")
+                   help="Deprecated and ignored.")
     p.add_argument("--size_field_relax", action="store_true",
-                   help="If size-field extraction fails or times out, automatically retry with weaker local adaptation.")
+                   help="Deprecated and ignored.")
     p.add_argument("--timeout", type=int, default=600,
                    help="Timeout per extraction attempt in seconds (default: 600)")
     p.add_argument("--retry", action="store_true",
@@ -135,12 +134,6 @@ def _run_extract_once(mesh_path, crossfield_path, output_path,
         os.path.abspath(output_path),
         str(gradient_size),
     ]
-    if size_field_path is not None:
-        cmd.extend([
-            f"--size_field={os.path.abspath(size_field_path)}",
-            f"--size_strength={size_field_strength}",
-            f"--size_smooth_iters={size_field_smooth_iters}",
-        ])
 
     print(f"  binary       : {QUAD_EXTRACT_BIN}")
     print(f"  input mesh   : {mesh_path}")
@@ -148,9 +141,8 @@ def _run_extract_once(mesh_path, crossfield_path, output_path,
     print(f"  output       : {output_path}")
     print(f"  gradient_size: {gradient_size}  timeout: {timeout}s\n")
     if size_field_path is not None:
-        print(f"  size_field   : {size_field_path}")
-        print(f"  size_strength: {size_field_strength}")
-        print(f"  smooth_iters : {size_field_smooth_iters}\n")
+        print("  warning      : --size_field is deprecated and ignored")
+        print(f"  ignored_path : {size_field_path}\n")
 
     env = os.environ.copy()
     env["LD_LIBRARY_PATH"] = (
@@ -170,72 +162,26 @@ def _run_extract_once(mesh_path, crossfield_path, output_path,
     return False
 
 
-def build_size_field_attempts(size_field_path, size_field_strength,
-                              size_field_smooth_iters, relax_enabled):
-    if size_field_path is None:
-        return [(None, 0.0, 0)]
-
-    attempts = [(size_field_path, size_field_strength, size_field_smooth_iters)]
-    if not relax_enabled:
-        return attempts
-
-    relaxed = [
-        (size_field_path, min(size_field_strength, 0.15), max(size_field_smooth_iters, 8)),
-        (size_field_path, min(size_field_strength, 0.08), max(size_field_smooth_iters, 10)),
-        (None, 0.0, 0),
-    ]
-    seen = set()
-    merged = []
-    for path, strength, smooth_iters in attempts + relaxed:
-        key = (
-            None if path is None else os.path.abspath(path),
-            round(float(strength), 6),
-            int(smooth_iters),
-        )
-        if key in seen:
-            continue
-        seen.add(key)
-        merged.append((path, float(strength), int(smooth_iters)))
-    return merged
-
-
 def run_extract(mesh_path, crossfield_path, output_path,
                 gradient_size=30.0, timeout=600, size_field_path=None,
                 size_field_strength=0.25, size_field_smooth_iters=6,
                 size_field_relax=False):
-    attempts = build_size_field_attempts(
-        size_field_path,
-        size_field_strength,
-        size_field_smooth_iters,
-        relax_enabled=size_field_relax,
+    if os.path.isfile(output_path):
+        os.remove(output_path)
+
+    if size_field_path is not None or size_field_relax:
+        print("  warning      : deprecated size-field options are ignored")
+
+    return _run_extract_once(
+        mesh_path,
+        crossfield_path,
+        output_path,
+        gradient_size=gradient_size,
+        timeout=timeout,
+        size_field_path=size_field_path,
+        size_field_strength=size_field_strength,
+        size_field_smooth_iters=size_field_smooth_iters,
     )
-
-    for idx, (path, strength, smooth_iters) in enumerate(attempts, 1):
-        if os.path.isfile(output_path):
-            os.remove(output_path)
-
-        if path is None:
-            print(f"  local size attempt {idx}/{len(attempts)}: disabled")
-        else:
-            print(
-                f"  local size attempt {idx}/{len(attempts)}: "
-                f"strength={strength}, smooth_iters={smooth_iters}"
-            )
-
-        ok = _run_extract_once(
-            mesh_path,
-            crossfield_path,
-            output_path,
-            gradient_size=gradient_size,
-            timeout=timeout,
-            size_field_path=path,
-            size_field_strength=strength,
-            size_field_smooth_iters=smooth_iters,
-        )
-        if ok:
-            return True
-
-    return False
 
 
 def sanitize_float_tag(value):

@@ -145,14 +145,13 @@ def parse_args():
     p.add_argument("--gradient_size", type=float, default=30.0,
                    help="MIQ gradient size (controls quad density)")
     p.add_argument("--size_field_path", default=None,
-                   help="Optional per-face or per-vertex local size field text file "
-                        "for Stage 3 extraction")
+                   help="Deprecated and ignored. Stage 3 now follows the pure MIQ -> libQEx pipeline.")
     p.add_argument("--size_field_strength", type=float, default=0.75,
-                   help="Strength of local size adaptation in Stage 3")
+                   help="Deprecated and ignored.")
     p.add_argument("--size_field_smooth_iters", type=int, default=6,
-                   help="Face-neighbor smoothing iterations for the Stage 3 size field")
+                   help="Deprecated and ignored.")
     p.add_argument("--disable_semantic_size_field", action="store_true",
-                   help="Disable automatic semantic size-field generation for Stage 3")
+                   help="Deprecated and ignored. Semantic size-field generation is disabled.")
     p.add_argument("--semantic_size_k", type=int, default=None,
                    help="Fixed cluster count for semantic size-field generation")
     p.add_argument("--semantic_size_k_min", type=int, default=2,
@@ -174,7 +173,7 @@ def parse_args():
     p.add_argument("--disable_extract_retry", action="store_true",
                    help="Disable fallback retry extraction with alternative settings")
     p.add_argument("--disable_size_field_relax", action="store_true",
-                   help="Disable automatic relaxation when a size field makes extraction unstable")
+                   help="Deprecated and ignored.")
     p.add_argument("--sweep_values", nargs="+", type=float, default=None,
                    help="Optional gradient_size sweep values for safer extraction")
     p.add_argument("--keep_sweep_outputs", action="store_true",
@@ -637,8 +636,7 @@ def run_chunked_quad_extract(input_mesh, feat_path, crossfield_txt, output_obj, 
     chunks, strategy = plan_extraction_chunks(mesh, feat_path, args)
 
     if len(chunks) <= 1:
-        run_quad_extract(input_mesh, crossfield_txt, output_obj, args,
-                         size_field_path=size_field_path)
+        run_quad_extract(input_mesh, crossfield_txt, output_obj, args)
         return {
             "strategy": strategy,
             "n_chunks": 1,
@@ -653,14 +651,6 @@ def run_chunked_quad_extract(input_mesh, feat_path, crossfield_txt, output_obj, 
     if len(crossfield_rows) != len(mesh.faces):
         raise ValueError(
             f"Cross-field row count ({len(crossfield_rows)}) does not match face count ({len(mesh.faces)}).")
-
-    size_values = None
-    if size_field_path is not None:
-        size_values = np.loadtxt(size_field_path, dtype=np.float64)
-        size_values = np.asarray(size_values, dtype=np.float64).reshape(-1)
-        if len(size_values) != len(mesh.faces):
-            raise ValueError(
-                f"Size-field row count ({len(size_values)}) does not match face count ({len(mesh.faces)}).")
 
     chunk_root = os.path.splitext(output_obj)[0] + "_chunks"
     chunk_input_dir = os.path.join(chunk_root, "inputs")
@@ -677,14 +667,7 @@ def run_chunked_quad_extract(input_mesh, feat_path, crossfield_txt, output_obj, 
 
         write_face_subset_obj(mesh, face_ids, chunk_mesh)
         write_subset_crossfield(crossfield_rows, face_ids, chunk_crossfield)
-
-        chunk_size_field = None
-        if size_values is not None:
-            chunk_size_field = os.path.join(chunk_input_dir, f"{chunk_name}_size.txt")
-            write_subset_scalar_field(size_values, face_ids, chunk_size_field)
-
-        run_quad_extract(chunk_mesh, chunk_crossfield, chunk_output, args,
-                         size_field_path=chunk_size_field)
+        run_quad_extract(chunk_mesh, chunk_crossfield, chunk_output, args)
         chunk_outputs.append(chunk_output)
 
     merge_quad_chunks(chunk_outputs, output_obj)
@@ -700,7 +683,6 @@ def run_quad_extract(input_mesh, crossfield_txt, output_obj, args, size_field_pa
     """Run safer quad extraction through extract_quad.py."""
     if not os.path.isfile(EXTRACT_QUAD_PY):
         sys.exit(f"Quad extraction script not found: {EXTRACT_QUAD_PY}")
-    active_size_field_path = size_field_path or args.size_field_path
     cmd = [
         sys.executable,
         EXTRACT_QUAD_PY,
@@ -714,14 +696,6 @@ def run_quad_extract(input_mesh, crossfield_txt, output_obj, args, size_field_pa
     ]
     if args.min_quads is not None:
         cmd.extend(["--min_quads", str(args.min_quads)])
-    if active_size_field_path:
-        cmd.extend([
-            "--size_field", os.path.abspath(active_size_field_path),
-            "--size_field_strength", str(args.size_field_strength),
-            "--size_field_smooth_iters", str(args.size_field_smooth_iters),
-        ])
-        if not args.disable_size_field_relax:
-            cmd.append("--size_field_relax")
     if not args.disable_auto_sweep:
         cmd.append("--auto_sweep")
     if args.sweep_values:
@@ -744,10 +718,11 @@ def run_quad_extract(input_mesh, crossfield_txt, output_obj, args, size_field_pa
     print(f"  cross field : {crossfield_txt}")
     print(f"  output      : {output_obj}")
     print(f"  gradient_size: {args.gradient_size}\n")
-    if active_size_field_path:
-        print(f"  size_field  : {active_size_field_path}")
-        print(f"  size_strength: {args.size_field_strength}")
-        print(f"  smooth_iters : {args.size_field_smooth_iters}\n")
+    if size_field_path is not None or args.size_field_path is not None:
+        print("  warning     : deprecated size-field options are ignored")
+    if not args.disable_semantic_size_field:
+        print("  warning     : semantic size-field generation is disabled for pure MIQ -> libQEx extraction")
+    print()
 
     print(f"  auto_sweep  : {not args.disable_auto_sweep}")
     print(f"  retry       : {not args.disable_extract_retry}")
@@ -999,19 +974,6 @@ def main():
                 mesh.export(obj_path)
                 input_mesh_obj = obj_path
 
-            active_size_field = args.size_field_path
-            semantic_size_meta = None
-            if active_size_field is None and not args.disable_semantic_size_field:
-                semantic_size_meta = build_semantic_size_field(
-                    r["input"], r["features"], basename, args.output_dir, args)
-                active_size_field = semantic_size_meta["size_field_path"]
-                results[basename]["semantic_size_field"] = active_size_field
-                results[basename]["semantic_size_summary"] = semantic_size_meta["summary_path"]
-                if semantic_size_meta["preview_path"] is not None:
-                    results[basename]["semantic_size_preview"] = semantic_size_meta["preview_path"]
-            elif active_size_field is not None:
-                results[basename]["semantic_size_field"] = active_size_field
-
             output_obj = os.path.join(quad_output_dir, f"{basename}_quad.obj")
             try:
                 extract_meta = run_chunked_quad_extract(
@@ -1019,8 +981,7 @@ def main():
                     r["features"],
                     cf_txt,
                     output_obj,
-                    args,
-                    size_field_path=active_size_field
+                    args
                 )
                 results[basename]["quad_mesh"] = output_obj
                 results[basename]["extract_strategy"] = extract_meta["strategy"]
@@ -1045,7 +1006,6 @@ def main():
     print(f"  partfield_input/        Staged mesh files for PartField")
     print(f"  partfield_features/     Per-face features (.npy) + PCA vis (.ply)")
     print(f"  neurcross_logs/         NeurCross training results")
-    print(f"  semantic_size_fields/   Auto-generated semantic size fields (.txt/.json)")
     print(f"  quad_meshes/*_chunks/   Per-chunk extraction intermediates when chunking is used")
     print(f"  quad_meshes/            Extracted quad meshes (.obj)")
     print()
@@ -1054,9 +1014,6 @@ def main():
         print(f"  [{name}]")
         print(f"    features   : {os.path.relpath(r['features'], abs_output)}")
         print(f"    cross field: {os.path.relpath(cross_field_dir, abs_output)}/")
-        sf = r.get("semantic_size_field")
-        if sf and os.path.isfile(sf):
-            print(f"    size field : {os.path.relpath(sf, abs_output)}")
         strategy = r.get("extract_strategy")
         if strategy:
             print(f"    extraction : {strategy} ({r.get('extract_chunks', 1)} chunks)")

@@ -33,6 +33,10 @@ from build_complexity_map import (
     robust_normalize,
 )
 from eval.label_utils import cluster_features
+from instruction_guidance import build_instruction_metadata
+from instruction_guidance import derive_mesh_basename
+from instruction_guidance import load_instruction_metadata
+from instruction_guidance import save_instruction_metadata
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 PARTFIELD_DIR = os.path.join(PROJECT_ROOT, "PartField")
@@ -92,7 +96,7 @@ def resolve_env_python(env_name, conda_prefix=None):
 
 def parse_args():
     p = argparse.ArgumentParser(
-        description="PartField + NeurCross semantic quad-meshing pipeline")
+        description="Guided quad-meshing pipeline with feature and instruction modes")
 
     inp = p.add_mutually_exclusive_group(required=True)
     inp.add_argument("--input_dir",
@@ -131,7 +135,10 @@ def parse_args():
     p.add_argument("--loss_weights", nargs="+", type=float,
                    default=[7e3, 6e2, 10, 5e1, 30, 3, 1000],
                    help="[sdf, inter, theta_hess, eikonal, theta_neigh, "
-                        "morse, semantic]")
+                        "morse, guidance]")
+    p.add_argument("--guidance_mode", choices=["none", "feature", "instruction"],
+                   default="feature",
+                   help="Guidance mode for cross-field learning and extraction")
     p.add_argument("--semantic_boundary_weight", type=float, default=1.0,
                    help="Internal weight for semantic boundary alignment")
     p.add_argument("--semantic_intra_weight", type=float, default=1.0,
@@ -140,10 +147,20 @@ def parse_args():
                    help="Internal weight for semantic-aware neighbor smoothness")
     p.add_argument("--semantic_cross_part_gamma", type=float, default=0.2,
                    help="Neighbor smoothness attenuation across semantic parts")
+    p.add_argument("--instruction_boundary_weight", type=float, default=1.0,
+                   help="Internal weight for instruction boundary relaxation")
+    p.add_argument("--instruction_intra_weight", type=float, default=1.0,
+                   help="Internal weight for instruction instance consistency")
+    p.add_argument("--instruction_type_weight", type=float, default=1.0,
+                   help="Internal weight for instruction type prior")
+    p.add_argument("--instruction_cross_instance_gamma", type=float, default=0.1,
+                   help="Neighbor smoothness attenuation across instruction instances")
 
     # -- Quad Extraction (Stage 3) -----------------------------------------
     p.add_argument("--gradient_size", type=float, default=30.0,
                    help="MIQ gradient size (controls quad density)")
+    p.add_argument("--extract_timeout", type=int, default=600,
+                   help="Timeout in seconds for each Stage 3 extract attempt")
     p.add_argument("--size_field_path", default=None,
                    help="Deprecated and ignored. Stage 3 now follows the pure MIQ -> libQEx pipeline.")
     p.add_argument("--size_field_strength", type=float, default=0.75,
@@ -209,6 +226,10 @@ def parse_args():
                    help="Skip Stage 1; only valid with --input_mesh")
     p.add_argument("--part_feat_path", default=None,
                    help="Pre-computed PartField feature .npy (with --skip_partfield)")
+    p.add_argument("--instruction_dataset_root", default=None,
+                   help="Fusion360 segmentation dataset root for building instruction metadata")
+    p.add_argument("--instruction_meta_path", default=None,
+                   help="Precomputed instruction metadata .npz (single-mesh override)")
     p.add_argument("--max_faces", type=int, default=DEFAULT_MAX_FACES,
                    help="Decimate meshes exceeding this face count to avoid "
                         "GPU OOM.  Set 0 to disable.  (default: %(default)s)")
@@ -218,12 +239,26 @@ def parse_args():
     args = p.parse_args()
 
     conda_prefix = find_conda_prefix()
-    if not args.python_partfield:
+    if args.guidance_mode == "feature" and not args.python_partfield:
         args.python_partfield = resolve_env_python(
             args.env_partfield, conda_prefix)
     if not args.python_neurcross:
         args.python_neurcross = resolve_env_python(
             args.env_neurcross, conda_prefix)
+
+    if args.guidance_mode == "feature":
+        if args.skip_partfield and not args.part_feat_path:
+            sys.exit("--guidance_mode feature with --skip_partfield requires --part_feat_path")
+    elif args.guidance_mode == "instruction":
+        if args.skip_partfield and args.part_feat_path:
+            print("WARNING: --part_feat_path is ignored in instruction mode")
+        if args.input_dir and args.instruction_meta_path:
+            sys.exit("--instruction_meta_path only supports single-mesh mode; use --instruction_dataset_root for batches")
+        if not args.instruction_dataset_root and not args.instruction_meta_path:
+            sys.exit("--guidance_mode instruction requires --instruction_dataset_root or --instruction_meta_path")
+    else:
+        if args.skip_partfield and args.part_feat_path:
+            print("WARNING: --part_feat_path is ignored in guidance_mode none")
 
     return args
 
@@ -376,7 +411,7 @@ def find_feature_file(feat_dir, basename):
 #  Stage 2: NeurCross training
 # ---------------------------------------------------------------------------
 
-def run_neurcross(input_mesh, feat_path, mesh_name, args):
+def run_neurcross(input_mesh, feat_path, instruction_meta_path, mesh_name, args):
     """Run NeurCross training for a single mesh.
 
     NeurCross's train_quad_mesh.py internally appends the mesh filename
@@ -389,19 +424,32 @@ def run_neurcross(input_mesh, feat_path, mesh_name, args):
     cmd = [
         args.python_neurcross, "train_quad_mesh.py",
         "--data_path",      os.path.abspath(input_mesh),
-        "--part_feat_path", os.path.abspath(feat_path),
         "--logdir",         logdir_parent,
+        "--guidance_mode",  args.guidance_mode,
         "--n_samples",      str(args.n_samples),
         "--n_points",       str(args.n_points),
         "--num_epochs",     str(args.num_epochs),
         "--lr",             str(args.lr),
         "--loss_weights",   *[str(w) for w in args.loss_weights],
-        "--semantic_boundary_weight", str(args.semantic_boundary_weight),
-        "--semantic_intra_weight", str(args.semantic_intra_weight),
-        "--semantic_neighbor_weight", str(args.semantic_neighbor_weight),
-        "--semantic_cross_part_gamma", str(args.semantic_cross_part_gamma),
         "--morse_near",
     ]
+
+    if args.guidance_mode == "feature":
+        cmd.extend([
+            "--part_feat_path", os.path.abspath(feat_path),
+            "--semantic_boundary_weight", str(args.semantic_boundary_weight),
+            "--semantic_intra_weight", str(args.semantic_intra_weight),
+            "--semantic_neighbor_weight", str(args.semantic_neighbor_weight),
+            "--semantic_cross_part_gamma", str(args.semantic_cross_part_gamma),
+        ])
+    elif args.guidance_mode == "instruction":
+        cmd.extend([
+            "--instruction_meta_path", os.path.abspath(instruction_meta_path),
+            "--instruction_boundary_weight", str(args.instruction_boundary_weight),
+            "--instruction_intra_weight", str(args.instruction_intra_weight),
+            "--instruction_type_weight", str(args.instruction_type_weight),
+            "--instruction_cross_instance_gamma", str(args.instruction_cross_instance_gamma),
+        ])
 
     env = os.environ.copy()
     env["CUDA_VISIBLE_DEVICES"] = args.gpu_id
@@ -533,7 +581,38 @@ def compute_semantic_face_chunks(mesh, feat_path, args):
     return chunks
 
 
-def plan_extraction_chunks(mesh, feat_path, args):
+def compute_instruction_face_chunks(mesh, instruction_meta_path, args):
+    metadata = load_instruction_metadata(instruction_meta_path)
+    instance_ids = np.asarray(metadata["feature_instance_id"], dtype=np.int64)
+    feature_types = np.asarray(metadata["feature_type_id"], dtype=np.int64)
+    if len(instance_ids) != len(mesh.faces):
+        raise ValueError(
+            f"Instruction metadata face count ({len(instance_ids)}) does not match mesh faces ({len(mesh.faces)}).")
+
+    neighbors = get_face_neighbors(mesh)
+    chunks = []
+    for instance_id in np.unique(instance_ids):
+        instance_mask = instance_ids == instance_id
+        instance_chunks = split_face_mask_into_connected_chunks(neighbors, instance_mask)
+        for chunk in instance_chunks:
+            chunk_type = int(np.bincount(feature_types[chunk]).argmax()) if len(chunk) > 0 else 0
+            min_faces = args.extract_chunk_min_faces
+            if chunk_type in (2, 3):
+                min_faces = max(16, min_faces // 4)
+            if len(chunk) < min_faces:
+                return None
+            chunks.append(chunk)
+
+    if len(chunks) <= 1:
+        return None
+    if len(chunks) > args.extract_chunk_max_chunks:
+        return None
+
+    chunks.sort(key=len, reverse=True)
+    return chunks
+
+
+def plan_extraction_chunks(mesh, feat_path, instruction_meta_path, args):
     if args.disable_chunked_extract:
         return [np.arange(len(mesh.faces), dtype=np.int64)], "global"
 
@@ -541,7 +620,12 @@ def plan_extraction_chunks(mesh, feat_path, args):
     if len(components) > 1:
         return components, "connected_components"
 
-    if feat_path is not None:
+    if args.guidance_mode == "instruction" and instruction_meta_path is not None:
+        instruction_chunks = compute_instruction_face_chunks(mesh, instruction_meta_path, args)
+        if instruction_chunks is not None:
+            return instruction_chunks, "instruction_instances"
+
+    if args.guidance_mode == "feature" and feat_path is not None:
         semantic_chunks = compute_semantic_face_chunks(mesh, feat_path, args)
         if semantic_chunks is not None:
             return semantic_chunks, "semantic_parts"
@@ -630,10 +714,10 @@ def merge_quad_chunks(chunk_obj_paths, output_path):
     return output_path
 
 
-def run_chunked_quad_extract(input_mesh, feat_path, crossfield_txt, output_obj, args,
+def run_chunked_quad_extract(input_mesh, feat_path, instruction_meta_path, crossfield_txt, output_obj, args,
                              size_field_path=None):
     mesh = trimesh.load_mesh(input_mesh, process=False)
-    chunks, strategy = plan_extraction_chunks(mesh, feat_path, args)
+    chunks, strategy = plan_extraction_chunks(mesh, feat_path, instruction_meta_path, args)
 
     if len(chunks) <= 1:
         run_quad_extract(input_mesh, crossfield_txt, output_obj, args)
@@ -690,7 +774,7 @@ def run_quad_extract(input_mesh, crossfield_txt, output_obj, args, size_field_pa
         "--crossfield", os.path.abspath(crossfield_txt),
         "--output", os.path.abspath(output_obj),
         "--gradient_size", str(args.gradient_size),
-        "--timeout", "600",
+        "--timeout", str(args.extract_timeout),
         "--max_ad", str(args.max_ad),
         "--min_jr", str(args.min_jr),
     ]
@@ -718,6 +802,7 @@ def run_quad_extract(input_mesh, crossfield_txt, output_obj, args, size_field_pa
     print(f"  cross field : {crossfield_txt}")
     print(f"  output      : {output_obj}")
     print(f"  gradient_size: {args.gradient_size}\n")
+    print(f"  timeout     : {args.extract_timeout}")
     if size_field_path is not None or args.size_field_path is not None:
         print("  warning     : deprecated size-field options are ignored")
     if not args.disable_semantic_size_field:
@@ -858,6 +943,37 @@ def verify_features(feat_path, expected_faces, name):
           f"{expected_faces} faces.")
 
 
+def verify_instruction_metadata(meta_path, expected_faces, name):
+    metadata = load_instruction_metadata(meta_path)
+    face_count = int(metadata["mesh_face_count"][0])
+    if face_count != expected_faces:
+        raise ValueError(
+            f"[{name}] Instruction metadata face count ({face_count}) != face count "
+            f"({expected_faces}). Face ordering would be inconsistent.")
+    print(f"  [{name}] Instruction metadata matches {expected_faces} faces.")
+
+
+def build_instruction_metadata_for_mesh(mesh_path, output_path, args):
+    if args.instruction_meta_path is not None:
+        return os.path.abspath(args.instruction_meta_path)
+    if args.instruction_dataset_root is None:
+        raise ValueError("Instruction mode requires instruction metadata or dataset root.")
+
+    metadata = build_instruction_metadata(
+        mesh_path=mesh_path,
+        fidx_path=os.path.join(
+            os.path.abspath(args.instruction_dataset_root), "meshes",
+            f"{derive_mesh_basename(mesh_path)}.fidx"),
+        timeline_path=os.path.join(
+            os.path.abspath(args.instruction_dataset_root), "timeline_info",
+            f"{derive_mesh_basename(mesh_path)}.json"),
+        seg_path=os.path.join(
+            os.path.abspath(args.instruction_dataset_root), "meshes",
+            f"{derive_mesh_basename(mesh_path)}.seg"),
+    )
+    return save_instruction_metadata(output_path, metadata)
+
+
 # ---------------------------------------------------------------------------
 #  Main
 # ---------------------------------------------------------------------------
@@ -878,51 +994,85 @@ def main():
         print(f"  - {os.path.basename(mp)}")
     print()
 
-    # ------------------------------------------------------------------
-    # Stage 1: PartField feature extraction (all meshes at once)
-    # ------------------------------------------------------------------
-    if args.skip_partfield:
-        if n_total != 1:
-            sys.exit("--skip_partfield only works with a single --input_mesh")
-        if not args.part_feat_path or not os.path.isfile(args.part_feat_path):
-            sys.exit("--skip_partfield requires a valid --part_feat_path")
+    info_list = []
+    if args.guidance_mode == "feature":
+        # ------------------------------------------------------------------
+        # Stage 1: PartField feature extraction (all meshes at once)
+        # ------------------------------------------------------------------
+        if args.skip_partfield:
+            if n_total != 1:
+                sys.exit("--skip_partfield only works with a single --input_mesh")
+            if not args.part_feat_path or not os.path.isfile(args.part_feat_path):
+                sys.exit("--skip_partfield requires a valid --part_feat_path")
 
-        basename = os.path.splitext(os.path.basename(mesh_paths[0]))[0]
-        mesh = trimesh.load_mesh(mesh_paths[0], process=False)
-        nc_path = mesh_paths[0]
-        n_faces = len(mesh.faces)
-        if args.max_faces > 0 and n_faces > args.max_faces:
-            mesh, _ = decimate_mesh(mesh, args.max_faces)
-            processed_dir = os.path.join(args.output_dir, "processed_meshes")
-            os.makedirs(processed_dir, exist_ok=True)
-            nc_path = os.path.join(processed_dir, f"{basename}.obj")
-            mesh.export(nc_path)
-            print(f"  Decimated {n_faces} -> {len(mesh.faces)} faces")
+            basename = os.path.splitext(os.path.basename(mesh_paths[0]))[0]
+            mesh = trimesh.load_mesh(mesh_paths[0], process=False)
+            nc_path = mesh_paths[0]
             n_faces = len(mesh.faces)
-        info_list = [(basename, nc_path, n_faces)]
-        feat_dir = None
-        feat_override = os.path.abspath(args.part_feat_path)
-        print("[Stage 1] Skipped. Using existing features.\n")
+            if args.max_faces > 0 and n_faces > args.max_faces:
+                mesh, _ = decimate_mesh(mesh, args.max_faces)
+                processed_dir = os.path.join(args.output_dir, "processed_meshes")
+                os.makedirs(processed_dir, exist_ok=True)
+                nc_path = os.path.join(processed_dir, f"{basename}.obj")
+                mesh.export(nc_path)
+                print(f"  Decimated {n_faces} -> {len(mesh.faces)} faces")
+                n_faces = len(mesh.faces)
+            info_list = [(basename, nc_path, n_faces)]
+            feat_dir = None
+            feat_override = os.path.abspath(args.part_feat_path)
+            print("[Stage 1] Skipped. Using existing features.\n")
+        else:
+            print("=" * 60)
+            print("  Stage 1: PartField feature extraction")
+            print("=" * 60)
+
+            staging_dir, info_list = prepare_meshes(
+                mesh_paths, args.output_dir, args.max_faces)
+            feat_dir = run_partfield(staging_dir, args)
+            feat_override = None
     else:
         print("=" * 60)
-        print("  Stage 1: PartField feature extraction")
+        print("  Stage 1: Geometry preparation")
         print("=" * 60)
-
-        staging_dir, info_list = prepare_meshes(
-            mesh_paths, args.output_dir, args.max_faces)
-        feat_dir = run_partfield(staging_dir, args)
+        geometry_max_faces = args.max_faces
+        if args.guidance_mode == "instruction" and args.instruction_meta_path is None:
+            if args.max_faces > 0:
+                print("WARNING: disabling decimation in instruction mode to preserve face-level metadata alignment.")
+            geometry_max_faces = 0
+        _, info_list = prepare_meshes(mesh_paths, args.output_dir, geometry_max_faces)
+        feat_dir = None
         feat_override = None
+        print(f"[Stage 1] PartField skipped in guidance mode '{args.guidance_mode}'.\n")
 
-    # Verify features
-    print("\n[Check] Verifying feature files ...")
     feat_map = {}
-    for basename, orig_path, n_faces in info_list:
-        if feat_override:
-            fp = feat_override
-        else:
-            fp = find_feature_file(feat_dir, basename)
-        verify_features(fp, n_faces, basename)
-        feat_map[basename] = (orig_path, fp)
+    instruction_meta_map = {}
+    if args.guidance_mode == "feature":
+        print("\n[Check] Verifying feature files ...")
+        for basename, orig_path, n_faces in info_list:
+            if feat_override:
+                fp = feat_override
+            else:
+                fp = find_feature_file(feat_dir, basename)
+            verify_features(fp, n_faces, basename)
+            feat_map[basename] = (orig_path, fp)
+            instruction_meta_map[basename] = None
+    elif args.guidance_mode == "instruction":
+        print("\n[Check] Building / verifying instruction metadata ...")
+        meta_dir = os.path.join(args.output_dir, "instruction_meta")
+        os.makedirs(meta_dir, exist_ok=True)
+        for basename, orig_path, n_faces in info_list:
+            meta_path = build_instruction_metadata_for_mesh(
+                orig_path,
+                os.path.join(meta_dir, f"{basename}_instruction_meta.npz"),
+                args
+            )
+            verify_instruction_metadata(meta_path, n_faces, basename)
+            feat_map[basename] = (orig_path, None)
+            instruction_meta_map[basename] = meta_path
+    else:
+        for basename, orig_path, _ in info_list:
+            feat_map[basename] = (orig_path, None)
+            instruction_meta_map[basename] = None
 
     # ------------------------------------------------------------------
     # Stage 2: NeurCross training (one per mesh)
@@ -935,10 +1085,12 @@ def main():
     for idx, (basename, (orig_path, fp)) in enumerate(feat_map.items(), 1):
         print(f"\n--- [{idx}/{n_total}] {basename} "
               + "-" * (45 - len(basename)))
-        logdir = run_neurcross(orig_path, fp, basename, args)
+        instruction_meta_path = instruction_meta_map[basename]
+        logdir = run_neurcross(orig_path, fp, instruction_meta_path, basename, args)
         results[basename] = {
             "input": orig_path,
             "features": fp,
+            "instruction_meta": instruction_meta_path,
             "logdir": logdir,
         }
 
@@ -979,6 +1131,7 @@ def main():
                 extract_meta = run_chunked_quad_extract(
                     input_mesh_obj,
                     r["features"],
+                    r.get("instruction_meta"),
                     cf_txt,
                     output_obj,
                     args
@@ -1003,8 +1156,11 @@ def main():
     print("  Pipeline finished successfully")
     print("=" * 60)
     print(f"\nOutput directory: {abs_output}\n")
-    print(f"  partfield_input/        Staged mesh files for PartField")
-    print(f"  partfield_features/     Per-face features (.npy) + PCA vis (.ply)")
+    if args.guidance_mode == "feature":
+        print(f"  partfield_input/        Staged mesh files for PartField")
+        print(f"  partfield_features/     Per-face features (.npy) + PCA vis (.ply)")
+    if args.guidance_mode == "instruction":
+        print(f"  instruction_meta/       Per-face instruction metadata (.npz)")
     print(f"  neurcross_logs/         NeurCross training results")
     print(f"  quad_meshes/*_chunks/   Per-chunk extraction intermediates when chunking is used")
     print(f"  quad_meshes/            Extracted quad meshes (.obj)")
@@ -1012,7 +1168,11 @@ def main():
     for name, r in results.items():
         cross_field_dir = os.path.join(r["logdir"], "save_crossField")
         print(f"  [{name}]")
-        print(f"    features   : {os.path.relpath(r['features'], abs_output)}")
+        print(f"    guidance   : {args.guidance_mode}")
+        if r.get("features") is not None and os.path.isfile(r["features"]):
+            print(f"    features   : {os.path.relpath(r['features'], abs_output)}")
+        if r.get("instruction_meta") is not None and os.path.isfile(r["instruction_meta"]):
+            print(f"    instr meta : {os.path.relpath(r['instruction_meta'], abs_output)}")
         print(f"    cross field: {os.path.relpath(cross_field_dir, abs_output)}/")
         strategy = r.get("extract_strategy")
         if strategy:

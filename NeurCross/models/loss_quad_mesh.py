@@ -63,6 +63,62 @@ def semantic_intra_consistency_loss(
     same_part_weight = same_part.to(penalty.dtype)
     return (same_part_weight * penalty).sum(), same_part_weight.sum()
 
+
+def instruction_type_face_weight(feature_type, location):
+    weight = torch.ones_like(feature_type, dtype=torch.float32)
+    weight = torch.where(feature_type == 1, torch.full_like(weight, 1.15), weight)  # extrude
+    weight = torch.where(feature_type == 4, torch.full_like(weight, 1.10), weight)  # revolve
+    weight = torch.where(feature_type == 2, torch.full_like(weight, 0.80), weight)  # chamfer
+    weight = torch.where(feature_type == 3, torch.full_like(weight, 0.70), weight)  # fillet
+    end_mask = (location == 2) | (location == 3)
+    weight = torch.where(end_mask, weight * 0.90, weight)
+    return weight
+
+
+def instruction_neighbor_relaxation_loss(
+        neighbors_term,
+        instance_labels_i,
+        instance_labels_j,
+        gamma=0.1):
+    same_instance = instance_labels_i.unsqueeze(-1) == instance_labels_j
+    weight = torch.where(
+        same_instance,
+        torch.ones_like(neighbors_term, dtype=torch.float32),
+        torch.full_like(neighbors_term, gamma, dtype=torch.float32)
+    )
+    return (weight * neighbors_term).sum(), weight.sum()
+
+
+def instruction_instance_consistency_loss(
+        vector_alpha_i,
+        vector_alpha_j,
+        instance_labels_i,
+        instance_labels_j):
+    alpha_i = vector_alpha_i.squeeze(1).squeeze(1)
+    alpha_j = vector_alpha_j.squeeze(2)
+    same_instance = instance_labels_i.unsqueeze(-1) == instance_labels_j
+
+    similarity = (alpha_i.unsqueeze(1) * alpha_j).sum(-1).abs()
+    penalty = 1.0 - similarity
+    same_instance_weight = same_instance.to(penalty.dtype)
+    return (same_instance_weight * penalty).sum(), same_instance_weight.sum()
+
+
+def instruction_type_prior_loss(
+        neighbors_term,
+        instance_labels_i,
+        instance_labels_j,
+        feature_type_i,
+        feature_type_j,
+        location_i,
+        location_j):
+    same_instance = instance_labels_i.unsqueeze(-1) == instance_labels_j
+    weight_i = instruction_type_face_weight(feature_type_i, location_i).unsqueeze(-1)
+    weight_j = instruction_type_face_weight(feature_type_j, location_j)
+    pair_weight = 0.5 * (weight_i + weight_j)
+    pair_weight = pair_weight * same_instance.to(pair_weight.dtype)
+    return (pair_weight * neighbors_term).sum(), pair_weight.sum()
+
 def eikonal_loss(nonmnfld_grad, mnfld_grad, eikonal_type='abs'):
     # Compute the eikonal loss that penalises when ||grad(f)|| != 1 for points on and off the manifold
     # shape is (bs, num_points, dim=3) for both grads
@@ -87,7 +143,15 @@ class MorseLoss_quad_mesh(nn.Module):
                  vertex_neighbors=None, axis_angle_R_mat_list=None, device=None,
                  semantic_grad_dir=None, semantic_grad_weight=None, semantic_labels=None,
                  semantic_boundary_weight=1.0, semantic_intra_weight=1.0,
-                 semantic_neighbor_weight=1.0, semantic_cross_part_gamma=0.2):
+                 semantic_neighbor_weight=1.0, semantic_cross_part_gamma=0.2,
+                 guidance_mode='none',
+                 instruction_instance_labels=None,
+                 instruction_feature_type=None,
+                 instruction_location=None,
+                 instruction_boundary_weight=1.0,
+                 instruction_intra_weight=1.0,
+                 instruction_type_weight=1.0,
+                 instruction_cross_instance_gamma=0.1):
         super().__init__()
         if weights is None:
             weights = [7e3, 6e2, 10, 5e1, 30, 3, 20]
@@ -107,6 +171,14 @@ class MorseLoss_quad_mesh(nn.Module):
         self.semantic_intra_weight = semantic_intra_weight
         self.semantic_neighbor_weight = semantic_neighbor_weight
         self.semantic_cross_part_gamma = semantic_cross_part_gamma
+        self.guidance_mode = guidance_mode
+        self.instruction_instance_labels = instruction_instance_labels
+        self.instruction_feature_type = instruction_feature_type
+        self.instruction_location = instruction_location
+        self.instruction_boundary_weight = instruction_boundary_weight
+        self.instruction_intra_weight = instruction_intra_weight
+        self.instruction_type_weight = instruction_type_weight
+        self.instruction_cross_instance_gamma = instruction_cross_instance_gamma
 
 
 
@@ -196,8 +268,18 @@ class MorseLoss_quad_mesh(nn.Module):
         semantic_neighbor_denominator = torch.tensor([0.0], device=self.device)
         semantic_intra_numerator = torch.tensor([0.0], device=self.device)
         semantic_intra_denominator = torch.tensor([0.0], device=self.device)
+        instruction_boundary_term = torch.tensor([0.0], device=self.device)
+        instruction_intra_term = torch.tensor([0.0], device=self.device)
+        instruction_type_term = torch.tensor([0.0], device=self.device)
+        instruction_loss = torch.tensor([0.0], device=self.device)
+        instruction_boundary_numerator = torch.tensor([0.0], device=self.device)
+        instruction_boundary_denominator = torch.tensor([0.0], device=self.device)
+        instruction_intra_numerator = torch.tensor([0.0], device=self.device)
+        instruction_intra_denominator = torch.tensor([0.0], device=self.device)
+        instruction_type_numerator = torch.tensor([0.0], device=self.device)
+        instruction_type_denominator = torch.tensor([0.0], device=self.device)
 
-        if self.semantic_grad_dir is not None and self.semantic_grad_weight is not None:
+        if self.guidance_mode == 'feature' and self.semantic_grad_dir is not None and self.semantic_grad_weight is not None:
             semantic_boundary_term = semantic_boundary_alignment_loss(
                 vector_alpha,
                 vector_beta,
@@ -249,7 +331,7 @@ class MorseLoss_quad_mesh(nn.Module):
 
             theta_neighbors_term += neighbors_term
 
-            if self.semantic_labels is not None:
+            if self.guidance_mode == 'feature' and self.semantic_labels is not None:
                 semantic_labels_i = self.semantic_labels[idx]
                 semantic_labels_j = self.semantic_labels[vertex_neighbors_i.to(self.device)]
 
@@ -271,11 +353,50 @@ class MorseLoss_quad_mesh(nn.Module):
                 semantic_intra_numerator += intra_loss_sum
                 semantic_intra_denominator += intra_weight_sum
 
+            if self.guidance_mode == 'instruction' and self.instruction_instance_labels is not None:
+                instance_labels_i = self.instruction_instance_labels[idx]
+                instance_labels_j = self.instruction_instance_labels[vertex_neighbors_i.to(self.device)]
+
+                boundary_loss_sum, boundary_weight_sum = instruction_neighbor_relaxation_loss(
+                    raw_neighbors_term,
+                    instance_labels_i,
+                    instance_labels_j,
+                    gamma=self.instruction_cross_instance_gamma
+                )
+                instruction_boundary_numerator += boundary_loss_sum
+                instruction_boundary_denominator += boundary_weight_sum
+
+                intra_loss_sum, intra_weight_sum = instruction_instance_consistency_loss(
+                    vector_alpha_i,
+                    vector_alpha_j,
+                    instance_labels_i,
+                    instance_labels_j
+                )
+                instruction_intra_numerator += intra_loss_sum
+                instruction_intra_denominator += intra_weight_sum
+
+                if self.instruction_feature_type is not None and self.instruction_location is not None:
+                    feature_type_i = self.instruction_feature_type[idx]
+                    feature_type_j = self.instruction_feature_type[vertex_neighbors_i.to(self.device)]
+                    location_i = self.instruction_location[idx]
+                    location_j = self.instruction_location[vertex_neighbors_i.to(self.device)]
+                    type_loss_sum, type_weight_sum = instruction_type_prior_loss(
+                        raw_neighbors_term,
+                        instance_labels_i,
+                        instance_labels_j,
+                        feature_type_i,
+                        feature_type_j,
+                        location_i,
+                        location_j
+                    )
+                    instruction_type_numerator += type_loss_sum
+                    instruction_type_denominator += type_weight_sum
+
         num_vert_neigh = len(self.vertex_neighbors_list)
         theta_hessian_term = theta_hessian_term / num_vert_neigh
         theta_neighbors_term = theta_neighbors_term / num_vert_neigh
 
-        if self.semantic_labels is not None:
+        if self.guidance_mode == 'feature' and self.semantic_labels is not None:
             semantic_neighbor_term = semantic_neighbor_numerator / (semantic_neighbor_denominator + 1e-8)
             semantic_intra_term = semantic_intra_numerator / (semantic_intra_denominator + 1e-8)
 
@@ -284,6 +405,18 @@ class MorseLoss_quad_mesh(nn.Module):
             self.semantic_intra_weight * semantic_intra_term +
             self.semantic_neighbor_weight * semantic_neighbor_term
         )
+
+        if self.guidance_mode == 'instruction' and self.instruction_instance_labels is not None:
+            instruction_boundary_term = instruction_boundary_numerator / (instruction_boundary_denominator + 1e-8)
+            instruction_intra_term = instruction_intra_numerator / (instruction_intra_denominator + 1e-8)
+            instruction_type_term = instruction_type_numerator / (instruction_type_denominator + 1e-8)
+
+        instruction_loss = (
+            self.instruction_boundary_weight * instruction_boundary_term +
+            self.instruction_intra_weight * instruction_intra_term +
+            self.instruction_type_weight * instruction_type_term
+        )
+        guidance_loss = semantic_loss if self.guidance_mode == 'feature' else instruction_loss
 
         # get the grad, curvature of the points
         if save_best:
@@ -295,7 +428,7 @@ class MorseLoss_quad_mesh(nn.Module):
         if self.loss_type == 'siren_wo_n_w_morse_w_theta':
             loss = self.weights[0] * sdf_term + self.weights[1] * inter_term + self.weights[3] * eikonal_term + \
                    self.weights[5] * morse_loss + self.weights[2] * theta_hessian_term + self.weights[
-                       4] * theta_neighbors_term + self.weights[6] * semantic_loss
+                       4] * theta_neighbors_term + self.weights[6] * guidance_loss
         else:
             print(self.loss_type)
             raise Warning("unrecognized loss type")
@@ -306,7 +439,11 @@ class MorseLoss_quad_mesh(nn.Module):
                 'theta_hessian_term': theta_hessian_term, 'theta_neighbors_term': theta_neighbors_term,
                 'semantic_align_term': semantic_boundary_term, 'semantic_boundary_term': semantic_boundary_term,
                 'semantic_intra_term': semantic_intra_term, 'semantic_neighbor_term': semantic_neighbor_term,
-                'semantic_loss': semantic_loss}
+                'semantic_loss': semantic_loss, 'guidance_loss': guidance_loss,
+                'instruction_boundary_term': instruction_boundary_term,
+                'instruction_intra_term': instruction_intra_term,
+                'instruction_type_term': instruction_type_term,
+                'instruction_loss': instruction_loss}
 
     def update_morse_weight(self, current_iteration, n_iterations, params=None):
         # `params`` should be (start_weight, *optional middle, end_weight) where optional middle is of the form [percent, value]*

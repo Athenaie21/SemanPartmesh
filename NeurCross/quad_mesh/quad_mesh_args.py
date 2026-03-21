@@ -38,8 +38,13 @@ def add_args(parser):
     parser.add_argument('--morse_decay', type=str, default='linear',
                         help='divergence term importance decay none | step | linear')
     parser.add_argument('--loss_weights', nargs='+', type=float, default=[7e3, 6e2, 10, 5e1, 30, 3, 20],
-                        help='loss terms weights sdf | inter | normal | eikonal | div | morse | semantic')
+                        help='loss terms weights sdf | inter | normal | eikonal | div | morse | guidance')
+    parser.add_argument('--guidance_mode', type=str, default='feature',
+                        choices=['none', 'feature', 'instruction'],
+                        help='extra guidance mode for cross-field learning')
     parser.add_argument('--part_feat_path', type=str, default=None, help='path to precomputed PartField features (.npy)')
+    parser.add_argument('--instruction_meta_path', type=str, default=None,
+                        help='path to precomputed instruction metadata (.npz)')
     parser.add_argument('--semantic_boundary_weight', type=float, default=1.0,
                         help='internal weight for semantic boundary alignment')
     parser.add_argument('--semantic_intra_weight', type=float, default=1.0,
@@ -48,6 +53,14 @@ def add_args(parser):
                         help='internal weight for semantic-aware neighbor smoothness')
     parser.add_argument('--semantic_cross_part_gamma', type=float, default=0.2,
                         help='neighbor smoothness attenuation across semantic parts')
+    parser.add_argument('--instruction_boundary_weight', type=float, default=1.0,
+                        help='internal weight for instruction boundary relaxation')
+    parser.add_argument('--instruction_intra_weight', type=float, default=1.0,
+                        help='internal weight for instruction instance consistency')
+    parser.add_argument('--instruction_type_weight', type=float, default=1.0,
+                        help='internal weight for instruction type prior')
+    parser.add_argument('--instruction_cross_instance_gamma', type=float, default=0.1,
+                        help='neighbor smoothness attenuation across instruction instances')
     parser.add_argument('--morse_near', action='store_true')
     parser.add_argument('--weight_for_morse', action='store_true',
                         help='if true, Weighting A according to the distance of the sampling point')

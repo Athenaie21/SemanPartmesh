@@ -75,7 +75,7 @@ def parse_args():
                    help="Deprecated and ignored.")
     p.add_argument("--size_field_relax", action="store_true",
                    help="Deprecated and ignored.")
-    p.add_argument("--timeout", type=int, default=600,
+    p.add_argument("--timeout", type=int, default=6000,
                    help="Timeout per extraction attempt in seconds (default: 600)")
     p.add_argument("--retry", action="store_true",
                    help="Auto-retry with multiple gradient sizes and iterations on failure")
@@ -118,6 +118,23 @@ def find_latest_crossfield(crossfield_dir):
         base = os.path.splitext(os.path.basename(f))[0]
         return int(base.rsplit("_iter_", 1)[1])
     return max(files, key=iter_num)
+
+
+def ensure_obj_mesh(mesh_path, output_path):
+    """Ensure the extractor input is OBJ, converting if needed."""
+    mesh_path = os.path.abspath(mesh_path)
+    ext = os.path.splitext(mesh_path)[1].lower()
+    if ext == ".obj":
+        return mesh_path
+
+    output_dir = os.path.dirname(os.path.abspath(output_path))
+    output_base = os.path.splitext(os.path.basename(output_path))[0]
+    converted_obj = os.path.join(output_dir, f"{output_base}_input.obj")
+
+    mesh = trimesh.load_mesh(mesh_path, process=False)
+    mesh.export(converted_obj)
+    print(f"  converted mesh: {mesh_path} -> {converted_obj}")
+    return converted_obj
 
 
 def _run_extract_once(mesh_path, crossfield_path, output_path,
@@ -558,6 +575,7 @@ def extract_single(mesh_path, crossfield_path, output_path,
                    gradient_size, timeout, retry, args=None):
     """Extract a quad mesh, optionally retrying with different parameters."""
     os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
+    mesh_path = ensure_obj_mesh(mesh_path, output_path)
 
     if args is not None and args.auto_sweep:
         return auto_sweep_single(mesh_path, crossfield_path, output_path, args)

@@ -8,6 +8,7 @@ import numpy as np
 import torch
 import torch.optim as optim
 from torchinfo import summary
+from instruction_guidance import load_instruction_metadata
 
 from models import Network_predict_angle
 from models import MorseLoss_quad_mesh as MorseLoss
@@ -18,6 +19,11 @@ import quad_mesh_dataset as dataset
 
 # get training parameters
 args = quad_mesh_args.get_args()
+
+if args.guidance_mode == 'feature' and args.part_feat_path is None:
+    raise ValueError("guidance_mode='feature' requires --part_feat_path")
+if args.guidance_mode == 'instruction' and args.instruction_meta_path is None:
+    raise ValueError("guidance_mode='instruction' requires --instruction_meta_path")
 
 file_name = os.path.splitext(args.data_path.split('/')[-1])[0]
 logdir = os.path.join(args.logdir, file_name)
@@ -70,8 +76,11 @@ axis_angle_R_mat_list = utils.get_rotation_matrix(vertex_neighbors_list, vertex_
 semantic_grad_dir_tensor = None
 semantic_grad_weight_tensor = None
 semantic_labels_tensor = None
+instruction_instance_labels_tensor = None
+instruction_feature_type_tensor = None
+instruction_location_tensor = None
 
-if args.part_feat_path is not None:
+if args.guidance_mode == 'feature' and args.part_feat_path is not None:
     part_features = np.load(args.part_feat_path)  # (N_faces, 448)
 
     face_centers = train_set.points       # already centered & scaled
@@ -103,18 +112,44 @@ if args.part_feat_path is not None:
             log_file
         )
 
+if args.guidance_mode == 'instruction' and args.instruction_meta_path is not None:
+    instruction_meta = load_instruction_metadata(args.instruction_meta_path)
+    instruction_instance_labels_tensor = torch.tensor(
+        instruction_meta["feature_instance_id"], dtype=torch.long).to(device)
+    instruction_feature_type_tensor = torch.tensor(
+        instruction_meta["feature_type_id"], dtype=torch.long).to(device)
+    instruction_location_tensor = torch.tensor(
+        instruction_meta["location_id"], dtype=torch.long).to(device)
+    utils.log_string(
+        "Instruction metadata loaded: {} instances, {} faces".format(
+            len(np.unique(instruction_meta["feature_instance_id"])),
+            len(instruction_meta["feature_instance_id"])
+        ),
+        log_file
+    )
+
+utils.log_string("Guidance mode: {}".format(args.guidance_mode), log_file)
+
 criterion = MorseLoss(weights=args.loss_weights, loss_type=args.loss_type, div_decay=args.morse_decay,
                       div_type=args.morse_type,
                       vertex_neighbors_list=vertex_neighbors_list,
                       vertex_neighbors=vertex_neighbors, axis_angle_R_mat_list=axis_angle_R_mat_list,
                       device=device,
+                      guidance_mode=args.guidance_mode,
                       semantic_grad_dir=semantic_grad_dir_tensor,
                       semantic_grad_weight=semantic_grad_weight_tensor,
                       semantic_labels=semantic_labels_tensor,
                       semantic_boundary_weight=args.semantic_boundary_weight,
                       semantic_intra_weight=args.semantic_intra_weight,
                       semantic_neighbor_weight=args.semantic_neighbor_weight,
-                      semantic_cross_part_gamma=args.semantic_cross_part_gamma)
+                      semantic_cross_part_gamma=args.semantic_cross_part_gamma,
+                      instruction_instance_labels=instruction_instance_labels_tensor,
+                      instruction_feature_type=instruction_feature_type_tensor,
+                      instruction_location=instruction_location_tensor,
+                      instruction_boundary_weight=args.instruction_boundary_weight,
+                      instruction_intra_weight=args.instruction_intra_weight,
+                      instruction_type_weight=args.instruction_type_weight,
+                      instruction_cross_instance_gamma=args.instruction_cross_instance_gamma)
 
 # For each epoch
 for epoch in range(args.num_epochs):
@@ -162,33 +197,43 @@ for epoch in range(args.num_epochs):
             utils.log_string("Weights: {}, lr={:.3e}".format(weights, lr), log_file)
             utils.log_string('Epoch: {} [{:4d}/{} ({:.0f}%)] Loss: {:.5f} = L_Mnfld: {:.5f} + '
                              'L_NonMnfld: {:.5f} + L_Eknl: {:.5f} + L_Morse: {:.5f} + L_thetaHessian: {:.5f} + '
-                             'L_thetaNeighbor: {:.5f} + L_Semantic: {:.5f}'.format(
+                             'L_thetaNeighbor: {:.5f} + L_Guidance: {:.5f}'.format(
                 epoch, batch_idx * args.batch_size, len(train_set), 100. * batch_idx / args.n_samples,
                 loss_dict["loss"].item(), weights[0] * loss_dict["sdf_term"].item(),
                        weights[1] * loss_dict["inter_term"].item(),
                        weights[3] * loss_dict["eikonal_term"].item(), weights[5] * loss_dict["morse_term"].item(),
                        weights[2] * loss_dict["theta_hessian_term"].item(),
                        weights[4] * loss_dict['theta_neighbors_term'].item(),
-                       weights[6] * loss_dict['semantic_loss'].item()
+                       weights[6] * loss_dict['guidance_loss'].item()
             ),
                 log_file)
             utils.log_string('Epoch: {} [{:4d}/{} ({:.0f}%)] Unweighted L_s : L_Mnfld: {:.5f} + '
                              'L_NonMnfld: {:.5f} + L_Eknl: {:.5f} + L_Morse: {:.5f} + L_thetaHessian: {:.5f} + '
-                             'L_thetaNeighbor: {:.5f} + L_Semantic: {:.5f}'.format(
+                             'L_thetaNeighbor: {:.5f} + L_Guidance: {:.5f}'.format(
                 epoch, batch_idx * args.batch_size, len(train_set), 100. * batch_idx / args.n_samples,
                 loss_dict["sdf_term"].item(), loss_dict["inter_term"].item(),
                 loss_dict["eikonal_term"].item(), loss_dict["morse_term"].item(),
                 loss_dict['theta_hessian_term'].item(), loss_dict['theta_neighbors_term'].item(),
-                loss_dict['semantic_loss'].item()),
+                loss_dict['guidance_loss'].item()),
                 log_file)
-            utils.log_string(
-                'Semantic terms: boundary={:.5f}, intra={:.5f}, neighbor={:.5f}'.format(
-                    loss_dict['semantic_boundary_term'].item(),
-                    loss_dict['semantic_intra_term'].item(),
-                    loss_dict['semantic_neighbor_term'].item()
-                ),
-                log_file
-            )
+            if args.guidance_mode == 'feature':
+                utils.log_string(
+                    'Feature guidance terms: boundary={:.5f}, intra={:.5f}, neighbor={:.5f}'.format(
+                        loss_dict['semantic_boundary_term'].item(),
+                        loss_dict['semantic_intra_term'].item(),
+                        loss_dict['semantic_neighbor_term'].item()
+                    ),
+                    log_file
+                )
+            elif args.guidance_mode == 'instruction':
+                utils.log_string(
+                    'Instruction guidance terms: boundary={:.5f}, intra={:.5f}, type={:.5f}'.format(
+                        loss_dict['instruction_boundary_term'].item(),
+                        loss_dict['instruction_intra_term'].item(),
+                        loss_dict['instruction_type_term'].item()
+                    ),
+                    log_file
+                )
             utils.log_string('', log_file)
 
         criterion.update_morse_weight(epoch * args.n_samples + batch_idx, args.num_epochs * args.n_samples,

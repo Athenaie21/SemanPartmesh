@@ -1,0 +1,16 @@
+[1/4] Loading mesh: /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/42/patches/patch_028.obj
+       V=190 F=309
+[2/4] Loading cross field: /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/42/patches/patch_028_crossfield.txt
+       cross field rows=309
+[3/4] Running MIQ parameterization (gradient_size=30, stiffness=5, iters=5)...
+corrupted size vs. prev_size in fastbins
+
+[Quad Extraction]
+  binary       : /root/SemanPartMesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/42/patches/patch_028.obj
+  cross field  : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/42/patches/patch_028_crossfield.txt
+  output       : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/42/patches/patch_028_quad.obj
+  gradient_size: 30.0  timeout: 1200s
+
+  FAILED: Command '['/root/SemanPartMesh/quad_extract/build/extract_quad_mesh', '/root/shared-nvme/SemanPartMesh/hunyuan_final_extract/42/patches/patch_028.obj', '/root/shared-nvme/SemanPartMesh/hunyuan_final_extract/42/patches/patch_028_crossfield.txt', '/root/shared-nvme/SemanPartMesh/hunyuan_final_extract/42/patches/patch_028_quad.obj', '30.0']' died with <Signals.SIGABRT: 6>.
+FAILED for /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/42/patches/patch_028.obj

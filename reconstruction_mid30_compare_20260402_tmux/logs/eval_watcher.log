@@ -1,0 +1,291 @@
+[2026-04-02 06:59:53] EVAL baseline 136561_426e584d_0000
+  Angle Distortion : mean = 10.889 deg  |  max = 74.395 deg
+  Jacobian Ratio   : mean = 0.9388  |  min = 0.2749  |  std = 0.0996
+  Singularities    : total = 74  (interior=74, boundary=0)
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_136561_426e584d_0000.json
+[2026-04-02 06:59:54] EXIT baseline 136561_426e584d_0000 rc=0
+[2026-04-02 07:00:39] EVAL ours 136561_426e584d_0000
+  Angle Distortion : mean = 6.880 deg  |  max = 54.228 deg
+  Jacobian Ratio   : mean = 0.9654  |  min = 0.5880  |  std = 0.0671
+  Singularities    : total = 67  (interior=67, boundary=0)
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_ours_136561_426e584d_0000.json
+[2026-04-02 07:00:39] EXIT ours 136561_426e584d_0000 rc=0
+[2026-04-02 07:10:25] EVAL baseline 146317_3eafabf0_0000
+  Angle Distortion : mean = 9.925 deg  |  max = 77.632 deg
+  Jacobian Ratio   : mean = 0.9693  |  min = 0.2191  |  std = 0.0715
+  Singularities    : total = 50  (interior=50, boundary=0)
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_146317_3eafabf0_0000.json
+[2026-04-02 07:10:26] EXIT baseline 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:47:14] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:47:14] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:47:59] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:47:59] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:48:44] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:48:44] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:49:29] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:49:29] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:50:14] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:50:14] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:50:59] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:50:59] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:50:59] EVAL baseline 146317_7de88751_0000
+[2026-04-02 07:50:59] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 07:51:44] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:51:45] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:51:45] EVAL baseline 146317_7de88751_0000
+[2026-04-02 07:51:45] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 07:52:30] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:52:30] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:52:30] EVAL baseline 146317_7de88751_0000
+[2026-04-02 07:52:30] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 07:53:15] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:53:15] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:53:15] EVAL baseline 146317_7de88751_0000
+[2026-04-02 07:53:15] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 07:54:00] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:54:00] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:54:00] EVAL baseline 146317_7de88751_0000
+[2026-04-02 07:54:00] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 07:54:45] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:54:45] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:54:45] EVAL baseline 146317_7de88751_0000
+[2026-04-02 07:54:45] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 07:55:30] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:55:30] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:55:30] EVAL baseline 146317_7de88751_0000
+[2026-04-02 07:55:30] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 07:56:15] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:56:15] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:56:15] EVAL baseline 146317_7de88751_0000
+[2026-04-02 07:56:15] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 07:57:00] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:57:00] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:57:00] EVAL baseline 146317_7de88751_0000
+[2026-04-02 07:57:00] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 07:57:46] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:57:46] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:57:46] EVAL baseline 146317_7de88751_0000
+[2026-04-02 07:57:46] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 07:58:31] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:58:31] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:58:31] EVAL baseline 146317_7de88751_0000
+[2026-04-02 07:58:31] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 07:59:16] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 07:59:16] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 07:59:16] EVAL baseline 146317_7de88751_0000
+[2026-04-02 07:59:16] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:00:01] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:00:01] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:00:01] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:00:01] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:00:46] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:00:46] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:00:46] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:00:46] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:01:31] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:01:31] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:01:31] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:01:31] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:02:16] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:02:16] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:02:16] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:02:16] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:03:01] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:03:01] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:03:01] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:03:02] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:03:47] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:03:47] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:03:47] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:03:47] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:04:32] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:04:32] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:04:32] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:04:32] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:05:17] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:05:17] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:05:17] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:05:17] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:06:02] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:06:02] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:06:02] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:06:02] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:06:47] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:06:47] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:06:47] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:06:47] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:07:32] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:07:32] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:07:32] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:07:32] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:08:17] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:08:17] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:08:17] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:08:17] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:09:02] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:09:03] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:09:03] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:09:03] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:09:48] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:09:48] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:09:48] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:09:48] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:10:33] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:10:33] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:10:33] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:10:33] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:11:18] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:11:18] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:11:18] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:11:18] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:12:03] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:12:03] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:12:03] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:12:03] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:12:48] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:12:48] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:12:48] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:12:48] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:13:33] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:13:33] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:13:33] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:13:33] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:14:18] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:14:18] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:14:18] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:14:18] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:15:03] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:15:04] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:15:04] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:15:04] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:15:49] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:15:49] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:15:49] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:15:49] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:16:34] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:16:34] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:16:34] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:16:34] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:17:19] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:17:19] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:17:19] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:17:19] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:18:04] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:18:04] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:18:04] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:18:04] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:18:49] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:18:49] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:18:49] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:18:49] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:19:34] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:19:34] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:19:34] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:19:34] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:20:19] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:20:19] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:20:19] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:20:19] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:21:04] EVAL ours 146317_3eafabf0_0000
+[2026-04-02 08:21:05] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:21:05] EVAL baseline 146317_7de88751_0000
+[2026-04-02 08:21:05] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:21:50] EVAL ours 146317_3eafabf0_0000
+  Angle Distortion : mean = 12.526 deg  |  max = 71.527 deg
+  Jacobian Ratio   : mean = 0.9360  |  min = 0.3565  |  std = 0.1227
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_ours_146317_3eafabf0_0000.json
+[2026-04-02 08:21:50] EXIT ours 146317_3eafabf0_0000 rc=0
+[2026-04-02 08:21:50] EVAL baseline 146317_7de88751_0000
+  Angle Distortion : mean = 9.926 deg  |  max = 72.690 deg
+  Jacobian Ratio   : mean = 0.9698  |  min = 0.3251  |  std = 0.0721
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_146317_7de88751_0000.json
+[2026-04-02 08:21:51] EXIT baseline 146317_7de88751_0000 rc=0
+[2026-04-02 08:27:06] EVAL baseline 30445_791b6800_0011
+  Angle Distortion : mean = 0.004 deg  |  max = 0.027 deg
+  Jacobian Ratio   : mean = 1.0000  |  min = 1.0000  |  std = 0.0000
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_30445_791b6800_0011.json
+[2026-04-02 08:27:07] EXIT baseline 30445_791b6800_0011 rc=0
+[2026-04-02 08:38:23] EVAL baseline 33147_d7173b68_0002
+  Angle Distortion : mean = 0.002 deg  |  max = 0.043 deg
+  Jacobian Ratio   : mean = 1.0000  |  min = 1.0000  |  std = 0.0000
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_33147_d7173b68_0002.json
+[2026-04-02 08:38:24] EXIT baseline 33147_d7173b68_0002 rc=0
+[2026-04-02 08:58:41] EVAL baseline 53216_2857e8ac_0002
+  Angle Distortion : mean = 0.020 deg  |  max = 0.609 deg
+  Jacobian Ratio   : mean = 1.0000  |  min = 0.9999  |  std = 0.0000
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_53216_2857e8ac_0002.json
+[2026-04-02 08:58:42] EXIT baseline 53216_2857e8ac_0002 rc=0
+[2026-04-02 09:08:28] EVAL baseline 76880_9bb28e72_0005
+  Angle Distortion : mean = 0.001 deg  |  max = 0.006 deg
+  Jacobian Ratio   : mean = 1.0000  |  min = 1.0000  |  std = 0.0000
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_76880_9bb28e72_0005.json
+[2026-04-02 09:08:28] EXIT baseline 76880_9bb28e72_0005 rc=0
+[2026-04-02 09:29:30] EVAL baseline 91682_69b6d4ec_0000
+  Angle Distortion : mean = 0.003 deg  |  max = 0.019 deg
+  Jacobian Ratio   : mean = 1.0000  |  min = 1.0000  |  std = 0.0000
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_91682_69b6d4ec_0000.json
+[2026-04-02 09:29:31] EXIT baseline 91682_69b6d4ec_0000 rc=0
+[2026-04-02 09:59:34] EVAL baseline 138221_33b0fb91_0000
+  Angle Distortion : mean = 0.002 deg  |  max = 0.075 deg
+  Jacobian Ratio   : mean = 1.0000  |  min = 1.0000  |  std = 0.0000
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_138221_33b0fb91_0000.json
+[2026-04-02 09:59:35] EXIT baseline 138221_33b0fb91_0000 rc=0
+[2026-04-02 10:10:06] EVAL baseline 21649_3ef60555_0001
+  Angle Distortion : mean = 3.785 deg  |  max = 61.957 deg
+  Jacobian Ratio   : mean = 0.9677  |  min = 0.4898  |  std = 0.1121
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_21649_3ef60555_0001.json
+[2026-04-02 10:10:06] EXIT baseline 21649_3ef60555_0001 rc=0
+[2026-04-02 10:31:09] EVAL baseline 30690_3df2c9e2_0009
+  Angle Distortion : mean = 0.007 deg  |  max = 0.028 deg
+  Jacobian Ratio   : mean = 1.0000  |  min = 1.0000  |  std = 0.0000
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_30690_3df2c9e2_0009.json
+[2026-04-02 10:31:09] EXIT baseline 30690_3df2c9e2_0009 rc=0
+[2026-04-02 10:40:56] EVAL baseline 31277_b1263495_0001
+  Angle Distortion : mean = 0.001 deg  |  max = 0.009 deg
+  Jacobian Ratio   : mean = 1.0000  |  min = 1.0000  |  std = 0.0000
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_31277_b1263495_0001.json
+[2026-04-02 10:40:56] EXIT baseline 31277_b1263495_0001 rc=0
+[2026-04-02 10:50:42] EVAL baseline 46016_d699e580_0004
+  Angle Distortion : mean = 4.034 deg  |  max = 62.244 deg
+  Jacobian Ratio   : mean = 0.9699  |  min = 0.4857  |  std = 0.1056
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_46016_d699e580_0004.json
+[2026-04-02 10:50:43] EXIT baseline 46016_d699e580_0004 rc=0
+[2026-04-02 11:11:00] EVAL baseline 135872_a6ca0e40_0002
+  Angle Distortion : mean = 0.004 deg  |  max = 0.105 deg
+  Jacobian Ratio   : mean = 1.0000  |  min = 1.0000  |  std = 0.0000
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_135872_a6ca0e40_0002.json
+[2026-04-02 11:11:01] EXIT baseline 135872_a6ca0e40_0002 rc=0
+[2026-04-02 11:29:48] EVAL baseline 21492_8bd34fc1_0008
+  Angle Distortion : mean = 0.002 deg  |  max = 0.017 deg
+  Jacobian Ratio   : mean = 1.0000  |  min = 1.0000  |  std = 0.0000
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_21492_8bd34fc1_0008.json
+[2026-04-02 11:29:49] EXIT baseline 21492_8bd34fc1_0008 rc=0
+[2026-04-02 11:47:50] EVAL baseline 104437_c0d34287_0000
+  Angle Distortion : mean = 0.002 deg  |  max = 0.017 deg
+  Jacobian Ratio   : mean = 1.0000  |  min = 1.0000  |  std = 0.0000
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_104437_c0d34287_0000.json
+[2026-04-02 11:47:51] EXIT baseline 104437_c0d34287_0000 rc=0
+[2026-04-02 12:14:54] EVAL baseline 21740_6f0c9bdb_0007
+  Angle Distortion : mean = 0.001 deg  |  max = 0.006 deg
+  Jacobian Ratio   : mean = 1.0000  |  min = 1.0000  |  std = 0.0000
+
+Results written to /root/shared-nvme/SemanPartMesh/reconstruction_mid30_compare_20260402_tmux/eval_baseline_21740_6f0c9bdb_0007.json
+[2026-04-02 12:14:55] EXIT baseline 21740_6f0c9bdb_0007 rc=0

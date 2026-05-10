@@ -1,0 +1,53 @@
+[1/4] Loading mesh: /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_008.obj
+       V=328 F=485
+[2/4] Loading cross field: /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_008_crossfield.txt
+       cross field rows=485
+[3/4] Running MIQ parameterization (gradient_size=30, stiffness=5, iters=5)...
+
+ INITIALIZED SPARSE MATRIX OF 690d x 690d 
+
+ INITIALIZED SPARSE MATRIX OF 12d x 694d 
+
+ INITIALIZED VECTOR OF 690d x 1 
+
+ INITIALIZED VECTOR OF 12d x 1 
+Initital dimension: 694 x 694, number of constraints: 12, number of integer variables: 6, use reordering: yes
+make_constraints_independent took 0.000156 s.
+Constraint integration took 7.1000000000000005e-05 s.
+Constraint elimination took 0.00054000000000000001 s.
+Reindexing took 1.4999999999999999e-05 s.
+eliminate_constraints took 0.00069500000000000009 s.
+Eliminated dimension: 682 x 682
+#nonzeros: 3982
+integer variables #: 2
+continuous variables #: 680
+initial full solution
+CHOLMOD warning: not positive definite. file: ./CHOLMOD/Cholesky/t_cholmod_rowfac_worker.c line: 433
+final full solution
+CHOLMOD warning: not positive definite. file: ./CHOLMOD/Cholesky/t_cholmod_rowfac_worker.c line: 433
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 2
+Number of CG    iterations  = 2
+Number of FULL  iterations  = 2
+Number of ROUNDING          = 2
+solve_multiple_rounding took 0.0016260000000000001 s.
+solve took 0.001689 s.
+restore_eliminated_vars took 8.7999999999999998e-05 s.
+solve took 0.0028599999999999997 s.
+ITERATION 0 FLIPS 0 
+**** END OPTIMIZING #FLIPS 0  ****
+       UV=345 FUV=485
+MIQ UV contains NaN/Inf values.
+
+ Closed: Thu Apr 02 00:27:43 2026
+
+
+[Quad Extraction]
+  binary       : /root/SemanPartMesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_008.obj
+  cross field  : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_008_crossfield.txt
+  output       : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_008_quad.obj
+  gradient_size: 30.0  timeout: 1200s
+
+  FAILED: Command '['/root/SemanPartMesh/quad_extract/build/extract_quad_mesh', '/root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_008.obj', '/root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_008_crossfield.txt', '/root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_008_quad.obj', '30.0']' returned non-zero exit status 1.
+FAILED for /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_008.obj

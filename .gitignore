@@ -28,3 +28,18 @@ libQEx/
 history_input/
 pipeline_output*/
 fusion/
+instruction_guidance/s1.0.0/
+instruction_guidance/s1.0.0/
+
+# Pipeline generated outputs
+assembly_*/
+**/pipeline/newextract/
+**/pipeline/guidance_*/
+**/quad_meshes/
+**/neurcross_logs/
+**/*_quad_chunks/
+**/*_extract_work/
+**/extract_*.log
+**/out.log
+**/*_sweep_summary.json
+**/global_chunk_sweep_summary.json

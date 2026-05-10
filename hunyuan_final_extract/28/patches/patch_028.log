@@ -1,0 +1,688 @@
+[1/4] Loading mesh: /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_028.obj
+       V=188 F=321
+[2/4] Loading cross field: /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_028_crossfield.txt
+       cross field rows=321
+[3/4] Running MIQ parameterization (gradient_size=30, stiffness=5, iters=5)...
+No vertices to fix, I am fixing the first vertex to the origin!
+
+ INITIALIZED SPARSE MATRIX OF 388d x 388d 
+
+ INITIALIZED SPARSE MATRIX OF 8d x 390d 
+
+ INITIALIZED VECTOR OF 388d x 1 
+
+ INITIALIZED VECTOR OF 8d x 1 
+Initital dimension: 390 x 390, number of constraints: 8, number of integer variables: 2, use reordering: yes
+make_constraints_independent took 0.00012400000000000001 s.
+Constraint integration took 5.2000000000000004e-05 s.
+Constraint elimination took 0.00032299999999999999 s.
+Reindexing took 1.4e-05 s.
+eliminate_constraints took 0.00045400000000000003 s.
+Eliminated dimension: 382 x 382
+#nonzeros: 2410
+integer variables #: 0
+continuous variables #: 382
+solve took 0.00049399999999999997 s.
+restore_eliminated_vars took 6.6000000000000005e-05 s.
+solve took 0.001366 s.
+ITERATION 0 FLIPS 0 
+**** END OPTIMIZING #FLIPS 0  ****
+       UV=194 FUV=321
+[4/4] Extracting quad mesh with libQEx...
+PolyMeshT::add_face: patch re-linking failed
+ERROR: non-identity transition function cannot have a different rotation than 1,2,3: 0, -1, -1
+ERROR: non-identity transition function cannot have a different rotation than 1,2,3: 0, -2, 1
+ERROR: non-identity transition function cannot have a different rotation than 1,2,3: 0, -1, -1
+ERROR: non-identity transition function cannot have a different rotation than 1,2,3: 0, -2, 0
+ERROR: non-identity transition function cannot have a different rotation than 1,2,3: 0, -2, -2
+ERROR: non-identity transition function cannot have a different rotation than 1,2,3: 0, 1, 1
+ERROR in Mesh Extraction: input triangle mesh has non-manifold vertex which is adjacent to more than one boundary!
+ERROR: non-identity transition function cannot have a different rotation than 1,2,3: 0, -1, -2
+ERROR: non-identity transition function cannot have a different rotation than 1,2,3: 0, 1, -1
+ERROR in Mesh Extraction: input triangle mesh has non-manifold vertex which is adjacent to more than one boundary!
+ERROR in Mesh Extraction: input triangle mesh has non-manifold vertex which is adjacent to more than one boundary!
+ERROR in Mesh Extraction: input triangle mesh has non-manifold vertex which is adjacent to more than one boundary!
+[41mEdges degenerated to a point should have 
+been removed during pre processing. This doesn't seem to 
+be the case here. Let's see how this ends.[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 2.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(2, -16), Point_2(3.5, -17)),
+Segment 2: Segment_2(Point_2(4.09457, -15.6923), Point_2(3.5, -17)),
+Path: Segment_2(Point_2(3, -14), Point_2(3, -15))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (2, -16) -- (3.5, -17);
+\draw[black,->,>=latex] (4.09457, -15.6923) -- (3.5, -17);
+\draw[black,->,>=latex] (3, -14) -- (3, -15);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(2, -16), Point_2(3.5, -17), Point_2(4.09457, -15.6923)
+path = Point_2(3, -14) -> Point_2(3, -15)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[41mWarning: When tracing from GV 82, LEI 2 I hit GV 82, LEI 2.
+  However, this GV is already connected to GV 82, LEI 2[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 1.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(3.09457, -14.6923), Point_2(2.63072, -13.8917)),
+Segment 2: Segment_2(Point_2(2, -16), Point_2(2.63072, -13.8917)),
+Path: Segment_2(Point_2(4, -16), Point_2(4, -15))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (3.09457, -14.6923) -- (2.63072, -13.8917);
+\draw[black,->,>=latex] (2, -16) -- (2.63072, -13.8917);
+\draw[black,->,>=latex] (4, -16) -- (4, -15);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(3.09457, -14.6923), Point_2(2.63072, -13.8917), Point_2(2, -16)
+path = Point_2(4, -16) -> Point_2(4, -15)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 0.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(3.09457, -14.6923), Point_2(2.63072, -13.8917)),
+Segment 2: Segment_2(Point_2(2, -16), Point_2(2.63072, -13.8917)),
+Path: Segment_2(Point_2(3, -16), Point_2(3, -15))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (3.09457, -14.6923) -- (2.63072, -13.8917);
+\draw[black,->,>=latex] (2, -16) -- (2.63072, -13.8917);
+\draw[black,->,>=latex] (3, -16) -- (3, -15);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(3.09457, -14.6923), Point_2(2.63072, -13.8917), Point_2(2, -16)
+path = Point_2(3, -16) -> Point_2(3, -15)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[41mWarning: When tracing from GV 87, LEI 0 I hit GV 87, LEI 0.
+  However, this GV is already connected to GV 87, LEI 0[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 3.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(3.7248, -20.0149), Point_2(3, -19)),
+Segment 2: Segment_2(Point_2(3.5, -17.5), Point_2(3, -19)),
+Path: Segment_2(Point_2(4, -21), Point_2(3, -21))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (3.7248, -20.0149) -- (3, -19);
+\draw[black,->,>=latex] (3.5, -17.5) -- (3, -19);
+\draw[black,->,>=latex] (4, -21) -- (3, -21);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(3.7248, -20.0149), Point_2(3, -19), Point_2(3.5, -17.5)
+path = Point_2(4, -21) -> Point_2(3, -21)
+orient2d(uv0, uv2, path[0]) = -1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = -1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[41mWarning: When tracing from GV 91, LEI 1 I hit GV 80, LEI 3.
+  However, this GV is already connected to GV 81, LEI 1[0m
+[41mEdges degenerated to a point should have 
+been removed during pre processing. This doesn't seem to 
+be the case here. Let's see how this ends.[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 0.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(3.1736, -18.0129), Point_2(2.74515, -19.0487)),
+Segment 2: Segment_2(Point_2(3, -20), Point_2(2.74515, -19.0487)),
+Path: Segment_2(Point_2(4, -19), Point_2(4, -18))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (3.1736, -18.0129) -- (2.74515, -19.0487);
+\draw[black,->,>=latex] (3, -20) -- (2.74515, -19.0487);
+\draw[black,->,>=latex] (4, -19) -- (4, -18);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(3.1736, -18.0129), Point_2(2.74515, -19.0487), Point_2(3, -20)
+path = Point_2(4, -19) -> Point_2(4, -18)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[41mWarning: When tracing from GV 104, LEI 1 I hit GV 152, LEI 2.
+  However, this GV is already connected to GV 102, LEI 3[0m
+[41mWarning: When tracing from GV 106, LEI 0 I hit GV 106, LEI 0.
+  However, this GV is already connected to GV 106, LEI 0[0m
+[41mEdges degenerated to a point should have 
+been removed during pre processing. This doesn't seem to 
+be the case here. Let's see how this ends.[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 1.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(3.4266, -21.1637), Point_2(3, -20)),
+Segment 2: Segment_2(Point_2(3.31049, -21.9779), Point_2(3, -20)),
+Path: Segment_2(Point_2(3, -22), Point_2(3, -21))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (3.4266, -21.1637) -- (3, -20);
+\draw[black,->,>=latex] (3.31049, -21.9779) -- (3, -20);
+\draw[black,->,>=latex] (3, -22) -- (3, -21);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(3.4266, -21.1637), Point_2(3, -20), Point_2(3.31049, -21.9779)
+path = Point_2(3, -22) -> Point_2(3, -21)
+orient2d(uv0, uv2, path[0]) = -1
+orient2d(uv0, uv2, path[1]) = -1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 0.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(0, -20), Point_2(-1.5, -20.5)),
+Segment 2: Segment_2(Point_2(-0.736141, -20.2982), Point_2(-1.5, -20.5)),
+Path: Segment_2(Point_2(1, -21), Point_2(1, -22))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (0, -20) -- (-1.5, -20.5);
+\draw[black,->,>=latex] (-0.736141, -20.2982) -- (-1.5, -20.5);
+\draw[black,->,>=latex] (1, -21) -- (1, -22);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(0, -20), Point_2(-1.5, -20.5), Point_2(-0.736141, -20.2982)
+path = Point_2(1, -21) -> Point_2(1, -22)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 0.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(0, -20), Point_2(-1.5, -20.5)),
+Segment 2: Segment_2(Point_2(-0.736141, -20.2982), Point_2(-1.5, -20.5)),
+Path: Segment_2(Point_2(1, -21), Point_2(0, -21))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (0, -20) -- (-1.5, -20.5);
+\draw[black,->,>=latex] (-0.736141, -20.2982) -- (-1.5, -20.5);
+\draw[black,->,>=latex] (1, -21) -- (0, -21);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(0, -20), Point_2(-1.5, -20.5), Point_2(-0.736141, -20.2982)
+path = Point_2(1, -21) -> Point_2(0, -21)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[41mEdges degenerated to a point should have 
+been removed during pre processing. This doesn't seem to 
+be the case here. Let's see how this ends.[0m
+[41mWarning: When tracing from GV 113, LEI 3 I hit GV 113, LEI 3.
+  However, this GV is already connected to GV 113, LEI 3[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 0.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(4, -22.5), Point_2(3.97111, -22.9817)),
+Segment 2: Segment_2(Point_2(3.7923, -22.9332), Point_2(3.97111, -22.9817)),
+Path: Segment_2(Point_2(3, -23), Point_2(4, -23))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (4, -22.5) -- (3.97111, -22.9817);
+\draw[black,->,>=latex] (3.7923, -22.9332) -- (3.97111, -22.9817);
+\draw[black,->,>=latex] (3, -23) -- (4, -23);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(4, -22.5), Point_2(3.97111, -22.9817), Point_2(3.7923, -22.9332)
+path = Point_2(3, -23) -> Point_2(4, -23)
+orient2d(uv0, uv2, path[0]) = -1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = -1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 1.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(3, -23.5), Point_2(2.59755, -24.0651)),
+Segment 2: Segment_2(Point_2(3.29123, -23.7161), Point_2(2.59755, -24.0651)),
+Path: Segment_2(Point_2(4, -23), Point_2(4, -24))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (3, -23.5) -- (2.59755, -24.0651);
+\draw[black,->,>=latex] (3.29123, -23.7161) -- (2.59755, -24.0651);
+\draw[black,->,>=latex] (4, -23) -- (4, -24);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(3, -23.5), Point_2(2.59755, -24.0651), Point_2(3.29123, -23.7161)
+path = Point_2(4, -23) -> Point_2(4, -24)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 1.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(3.97111, -22.9817), Point_2(3.7923, -22.9332)),
+Segment 2: Segment_2(Point_2(4, -22.5), Point_2(3.7923, -22.9332)),
+Path: Segment_2(Point_2(4, -22), Point_2(5, -22))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (3.97111, -22.9817) -- (3.7923, -22.9332);
+\draw[black,->,>=latex] (4, -22.5) -- (3.7923, -22.9332);
+\draw[black,->,>=latex] (4, -22) -- (5, -22);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(3.97111, -22.9817), Point_2(3.7923, -22.9332), Point_2(4, -22.5)
+path = Point_2(4, -22) -> Point_2(5, -22)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = -1
+tri_ori = -1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 7.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(5.08004, -25.4091), Point_2(4.91224, -24.5741)),
+Segment 2: Segment_2(Point_2(4.08776, -25.4259), Point_2(4.91224, -24.5741)),
+Path: Segment_2(Point_2(5, -27), Point_2(5, -26))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (5.08004, -25.4091) -- (4.91224, -24.5741);
+\draw[black,->,>=latex] (4.08776, -25.4259) -- (4.91224, -24.5741);
+\draw[black,->,>=latex] (5, -27) -- (5, -26);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(5.08004, -25.4091), Point_2(4.91224, -24.5741), Point_2(4.08776, -25.4259)
+path = Point_2(5, -27) -> Point_2(5, -26)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 3.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(4.40245, -23.9349), Point_2(5.98258, -24.2166)),
+Segment 2: Segment_2(Point_2(4.59093, -24.08), Point_2(5.98258, -24.2166)),
+Path: Segment_2(Point_2(2, -23), Point_2(3, -23))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (4.40245, -23.9349) -- (5.98258, -24.2166);
+\draw[black,->,>=latex] (4.59093, -24.08) -- (5.98258, -24.2166);
+\draw[black,->,>=latex] (2, -23) -- (3, -23);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(4.40245, -23.9349), Point_2(5.98258, -24.2166), Point_2(4.59093, -24.08)
+path = Point_2(2, -23) -> Point_2(3, -23)
+orient2d(uv0, uv2, path[0]) = -1
+orient2d(uv0, uv2, path[1]) = -1
+tri_ori = -1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 3.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(4.40245, -23.9349), Point_2(5.98258, -24.2166)),
+Segment 2: Segment_2(Point_2(4.59093, -24.08), Point_2(5.98258, -24.2166)),
+Path: Segment_2(Point_2(3, -24), Point_2(3, -23))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (4.40245, -23.9349) -- (5.98258, -24.2166);
+\draw[black,->,>=latex] (4.59093, -24.08) -- (5.98258, -24.2166);
+\draw[black,->,>=latex] (3, -24) -- (3, -23);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(4.40245, -23.9349), Point_2(5.98258, -24.2166), Point_2(4.59093, -24.08)
+path = Point_2(3, -24) -> Point_2(3, -23)
+orient2d(uv0, uv2, path[0]) = -1
+orient2d(uv0, uv2, path[1]) = -1
+tri_ori = -1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 1.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(1.64937, -25.4249), Point_2(2.5, -25.5)),
+Segment 2: Segment_2(Point_2(0, -24), Point_2(2.5, -25.5)),
+Path: Segment_2(Point_2(0, -26), Point_2(1, -26))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (1.64937, -25.4249) -- (2.5, -25.5);
+\draw[black,->,>=latex] (0, -24) -- (2.5, -25.5);
+\draw[black,->,>=latex] (0, -26) -- (1, -26);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(1.64937, -25.4249), Point_2(2.5, -25.5), Point_2(0, -24)
+path = Point_2(0, -26) -> Point_2(1, -26)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 1.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(1.64937, -25.4249), Point_2(2.5, -25.5)),
+Segment 2: Segment_2(Point_2(0, -24), Point_2(2.5, -25.5)),
+Path: Segment_2(Point_2(0, -25), Point_2(1, -25))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (1.64937, -25.4249) -- (2.5, -25.5);
+\draw[black,->,>=latex] (0, -24) -- (2.5, -25.5);
+\draw[black,->,>=latex] (0, -25) -- (1, -25);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(1.64937, -25.4249), Point_2(2.5, -25.5), Point_2(0, -24)
+path = Point_2(0, -25) -> Point_2(1, -25)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 5.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(3, -20), Point_2(3.31049, -21.9779)),
+Segment 2: Segment_2(Point_2(3.4266, -21.1637), Point_2(3.31049, -21.9779)),
+Path: Segment_2(Point_2(2, -22), Point_2(2, -21))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (3, -20) -- (3.31049, -21.9779);
+\draw[black,->,>=latex] (3.4266, -21.1637) -- (3.31049, -21.9779);
+\draw[black,->,>=latex] (2, -22) -- (2, -21);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(3, -20), Point_2(3.31049, -21.9779), Point_2(3.4266, -21.1637)
+path = Point_2(2, -22) -> Point_2(2, -21)
+orient2d(uv0, uv2, path[0]) = -1
+orient2d(uv0, uv2, path[1]) = -1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 0.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(2.01742, -23.7834), Point_2(1.77133, -23.409)),
+Segment 2: Segment_2(Point_2(0.997824, -24.1018), Point_2(1.77133, -23.409)),
+Path: Segment_2(Point_2(1, -24), Point_2(0, -24))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (2.01742, -23.7834) -- (1.77133, -23.409);
+\draw[black,->,>=latex] (0.997824, -24.1018) -- (1.77133, -23.409);
+\draw[black,->,>=latex] (1, -24) -- (0, -24);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(2.01742, -23.7834), Point_2(1.77133, -23.409), Point_2(0.997824, -24.1018)
+path = Point_2(1, -24) -> Point_2(0, -24)
+orient2d(uv0, uv2, path[0]) = -1
+orient2d(uv0, uv2, path[1]) = -1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 2.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(0.574065, -25.0878), Point_2(2, -25)),
+Segment 2: Segment_2(Point_2(-0.409071, -26.08), Point_2(2, -25)),
+Path: Segment_2(Point_2(0, -26), Point_2(1, -26))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (0.574065, -25.0878) -- (2, -25);
+\draw[black,->,>=latex] (-0.409071, -26.08) -- (2, -25);
+\draw[black,->,>=latex] (0, -26) -- (1, -26);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(0.574065, -25.0878), Point_2(2, -25), Point_2(-0.409071, -26.08)
+path = Point_2(0, -26) -> Point_2(1, -26)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = -1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 1.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(4, -26), Point_2(3.5, -25.5)),
+Segment 2: Segment_2(Point_2(3.35063, -23.5751), Point_2(3.5, -25.5)),
+Path: Segment_2(Point_2(3, -25), Point_2(2, -25))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (4, -26) -- (3.5, -25.5);
+\draw[black,->,>=latex] (3.35063, -23.5751) -- (3.5, -25.5);
+\draw[black,->,>=latex] (3, -25) -- (2, -25);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(4, -26), Point_2(3.5, -25.5), Point_2(3.35063, -23.5751)
+path = Point_2(3, -25) -> Point_2(2, -25)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = -1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 3.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(4.40245, -23.9349), Point_2(5.98258, -24.2166)),
+Segment 2: Segment_2(Point_2(4.59093, -24.08), Point_2(5.98258, -24.2166)),
+Path: Segment_2(Point_2(4, -24), Point_2(4, -23))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (4.40245, -23.9349) -- (5.98258, -24.2166);
+\draw[black,->,>=latex] (4.59093, -24.08) -- (5.98258, -24.2166);
+\draw[black,->,>=latex] (4, -24) -- (4, -23);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(4.40245, -23.9349), Point_2(5.98258, -24.2166), Point_2(4.59093, -24.08)
+path = Point_2(4, -24) -> Point_2(4, -23)
+orient2d(uv0, uv2, path[0]) = -1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = -1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 2.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(5.08004, -25.4091), Point_2(4.91224, -24.5741)),
+Segment 2: Segment_2(Point_2(4.08776, -25.4259), Point_2(4.91224, -24.5741)),
+Path: Segment_2(Point_2(4, -26), Point_2(5, -26))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (5.08004, -25.4091) -- (4.91224, -24.5741);
+\draw[black,->,>=latex] (4.08776, -25.4259) -- (4.91224, -24.5741);
+\draw[black,->,>=latex] (4, -26) -- (5, -26);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(5.08004, -25.4091), Point_2(4.91224, -24.5741), Point_2(4.08776, -25.4259)
+path = Point_2(4, -26) -> Point_2(5, -26)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 3.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(4.57406, -25.0878), Point_2(5.42594, -25.9122)),
+Segment 2: Segment_2(Point_2(5.18665, -24.9694), Point_2(5.42594, -25.9122)),
+Path: Segment_2(Point_2(4, -25), Point_2(4, -26))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (4.57406, -25.0878) -- (5.42594, -25.9122);
+\draw[black,->,>=latex] (5.18665, -24.9694) -- (5.42594, -25.9122);
+\draw[black,->,>=latex] (4, -25) -- (4, -26);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(4.57406, -25.0878), Point_2(5.42594, -25.9122), Point_2(5.18665, -24.9694)
+path = Point_2(4, -25) -> Point_2(4, -26)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = -1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 1.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(4, -26), Point_2(3.5, -25.5)),
+Segment 2: Segment_2(Point_2(3.35063, -23.5751), Point_2(3.5, -25.5)),
+Path: Segment_2(Point_2(3, -25), Point_2(3, -26))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (4, -26) -- (3.5, -25.5);
+\draw[black,->,>=latex] (3.35063, -23.5751) -- (3.5, -25.5);
+\draw[black,->,>=latex] (3, -25) -- (3, -26);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(4, -26), Point_2(3.5, -25.5), Point_2(3.35063, -23.5751)
+path = Point_2(3, -25) -> Point_2(3, -26)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = -1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 1.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(0.969351, -28.8133), Point_2(1.80784, -26.9567)),
+Segment 2: Segment_2(Point_2(2.5412, -28.1056), Point_2(1.80784, -26.9567)),
+Path: Segment_2(Point_2(3, -28), Point_2(3, -27))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (0.969351, -28.8133) -- (1.80784, -26.9567);
+\draw[black,->,>=latex] (2.5412, -28.1056) -- (1.80784, -26.9567);
+\draw[black,->,>=latex] (3, -28) -- (3, -27);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(0.969351, -28.8133), Point_2(1.80784, -26.9567), Point_2(2.5412, -28.1056)
+path = Point_2(3, -28) -> Point_2(3, -27)
+orient2d(uv0, uv2, path[0]) = -1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = -1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 0.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(4.96935, -26.8133), Point_2(4.53933, -26.76)),
+Segment 2: Segment_2(Point_2(3.80784, -26.9567), Point_2(4.53933, -26.76)),
+Path: Segment_2(Point_2(3, -28), Point_2(4, -28))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (4.96935, -26.8133) -- (4.53933, -26.76);
+\draw[black,->,>=latex] (3.80784, -26.9567) -- (4.53933, -26.76);
+\draw[black,->,>=latex] (3, -28) -- (4, -28);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(4.96935, -26.8133), Point_2(4.53933, -26.76), Point_2(3.80784, -26.9567)
+path = Point_2(3, -28) -> Point_2(4, -28)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 2.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(2, -16), Point_2(3.5, -17)),
+Segment 2: Segment_2(Point_2(4.09457, -15.6923), Point_2(3.5, -17)),
+Path: Segment_2(Point_2(2, -15), Point_2(3, -15))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (2, -16) -- (3.5, -17);
+\draw[black,->,>=latex] (4.09457, -15.6923) -- (3.5, -17);
+\draw[black,->,>=latex] (2, -15) -- (3, -15);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(2, -16), Point_2(3.5, -17), Point_2(4.09457, -15.6923)
+path = Point_2(2, -15) -> Point_2(3, -15)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 2.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(4.96935, -26.8133), Point_2(4.53933, -26.76)),
+Segment 2: Segment_2(Point_2(3.80784, -26.9567), Point_2(4.53933, -26.76)),
+Path: Segment_2(Point_2(3, -28), Point_2(3, -29))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (4.96935, -26.8133) -- (4.53933, -26.76);
+\draw[black,->,>=latex] (3.80784, -26.9567) -- (4.53933, -26.76);
+\draw[black,->,>=latex] (3, -28) -- (3, -29);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(4.96935, -26.8133), Point_2(4.53933, -26.76), Point_2(3.80784, -26.9567)
+path = Point_2(3, -28) -> Point_2(3, -29)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 0.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(4.57406, -25.0878), Point_2(5.42594, -25.9122)),
+Segment 2: Segment_2(Point_2(5.18665, -24.9694), Point_2(5.42594, -25.9122)),
+Path: Segment_2(Point_2(4, -25), Point_2(5, -25))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (4.57406, -25.0878) -- (5.42594, -25.9122);
+\draw[black,->,>=latex] (5.18665, -24.9694) -- (5.42594, -25.9122);
+\draw[black,->,>=latex] (4, -25) -- (5, -25);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(4.57406, -25.0878), Point_2(5.42594, -25.9122), Point_2(5.18665, -24.9694)
+path = Point_2(4, -25) -> Point_2(5, -25)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 0.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(4.57406, -25.0878), Point_2(5.42594, -25.9122)),
+Segment 2: Segment_2(Point_2(5.18665, -24.9694), Point_2(5.42594, -25.9122)),
+Path: Segment_2(Point_2(5, -24), Point_2(5, -25))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (4.57406, -25.0878) -- (5.42594, -25.9122);
+\draw[black,->,>=latex] (5.18665, -24.9694) -- (5.42594, -25.9122);
+\draw[black,->,>=latex] (5, -24) -- (5, -25);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(4.57406, -25.0878), Point_2(5.42594, -25.9122), Point_2(5.18665, -24.9694)
+path = Point_2(5, -24) -> Point_2(5, -25)
+orient2d(uv0, uv2, path[0]) = 1
+orient2d(uv0, uv2, path[1]) = 1
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[41mEdges degenerated to a point should have 
+been removed during pre processing. This doesn't seem to 
+be the case here. Let's see how this ends.[0m
+[41mWarning: When tracing from GV 155, LEI 4 I hit GV 79, LEI 0.
+  However, this GV is already connected to GV 155, LEI 2[0m
+WARNING: Subsequence length was 3 out of 3
+Entire sequence:  127 82 83
+Subsequence: [0, 3)
+WARNING: Subsequence length was 3 out of 3
+Entire sequence:  126 111 104
+Subsequence: [0, 3)
+WARNING: Subsequence length was 3 out of 3
+Entire sequence:  132 128 98
+Subsequence: [0, 3)
+WARNING: Subsequence length was 3 out of 3
+Entire sequence:  131 129 74
+Subsequence: [0, 3)
+WARNING: Subsequence length was 3 out of 3
+Entire sequence:  129 131 125
+Subsequence: [0, 3)
+create_faces: Skipping. Reason: Non-boundary edge.
+Skipped 5 non-quad faces.
+       Quad vertices=106 Quad faces=64
+Output saved to: /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_028_quad.obj
+
+ Closed: Thu Apr 02 00:22:57 2026
+
+
+[Quad Extraction]
+  binary       : /root/SemanPartMesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_028.obj
+  cross field  : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_028_crossfield.txt
+  output       : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_028_quad.obj
+  gradient_size: 30.0  timeout: 1200s
+
+  WARNING: skipped 1 quad face(s) with out-of-range vertex indices in patch_028_quad.obj
+[Catmull-Clark] Applying 1 iteration(s) to patch_028_quad.obj
+  target_quads : 160
+Traceback (most recent call last):
+  File "/root/SemanPartMesh/extract_quad.py", line 824, in <module>
+    main()
+  File "/root/SemanPartMesh/extract_quad.py", line 768, in main
+    args.gradient_size, args.timeout, args.retry, args=args)
+  File "/root/SemanPartMesh/extract_quad.py", line 683, in extract_single
+    maybe_apply_catmull_clark(output_path, mesh_path, args)
+  File "/root/SemanPartMesh/extract_quad.py", line 428, in maybe_apply_catmull_clark
+    vertices, quads = catmull_clark_subdivide(vertices, quads)
+  File "/root/SemanPartMesh/extract_quad.py", line 309, in catmull_clark_subdivide
+    face_points = vertices[quads].mean(axis=1)
+IndexError: index 4093935728 is out of bounds for axis 0 with size 106

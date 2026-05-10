@@ -43,6 +43,7 @@ from .angle_distortion import compute_angle_distortion, _load_quad_faces_from_ob
 from .jacobian_ratio import compute_jacobian_ratio
 from .part_miou import compute_class_agnostic_miou
 from .boundary_alignment import compute_boundary_alignment_error
+from .singularity import compute_singularities
 
 
 def parse_args():
@@ -131,6 +132,12 @@ def evaluate_single(
     results["jacobian_ratio_min"] = jr["min_jr"]
     results["jacobian_ratio_std"] = jr["std_jr"]
     results["scaled_jacobian_mean"] = jr["mean_scaled_jacobian"]
+
+    # --- Singularities ---
+    sing = compute_singularities(verts, quad_faces)
+    results["interior_singularities"] = sing["interior_singularities"]
+    results["boundary_singularities"] = sing["boundary_singularities"]
+    results["total_singularities"] = sing["total_singularities"]
 
     # --- Semantic metrics (need original mesh + labels) ---
     if orig_mesh_path is not None and gt_label_path is not None:
@@ -259,6 +266,10 @@ def _print_result(r):
     print(f"  Jacobian Ratio   : mean = {r['jacobian_ratio_mean']:.4f}"
           f"  |  min = {r['jacobian_ratio_min']:.4f}"
           f"  |  std = {r['jacobian_ratio_std']:.4f}")
+    if r.get("total_singularities") is not None:
+        print(f"  Singularities    : total = {r['total_singularities']}"
+              f"  (interior={r['interior_singularities']}, "
+              f"boundary={r['boundary_singularities']})")
     if r.get("miou") is not None:
         print(f"  mIoU             : {r['miou']:.4f}"
               f"  (k={r.get('miou_best_k', 'N/A')})")
@@ -288,6 +299,7 @@ def _aggregate(results):
     numeric_keys = [
         "angle_distortion_mean_deg", "angle_distortion_max_deg",
         "jacobian_ratio_mean", "jacobian_ratio_min",
+        "total_singularities", "interior_singularities",
         "miou", "bae",
     ]
     print("\n" + "=" * 60)

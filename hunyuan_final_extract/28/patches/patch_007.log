@@ -1,0 +1,82 @@
+[1/4] Loading mesh: /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_007.obj
+       V=668 F=1180
+[2/4] Loading cross field: /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_007_crossfield.txt
+       cross field rows=1180
+[3/4] Running MIQ parameterization (gradient_size=30, stiffness=5, iters=5)...
+
+ INITIALIZED SPARSE MATRIX OF 1424d x 1424d 
+
+ INITIALIZED SPARSE MATRIX OF 76d x 1442d 
+
+ INITIALIZED VECTOR OF 1424d x 1 
+
+ INITIALIZED VECTOR OF 76d x 1 
+Initital dimension: 1442 x 1442, number of constraints: 76, number of integer variables: 24, use reordering: yes
+make_constraints_independent took 0.00045100000000000001 s.
+Constraint integration took 0.00042900000000000002 s.
+Constraint elimination took 0.0011539999999999999 s.
+Reindexing took 3.3000000000000003e-05 s.
+eliminate_constraints took 0.0016870000000000001 s.
+Eliminated dimension: 1366 x 1366
+#nonzeros: 9202
+integer variables #: 12
+continuous variables #: 1354
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 8
+Number of CG    iterations  = 8
+Number of FULL  iterations  = 9
+Number of ROUNDING          = 12
+solve_multiple_rounding took 0.13833099999999998 s.
+solve took 0.138405 s.
+restore_eliminated_vars took 0.000185 s.
+solve took 0.14099400000000001 s.
+Maximum Distorsion 2.9418 
+Maximum Laplacian 7.4901 
+ITERATION 0 FLIPS 1 
+
+ INITIALIZED SPARSE MATRIX OF 1424d x 1424d 
+
+ INITIALIZED SPARSE MATRIX OF 76d x 1442d 
+
+ INITIALIZED VECTOR OF 1424d x 1 
+
+ INITIALIZED VECTOR OF 76d x 1 
+Initital dimension: 1442 x 1442, number of constraints: 76, number of integer variables: 24, use reordering: yes
+make_constraints_independent took 0.00040300000000000004 s.
+Constraint integration took 0.000435 s.
+Constraint elimination took 0.001109 s.
+Reindexing took 3.1999999999999999e-05 s.
+eliminate_constraints took 0.0016329999999999999 s.
+Eliminated dimension: 1366 x 1366
+#nonzeros: 9202
+integer variables #: 12
+continuous variables #: 1354
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 6
+Number of CG    iterations  = 6
+Number of FULL  iterations  = 6
+Number of ROUNDING          = 12
+solve_multiple_rounding took 0.105349 s.
+solve took 0.10542799999999999 s.
+restore_eliminated_vars took 0.00019000000000000001 s.
+solve took 0.107921 s.
+ITERATION 1 FLIPS 0 
+**** END OPTIMIZING #FLIPS 0  ****
+       UV=712 FUV=1180
+[4/4] Extracting quad mesh with libQEx...
+PolyMeshT::add_face: complex vertex
+PolyMeshT::add_face: complex vertex
+
+[Quad Extraction]
+  binary       : /root/SemanPartMesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_007.obj
+  cross field  : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_007_crossfield.txt
+  output       : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_007_quad.obj
+  gradient_size: 30.0  timeout: 1200s
+
+  FAILED: Command '['/root/SemanPartMesh/quad_extract/build/extract_quad_mesh', '/root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_007.obj', '/root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_007_crossfield.txt', '/root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_007_quad.obj', '30.0']' died with <Signals.SIGSEGV: 11>.
+FAILED for /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_007.obj

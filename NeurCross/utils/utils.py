@@ -9,9 +9,6 @@ import torch
 from torch.autograd import grad
 import torch.backends.cudnn as cudnn
 
-from operator import itemgetter
-from itertools import groupby
-
 
 def same_seed(seed):
     """
@@ -114,20 +111,20 @@ def calculate_same_neighbors_verts(vertex_neighbors):
 
 
 def get_sample_vers_neighbors_for_face_center_points_or_vertices(mesh_path):
-    # the face adjacency, shape=(len(faces), 3)
+    # Build a per-face neighbor list whose length always matches the face count.
+    # Some CAD meshes contain isolated faces that never appear in face_adjacency;
+    # those faces should keep an empty neighbor list instead of being dropped.
     mesh = trimesh.load_mesh(mesh_path, process=False)
+    face_count = len(mesh.faces)
+    vertex_neighbors = [[] for _ in range(face_count)]
 
     face_adj = mesh.face_adjacency.astype(np.int32)
-    keys_col_1 = np.unique(face_adj[:, 0])
-    result_col_1_list = [list(face_adj[face_adj[:, 0] == key, 1]) for key in keys_col_1]
-    keys_col_2 = np.unique(face_adj[:, 1])
-    result_col_2_list = [list(face_adj[face_adj[:, 1] == key, 0]) for key in keys_col_2]
-    keys = np.concatenate((keys_col_1, keys_col_2), axis=0)
-    face_adj_neigh = result_col_1_list + result_col_2_list
-    face_adj_neigh_list = [list(map(itemgetter(1), g)) for k, g in
-                           groupby(sorted(zip(keys, face_adj_neigh), key=itemgetter(0)), key=itemgetter(0))]
-    vertex_neighbors = [sum(x, []) if isinstance(x[0], list) else x for x in face_adj_neigh_list]
+    for face_a, face_b in face_adj:
+        if 0 <= face_a < face_count and 0 <= face_b < face_count:
+            vertex_neighbors[face_a].append(int(face_b))
+            vertex_neighbors[face_b].append(int(face_a))
 
+    vertex_neighbors = [sorted(set(neighbors)) for neighbors in vertex_neighbors]
     return vertex_neighbors
 
 
@@ -226,12 +223,19 @@ def get_rotation_matrix(vertex_neighbors_list, vertex_neighbors, mesh_path):
     axis_angle_R_mat_list = list()
 
     for i in range(len(vertex_neighbors_list)):
-        idx = np.array(vertex_neighbors_list[i])
+        idx = np.array(vertex_neighbors_list[i], dtype=np.int32)
+        if idx.size == 0:
+            axis_angle_R_mat_list.append(np.zeros((0, 0, 3, 3), dtype=np.float32))
+            continue
 
         face_normals_i = np.expand_dims(face_normals[idx], axis=1)  # n x 1 x 3
 
         vertex_neighbors_i = [vertex_neighbors[z] for z in idx]
-        vertex_neighbors_i = np.array(vertex_neighbors_i)  # n x neighbors_size
+        neighbor_count = len(vertex_neighbors_i[0]) if len(vertex_neighbors_i) > 0 else 0
+        if neighbor_count == 0:
+            axis_angle_R_mat_list.append(np.zeros((len(idx), 0, 3, 3), dtype=np.float32))
+            continue
+        vertex_neighbors_i = np.array(vertex_neighbors_i, dtype=np.int32)  # n x neighbors_size
         face_normals_i_neighbor = face_normals[vertex_neighbors_i]
         #
         desired_rota_axis_direction = np.cross(face_normals_i_neighbor, face_normals_i)

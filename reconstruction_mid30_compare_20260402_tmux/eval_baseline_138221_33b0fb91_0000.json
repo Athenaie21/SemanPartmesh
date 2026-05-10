@@ -1,0 +1,11 @@
+{
+  "mesh": "138221_33b0fb91_0000_quad.obj",
+  "angle_distortion_mean_deg": 0.0016858265376424838,
+  "angle_distortion_max_deg": 0.07539900605923198,
+  "jacobian_ratio_mean": 0.9999999960367157,
+  "jacobian_ratio_min": 0.9999992348875438,
+  "jacobian_ratio_std": 3.277097461122719e-08,
+  "scaled_jacobian_mean": 0.9999999946404994,
+  "miou": null,
+  "bae": null
+}

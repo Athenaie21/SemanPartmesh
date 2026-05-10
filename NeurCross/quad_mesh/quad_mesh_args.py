@@ -17,6 +17,8 @@ def add_args(parser):
     parser.add_argument('--lr', type=float, default=5e-5, help='initial learning rate')
     parser.add_argument('--grad_clip_norm', type=float, default=10.0, help='Value to clip gradients to')
     parser.add_argument('--batch_size', type=int, default=1, help='number of samples in a minibatch')
+    parser.add_argument('--num_workers', type=int, default=0,
+                        help='DataLoader worker count; use 0 for the most stable single-mesh training')
     parser.add_argument('--load_path', type=str, default=None)
 
     # Network architecture and loss
@@ -37,10 +39,20 @@ def add_args(parser):
     parser.add_argument('--morse_type', type=str, default='l1', help='divergence term norm l1 | l2')
     parser.add_argument('--morse_decay', type=str, default='linear',
                         help='divergence term importance decay none | step | linear')
-    parser.add_argument('--loss_weights', nargs='+', type=float, default=[7e3, 6e2, 10, 5e1, 30, 3, 20],
-                        help='loss terms weights sdf | inter | normal | eikonal | div | morse | semantic')
+    parser.add_argument('--loss_weights', nargs='+', type=float, default=[7e3, 6e2, 10, 5e1, 30, 3, 50],
+                        help='loss terms weights sdf | inter | normal | eikonal | div | morse | guidance')
+    parser.add_argument('--guidance_mode', type=str, default='feature',
+                        choices=['none', 'feature', 'instruction'],
+                        help='extra guidance mode for cross-field learning')
     parser.add_argument('--part_feat_path', type=str, default=None, help='path to precomputed PartField features (.npy)')
-    parser.add_argument('--semantic_boundary_weight', type=float, default=1.0,
+    parser.add_argument('--instruction_meta_path', type=str, default=None,
+                        help='path to precomputed instruction metadata (.npz)')
+
+    # Feature mode params
+    parser.add_argument('--semantic_gradient_method', type=str, default='jacobian',
+                        choices=['structure_tensor', 'gradient_avg', 'jacobian'],
+                        help='method for computing semantic gradient field')
+    parser.add_argument('--semantic_boundary_weight', type=float, default=2.0,
                         help='internal weight for semantic boundary alignment')
     parser.add_argument('--semantic_intra_weight', type=float, default=1.0,
                         help='internal weight for semantic intra-part consistency')
@@ -48,6 +60,55 @@ def add_args(parser):
                         help='internal weight for semantic-aware neighbor smoothness')
     parser.add_argument('--semantic_cross_part_gamma', type=float, default=0.2,
                         help='neighbor smoothness attenuation across semantic parts')
+    parser.add_argument('--semantic_boundary_reward', type=float, default=0.0,
+                        help='optional cross-boundary override/reward; 0 uses semantic_cross_part_gamma')
+    parser.add_argument('--semantic_pca_dim', type=int, default=0,
+                        help='PCA dimensionality for feature reduction (0=disable)')
+    parser.add_argument('--semantic_normalize_features', type=int, default=1,
+                        help='L2 normalize features before gradient computation (1=yes, 0=no)')
+    parser.add_argument('--semantic_distance_sigma', type=float, default=0.0,
+                        help='Gaussian distance sigma for multi-scale gradient weighting (0=disable)')
+    parser.add_argument('--semantic_diversity_weight', type=float, default=0.5,
+                        help='weight for cross-part diversity loss')
+    parser.add_argument('--semantic_diversity_margin', type=float, default=0.3,
+                        help='margin threshold for cross-part diversity loss')
+    parser.add_argument('--semantic_soft_boundary_temp', type=float, default=0.1,
+                        help='temperature for soft boundary weight from feature similarity')
+    parser.add_argument('--semantic_soft_boundary_chunk_size', type=int, default=1024,
+                        help='pair count per chunk for soft boundary cosine similarity (0=disable chunking)')
+    parser.add_argument('--alignment_margin', type=float, default=0.0,
+                        help='margin for boundary alignment loss')
+    parser.add_argument('--semantic_spatial_cluster_weight', type=float, default=0.0,
+                        help='spatial weight for spatially-regularized clustering (0=pure feature clustering)')
+    parser.add_argument('--intra_temperature', type=float, default=1.0,
+                        help='temperature for intra consistency loss (feature mode)')
+    parser.add_argument('--intra_hard_ratio', type=float, default=0.0,
+                        help='fraction of worst-aligned pairs to focus on (feature mode, 0=all)')
+
+    # Instruction mode params
+    parser.add_argument('--instruction_boundary_weight', type=float, default=1.5,
+                        help='internal weight for instruction boundary alignment')
+    parser.add_argument('--instruction_intra_weight', type=float, default=1.0,
+                        help='internal weight for instruction instance consistency')
+    parser.add_argument('--instruction_cross_instance_gamma', type=float, default=0.4,
+                        help='cross-instance neighbor smoothness weight (0=no smoothness, 1=full)')
+    parser.add_argument('--instruction_operation_align_weight', type=float, default=1.0,
+                        help='internal weight for operation direction alignment (extrude/revolve/chamfer/fillet)')
+    parser.add_argument('--instruction_anchor_weight', type=float, default=0.3,
+                        help='internal weight for instance anchor direction alignment')
+
+    # Guidance safeguards
+    parser.add_argument('--guidance_warmup_fraction', type=float, default=0.15,
+                        help='fraction of training for guidance weight warmup (0=no warmup)')
+    parser.add_argument('--guidance_cap_ratio', type=float, default=0.5,
+                        help='cap weighted guidance to this ratio of geometric loss (0=disabled)')
+    parser.add_argument('--guidance_eikonal_guard', type=float, default=0.0,
+                        help='scale down guidance when eikonal exceeds this threshold (0=disabled)')
+    parser.add_argument('--guidance_warmup_type', type=str, default='linear',
+                        choices=['linear', 'cosine'],
+                        help='warmup schedule type for guidance weight')
+
+    # Morse
     parser.add_argument('--morse_near', action='store_true')
     parser.add_argument('--weight_for_morse', action='store_true',
                         help='if true, Weighting A according to the distance of the sampling point')
@@ -55,7 +116,6 @@ def add_args(parser):
     parser.add_argument('--relax_morse', type=float, default=0.5, help='the max value of relax Morse')
     parser.add_argument('--use_vertices', type=bool, default=False, help='if False, sample points to overfitting')
     parser.add_argument('--featureLine_threshold', type=float, default=1.0)
-
 
     return parser
 

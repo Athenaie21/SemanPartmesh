@@ -1,0 +1,16 @@
+[1/4] Loading mesh: /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_036.obj
+       V=152 F=242
+[2/4] Loading cross field: /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_036_crossfield.txt
+       cross field rows=242
+[3/4] Running MIQ parameterization (gradient_size=30, stiffness=5, iters=5)...
+free(): invalid pointer
+
+[Quad Extraction]
+  binary       : /root/SemanPartMesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_036.obj
+  cross field  : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_036_crossfield.txt
+  output       : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_036_quad.obj
+  gradient_size: 30.0  timeout: 1200s
+
+  FAILED: Command '['/root/SemanPartMesh/quad_extract/build/extract_quad_mesh', '/root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_036.obj', '/root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_036_crossfield.txt', '/root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_036_quad.obj', '30.0']' died with <Signals.SIGABRT: 6>.
+FAILED for /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/28/patches/patch_036.obj

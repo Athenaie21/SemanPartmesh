@@ -70,6 +70,31 @@ def cluster_features(features, k_range=(2, 15), method="best_silhouette"):
     return {"labels": best_labels, "k": best_k, "silhouette": best_score}
 
 
+def cluster_features_spatial(features, points, spatial_weight=0.1,
+                             k_range=(2, 15), method="best_silhouette"):
+    """Cluster PartField features with a normalized spatial coordinate prior."""
+    features = np.asarray(features, dtype=np.float64)
+    points = np.asarray(points, dtype=np.float64)
+    if features.shape[0] != points.shape[0]:
+        raise ValueError(
+            "Feature and point counts must match, got {} and {}".format(
+                features.shape[0], points.shape[0])
+        )
+
+    feat_norm = np.linalg.norm(features, axis=-1, keepdims=True)
+    normalized_features = features / np.clip(feat_norm, 1e-12, None)
+
+    centered_points = points - points.mean(axis=0, keepdims=True)
+    point_scale = np.abs(centered_points).max()
+    if point_scale > 1e-12:
+        centered_points = centered_points / point_scale
+    weighted_points = centered_points * float(spatial_weight)
+
+    clustered_features = np.concatenate(
+        [normalized_features, weighted_points], axis=1)
+    return cluster_features(clustered_features, k_range=k_range, method=method)
+
+
 def generate_labels_from_features(feat_path, k=None, k_range=(2, 15)):
     """Load PartField features and cluster into part labels.
 

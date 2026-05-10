@@ -1,0 +1,189 @@
+[1/4] Loading mesh: /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_000.obj
+       V=868 F=1400
+[2/4] Loading cross field: /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_000_crossfield.txt
+       cross field rows=1400
+[3/4] Running MIQ parameterization (gradient_size=30, stiffness=5, iters=5)...
+
+ INITIALIZED SPARSE MATRIX OF 2060d x 2060d 
+
+ INITIALIZED SPARSE MATRIX OF 266d x 2128d 
+
+ INITIALIZED VECTOR OF 2060d x 1 
+
+ INITIALIZED VECTOR OF 266d x 1 
+Initital dimension: 2128 x 2128, number of constraints: 266, number of integer variables: 78, use reordering: yes
+make_constraints_independent took 0.0011120000000000001 s.
+Constraint integration took 0.0013460000000000002 s.
+Constraint elimination took 0.0017750000000000001 s.
+Reindexing took 7.7999999999999999e-05 s.
+eliminate_constraints took 0.0032730000000000003 s.
+Eliminated dimension: 1862 x 1862
+#nonzeros: 12508
+integer variables #: 62
+continuous variables #: 1800
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 20
+Number of CG    iterations  = 20
+Number of FULL  iterations  = 20
+Number of ROUNDING          = 62
+solve_multiple_rounding took 0.45928000000000002 s.
+solve took 0.45934399999999997 s.
+restore_eliminated_vars took 0.00027300000000000002 s.
+solve took 0.464308 s.
+Maximum Distorsion 4.3212 
+Maximum Laplacian 5.3599 
+ITERATION 0 FLIPS 5 
+
+ INITIALIZED SPARSE MATRIX OF 2060d x 2060d 
+
+ INITIALIZED SPARSE MATRIX OF 266d x 2128d 
+
+ INITIALIZED VECTOR OF 2060d x 1 
+
+ INITIALIZED VECTOR OF 266d x 1 
+Initital dimension: 2128 x 2128, number of constraints: 266, number of integer variables: 78, use reordering: yes
+make_constraints_independent took 0.001024 s.
+Constraint integration took 0.0013450000000000001 s.
+Constraint elimination took 0.0017639999999999999 s.
+Reindexing took 6.900000000000001e-05 s.
+eliminate_constraints took 0.0032569999999999999 s.
+Eliminated dimension: 1862 x 1862
+#nonzeros: 12508
+integer variables #: 62
+continuous variables #: 1800
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 21
+Number of CG    iterations  = 21
+Number of FULL  iterations  = 22
+Number of ROUNDING          = 62
+solve_multiple_rounding took 0.47591700000000003 s.
+solve took 0.47598000000000001 s.
+restore_eliminated_vars took 0.00026600000000000001 s.
+solve took 0.480736 s.
+Maximum Distorsion 4.4824 
+Maximum Laplacian 11.7690 
+ITERATION 1 FLIPS 1 
+
+ INITIALIZED SPARSE MATRIX OF 2060d x 2060d 
+
+ INITIALIZED SPARSE MATRIX OF 266d x 2128d 
+
+ INITIALIZED VECTOR OF 2060d x 1 
+
+ INITIALIZED VECTOR OF 266d x 1 
+Initital dimension: 2128 x 2128, number of constraints: 266, number of integer variables: 78, use reordering: yes
+make_constraints_independent took 0.0010210000000000002 s.
+Constraint integration took 0.001328 s.
+Constraint elimination took 0.0017359999999999999 s.
+Reindexing took 6.900000000000001e-05 s.
+eliminate_constraints took 0.0031870000000000002 s.
+Eliminated dimension: 1862 x 1862
+#nonzeros: 12508
+integer variables #: 62
+continuous variables #: 1800
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 18
+Number of CG    iterations  = 18
+Number of FULL  iterations  = 19
+Number of ROUNDING          = 62
+solve_multiple_rounding took 0.40946100000000002 s.
+solve took 0.409524 s.
+restore_eliminated_vars took 0.00027300000000000002 s.
+solve took 0.41423300000000002 s.
+Maximum Distorsion 3.2619 
+Maximum Laplacian 4.5962 
+ITERATION 2 FLIPS 1 
+
+ INITIALIZED SPARSE MATRIX OF 2060d x 2060d 
+
+ INITIALIZED SPARSE MATRIX OF 266d x 2128d 
+
+ INITIALIZED VECTOR OF 2060d x 1 
+
+ INITIALIZED VECTOR OF 266d x 1 
+Initital dimension: 2128 x 2128, number of constraints: 266, number of integer variables: 78, use reordering: yes
+make_constraints_independent took 0.0010549999999999999 s.
+Constraint integration took 0.0013450000000000001 s.
+Constraint elimination took 0.001694 s.
+Reindexing took 7.0000000000000007e-05 s.
+eliminate_constraints took 0.0031750000000000003 s.
+Eliminated dimension: 1862 x 1862
+#nonzeros: 12508
+integer variables #: 62
+continuous variables #: 1800
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 17
+Number of CG    iterations  = 17
+Number of FULL  iterations  = 19
+Number of ROUNDING          = 62
+solve_multiple_rounding took 0.402534 s.
+solve took 0.40259399999999995 s.
+restore_eliminated_vars took 0.000272 s.
+solve took 0.40733299999999995 s.
+Maximum Distorsion 3.0165 
+Maximum Laplacian 3.7723 
+ITERATION 3 FLIPS 1 
+
+ INITIALIZED SPARSE MATRIX OF 2060d x 2060d 
+
+ INITIALIZED SPARSE MATRIX OF 266d x 2128d 
+
+ INITIALIZED VECTOR OF 2060d x 1 
+
+ INITIALIZED VECTOR OF 266d x 1 
+Initital dimension: 2128 x 2128, number of constraints: 266, number of integer variables: 78, use reordering: yes
+make_constraints_independent took 0.001018 s.
+Constraint integration took 0.001322 s.
+Constraint elimination took 0.001688 s.
+Reindexing took 6.900000000000001e-05 s.
+eliminate_constraints took 0.0031320000000000002 s.
+Eliminated dimension: 1862 x 1862
+#nonzeros: 12508
+integer variables #: 62
+continuous variables #: 1800
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 23
+Number of CG    iterations  = 23
+Number of FULL  iterations  = 25
+Number of ROUNDING          = 62
+solve_multiple_rounding took 0.53833799999999998 s.
+solve took 0.53840100000000002 s.
+restore_eliminated_vars took 0.000272 s.
+solve took 0.54305300000000001 s.
+Maximum Distorsion 3.7285 
+Maximum Laplacian 4.4048 
+ITERATION 4 FLIPS 5 
+**** END OPTIMIZING #FLIPS 5  ****
+       UV=1030 FUV=1400
+[4/4] Extracting quad mesh with libQEx...
+PolyMeshT::add_face: complex vertex
+PolyMeshT::add_face: complex vertex
+PolyMeshT::add_face: complex vertex
+PolyMeshT::add_face: complex vertex
+ERROR in Mesh Extraction: input triangle mesh has non-manifold vertex which is adjacent to more than one boundary!
+ERROR: non-identity transition function cannot have a different rotation than 1,2,3: 0, -1, -1
+ERROR in Mesh Extraction: input triangle mesh has non-manifold vertex which is adjacent to more than one boundary!
+ERROR: non-identity transition function cannot have a different rotation than 1,2,3: 0, -1, 1
+ERROR in Mesh Extraction: input triangle mesh has non-manifold vertex which is adjacent to more than one boundary!
+ERROR in Mesh Extraction: input triangle mesh has non-manifold vertex which is adjacent to more than one boundary!
+ERROR in Mesh Extraction: input triangle mesh has non-manifold vertex which is adjacent to more than one boundary!
+
+[Quad Extraction]
+  binary       : /root/SemanPartMesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_000.obj
+  cross field  : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_000_crossfield.txt
+  output       : /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_000_quad.obj
+  gradient_size: 30.0  timeout: 1200s
+
+  FAILED: Command '['/root/SemanPartMesh/quad_extract/build/extract_quad_mesh', '/root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_000.obj', '/root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_000_crossfield.txt', '/root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_000_quad.obj', '30.0']' died with <Signals.SIGSEGV: 11>.
+FAILED for /root/shared-nvme/SemanPartMesh/hunyuan_final_extract/76/patches/patch_000.obj

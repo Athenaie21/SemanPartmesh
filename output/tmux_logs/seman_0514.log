@@ -1,0 +1,1255 @@
+input params: 
+Namespace(logdir='/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/neurcross_logs', model_name='model', seed=3627473, data_path='/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/processed_meshes/Armadillo_sim.obj', n_samples=500, n_points=3000, grid_res=256, nonmnfld_sample_type='gaussian', num_epochs=1, lr=5e-05, grad_clip_norm=10.0, batch_size=1, num_workers=0, load_path=None, init_type='siren', decoder_hidden_dim=256, decoder_n_hidden_layers=4, latent_size=0, nl='sine', sphere_init_params=[1.6, 0.1], udf=False, output_any=False, loss_type='siren_wo_n_w_morse_w_theta', decay_params=[3, 0.2, 3, 0.4, 0.001, 0], morse_type='l1', morse_decay='linear', loss_weights=[7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 2000.0], guidance_mode='none', part_feat_path=None, instruction_meta_path=None, semantic_gradient_method='jacobian', semantic_boundary_weight=2.0, semantic_intra_weight=1.0, semantic_neighbor_weight=1.0, semantic_cross_part_gamma=0.2, semantic_boundary_reward=0.0, semantic_pca_dim=0, semantic_normalize_features=1, semantic_distance_sigma=0.0, semantic_diversity_weight=0.5, semantic_diversity_margin=0.3, semantic_soft_boundary_temp=0.1, semantic_soft_boundary_chunk_size=1024, alignment_margin=0.0, semantic_spatial_cluster_weight=0.0, intra_temperature=1.0, intra_hard_ratio=0.0, instruction_boundary_weight=1.5, instruction_intra_weight=1.0, instruction_cross_instance_gamma=0.4, instruction_operation_align_weight=1.0, instruction_anchor_weight=0.3, guidance_warmup_fraction=0.15, guidance_cap_ratio=0.5, guidance_eikonal_guard=0.0, guidance_warmup_type='linear', morse_near=True, weight_for_morse=False, use_morse_nonmnfld_grad=True, relax_morse=0.5, use_vertices=False, featureLine_threshold=1.0)
+decoder initialising with sine and siren
+==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+Decoder                                  [1, 1024, 1]              --
+├─FCBlock: 1-1                           [1, 1024, 1]              --
+│    └─Sequential: 2-1                   --                        --
+│    │    └─Sequential: 3-1              [1, 1024, 256]            1,024
+│    │    └─Sequential: 3-8              --                        (recursive)
+│    │    └─Sequential: 3-3              [1, 1024, 256]            65,792
+│    │    └─Sequential: 3-8              --                        (recursive)
+│    │    └─Sequential: 3-5              [1, 1024, 256]            65,792
+│    │    └─Sequential: 3-8              --                        (recursive)
+│    │    └─Sequential: 3-7              [1, 1024, 256]            65,792
+│    │    └─Sequential: 3-8              --                        (recursive)
+│    │    └─Sequential: 3-9              [1, 1024, 256]            65,792
+│    │    └─Sequential: 3-10             [1, 1024, 1]              257
+├─Identity: 1-2                          [1, 1024, 1]              --
+==========================================================================================
+Total params: 264,449
+Trainable params: 264,449
+Non-trainable params: 0
+Total mult-adds (M): 0.26
+==========================================================================================
+Input size (MB): 0.01
+Forward/backward pass size (MB): 10.49
+Params size (MB): 1.06
+Estimated Total Size (MB): 11.56
+==========================================================================================
+Number of parameters in the current model:4374082
+n_iterations:  500
+Guidance mode: none
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 2000.0], lr=5.000e-05
+Epoch: 0 [   0/500 (0%)] Loss: 689.93500 = L_Mnfld: 630.20734 + L_NonMnfld: 0.57347 + L_Eknl: 34.68117 + L_Morse: 3.71841 + L_thetaHessian: 14.91418 + L_thetaNeighbor: 5.84048 + L_Guidance: 0.00000
+Epoch: 0 [   0/500 (0%)] Unweighted L_s : L_Mnfld: 0.09003 + L_NonMnfld: 0.00096 + L_Eknl: 0.69362 + L_Morse: 1.23947 + L_thetaHessian: 1.49142 + L_thetaNeighbor: 0.19468 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 240.0], lr=5.000e-05
+Epoch: 0 [  10/500 (2%)] Loss: 381.25412 = L_Mnfld: 98.38770 + L_NonMnfld: 223.65806 + L_Eknl: 36.02113 + L_Morse: 3.59536 + L_thetaHessian: 14.11303 + L_thetaNeighbor: 5.47886 + L_Guidance: 0.00000
+Epoch: 0 [  10/500 (2%)] Unweighted L_s : L_Mnfld: 0.01406 + L_NonMnfld: 0.37276 + L_Eknl: 0.72042 + L_Morse: 1.19845 + L_thetaHessian: 1.41130 + L_thetaNeighbor: 0.18263 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 506.6666666666667], lr=5.000e-05
+Epoch: 0 [  20/500 (4%)] Loss: 115.61636 = L_Mnfld: 58.09102 + L_NonMnfld: 1.24364 + L_Eknl: 31.89196 + L_Morse: 4.69897 + L_thetaHessian: 14.32630 + L_thetaNeighbor: 5.36446 + L_Guidance: 0.00000
+Epoch: 0 [  20/500 (4%)] Unweighted L_s : L_Mnfld: 0.00830 + L_NonMnfld: 0.00207 + L_Eknl: 0.63784 + L_Morse: 1.56632 + L_thetaHessian: 1.43263 + L_thetaNeighbor: 0.17882 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 773.3333333333335], lr=5.000e-05
+Epoch: 0 [  30/500 (6%)] Loss: 97.62991 = L_Mnfld: 44.59008 + L_NonMnfld: 0.23660 + L_Eknl: 32.83145 + L_Morse: 3.74376 + L_thetaHessian: 10.99435 + L_thetaNeighbor: 5.23368 + L_Guidance: 0.00000
+Epoch: 0 [  30/500 (6%)] Unweighted L_s : L_Mnfld: 0.00637 + L_NonMnfld: 0.00039 + L_Eknl: 0.65663 + L_Morse: 1.24792 + L_thetaHessian: 1.09943 + L_thetaNeighbor: 0.17446 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 1040.0], lr=5.000e-05
+Epoch: 0 [  40/500 (8%)] Loss: 87.45739 = L_Mnfld: 38.10187 + L_NonMnfld: 0.49561 + L_Eknl: 31.69951 + L_Morse: 2.91078 + L_thetaHessian: 9.14588 + L_thetaNeighbor: 5.10375 + L_Guidance: 0.00000
+Epoch: 0 [  40/500 (8%)] Unweighted L_s : L_Mnfld: 0.00544 + L_NonMnfld: 0.00083 + L_Eknl: 0.63399 + L_Morse: 0.97026 + L_thetaHessian: 0.91459 + L_thetaNeighbor: 0.17013 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 1306.666666666667], lr=5.000e-05
+Epoch: 0 [  50/500 (10%)] Loss: 76.25688 = L_Mnfld: 29.62836 + L_NonMnfld: 0.15987 + L_Eknl: 30.43299 + L_Morse: 2.61097 + L_thetaHessian: 8.44834 + L_thetaNeighbor: 4.97635 + L_Guidance: 0.00000
+Epoch: 0 [  50/500 (10%)] Unweighted L_s : L_Mnfld: 0.00423 + L_NonMnfld: 0.00027 + L_Eknl: 0.60866 + L_Morse: 0.87032 + L_thetaHessian: 0.84483 + L_thetaNeighbor: 0.16588 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 1573.3333333333333], lr=5.000e-05
+Epoch: 0 [  60/500 (12%)] Loss: 73.81027 = L_Mnfld: 29.66821 + L_NonMnfld: 0.21317 + L_Eknl: 28.68838 + L_Morse: 2.40534 + L_thetaHessian: 7.96163 + L_thetaNeighbor: 4.87353 + L_Guidance: 0.00000
+Epoch: 0 [  60/500 (12%)] Unweighted L_s : L_Mnfld: 0.00424 + L_NonMnfld: 0.00036 + L_Eknl: 0.57377 + L_Morse: 0.80178 + L_thetaHessian: 0.79616 + L_thetaNeighbor: 0.16245 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 1840.0000000000002], lr=5.000e-05
+Epoch: 0 [  70/500 (14%)] Loss: 71.78197 = L_Mnfld: 29.68010 + L_NonMnfld: 0.07311 + L_Eknl: 27.08861 + L_Morse: 2.34675 + L_thetaHessian: 7.80014 + L_thetaNeighbor: 4.79327 + L_Guidance: 0.00000
+Epoch: 0 [  70/500 (14%)] Unweighted L_s : L_Mnfld: 0.00424 + L_NonMnfld: 0.00012 + L_Eknl: 0.54177 + L_Morse: 0.78225 + L_thetaHessian: 0.78001 + L_thetaNeighbor: 0.15978 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 2000.0], lr=5.000e-05
+Epoch: 0 [  80/500 (16%)] Loss: 68.73241 = L_Mnfld: 27.65829 + L_NonMnfld: 0.12712 + L_Eknl: 26.31085 + L_Morse: 2.22150 + L_thetaHessian: 7.69943 + L_thetaNeighbor: 4.71522 + L_Guidance: 0.00000
+Epoch: 0 [  80/500 (16%)] Unweighted L_s : L_Mnfld: 0.00395 + L_NonMnfld: 0.00021 + L_Eknl: 0.52622 + L_Morse: 0.74050 + L_thetaHessian: 0.76994 + L_thetaNeighbor: 0.15717 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 2000.0], lr=5.000e-05
+Epoch: 0 [  90/500 (18%)] Loss: 64.63798 = L_Mnfld: 25.10230 + L_NonMnfld: 0.06055 + L_Eknl: 24.87957 + L_Morse: 2.22730 + L_thetaHessian: 7.72187 + L_thetaNeighbor: 4.64638 + L_Guidance: 0.00000
+Epoch: 0 [  90/500 (18%)] Unweighted L_s : L_Mnfld: 0.00359 + L_NonMnfld: 0.00010 + L_Eknl: 0.49759 + L_Morse: 0.74243 + L_thetaHessian: 0.77219 + L_thetaNeighbor: 0.15488 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 2000.0], lr=5.000e-05
+Epoch: 0 [ 100/500 (20%)] Loss: 62.67761 = L_Mnfld: 24.28320 + L_NonMnfld: 0.07866 + L_Eknl: 23.83984 + L_Morse: 2.15894 + L_thetaHessian: 7.70616 + L_thetaNeighbor: 4.61081 + L_Guidance: 0.00000
+Epoch: 0 [ 100/500 (20%)] Unweighted L_s : L_Mnfld: 0.00347 + L_NonMnfld: 0.00013 + L_Eknl: 0.47680 + L_Morse: 0.71965 + L_thetaHessian: 0.77062 + L_thetaNeighbor: 0.15369 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.73009, 2000.0], lr=5.000e-05
+Epoch: 0 [ 110/500 (22%)] Loss: 61.01819 = L_Mnfld: 24.10012 + L_NonMnfld: 0.04193 + L_Eknl: 22.41606 + L_Morse: 1.97470 + L_thetaHessian: 7.89582 + L_thetaNeighbor: 4.58956 + L_Guidance: 0.00000
+Epoch: 0 [ 110/500 (22%)] Unweighted L_s : L_Mnfld: 0.00344 + L_NonMnfld: 0.00007 + L_Eknl: 0.44832 + L_Morse: 0.72331 + L_thetaHessian: 0.78958 + L_thetaNeighbor: 0.15299 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.4301900000000005, 2000.0], lr=5.000e-05
+Epoch: 0 [ 120/500 (24%)] Loss: 60.11494 = L_Mnfld: 23.89478 + L_NonMnfld: 0.07604 + L_Eknl: 21.96247 + L_Morse: 1.72354 + L_thetaHessian: 7.95962 + L_thetaNeighbor: 4.49850 + L_Guidance: 0.00000
+Epoch: 0 [ 120/500 (24%)] Unweighted L_s : L_Mnfld: 0.00341 + L_NonMnfld: 0.00013 + L_Eknl: 0.43925 + L_Morse: 0.70922 + L_thetaHessian: 0.79596 + L_thetaNeighbor: 0.14995 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.13029, 2000.0], lr=5.000e-05
+Epoch: 0 [ 130/500 (26%)] Loss: 56.41195 = L_Mnfld: 21.67980 + L_NonMnfld: 0.03041 + L_Eknl: 20.54725 + L_Morse: 1.55497 + L_thetaHessian: 8.09066 + L_thetaNeighbor: 4.50885 + L_Guidance: 0.00000
+Epoch: 0 [ 130/500 (26%)] Unweighted L_s : L_Mnfld: 0.00310 + L_NonMnfld: 0.00005 + L_Eknl: 0.41095 + L_Morse: 0.72994 + L_thetaHessian: 0.80907 + L_thetaNeighbor: 0.15030 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.8303899999999997, 2000.0], lr=5.000e-05
+Epoch: 0 [ 140/500 (28%)] Loss: 57.91468 = L_Mnfld: 23.90885 + L_NonMnfld: 0.03792 + L_Eknl: 20.05168 + L_Morse: 1.33914 + L_thetaHessian: 8.13261 + L_thetaNeighbor: 4.44447 + L_Guidance: 0.00000
+Epoch: 0 [ 140/500 (28%)] Unweighted L_s : L_Mnfld: 0.00342 + L_NonMnfld: 0.00006 + L_Eknl: 0.40103 + L_Morse: 0.73162 + L_thetaHessian: 0.81326 + L_thetaNeighbor: 0.14815 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.5304900000000004, 2000.0], lr=5.000e-05
+Epoch: 0 [ 150/500 (30%)] Loss: 53.57802 = L_Mnfld: 20.47988 + L_NonMnfld: 0.02648 + L_Eknl: 18.96798 + L_Morse: 1.16414 + L_thetaHessian: 8.36131 + L_thetaNeighbor: 4.57823 + L_Guidance: 0.00000
+Epoch: 0 [ 150/500 (30%)] Unweighted L_s : L_Mnfld: 0.00293 + L_NonMnfld: 0.00004 + L_Eknl: 0.37936 + L_Morse: 0.76063 + L_thetaHessian: 0.83613 + L_thetaNeighbor: 0.15261 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.2305900000000003, 2000.0], lr=5.000e-05
+Epoch: 0 [ 160/500 (32%)] Loss: 54.62224 = L_Mnfld: 22.29369 + L_NonMnfld: 0.04827 + L_Eknl: 18.52720 + L_Morse: 0.94581 + L_thetaHessian: 8.35264 + L_thetaNeighbor: 4.45463 + L_Guidance: 0.00000
+Epoch: 0 [ 160/500 (32%)] Unweighted L_s : L_Mnfld: 0.00318 + L_NonMnfld: 0.00008 + L_Eknl: 0.37054 + L_Morse: 0.76858 + L_thetaHessian: 0.83526 + L_thetaNeighbor: 0.14849 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.9306899999999998, 2000.0], lr=5.000e-05
+Epoch: 0 [ 170/500 (34%)] Loss: 51.12076 = L_Mnfld: 19.82092 + L_NonMnfld: 0.01949 + L_Eknl: 17.52342 + L_Morse: 0.75461 + L_thetaHessian: 8.58007 + L_thetaNeighbor: 4.42225 + L_Guidance: 0.00000
+Epoch: 0 [ 170/500 (34%)] Unweighted L_s : L_Mnfld: 0.00283 + L_NonMnfld: 0.00003 + L_Eknl: 0.35047 + L_Morse: 0.81080 + L_thetaHessian: 0.85801 + L_thetaNeighbor: 0.14741 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.6307900000000006, 2000.0], lr=5.000e-05
+Epoch: 0 [ 180/500 (36%)] Loss: 51.38638 = L_Mnfld: 20.51225 + L_NonMnfld: 0.03016 + L_Eknl: 17.40138 + L_Morse: 0.51583 + L_thetaHessian: 8.55612 + L_thetaNeighbor: 4.37064 + L_Guidance: 0.00000
+Epoch: 0 [ 180/500 (36%)] Unweighted L_s : L_Mnfld: 0.00293 + L_NonMnfld: 0.00005 + L_Eknl: 0.34803 + L_Morse: 0.81776 + L_thetaHessian: 0.85561 + L_thetaNeighbor: 0.14569 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.33089000000000013, 2000.0], lr=5.000e-05
+Epoch: 0 [ 190/500 (38%)] Loss: 49.37762 = L_Mnfld: 19.78172 + L_NonMnfld: 0.01882 + L_Eknl: 16.19709 + L_Morse: 0.28737 + L_thetaHessian: 8.77397 + L_thetaNeighbor: 4.31866 + L_Guidance: 0.00000
+Epoch: 0 [ 190/500 (38%)] Unweighted L_s : L_Mnfld: 0.00283 + L_NonMnfld: 0.00003 + L_Eknl: 0.32394 + L_Morse: 0.86847 + L_thetaHessian: 0.87740 + L_thetaNeighbor: 0.14396 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.030990000000000073, 2000.0], lr=5.000e-05
+Epoch: 0 [ 200/500 (40%)] Loss: 49.57002 = L_Mnfld: 20.32973 + L_NonMnfld: 0.02866 + L_Eknl: 16.01063 + L_Morse: 0.02782 + L_thetaHessian: 8.82444 + L_thetaNeighbor: 4.34873 + L_Guidance: 0.00000
+Epoch: 0 [ 200/500 (40%)] Unweighted L_s : L_Mnfld: 0.00290 + L_NonMnfld: 0.00005 + L_Eknl: 0.32021 + L_Morse: 0.89771 + L_thetaHessian: 0.88244 + L_thetaNeighbor: 0.14496 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00097, 2000.0], lr=5.000e-05
+Epoch: 0 [ 210/500 (42%)] Loss: 46.30114 = L_Mnfld: 17.63552 + L_NonMnfld: 0.01665 + L_Eknl: 15.24977 + L_Morse: 0.00091 + L_thetaHessian: 8.99907 + L_thetaNeighbor: 4.39922 + L_Guidance: 0.00000
+Epoch: 0 [ 210/500 (42%)] Unweighted L_s : L_Mnfld: 0.00252 + L_NonMnfld: 0.00003 + L_Eknl: 0.30500 + L_Morse: 0.93745 + L_thetaHessian: 0.89991 + L_thetaNeighbor: 0.14664 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0009366666666666667, 2000.0], lr=5.000e-05
+Epoch: 0 [ 220/500 (44%)] Loss: 48.62657 = L_Mnfld: 20.26617 + L_NonMnfld: 0.02291 + L_Eknl: 14.92505 + L_Morse: 0.00090 + L_thetaHessian: 9.09510 + L_thetaNeighbor: 4.31643 + L_Guidance: 0.00000
+Epoch: 0 [ 220/500 (44%)] Unweighted L_s : L_Mnfld: 0.00290 + L_NonMnfld: 0.00004 + L_Eknl: 0.29850 + L_Morse: 0.96503 + L_thetaHessian: 0.90951 + L_thetaNeighbor: 0.14388 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0009033333333333334, 2000.0], lr=5.000e-05
+Epoch: 0 [ 230/500 (46%)] Loss: 46.64518 = L_Mnfld: 19.08362 + L_NonMnfld: 0.01475 + L_Eknl: 14.07891 + L_Morse: 0.00091 + L_thetaHessian: 9.23218 + L_thetaNeighbor: 4.23481 + L_Guidance: 0.00000
+Epoch: 0 [ 230/500 (46%)] Unweighted L_s : L_Mnfld: 0.00273 + L_NonMnfld: 0.00002 + L_Eknl: 0.28158 + L_Morse: 1.00289 + L_thetaHessian: 0.92322 + L_thetaNeighbor: 0.14116 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0008700000000000001, 2000.0], lr=5.000e-05
+Epoch: 0 [ 240/500 (48%)] Loss: 45.96863 = L_Mnfld: 18.40697 + L_NonMnfld: 0.01857 + L_Eknl: 14.01649 + L_Morse: 0.00088 + L_thetaHessian: 9.30130 + L_thetaNeighbor: 4.22442 + L_Guidance: 0.00000
+Epoch: 0 [ 240/500 (48%)] Unweighted L_s : L_Mnfld: 0.00263 + L_NonMnfld: 0.00003 + L_Eknl: 0.28033 + L_Morse: 1.01683 + L_thetaHessian: 0.93013 + L_thetaNeighbor: 0.14081 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0008366666666666668, 2000.0], lr=5.000e-05
+Epoch: 0 [ 250/500 (50%)] Loss: 44.65529 = L_Mnfld: 17.57339 + L_NonMnfld: 0.01736 + L_Eknl: 13.37232 + L_Morse: 0.00088 + L_thetaHessian: 9.38550 + L_thetaNeighbor: 4.30583 + L_Guidance: 0.00000
+Epoch: 0 [ 250/500 (50%)] Unweighted L_s : L_Mnfld: 0.00251 + L_NonMnfld: 0.00003 + L_Eknl: 0.26745 + L_Morse: 1.04914 + L_thetaHessian: 0.93855 + L_thetaNeighbor: 0.14353 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0008033333333333334, 2000.0], lr=5.000e-05
+Epoch: 0 [ 260/500 (52%)] Loss: 45.84093 = L_Mnfld: 18.91307 + L_NonMnfld: 0.02010 + L_Eknl: 13.15092 + L_Morse: 0.00086 + L_thetaHessian: 9.44381 + L_thetaNeighbor: 4.31218 + L_Guidance: 0.00000
+Epoch: 0 [ 260/500 (52%)] Unweighted L_s : L_Mnfld: 0.00270 + L_NonMnfld: 0.00003 + L_Eknl: 0.26302 + L_Morse: 1.06552 + L_thetaHessian: 0.94438 + L_thetaNeighbor: 0.14374 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00077, 2000.0], lr=5.000e-05
+Epoch: 0 [ 270/500 (54%)] Loss: 44.29412 = L_Mnfld: 17.71895 + L_NonMnfld: 0.01089 + L_Eknl: 12.63990 + L_Morse: 0.00084 + L_thetaHessian: 9.57558 + L_thetaNeighbor: 4.34797 + L_Guidance: 0.00000
+Epoch: 0 [ 270/500 (54%)] Unweighted L_s : L_Mnfld: 0.00253 + L_NonMnfld: 0.00002 + L_Eknl: 0.25280 + L_Morse: 1.09101 + L_thetaHessian: 0.95756 + L_thetaNeighbor: 0.14493 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0007366666666666666, 2000.0], lr=5.000e-05
+Epoch: 0 [ 280/500 (56%)] Loss: 44.72089 = L_Mnfld: 18.40060 + L_NonMnfld: 0.01859 + L_Eknl: 12.57492 + L_Morse: 0.00081 + L_thetaHessian: 9.46538 + L_thetaNeighbor: 4.26058 + L_Guidance: 0.00000
+Epoch: 0 [ 280/500 (56%)] Unweighted L_s : L_Mnfld: 0.00263 + L_NonMnfld: 0.00003 + L_Eknl: 0.25150 + L_Morse: 1.10027 + L_thetaHessian: 0.94654 + L_thetaNeighbor: 0.14202 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0007033333333333334, 2000.0], lr=5.000e-05
+Epoch: 0 [ 290/500 (58%)] Loss: 42.71651 = L_Mnfld: 16.50574 + L_NonMnfld: 0.02897 + L_Eknl: 12.30596 + L_Morse: 0.00078 + L_thetaHessian: 9.55907 + L_thetaNeighbor: 4.31600 + L_Guidance: 0.00000
+Epoch: 0 [ 290/500 (58%)] Unweighted L_s : L_Mnfld: 0.00236 + L_NonMnfld: 0.00005 + L_Eknl: 0.24612 + L_Morse: 1.11356 + L_thetaHessian: 0.95591 + L_thetaNeighbor: 0.14387 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00067, 2000.0], lr=5.000e-05
+Epoch: 0 [ 300/500 (60%)] Loss: 44.58737 = L_Mnfld: 18.44947 + L_NonMnfld: 0.02174 + L_Eknl: 12.08698 + L_Morse: 0.00076 + L_thetaHessian: 9.62786 + L_thetaNeighbor: 4.40057 + L_Guidance: 0.00000
+Epoch: 0 [ 300/500 (60%)] Unweighted L_s : L_Mnfld: 0.00264 + L_NonMnfld: 0.00004 + L_Eknl: 0.24174 + L_Morse: 1.13543 + L_thetaHessian: 0.96279 + L_thetaNeighbor: 0.14669 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0006366666666666667, 2000.0], lr=5.000e-05
+Epoch: 0 [ 310/500 (62%)] Loss: 43.04027 = L_Mnfld: 17.64619 + L_NonMnfld: 0.01201 + L_Eknl: 11.57263 + L_Morse: 0.00074 + L_thetaHessian: 9.56958 + L_thetaNeighbor: 4.23913 + L_Guidance: 0.00000
+Epoch: 0 [ 310/500 (62%)] Unweighted L_s : L_Mnfld: 0.00252 + L_NonMnfld: 0.00002 + L_Eknl: 0.23145 + L_Morse: 1.15997 + L_thetaHessian: 0.95696 + L_thetaNeighbor: 0.14130 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0006033333333333333, 2000.0], lr=5.000e-05
+Epoch: 0 [ 320/500 (64%)] Loss: 42.90935 = L_Mnfld: 17.46193 + L_NonMnfld: 0.01801 + L_Eknl: 11.78845 + L_Morse: 0.00070 + L_thetaHessian: 9.47008 + L_thetaNeighbor: 4.17018 + L_Guidance: 0.00000
+Epoch: 0 [ 320/500 (64%)] Unweighted L_s : L_Mnfld: 0.00249 + L_NonMnfld: 0.00003 + L_Eknl: 0.23577 + L_Morse: 1.15589 + L_thetaHessian: 0.94701 + L_thetaNeighbor: 0.13901 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00057, 2000.0], lr=5.000e-05
+Epoch: 0 [ 330/500 (66%)] Loss: 41.71659 = L_Mnfld: 16.51106 + L_NonMnfld: 0.01710 + L_Eknl: 11.44402 + L_Morse: 0.00067 + L_thetaHessian: 9.54123 + L_thetaNeighbor: 4.20252 + L_Guidance: 0.00000
+Epoch: 0 [ 330/500 (66%)] Unweighted L_s : L_Mnfld: 0.00236 + L_NonMnfld: 0.00003 + L_Eknl: 0.22888 + L_Morse: 1.16971 + L_thetaHessian: 0.95412 + L_thetaNeighbor: 0.14008 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0005366666666666666, 2000.0], lr=5.000e-05
+Epoch: 0 [ 340/500 (68%)] Loss: 42.91947 = L_Mnfld: 18.01289 + L_NonMnfld: 0.01943 + L_Eknl: 11.11530 + L_Morse: 0.00064 + L_thetaHessian: 9.60655 + L_thetaNeighbor: 4.16465 + L_Guidance: 0.00000
+Epoch: 0 [ 340/500 (68%)] Unweighted L_s : L_Mnfld: 0.00257 + L_NonMnfld: 0.00003 + L_Eknl: 0.22231 + L_Morse: 1.20040 + L_thetaHessian: 0.96066 + L_thetaNeighbor: 0.13882 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0005033333333333335, 2000.0], lr=5.000e-05
+Epoch: 0 [ 350/500 (70%)] Loss: 42.57610 = L_Mnfld: 17.63087 + L_NonMnfld: 0.01200 + L_Eknl: 10.90489 + L_Morse: 0.00061 + L_thetaHessian: 9.63387 + L_thetaNeighbor: 4.39387 + L_Guidance: 0.00000
+Epoch: 0 [ 350/500 (70%)] Unweighted L_s : L_Mnfld: 0.00252 + L_NonMnfld: 0.00002 + L_Eknl: 0.21810 + L_Morse: 1.20362 + L_thetaHessian: 0.96339 + L_thetaNeighbor: 0.14646 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00047000000000000004, 2000.0], lr=5.000e-05
+Epoch: 0 [ 360/500 (72%)] Loss: 42.59491 = L_Mnfld: 17.36104 + L_NonMnfld: 0.01487 + L_Eknl: 11.00652 + L_Morse: 0.00057 + L_thetaHessian: 9.58629 + L_thetaNeighbor: 4.62561 + L_Guidance: 0.00000
+Epoch: 0 [ 360/500 (72%)] Unweighted L_s : L_Mnfld: 0.00248 + L_NonMnfld: 0.00002 + L_Eknl: 0.22013 + L_Morse: 1.20892 + L_thetaHessian: 0.95863 + L_thetaNeighbor: 0.15419 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0004366666666666667, 2000.0], lr=5.000e-05
+Epoch: 0 [ 370/500 (74%)] Loss: 43.56664 = L_Mnfld: 18.54071 + L_NonMnfld: 0.01449 + L_Eknl: 10.80283 + L_Morse: 0.00054 + L_thetaHessian: 9.71155 + L_thetaNeighbor: 4.49651 + L_Guidance: 0.00000
+Epoch: 0 [ 370/500 (74%)] Unweighted L_s : L_Mnfld: 0.00265 + L_NonMnfld: 0.00002 + L_Eknl: 0.21606 + L_Morse: 1.22640 + L_thetaHessian: 0.97115 + L_thetaNeighbor: 0.14988 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00040333333333333334, 2000.0], lr=5.000e-05
+Epoch: 0 [ 380/500 (76%)] Loss: 41.50196 = L_Mnfld: 16.73071 + L_NonMnfld: 0.02242 + L_Eknl: 10.78998 + L_Morse: 0.00050 + L_thetaHessian: 9.65700 + L_thetaNeighbor: 4.30135 + L_Guidance: 0.00000
+Epoch: 0 [ 380/500 (76%)] Unweighted L_s : L_Mnfld: 0.00239 + L_NonMnfld: 0.00004 + L_Eknl: 0.21580 + L_Morse: 1.23524 + L_thetaHessian: 0.96570 + L_thetaNeighbor: 0.14338 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00037, 2000.0], lr=5.000e-05
+Epoch: 0 [ 390/500 (78%)] Loss: 40.76891 = L_Mnfld: 16.39049 + L_NonMnfld: 0.00893 + L_Eknl: 10.50377 + L_Morse: 0.00046 + L_thetaHessian: 9.64216 + L_thetaNeighbor: 4.22311 + L_Guidance: 0.00000
+Epoch: 0 [ 390/500 (78%)] Unweighted L_s : L_Mnfld: 0.00234 + L_NonMnfld: 0.00001 + L_Eknl: 0.21008 + L_Morse: 1.24565 + L_thetaHessian: 0.96422 + L_thetaNeighbor: 0.14077 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00033666666666666665, 2000.0], lr=5.000e-05
+Epoch: 0 [ 400/500 (80%)] Loss: 40.19506 = L_Mnfld: 16.12425 + L_NonMnfld: 0.01494 + L_Eknl: 10.32442 + L_Morse: 0.00043 + L_thetaHessian: 9.57954 + L_thetaNeighbor: 4.15149 + L_Guidance: 0.00000
+Epoch: 0 [ 400/500 (80%)] Unweighted L_s : L_Mnfld: 0.00230 + L_NonMnfld: 0.00002 + L_Eknl: 0.20649 + L_Morse: 1.26625 + L_thetaHessian: 0.95795 + L_thetaNeighbor: 0.13838 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0003033333333333335, 2000.0], lr=5.000e-05
+Epoch: 0 [ 410/500 (82%)] Loss: 39.28115 = L_Mnfld: 15.49969 + L_NonMnfld: 0.01361 + L_Eknl: 10.21425 + L_Morse: 0.00038 + L_thetaHessian: 9.49448 + L_thetaNeighbor: 4.05874 + L_Guidance: 0.00000
+Epoch: 0 [ 410/500 (82%)] Unweighted L_s : L_Mnfld: 0.00221 + L_NonMnfld: 0.00002 + L_Eknl: 0.20428 + L_Morse: 1.25850 + L_thetaHessian: 0.94945 + L_thetaNeighbor: 0.13529 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00027000000000000006, 2000.0], lr=5.000e-05
+Epoch: 0 [ 420/500 (84%)] Loss: 39.72837 = L_Mnfld: 16.01479 + L_NonMnfld: 0.01752 + L_Eknl: 10.16720 + L_Morse: 0.00035 + L_thetaHessian: 9.44761 + L_thetaNeighbor: 4.08091 + L_Guidance: 0.00000
+Epoch: 0 [ 420/500 (84%)] Unweighted L_s : L_Mnfld: 0.00229 + L_NonMnfld: 0.00003 + L_Eknl: 0.20334 + L_Morse: 1.29031 + L_thetaHessian: 0.94476 + L_thetaNeighbor: 0.13603 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0002366666666666667, 2000.0], lr=5.000e-05
+Epoch: 0 [ 430/500 (86%)] Loss: 39.46217 = L_Mnfld: 15.63266 + L_NonMnfld: 0.00851 + L_Eknl: 10.05673 + L_Morse: 0.00031 + L_thetaHessian: 9.55795 + L_thetaNeighbor: 4.20602 + L_Guidance: 0.00000
+Epoch: 0 [ 430/500 (86%)] Unweighted L_s : L_Mnfld: 0.00223 + L_NonMnfld: 0.00001 + L_Eknl: 0.20113 + L_Morse: 1.29337 + L_thetaHessian: 0.95579 + L_thetaNeighbor: 0.14020 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00020333333333333336, 2000.0], lr=5.000e-05
+Epoch: 0 [ 440/500 (88%)] Loss: 39.84984 = L_Mnfld: 16.30491 + L_NonMnfld: 0.01232 + L_Eknl: 10.09335 + L_Morse: 0.00027 + L_thetaHessian: 9.39681 + L_thetaNeighbor: 4.04219 + L_Guidance: 0.00000
+Epoch: 0 [ 440/500 (88%)] Unweighted L_s : L_Mnfld: 0.00233 + L_NonMnfld: 0.00002 + L_Eknl: 0.20187 + L_Morse: 1.30417 + L_thetaHessian: 0.93968 + L_thetaNeighbor: 0.13474 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00017, 2000.0], lr=5.000e-05
+Epoch: 0 [ 450/500 (90%)] Loss: 39.40322 = L_Mnfld: 15.53366 + L_NonMnfld: 0.00848 + L_Eknl: 9.85660 + L_Morse: 0.00022 + L_thetaHessian: 9.61195 + L_thetaNeighbor: 4.39232 + L_Guidance: 0.00000
+Epoch: 0 [ 450/500 (90%)] Unweighted L_s : L_Mnfld: 0.00222 + L_NonMnfld: 0.00001 + L_Eknl: 0.19713 + L_Morse: 1.29822 + L_thetaHessian: 0.96119 + L_thetaNeighbor: 0.14641 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00013666666666666666, 2000.0], lr=5.000e-05
+Epoch: 0 [ 460/500 (92%)] Loss: 39.85448 = L_Mnfld: 16.61357 + L_NonMnfld: 0.01707 + L_Eknl: 9.72582 + L_Morse: 0.00018 + L_thetaHessian: 9.36013 + L_thetaNeighbor: 4.13771 + L_Guidance: 0.00000
+Epoch: 0 [ 460/500 (92%)] Unweighted L_s : L_Mnfld: 0.00237 + L_NonMnfld: 0.00003 + L_Eknl: 0.19452 + L_Morse: 1.32028 + L_thetaHessian: 0.93601 + L_thetaNeighbor: 0.13792 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00010333333333333342, 2000.0], lr=5.000e-05
+Epoch: 0 [ 470/500 (94%)] Loss: 50.37557 = L_Mnfld: 25.97277 + L_NonMnfld: 0.01384 + L_Eknl: 9.72316 + L_Morse: 0.00013 + L_thetaHessian: 9.74978 + L_thetaNeighbor: 4.91589 + L_Guidance: 0.00000
+Epoch: 0 [ 470/500 (94%)] Unweighted L_s : L_Mnfld: 0.00371 + L_NonMnfld: 0.00002 + L_Eknl: 0.19446 + L_Morse: 1.30255 + L_thetaHessian: 0.97498 + L_thetaNeighbor: 0.16386 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 7.000000000000018e-05, 2000.0], lr=5.000e-05
+Epoch: 0 [ 480/500 (96%)] Loss: 52.27588 = L_Mnfld: 27.71794 + L_NonMnfld: 0.01392 + L_Eknl: 9.96760 + L_Morse: 0.00009 + L_thetaHessian: 9.83267 + L_thetaNeighbor: 4.74365 + L_Guidance: 0.00000
+Epoch: 0 [ 480/500 (96%)] Unweighted L_s : L_Mnfld: 0.00396 + L_NonMnfld: 0.00002 + L_Eknl: 0.19935 + L_Morse: 1.33500 + L_thetaHessian: 0.98327 + L_thetaNeighbor: 0.15812 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.666666666666673e-05, 2000.0], lr=5.000e-05
+Epoch: 0 [ 490/500 (98%)] Loss: 55.42089 = L_Mnfld: 29.68659 + L_NonMnfld: 0.01903 + L_Eknl: 10.72078 + L_Morse: 0.00005 + L_thetaHessian: 10.30072 + L_thetaNeighbor: 4.69372 + L_Guidance: 0.00000
+Epoch: 0 [ 490/500 (98%)] Unweighted L_s : L_Mnfld: 0.00424 + L_NonMnfld: 0.00003 + L_Eknl: 0.21442 + L_Morse: 1.32420 + L_thetaHessian: 1.03007 + L_thetaNeighbor: 0.15646 + L_Guidance: 0.00000
+
+input params: 
+Namespace(logdir='/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/neurcross_logs', model_name='model', seed=3627473, data_path='/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/processed_meshes/bimba.obj', n_samples=500, n_points=3000, grid_res=256, nonmnfld_sample_type='gaussian', num_epochs=1, lr=5e-05, grad_clip_norm=10.0, batch_size=1, num_workers=0, load_path=None, init_type='siren', decoder_hidden_dim=256, decoder_n_hidden_layers=4, latent_size=0, nl='sine', sphere_init_params=[1.6, 0.1], udf=False, output_any=False, loss_type='siren_wo_n_w_morse_w_theta', decay_params=[3, 0.2, 3, 0.4, 0.001, 0], morse_type='l1', morse_decay='linear', loss_weights=[7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 2000.0], guidance_mode='none', part_feat_path=None, instruction_meta_path=None, semantic_gradient_method='jacobian', semantic_boundary_weight=2.0, semantic_intra_weight=1.0, semantic_neighbor_weight=1.0, semantic_cross_part_gamma=0.2, semantic_boundary_reward=0.0, semantic_pca_dim=0, semantic_normalize_features=1, semantic_distance_sigma=0.0, semantic_diversity_weight=0.5, semantic_diversity_margin=0.3, semantic_soft_boundary_temp=0.1, semantic_soft_boundary_chunk_size=1024, alignment_margin=0.0, semantic_spatial_cluster_weight=0.0, intra_temperature=1.0, intra_hard_ratio=0.0, instruction_boundary_weight=1.5, instruction_intra_weight=1.0, instruction_cross_instance_gamma=0.4, instruction_operation_align_weight=1.0, instruction_anchor_weight=0.3, guidance_warmup_fraction=0.15, guidance_cap_ratio=0.5, guidance_eikonal_guard=0.0, guidance_warmup_type='linear', morse_near=True, weight_for_morse=False, use_morse_nonmnfld_grad=True, relax_morse=0.5, use_vertices=False, featureLine_threshold=1.0)
+decoder initialising with sine and siren
+==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+Decoder                                  [1, 1024, 1]              --
+├─FCBlock: 1-1                           [1, 1024, 1]              --
+│    └─Sequential: 2-1                   --                        --
+│    │    └─Sequential: 3-1              [1, 1024, 256]            1,024
+│    │    └─Sequential: 3-8              --                        (recursive)
+│    │    └─Sequential: 3-3              [1, 1024, 256]            65,792
+│    │    └─Sequential: 3-8              --                        (recursive)
+│    │    └─Sequential: 3-5              [1, 1024, 256]            65,792
+│    │    └─Sequential: 3-8              --                        (recursive)
+│    │    └─Sequential: 3-7              [1, 1024, 256]            65,792
+│    │    └─Sequential: 3-8              --                        (recursive)
+│    │    └─Sequential: 3-9              [1, 1024, 256]            65,792
+│    │    └─Sequential: 3-10             [1, 1024, 1]              257
+├─Identity: 1-2                          [1, 1024, 1]              --
+==========================================================================================
+Total params: 264,449
+Trainable params: 264,449
+Non-trainable params: 0
+Total mult-adds (M): 0.26
+==========================================================================================
+Input size (MB): 0.01
+Forward/backward pass size (MB): 10.49
+Params size (MB): 1.06
+Estimated Total Size (MB): 11.56
+==========================================================================================
+Number of parameters in the current model:4374082
+n_iterations:  500
+Guidance mode: none
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 2000.0], lr=5.000e-05
+Epoch: 0 [   0/500 (0%)] Loss: 692.10968 = L_Mnfld: 635.34258 + L_NonMnfld: 0.57347 + L_Eknl: 34.93221 + L_Morse: 3.61771 + L_thetaHessian: 13.40144 + L_thetaNeighbor: 4.24226 + L_Guidance: 0.00000
+Epoch: 0 [   0/500 (0%)] Unweighted L_s : L_Mnfld: 0.09076 + L_NonMnfld: 0.00096 + L_Eknl: 0.69864 + L_Morse: 1.20590 + L_thetaHessian: 1.34014 + L_thetaNeighbor: 0.14141 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 240.0], lr=5.000e-05
+Epoch: 0 [  10/500 (2%)] Loss: 378.76004 = L_Mnfld: 122.96418 + L_NonMnfld: 207.61621 + L_Eknl: 34.95031 + L_Morse: 3.64103 + L_thetaHessian: 7.42828 + L_thetaNeighbor: 2.16002 + L_Guidance: 0.00000
+Epoch: 0 [  10/500 (2%)] Unweighted L_s : L_Mnfld: 0.01757 + L_NonMnfld: 0.34603 + L_Eknl: 0.69901 + L_Morse: 1.21368 + L_thetaHessian: 0.74283 + L_thetaNeighbor: 0.07200 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 506.6666666666667], lr=5.000e-05
+Epoch: 0 [  20/500 (4%)] Loss: 154.73955 = L_Mnfld: 100.55344 + L_NonMnfld: 3.27795 + L_Eknl: 34.58702 + L_Morse: 4.38702 + L_thetaHessian: 10.46098 + L_thetaNeighbor: 1.47314 + L_Guidance: 0.00000
+Epoch: 0 [  20/500 (4%)] Unweighted L_s : L_Mnfld: 0.01436 + L_NonMnfld: 0.00546 + L_Eknl: 0.69174 + L_Morse: 1.46234 + L_thetaHessian: 1.04610 + L_thetaNeighbor: 0.04910 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 773.3333333333335], lr=5.000e-05
+Epoch: 0 [  30/500 (6%)] Loss: 138.45126 = L_Mnfld: 80.21025 + L_NonMnfld: 5.59715 + L_Eknl: 33.86721 + L_Morse: 4.64629 + L_thetaHessian: 12.46894 + L_thetaNeighbor: 1.66146 + L_Guidance: 0.00000
+Epoch: 0 [  30/500 (6%)] Unweighted L_s : L_Mnfld: 0.01146 + L_NonMnfld: 0.00933 + L_Eknl: 0.67734 + L_Morse: 1.54876 + L_thetaHessian: 1.24689 + L_thetaNeighbor: 0.05538 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 1040.0], lr=5.000e-05
+Epoch: 0 [  40/500 (8%)] Loss: 87.17213 = L_Mnfld: 40.71155 + L_NonMnfld: 0.58247 + L_Eknl: 33.82379 + L_Morse: 4.49441 + L_thetaHessian: 6.37762 + L_thetaNeighbor: 1.18228 + L_Guidance: 0.00000
+Epoch: 0 [  40/500 (8%)] Unweighted L_s : L_Mnfld: 0.00582 + L_NonMnfld: 0.00097 + L_Eknl: 0.67648 + L_Morse: 1.49814 + L_thetaHessian: 0.63776 + L_thetaNeighbor: 0.03941 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 1306.666666666667], lr=5.000e-05
+Epoch: 0 [  50/500 (10%)] Loss: 83.87905 = L_Mnfld: 38.90267 + L_NonMnfld: 0.43067 + L_Eknl: 34.05238 + L_Morse: 3.96896 + L_thetaHessian: 5.11083 + L_thetaNeighbor: 1.41355 + L_Guidance: 0.00000
+Epoch: 0 [  50/500 (10%)] Unweighted L_s : L_Mnfld: 0.00556 + L_NonMnfld: 0.00072 + L_Eknl: 0.68105 + L_Morse: 1.32299 + L_thetaHessian: 0.51108 + L_thetaNeighbor: 0.04712 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 1573.3333333333333], lr=5.000e-05
+Epoch: 0 [  60/500 (12%)] Loss: 93.51009 = L_Mnfld: 49.77864 + L_NonMnfld: 0.95607 + L_Eknl: 33.37662 + L_Morse: 3.77597 + L_thetaHessian: 4.34346 + L_thetaNeighbor: 1.27934 + L_Guidance: 0.00000
+Epoch: 0 [  60/500 (12%)] Unweighted L_s : L_Mnfld: 0.00711 + L_NonMnfld: 0.00159 + L_Eknl: 0.66753 + L_Morse: 1.25866 + L_thetaHessian: 0.43435 + L_thetaNeighbor: 0.04264 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 1840.0000000000002], lr=5.000e-05
+Epoch: 0 [  70/500 (14%)] Loss: 66.35011 = L_Mnfld: 24.30567 + L_NonMnfld: 0.27843 + L_Eknl: 32.22429 + L_Morse: 3.59837 + L_thetaHessian: 4.78786 + L_thetaNeighbor: 1.15548 + L_Guidance: 0.00000
+Epoch: 0 [  70/500 (14%)] Unweighted L_s : L_Mnfld: 0.00347 + L_NonMnfld: 0.00046 + L_Eknl: 0.64449 + L_Morse: 1.19946 + L_thetaHessian: 0.47879 + L_thetaNeighbor: 0.03852 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 2000.0], lr=5.000e-05
+Epoch: 0 [  80/500 (16%)] Loss: 69.45070 = L_Mnfld: 27.76482 + L_NonMnfld: 0.27444 + L_Eknl: 31.66403 + L_Morse: 3.42323 + L_thetaHessian: 5.23646 + L_thetaNeighbor: 1.08772 + L_Guidance: 0.00000
+Epoch: 0 [  80/500 (16%)] Unweighted L_s : L_Mnfld: 0.00397 + L_NonMnfld: 0.00046 + L_Eknl: 0.63328 + L_Morse: 1.14108 + L_thetaHessian: 0.52365 + L_thetaNeighbor: 0.03626 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 2000.0], lr=5.000e-05
+Epoch: 0 [  90/500 (18%)] Loss: 81.57069 = L_Mnfld: 42.25617 + L_NonMnfld: 0.44413 + L_Eknl: 30.39196 + L_Morse: 3.37442 + L_thetaHessian: 4.08974 + L_thetaNeighbor: 1.01426 + L_Guidance: 0.00000
+Epoch: 0 [  90/500 (18%)] Unweighted L_s : L_Mnfld: 0.00604 + L_NonMnfld: 0.00074 + L_Eknl: 0.60784 + L_Morse: 1.12481 + L_thetaHessian: 0.40897 + L_thetaNeighbor: 0.03381 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.0, 2000.0], lr=5.000e-05
+Epoch: 0 [ 100/500 (20%)] Loss: 56.31325 = L_Mnfld: 18.17267 + L_NonMnfld: 0.17297 + L_Eknl: 29.30194 + L_Morse: 3.31987 + L_thetaHessian: 4.23559 + L_thetaNeighbor: 1.11021 + L_Guidance: 0.00000
+Epoch: 0 [ 100/500 (20%)] Unweighted L_s : L_Mnfld: 0.00260 + L_NonMnfld: 0.00029 + L_Eknl: 0.58604 + L_Morse: 1.10662 + L_thetaHessian: 0.42356 + L_thetaNeighbor: 0.03701 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.73009, 2000.0], lr=5.000e-05
+Epoch: 0 [ 110/500 (22%)] Loss: 62.25378 = L_Mnfld: 25.22317 + L_NonMnfld: 0.18761 + L_Eknl: 28.25272 + L_Morse: 2.96622 + L_thetaHessian: 4.50182 + L_thetaNeighbor: 1.12223 + L_Guidance: 0.00000
+Epoch: 0 [ 110/500 (22%)] Unweighted L_s : L_Mnfld: 0.00360 + L_NonMnfld: 0.00031 + L_Eknl: 0.56505 + L_Morse: 1.08649 + L_thetaHessian: 0.45018 + L_thetaNeighbor: 0.03741 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.4301900000000005, 2000.0], lr=5.000e-05
+Epoch: 0 [ 120/500 (24%)] Loss: 71.15601 = L_Mnfld: 36.16428 + L_NonMnfld: 0.27390 + L_Eknl: 27.08764 + L_Morse: 2.67501 + L_thetaHessian: 3.91197 + L_thetaNeighbor: 1.04320 + L_Guidance: 0.00000
+Epoch: 0 [ 120/500 (24%)] Unweighted L_s : L_Mnfld: 0.00517 + L_NonMnfld: 0.00046 + L_Eknl: 0.54175 + L_Morse: 1.10074 + L_thetaHessian: 0.39120 + L_thetaNeighbor: 0.03477 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 2.13029, 2000.0], lr=5.000e-05
+Epoch: 0 [ 130/500 (26%)] Loss: 68.27093 = L_Mnfld: 33.61774 + L_NonMnfld: 0.11284 + L_Eknl: 25.64405 + L_Morse: 2.36968 + L_thetaHessian: 5.34375 + L_thetaNeighbor: 1.18287 + L_Guidance: 0.00000
+Epoch: 0 [ 130/500 (26%)] Unweighted L_s : L_Mnfld: 0.00480 + L_NonMnfld: 0.00019 + L_Eknl: 0.51288 + L_Morse: 1.11238 + L_thetaHessian: 0.53437 + L_thetaNeighbor: 0.03943 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.8303899999999997, 2000.0], lr=5.000e-05
+Epoch: 0 [ 140/500 (28%)] Loss: 79.76404 = L_Mnfld: 46.75065 + L_NonMnfld: 0.15050 + L_Eknl: 24.84353 + L_Morse: 2.06660 + L_thetaHessian: 4.63069 + L_thetaNeighbor: 1.32207 + L_Guidance: 0.00000
+Epoch: 0 [ 140/500 (28%)] Unweighted L_s : L_Mnfld: 0.00668 + L_NonMnfld: 0.00025 + L_Eknl: 0.49687 + L_Morse: 1.12905 + L_thetaHessian: 0.46307 + L_thetaNeighbor: 0.04407 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.5304900000000004, 2000.0], lr=5.000e-05
+Epoch: 0 [ 150/500 (30%)] Loss: 68.69850 = L_Mnfld: 37.03312 + L_NonMnfld: 0.09711 + L_Eknl: 22.69693 + L_Morse: 1.85590 + L_thetaHessian: 4.58637 + L_thetaNeighbor: 2.42907 + L_Guidance: 0.00000
+Epoch: 0 [ 150/500 (30%)] Unweighted L_s : L_Mnfld: 0.00529 + L_NonMnfld: 0.00016 + L_Eknl: 0.45394 + L_Morse: 1.21262 + L_thetaHessian: 0.45864 + L_thetaNeighbor: 0.08097 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 1.2305900000000003, 2000.0], lr=5.000e-05
+Epoch: 0 [ 160/500 (32%)] Loss: 51.06027 = L_Mnfld: 22.66313 + L_NonMnfld: 0.06859 + L_Eknl: 20.74684 + L_Morse: 1.56835 + L_thetaHessian: 4.81393 + L_thetaNeighbor: 1.19943 + L_Guidance: 0.00000
+Epoch: 0 [ 160/500 (32%)] Unweighted L_s : L_Mnfld: 0.00324 + L_NonMnfld: 0.00011 + L_Eknl: 0.41494 + L_Morse: 1.27447 + L_thetaHessian: 0.48139 + L_thetaNeighbor: 0.03998 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.9306899999999998, 2000.0], lr=5.000e-05
+Epoch: 0 [ 170/500 (34%)] Loss: 62.37449 = L_Mnfld: 35.16480 + L_NonMnfld: 0.07889 + L_Eknl: 19.06426 + L_Morse: 1.27725 + L_thetaHessian: 5.55777 + L_thetaNeighbor: 1.23152 + L_Guidance: 0.00000
+Epoch: 0 [ 170/500 (34%)] Unweighted L_s : L_Mnfld: 0.00502 + L_NonMnfld: 0.00013 + L_Eknl: 0.38129 + L_Morse: 1.37237 + L_thetaHessian: 0.55578 + L_thetaNeighbor: 0.04105 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.6307900000000006, 2000.0], lr=5.000e-05
+Epoch: 0 [ 180/500 (36%)] Loss: 49.61925 = L_Mnfld: 24.79914 + L_NonMnfld: 0.05618 + L_Eknl: 17.66223 + L_Morse: 0.87186 + L_thetaHessian: 5.15481 + L_thetaNeighbor: 1.07501 + L_Guidance: 0.00000
+Epoch: 0 [ 180/500 (36%)] Unweighted L_s : L_Mnfld: 0.00354 + L_NonMnfld: 0.00009 + L_Eknl: 0.35324 + L_Morse: 1.38217 + L_thetaHessian: 0.51548 + L_thetaNeighbor: 0.03583 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.33089000000000013, 2000.0], lr=5.000e-05
+Epoch: 0 [ 190/500 (38%)] Loss: 45.04668 = L_Mnfld: 21.25483 + L_NonMnfld: 0.09426 + L_Eknl: 17.30363 + L_Morse: 0.46402 + L_thetaHessian: 4.96556 + L_thetaNeighbor: 0.96439 + L_Guidance: 0.00000
+Epoch: 0 [ 190/500 (38%)] Unweighted L_s : L_Mnfld: 0.00304 + L_NonMnfld: 0.00016 + L_Eknl: 0.34607 + L_Morse: 1.40235 + L_thetaHessian: 0.49656 + L_thetaNeighbor: 0.03215 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.030990000000000073, 2000.0], lr=5.000e-05
+Epoch: 0 [ 200/500 (40%)] Loss: 39.62025 = L_Mnfld: 17.44352 + L_NonMnfld: 0.04774 + L_Eknl: 16.06352 + L_Morse: 0.04540 + L_thetaHessian: 4.98186 + L_thetaNeighbor: 1.03821 + L_Guidance: 0.00000
+Epoch: 0 [ 200/500 (40%)] Unweighted L_s : L_Mnfld: 0.00249 + L_NonMnfld: 0.00008 + L_Eknl: 0.32127 + L_Morse: 1.46495 + L_thetaHessian: 0.49819 + L_thetaNeighbor: 0.03461 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00097, 2000.0], lr=5.000e-05
+Epoch: 0 [ 210/500 (42%)] Loss: 38.61438 = L_Mnfld: 16.88206 + L_NonMnfld: 0.04606 + L_Eknl: 15.70619 + L_Morse: 0.00144 + L_thetaHessian: 4.98199 + L_thetaNeighbor: 0.99664 + L_Guidance: 0.00000
+Epoch: 0 [ 210/500 (42%)] Unweighted L_s : L_Mnfld: 0.00241 + L_NonMnfld: 0.00008 + L_Eknl: 0.31412 + L_Morse: 1.48337 + L_thetaHessian: 0.49820 + L_thetaNeighbor: 0.03322 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0009366666666666667, 2000.0], lr=5.000e-05
+Epoch: 0 [ 220/500 (44%)] Loss: 35.86970 = L_Mnfld: 14.81860 + L_NonMnfld: 0.02817 + L_Eknl: 14.97044 + L_Morse: 0.00143 + L_thetaHessian: 5.06626 + L_thetaNeighbor: 0.98479 + L_Guidance: 0.00000
+Epoch: 0 [ 220/500 (44%)] Unweighted L_s : L_Mnfld: 0.00212 + L_NonMnfld: 0.00005 + L_Eknl: 0.29941 + L_Morse: 1.52990 + L_thetaHessian: 0.50663 + L_thetaNeighbor: 0.03283 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0009033333333333334, 2000.0], lr=5.000e-05
+Epoch: 0 [ 230/500 (46%)] Loss: 37.09362 = L_Mnfld: 15.96732 + L_NonMnfld: 0.05451 + L_Eknl: 15.07614 + L_Morse: 0.00139 + L_thetaHessian: 5.01334 + L_thetaNeighbor: 0.98093 + L_Guidance: 0.00000
+Epoch: 0 [ 230/500 (46%)] Unweighted L_s : L_Mnfld: 0.00228 + L_NonMnfld: 0.00009 + L_Eknl: 0.30152 + L_Morse: 1.53897 + L_thetaHessian: 0.50133 + L_thetaNeighbor: 0.03270 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0008700000000000001, 2000.0], lr=5.000e-05
+Epoch: 0 [ 240/500 (48%)] Loss: 34.51267 = L_Mnfld: 14.18992 + L_NonMnfld: 0.04302 + L_Eknl: 14.25774 + L_Morse: 0.00137 + L_thetaHessian: 5.09766 + L_thetaNeighbor: 0.92296 + L_Guidance: 0.00000
+Epoch: 0 [ 240/500 (48%)] Unweighted L_s : L_Mnfld: 0.00203 + L_NonMnfld: 0.00007 + L_Eknl: 0.28515 + L_Morse: 1.57724 + L_thetaHessian: 0.50977 + L_thetaNeighbor: 0.03077 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0008366666666666668, 2000.0], lr=5.000e-05
+Epoch: 0 [ 250/500 (50%)] Loss: 35.50614 = L_Mnfld: 15.29799 + L_NonMnfld: 0.04504 + L_Eknl: 13.98204 + L_Morse: 0.00133 + L_thetaHessian: 5.17315 + L_thetaNeighbor: 1.00659 + L_Guidance: 0.00000
+Epoch: 0 [ 250/500 (50%)] Unweighted L_s : L_Mnfld: 0.00219 + L_NonMnfld: 0.00008 + L_Eknl: 0.27964 + L_Morse: 1.59278 + L_thetaHessian: 0.51731 + L_thetaNeighbor: 0.03355 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0008033333333333334, 2000.0], lr=5.000e-05
+Epoch: 0 [ 260/500 (52%)] Loss: 33.31686 = L_Mnfld: 13.32704 + L_NonMnfld: 0.03284 + L_Eknl: 13.77845 + L_Morse: 0.00129 + L_thetaHessian: 5.19584 + L_thetaNeighbor: 0.98139 + L_Guidance: 0.00000
+Epoch: 0 [ 260/500 (52%)] Unweighted L_s : L_Mnfld: 0.00190 + L_NonMnfld: 0.00005 + L_Eknl: 0.27557 + L_Morse: 1.61051 + L_thetaHessian: 0.51958 + L_thetaNeighbor: 0.03271 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00077, 2000.0], lr=5.000e-05
+Epoch: 0 [ 270/500 (54%)] Loss: 35.65462 = L_Mnfld: 15.77327 + L_NonMnfld: 0.07298 + L_Eknl: 13.66154 + L_Morse: 0.00125 + L_thetaHessian: 5.22813 + L_thetaNeighbor: 0.91746 + L_Guidance: 0.00000
+Epoch: 0 [ 270/500 (54%)] Unweighted L_s : L_Mnfld: 0.00225 + L_NonMnfld: 0.00012 + L_Eknl: 0.27323 + L_Morse: 1.62112 + L_thetaHessian: 0.52281 + L_thetaNeighbor: 0.03058 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0007366666666666666, 2000.0], lr=5.000e-05
+Epoch: 0 [ 280/500 (56%)] Loss: 32.09704 = L_Mnfld: 12.75370 + L_NonMnfld: 0.03543 + L_Eknl: 13.07644 + L_Morse: 0.00121 + L_thetaHessian: 5.29871 + L_thetaNeighbor: 0.93154 + L_Guidance: 0.00000
+Epoch: 0 [ 280/500 (56%)] Unweighted L_s : L_Mnfld: 0.00182 + L_NonMnfld: 0.00006 + L_Eknl: 0.26153 + L_Morse: 1.64740 + L_thetaHessian: 0.52987 + L_thetaNeighbor: 0.03105 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0007033333333333334, 2000.0], lr=5.000e-05
+Epoch: 0 [ 290/500 (58%)] Loss: 34.06067 = L_Mnfld: 15.05580 + L_NonMnfld: 0.03221 + L_Eknl: 12.71183 + L_Morse: 0.00117 + L_thetaHessian: 5.31870 + L_thetaNeighbor: 0.94095 + L_Guidance: 0.00000
+Epoch: 0 [ 290/500 (58%)] Unweighted L_s : L_Mnfld: 0.00215 + L_NonMnfld: 0.00005 + L_Eknl: 0.25424 + L_Morse: 1.66904 + L_thetaHessian: 0.53187 + L_thetaNeighbor: 0.03136 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00067, 2000.0], lr=5.000e-05
+Epoch: 0 [ 300/500 (60%)] Loss: 32.02545 = L_Mnfld: 13.28364 + L_NonMnfld: 0.04028 + L_Eknl: 12.37832 + L_Morse: 0.00113 + L_thetaHessian: 5.39217 + L_thetaNeighbor: 0.92991 + L_Guidance: 0.00000
+Epoch: 0 [ 300/500 (60%)] Unweighted L_s : L_Mnfld: 0.00190 + L_NonMnfld: 0.00007 + L_Eknl: 0.24757 + L_Morse: 1.68583 + L_thetaHessian: 0.53922 + L_thetaNeighbor: 0.03100 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0006366666666666667, 2000.0], lr=5.000e-05
+Epoch: 0 [ 310/500 (62%)] Loss: 34.06596 = L_Mnfld: 14.99993 + L_NonMnfld: 0.05324 + L_Eknl: 12.54173 + L_Morse: 0.00108 + L_thetaHessian: 5.53692 + L_thetaNeighbor: 0.93308 + L_Guidance: 0.00000
+Epoch: 0 [ 310/500 (62%)] Unweighted L_s : L_Mnfld: 0.00214 + L_NonMnfld: 0.00009 + L_Eknl: 0.25083 + L_Morse: 1.68909 + L_thetaHessian: 0.55369 + L_thetaNeighbor: 0.03110 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0006033333333333333, 2000.0], lr=5.000e-05
+Epoch: 0 [ 320/500 (64%)] Loss: 31.52500 = L_Mnfld: 12.88442 + L_NonMnfld: 0.03630 + L_Eknl: 12.18594 + L_Morse: 0.00103 + L_thetaHessian: 5.41975 + L_thetaNeighbor: 0.99757 + L_Guidance: 0.00000
+Epoch: 0 [ 320/500 (64%)] Unweighted L_s : L_Mnfld: 0.00184 + L_NonMnfld: 0.00006 + L_Eknl: 0.24372 + L_Morse: 1.70270 + L_thetaHessian: 0.54197 + L_thetaNeighbor: 0.03325 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00057, 2000.0], lr=5.000e-05
+Epoch: 0 [ 330/500 (66%)] Loss: 32.81992 = L_Mnfld: 14.37876 + L_NonMnfld: 0.03789 + L_Eknl: 11.95728 + L_Morse: 0.00098 + L_thetaHessian: 5.52487 + L_thetaNeighbor: 0.92014 + L_Guidance: 0.00000
+Epoch: 0 [ 330/500 (66%)] Unweighted L_s : L_Mnfld: 0.00205 + L_NonMnfld: 0.00006 + L_Eknl: 0.23915 + L_Morse: 1.71731 + L_thetaHessian: 0.55249 + L_thetaNeighbor: 0.03067 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0005366666666666666, 2000.0], lr=5.000e-05
+Epoch: 0 [ 340/500 (68%)] Loss: 30.83639 = L_Mnfld: 12.56914 + L_NonMnfld: 0.03930 + L_Eknl: 11.71469 + L_Morse: 0.00093 + L_thetaHessian: 5.50859 + L_thetaNeighbor: 1.00374 + L_Guidance: 0.00000
+Epoch: 0 [ 340/500 (68%)] Unweighted L_s : L_Mnfld: 0.00180 + L_NonMnfld: 0.00007 + L_Eknl: 0.23429 + L_Morse: 1.73393 + L_thetaHessian: 0.55086 + L_thetaNeighbor: 0.03346 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0005033333333333335, 2000.0], lr=5.000e-05
+Epoch: 0 [ 350/500 (70%)] Loss: 32.53134 = L_Mnfld: 14.23638 + L_NonMnfld: 0.06108 + L_Eknl: 11.75696 + L_Morse: 0.00088 + L_thetaHessian: 5.51247 + L_thetaNeighbor: 0.96358 + L_Guidance: 0.00000
+Epoch: 0 [ 350/500 (70%)] Unweighted L_s : L_Mnfld: 0.00203 + L_NonMnfld: 0.00010 + L_Eknl: 0.23514 + L_Morse: 1.74353 + L_thetaHessian: 0.55125 + L_thetaNeighbor: 0.03212 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00047000000000000004, 2000.0], lr=5.000e-05
+Epoch: 0 [ 360/500 (72%)] Loss: 29.93552 = L_Mnfld: 12.09391 + L_NonMnfld: 0.02723 + L_Eknl: 11.38933 + L_Morse: 0.00082 + L_thetaHessian: 5.49384 + L_thetaNeighbor: 0.93038 + L_Guidance: 0.00000
+Epoch: 0 [ 360/500 (72%)] Unweighted L_s : L_Mnfld: 0.00173 + L_NonMnfld: 0.00005 + L_Eknl: 0.22779 + L_Morse: 1.75037 + L_thetaHessian: 0.54938 + L_thetaNeighbor: 0.03101 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0004366666666666667, 2000.0], lr=5.000e-05
+Epoch: 0 [ 370/500 (74%)] Loss: 32.00770 = L_Mnfld: 14.09628 + L_NonMnfld: 0.02444 + L_Eknl: 11.28280 + L_Morse: 0.00077 + L_thetaHessian: 5.66779 + L_thetaNeighbor: 0.93562 + L_Guidance: 0.00000
+Epoch: 0 [ 370/500 (74%)] Unweighted L_s : L_Mnfld: 0.00201 + L_NonMnfld: 0.00004 + L_Eknl: 0.22566 + L_Morse: 1.76221 + L_thetaHessian: 0.56678 + L_thetaNeighbor: 0.03119 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00040333333333333334, 2000.0], lr=5.000e-05
+Epoch: 0 [ 380/500 (76%)] Loss: 30.04961 = L_Mnfld: 12.43419 + L_NonMnfld: 0.02870 + L_Eknl: 11.13422 + L_Morse: 0.00071 + L_thetaHessian: 5.49878 + L_thetaNeighbor: 0.95301 + L_Guidance: 0.00000
+Epoch: 0 [ 380/500 (76%)] Unweighted L_s : L_Mnfld: 0.00178 + L_NonMnfld: 0.00005 + L_Eknl: 0.22268 + L_Morse: 1.77047 + L_thetaHessian: 0.54988 + L_thetaNeighbor: 0.03177 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00037, 2000.0], lr=5.000e-05
+Epoch: 0 [ 390/500 (78%)] Loss: 31.07045 = L_Mnfld: 13.62436 + L_NonMnfld: 0.06090 + L_Eknl: 10.91354 + L_Morse: 0.00066 + L_thetaHessian: 5.57554 + L_thetaNeighbor: 0.89545 + L_Guidance: 0.00000
+Epoch: 0 [ 390/500 (78%)] Unweighted L_s : L_Mnfld: 0.00195 + L_NonMnfld: 0.00010 + L_Eknl: 0.21827 + L_Morse: 1.78224 + L_thetaHessian: 0.55755 + L_thetaNeighbor: 0.02985 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00033666666666666665, 2000.0], lr=5.000e-05
+Epoch: 0 [ 400/500 (80%)] Loss: 29.91154 = L_Mnfld: 12.57443 + L_NonMnfld: 0.06162 + L_Eknl: 10.71345 + L_Morse: 0.00060 + L_thetaHessian: 5.57698 + L_thetaNeighbor: 0.98445 + L_Guidance: 0.00000
+Epoch: 0 [ 400/500 (80%)] Unweighted L_s : L_Mnfld: 0.00180 + L_NonMnfld: 0.00010 + L_Eknl: 0.21427 + L_Morse: 1.78808 + L_thetaHessian: 0.55770 + L_thetaNeighbor: 0.03282 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0003033333333333335, 2000.0], lr=5.000e-05
+Epoch: 0 [ 410/500 (82%)] Loss: 30.24628 = L_Mnfld: 13.06945 + L_NonMnfld: 0.03348 + L_Eknl: 10.67183 + L_Morse: 0.00054 + L_thetaHessian: 5.48816 + L_thetaNeighbor: 0.98282 + L_Guidance: 0.00000
+Epoch: 0 [ 410/500 (82%)] Unweighted L_s : L_Mnfld: 0.00187 + L_NonMnfld: 0.00006 + L_Eknl: 0.21344 + L_Morse: 1.79364 + L_thetaHessian: 0.54882 + L_thetaNeighbor: 0.03276 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00027000000000000006, 2000.0], lr=5.000e-05
+Epoch: 0 [ 420/500 (84%)] Loss: 29.49714 = L_Mnfld: 12.44602 + L_NonMnfld: 0.02296 + L_Eknl: 10.57251 + L_Morse: 0.00049 + L_thetaHessian: 5.50880 + L_thetaNeighbor: 0.94636 + L_Guidance: 0.00000
+Epoch: 0 [ 420/500 (84%)] Unweighted L_s : L_Mnfld: 0.00178 + L_NonMnfld: 0.00004 + L_Eknl: 0.21145 + L_Morse: 1.80204 + L_thetaHessian: 0.55088 + L_thetaNeighbor: 0.03155 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.0002366666666666667, 2000.0], lr=5.000e-05
+Epoch: 0 [ 430/500 (86%)] Loss: 29.96549 = L_Mnfld: 13.12047 + L_NonMnfld: 0.02849 + L_Eknl: 10.34954 + L_Morse: 0.00043 + L_thetaHessian: 5.57456 + L_thetaNeighbor: 0.89200 + L_Guidance: 0.00000
+Epoch: 0 [ 430/500 (86%)] Unweighted L_s : L_Mnfld: 0.00187 + L_NonMnfld: 0.00005 + L_Eknl: 0.20699 + L_Morse: 1.81494 + L_thetaHessian: 0.55746 + L_thetaNeighbor: 0.02973 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00020333333333333336, 2000.0], lr=5.000e-05
+Epoch: 0 [ 440/500 (88%)] Loss: 29.20638 = L_Mnfld: 12.39750 + L_NonMnfld: 0.02591 + L_Eknl: 10.20222 + L_Morse: 0.00037 + L_thetaHessian: 5.57664 + L_thetaNeighbor: 1.00373 + L_Guidance: 0.00000
+Epoch: 0 [ 440/500 (88%)] Unweighted L_s : L_Mnfld: 0.00177 + L_NonMnfld: 0.00004 + L_Eknl: 0.20404 + L_Morse: 1.81605 + L_thetaHessian: 0.55766 + L_thetaNeighbor: 0.03346 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00017, 2000.0], lr=5.000e-05
+Epoch: 0 [ 450/500 (90%)] Loss: 29.62973 = L_Mnfld: 12.80912 + L_NonMnfld: 0.06008 + L_Eknl: 10.21944 + L_Morse: 0.00031 + L_thetaHessian: 5.60047 + L_thetaNeighbor: 0.94032 + L_Guidance: 0.00000
+Epoch: 0 [ 450/500 (90%)] Unweighted L_s : L_Mnfld: 0.00183 + L_NonMnfld: 0.00010 + L_Eknl: 0.20439 + L_Morse: 1.82944 + L_thetaHessian: 0.56005 + L_thetaNeighbor: 0.03134 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00013666666666666666, 2000.0], lr=5.000e-05
+Epoch: 0 [ 460/500 (92%)] Loss: 28.58700 = L_Mnfld: 12.04212 + L_NonMnfld: 0.02391 + L_Eknl: 10.03239 + L_Morse: 0.00025 + L_thetaHessian: 5.58578 + L_thetaNeighbor: 0.90256 + L_Guidance: 0.00000
+Epoch: 0 [ 460/500 (92%)] Unweighted L_s : L_Mnfld: 0.00172 + L_NonMnfld: 0.00004 + L_Eknl: 0.20065 + L_Morse: 1.83228 + L_thetaHessian: 0.55858 + L_thetaNeighbor: 0.03009 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 0.00010333333333333342, 2000.0], lr=5.000e-05
+Epoch: 0 [ 470/500 (94%)] Loss: 29.35621 = L_Mnfld: 12.76310 + L_NonMnfld: 0.03422 + L_Eknl: 10.10588 + L_Morse: 0.00019 + L_thetaHessian: 5.55062 + L_thetaNeighbor: 0.90220 + L_Guidance: 0.00000
+Epoch: 0 [ 470/500 (94%)] Unweighted L_s : L_Mnfld: 0.00182 + L_NonMnfld: 0.00006 + L_Eknl: 0.20212 + L_Morse: 1.83760 + L_thetaHessian: 0.55506 + L_thetaNeighbor: 0.03007 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 7.000000000000018e-05, 2000.0], lr=5.000e-05
+Epoch: 0 [ 480/500 (96%)] Loss: 28.28018 = L_Mnfld: 11.88849 + L_NonMnfld: 0.02371 + L_Eknl: 9.91517 + L_Morse: 0.00013 + L_thetaHessian: 5.57584 + L_thetaNeighbor: 0.87684 + L_Guidance: 0.00000
+Epoch: 0 [ 480/500 (96%)] Unweighted L_s : L_Mnfld: 0.00170 + L_NonMnfld: 0.00004 + L_Eknl: 0.19830 + L_Morse: 1.84358 + L_thetaHessian: 0.55758 + L_thetaNeighbor: 0.02923 + L_Guidance: 0.00000
+
+Weights: [7000.0, 600.0, 10.0, 50.0, 30.0, 3.666666666666673e-05, 2000.0], lr=5.000e-05
+Epoch: 0 [ 490/500 (98%)] Loss: 28.80760 = L_Mnfld: 12.56391 + L_NonMnfld: 0.04225 + L_Eknl: 9.73306 + L_Morse: 0.00007 + L_thetaHessian: 5.56335 + L_thetaNeighbor: 0.90496 + L_Guidance: 0.00000
+Epoch: 0 [ 490/500 (98%)] Unweighted L_s : L_Mnfld: 0.00179 + L_NonMnfld: 0.00007 + L_Eknl: 0.19466 + L_Morse: 1.85857 + L_thetaHessian: 0.55634 + L_thetaNeighbor: 0.03017 + L_Guidance: 0.00000
+
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/processed_meshes/Armadillo_sim.obj
+       V=4002 F=8000
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/neurcross_logs/Armadillo_sim/save_crossField/Armadillo_sim_iter_499.txt
+       cross field rows=8000
+[3/4] Running MIQ parameterization (gradient_size=12, stiffness=5, iters=5)...
+
+ INITIALIZED SPARSE MATRIX OF 10506d x 10506d 
+
+ INITIALIZED SPARSE MATRIX OF 3452d x 11452d 
+
+ INITIALIZED VECTOR OF 10506d x 1 
+
+ INITIALIZED VECTOR OF 3452d x 1 
+Maximum Distorsion 27.3363 
+Maximum Laplacian 43.9032 
+ITERATION 0 FLIPS 850 
+
+ INITIALIZED SPARSE MATRIX OF 10506d x 10506d 
+
+ INITIALIZED SPARSE MATRIX OF 3452d x 11452d 
+
+ INITIALIZED VECTOR OF 10506d x 1 
+
+ INITIALIZED VECTOR OF 3452d x 1 
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/processed_meshes/Armadillo_sim.obj
+       V=4002 F=8000
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/neurcross_logs/Armadillo_sim/save_crossField/Armadillo_sim_iter_499.txt
+       cross field rows=8000
+[3/4] Running MIQ parameterization (gradient_size=12, stiffness=50, iters=5)...
+
+ INITIALIZED SPARSE MATRIX OF 10506d x 10506d 
+
+ INITIALIZED SPARSE MATRIX OF 3452d x 11452d 
+
+ INITIALIZED VECTOR OF 10506d x 1 
+
+ INITIALIZED VECTOR OF 3452d x 1 
+Maximum Distorsion 27.3363 
+Maximum Laplacian 43.9032 
+ITERATION 0 FLIPS 850 
+
+ INITIALIZED SPARSE MATRIX OF 10506d x 10506d 
+
+ INITIALIZED SPARSE MATRIX OF 3452d x 11452d 
+
+ INITIALIZED VECTOR OF 10506d x 1 
+
+ INITIALIZED VECTOR OF 3452d x 1 
+Maximum Distorsion 28.8901 
+Maximum Laplacian 36.7724 
+ITERATION 1 FLIPS 1421 
+
+ INITIALIZED SPARSE MATRIX OF 10506d x 10506d 
+
+ INITIALIZED SPARSE MATRIX OF 3452d x 11452d 
+
+ INITIALIZED VECTOR OF 10506d x 1 
+
+ INITIALIZED VECTOR OF 3452d x 1 
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/processed_meshes/Armadillo_sim.obj
+       V=4002 F=8000
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/neurcross_logs/Armadillo_sim/save_crossField/Armadillo_sim_iter_499.txt
+       cross field rows=8000
+[3/4] Running MIQ parameterization (gradient_size=12, stiffness=5, iters=5)...
+
+ INITIALIZED SPARSE MATRIX OF 10506d x 10506d 
+
+ INITIALIZED SPARSE MATRIX OF 3452d x 11452d 
+
+ INITIALIZED VECTOR OF 10506d x 1 
+
+ INITIALIZED VECTOR OF 3452d x 1 
+Maximum Distorsion 82.4646 
+Maximum Laplacian 130.9151 
+ITERATION 0 FLIPS 2144 
+
+ INITIALIZED SPARSE MATRIX OF 10506d x 10506d 
+
+ INITIALIZED SPARSE MATRIX OF 3452d x 11452d 
+
+ INITIALIZED VECTOR OF 10506d x 1 
+
+ INITIALIZED VECTOR OF 3452d x 1 
+Maximum Distorsion 110.3288 
+Maximum Laplacian 172.1673 
+ITERATION 1 FLIPS 2379 
+
+ INITIALIZED SPARSE MATRIX OF 10506d x 10506d 
+
+ INITIALIZED SPARSE MATRIX OF 3452d x 11452d 
+
+ INITIALIZED VECTOR OF 10506d x 1 
+
+ INITIALIZED VECTOR OF 3452d x 1 
+Maximum Distorsion 110.3288 
+Maximum Laplacian 172.4131 
+ITERATION 2 FLIPS 2425 
+
+ INITIALIZED SPARSE MATRIX OF 10506d x 10506d 
+
+ INITIALIZED SPARSE MATRIX OF 3452d x 11452d 
+
+ INITIALIZED VECTOR OF 10506d x 1 
+
+ INITIALIZED VECTOR OF 3452d x 1 
+Maximum Distorsion 122.6970 
+Maximum Laplacian 190.8786 
+ITERATION 3 FLIPS 2651 
+
+ INITIALIZED SPARSE MATRIX OF 10506d x 10506d 
+
+ INITIALIZED SPARSE MATRIX OF 3452d x 11452d 
+
+ INITIALIZED VECTOR OF 10506d x 1 
+
+ INITIALIZED VECTOR OF 3452d x 1 
+Maximum Distorsion 122.6970 
+Maximum Laplacian 190.6218 
+ITERATION 4 FLIPS 2654 
+**** END OPTIMIZING #FLIPS 2654  ****
+       UV=5253 FUV=8000
+[4/4] Extracting quad mesh with libQEx...
+       Quad vertices=205 Quad faces=179
+Output saved to: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/Armadillo_sim_quad.obj
+
+==================================================
+  [Tier 0] Standard repair pipeline
+==================================================
+
+[Quad Extraction]
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/processed_meshes/Armadillo_sim.obj
+  cross field  : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/neurcross_logs/Armadillo_sim/save_crossField/Armadillo_sim_iter_499.txt
+  output       : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/Armadillo_sim_quad.obj
+  gradient_size: 12.0  timeout: 180s
+
+  TIMEOUT after 180s
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/processed_meshes/Armadillo_sim.obj
+  cross field  : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/neurcross_logs/Armadillo_sim/save_crossField/Armadillo_sim_iter_499.txt
+  output       : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/Armadillo_sim_quad.obj
+  gradient_size: 12.0  timeout: 180s  [stiff=50.0 dr=0 it=5]
+
+  TIMEOUT after 180s
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/processed_meshes/Armadillo_sim.obj
+  cross field  : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/neurcross_logs/Armadillo_sim/save_crossField/Armadillo_sim_iter_499.txt
+  output       : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/Armadillo_sim_quad.obj
+  gradient_size: 12.0  timeout: 180s  [stiff=5.0 dr=1 it=5]
+
+  OK (fallback level 2)
+[Catmull-Clark] Applying 2 iteration(s) to Armadillo_sim_quad.obj
+  target_quads : 4000
+  subdivided   : n_quads=2864 AD_mean=37.847deg JR_min=0.0000
+SUCCESS (Tier 0) -> /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/Armadillo_sim_quad.obj
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired.obj
+       V=4002 F=7994
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired_cf.txt
+       cross field rows=7994
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired.obj
+       V=4002 F=7994
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired_cf.txt
+       cross field rows=7994
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired.obj
+       V=4002 F=7994
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired_cf.txt
+       cross field rows=7994
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired.obj
+       V=4002 F=7994
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired_cf.txt
+       cross field rows=7994
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired.obj
+       V=4002 F=7994
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired_cf.txt
+       cross field rows=7994
+
+==================================================
+  [Tier 0] Standard repair pipeline
+==================================================
+  [nm-fix] duplicated 2 vertex instances, verts: 4002 -> 4004, face-comps: 2, nm_edges: 0
+  [bridge] added 2 bridge faces, components: 2 -> 1
+  [repair] collapsed 4 degenerate edge(s), V: 4006->4002, F: 8002->7994
+
+[Quad Extraction]
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad.obj
+  gradient_size: 12.0  timeout: 180s
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad.obj', '12.0', '5.0', '0', '5', '5']' returned non-zero exit status 1.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad.obj
+  gradient_size: 12.0  timeout: 180s  [stiff=50.0 dr=0 it=5]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad.obj', '12.0', '50.0', '0', '5', '5']' returned non-zero exit status 1.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad.obj
+  gradient_size: 12.0  timeout: 180s  [stiff=5.0 dr=1 it=5]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad.obj', '12.0', '5.0', '1', '5', '5']' returned non-zero exit status 1.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad.obj
+  gradient_size: 12.0  timeout: 180s  [stiff=50.0 dr=1 it=5]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad.obj', '12.0', '50.0', '1', '5', '5']' returned non-zero exit status 1.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad.obj
+  gradient_size: 12.0  timeout: 180s  [stiff=200.0 dr=1 it=3]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad_extract_work/chunk_000_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad.obj', '12.0', '200.0', '1', '3', '5']' returned non-zero exit status 1.
+
+==================================================
+  [Tier 1] PyMeshLab manifold repair
+==================================================
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired.obj
+       V=4002 F=7994
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired_cf.txt
+       cross field rows=7994
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired.obj
+       V=4002 F=7994
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired_cf.txt
+       cross field rows=7994
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired.obj
+       V=4002 F=7994
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired_cf.txt
+       cross field rows=7994
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired.obj
+       V=4002 F=7994
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired_cf.txt
+       cross field rows=7994
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired.obj
+       V=4002 F=7994
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired_cf.txt
+       cross field rows=7994
+
+==================================================
+  [Tier 0] Standard repair pipeline
+==================================================
+  [nm-fix] duplicated 2 vertex instances, verts: 4002 -> 4004, face-comps: 2, nm_edges: 0
+  [bridge] added 2 bridge faces, components: 2 -> 1
+  [repair] collapsed 4 degenerate edge(s), V: 4006->4002, F: 8002->7994
+
+[Quad Extraction]
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad.obj
+  gradient_size: 12.0  timeout: 180s
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad.obj', '12.0', '5.0', '0', '5', '5']' returned non-zero exit status 1.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad.obj
+  gradient_size: 12.0  timeout: 180s  [stiff=50.0 dr=0 it=5]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad.obj', '12.0', '50.0', '0', '5', '5']' returned non-zero exit status 1.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad.obj
+  gradient_size: 12.0  timeout: 180s  [stiff=5.0 dr=1 it=5]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad.obj', '12.0', '5.0', '1', '5', '5']' returned non-zero exit status 1.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad.obj
+  gradient_size: 12.0  timeout: 180s  [stiff=50.0 dr=1 it=5]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad.obj', '12.0', '50.0', '1', '5', '5']' returned non-zero exit status 1.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad.obj
+  gradient_size: 12.0  timeout: 180s  [stiff=200.0 dr=1 it=3]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_extract_work/bimba_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad.obj', '12.0', '200.0', '1', '3', '5']' returned non-zero exit status 1.
+
+==================================================
+  [Tier 1] PyMeshLab manifold repair
+==================================================
+Found 2 mesh(es) to process:
+
+  - Armadillo_sim.ply
+  - bimba.ply
+
+============================================================
+  Stage 1: Geometry preparation
+============================================================
+  Armadillo_sim.ply  decimated 50000 -> 8000 faces
+  bimba.ply  decimated 50000 -> 8000 faces
+[Stage 1] PartField skipped in guidance mode 'none'.
+
+
+============================================================
+  Stage 2: NeurCross training
+============================================================
+
+--- [1/2] Armadillo_sim --------------------------------
+
+[Stage 2] NeurCross training  [Armadillo_sim]
+  python : /home/gmt/miniconda3/envs/seman/bin/python
+  cwd    : /home/gmt/SemanPartmesh/NeurCross/quad_mesh
+  cmd    : /home/gmt/miniconda3/envs/seman/bin/python train_quad_mesh.py --data_path /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/processed_meshes/Armadillo_sim.obj --logdir /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/neurcross_logs --guidance_mode none --n_samples 500 --n_points 3000 --num_epochs 1 --lr 5e-05 --num_workers 0 --loss_weights 7000.0 600.0 10 50.0 30 3 2000 --morse_near
+
+[Stage 2] Training complete  ->  /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/neurcross_logs/Armadillo_sim
+
+--- [2/2] bimba ----------------------------------------
+
+[Stage 2] NeurCross training  [bimba]
+  python : /home/gmt/miniconda3/envs/seman/bin/python
+  cwd    : /home/gmt/SemanPartmesh/NeurCross/quad_mesh
+  cmd    : /home/gmt/miniconda3/envs/seman/bin/python train_quad_mesh.py --data_path /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/processed_meshes/bimba.obj --logdir /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/neurcross_logs --guidance_mode none --n_samples 500 --n_points 3000 --num_epochs 1 --lr 5e-05 --num_workers 0 --loss_weights 7000.0 600.0 10 50.0 30 3 2000 --morse_near
+
+[Stage 2] Training complete  ->  /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/neurcross_logs/bimba
+
+============================================================
+  Stage 3: Quad mesh extraction (MIQ + libQEx)
+============================================================
+
+--- [1/2] Armadillo_sim --------------------------------
+
+[Stage 3] Quad extraction
+  script      : /home/gmt/SemanPartmesh/extract_quad.py
+  python      : /home/gmt/miniconda3/envs/seman/bin/python
+  input mesh  : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/processed_meshes/Armadillo_sim.obj
+  cross field : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/neurcross_logs/Armadillo_sim/save_crossField/Armadillo_sim_iter_499.txt
+  output      : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/Armadillo_sim_quad.obj
+  gradient_size: 12.0
+
+  timeout     : 180
+  warning     : semantic size-field generation is disabled for pure MIQ -> libQEx extraction
+
+  auto_sweep  : False
+  retry       : False
+  min_quads   : default
+  max_ad      : 15.0
+  min_jr      : 0.15
+
+  cc_iters    : 0
+  target_ratio: 0.5
+  budget_tol  : 0.2
+  cc_max_auto : 2
+
+
+--- [2/2] bimba ----------------------------------------
+  merged 1 tiny chunk(s) (<10 faces) into neighbours
+  extraction strategy: connected_components (1 chunks)
+  chunk face counts  : [8000]
+
+[Stage 3] Quad extraction
+  script      : /home/gmt/SemanPartmesh/extract_quad.py
+  python      : /home/gmt/miniconda3/envs/seman/bin/python
+  input mesh  : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/inputs/chunk_000.obj
+  cross field : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/inputs/chunk_000_crossfield.txt
+  output      : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad.obj
+  gradient_size: 12.0
+
+  timeout     : 180
+  warning     : semantic size-field generation is disabled for pure MIQ -> libQEx extraction
+
+  auto_sweep  : False
+  retry       : False
+  min_quads   : default
+  max_ad      : 15.0
+  min_jr      : 0.15
+
+  cc_iters    : 0
+  target_ratio: 0.5
+  budget_tol  : 0.2
+  cc_max_auto : 2
+
+  chunk extraction failed (chunk_000): Command '['/home/gmt/miniconda3/envs/seman/bin/python', '/home/gmt/SemanPartmesh/extract_quad.py', '--mesh', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/inputs/chunk_000.obj', '--crossfield', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/inputs/chunk_000_crossfield.txt', '--output', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad.obj', '--gradient_size', '12.0', '--timeout', '180', '--max_ad', '15.0', '--min_jr', '0.15', '--target_quad_ratio', '0.5', '--budget_tolerance_ratio', '0.2', '--max_catmull_clark_iters', '2']' returned non-zero exit status 1.
+
+  chunk summary: 0/1 OK, 1 failed
+  failed chunks: ["chunk_000: Command '['/home/gmt/miniconda3/envs/seman/bin/python', '/home/gmt/SemanPartmesh/extract_quad.py', '--mesh', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/inputs/chunk_000.obj', '--crossfield', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/inputs/chunk_000_crossfield.txt', '--output', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad_chunks/outputs/chunk_000_quad.obj', '--gradient_size', '12.0', '--timeout', '180', '--max_ad', '15.0', '--min_jr', '0.15', '--target_quad_ratio', '0.5', '--budget_tolerance_ratio', '0.2', '--max_catmull_clark_iters', '2']' returned non-zero exit status 1."]
+  chunk extraction incomplete; retrying once with global extraction
+
+[Stage 3] Quad extraction
+  script      : /home/gmt/SemanPartmesh/extract_quad.py
+  python      : /home/gmt/miniconda3/envs/seman/bin/python
+  input mesh  : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/processed_meshes/bimba.obj
+  cross field : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/neurcross_logs/bimba/save_crossField/bimba_iter_499.txt
+  output      : /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad.obj
+  gradient_size: 12.0
+
+  timeout     : 180
+  warning     : semantic size-field generation is disabled for pure MIQ -> libQEx extraction
+
+  auto_sweep  : False
+  retry       : False
+  min_quads   : default
+  max_ad      : 15.0
+  min_jr      : 0.15
+
+  cc_iters    : 0
+  target_ratio: 0.5
+  budget_tol  : 0.2
+  cc_max_auto : 2
+
+  ERROR: Quad extraction failed for bimba: Command '['/home/gmt/miniconda3/envs/seman/bin/python', '/home/gmt/SemanPartmesh/extract_quad.py', '--mesh', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/processed_meshes/bimba.obj', '--crossfield', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/neurcross_logs/bimba/save_crossField/bimba_iter_499.txt', '--output', '/home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626/quad_meshes/bimba_quad.obj', '--gradient_size', '12.0', '--timeout', '180', '--max_ad', '15.0', '--min_jr', '0.15', '--target_quad_ratio', '0.5', '--budget_tolerance_ratio', '0.2', '--max_catmull_clark_iters', '2']' returned non-zero exit status 1.
+
+============================================================
+  Pipeline finished successfully
+============================================================
+
+Output directory: /home/gmt/SemanPartmesh/output/0514_tmux_20260513_211626
+
+  neurcross_logs/         NeurCross training results
+  quad_meshes/*_chunks/   Per-chunk extraction intermediates when chunking is used
+  quad_meshes/*_target_patches/  Local target-patch extraction outputs when enabled
+  quad_meshes/            Extracted quad meshes (.obj)
+
+  [Armadillo_sim]
+    guidance   : none
+    cross field: neurcross_logs/Armadillo_sim/save_crossField/
+    extraction : global (1 chunks)
+    quad mesh  : quad_meshes/Armadillo_sim_quad.obj
+
+  [bimba]
+    guidance   : none
+    cross field: neurcross_logs/bimba/save_crossField/
+
+/home/gmt/miniconda3/envs/seman/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/gmt/miniconda3/envs/seman/lib/python3.10/site-packages/torch/autograd/graph.py:768: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at ../aten/src/ATen/cuda/CublasHandlePool.cpp:135.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/home/gmt/miniconda3/envs/seman/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/gmt/miniconda3/envs/seman/lib/python3.10/site-packages/torch/autograd/graph.py:768: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at ../aten/src/ATen/cuda/CublasHandlePool.cpp:135.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+Initital dimension: 11452 x 11452, number of constraints: 3452, number of integer variables: 1608, use reordering: yes
+make_constraints_independent took 0.020208 s.
+Constraint integration took 0.29138199999999997 s.
+Constraint elimination took 0.084691000000000002 s.
+Reindexing took 0.00093300000000000002 s.
+eliminate_constraints took 0.37712099999999998 s.
+Eliminated dimension: 8000 x 8000
+#nonzeros: 585833
+integer variables #: 658
+continuous variables #: 7342
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 252
+Number of CG    iterations  = 252
+Number of FULL  iterations  = 244
+Number of ROUNDING          = 658
+solve_multiple_rounding took 89.453367 s.
+solve took 89.453432000000006 s.
+restore_eliminated_vars took 0.001539 s.
+solve took 89.854263000000003 s.
+Initital dimension: 11452 x 11452, number of constraints: 3452, number of integer variables: 1608, use reordering: yes
+make_constraints_independent took 0.018618000000000003 s.
+Constraint integration took 0.28816499999999995 s.
+Constraint elimination took 0.081905000000000006 s.
+Reindexing took 0.00096999999999999994 s.
+eliminate_constraints took 0.37112599999999996 s.
+Eliminated dimension: 8000 x 8000
+#nonzeros: 586709
+integer variables #: 658
+continuous variables #: 7342
+initial full solution
+Initital dimension: 11452 x 11452, number of constraints: 3452, number of integer variables: 1608, use reordering: yes
+make_constraints_independent took 0.020222999999999998 s.
+Constraint integration took 0.29106199999999999 s.
+Constraint elimination took 0.08475400000000001 s.
+Reindexing took 0.00092900000000000003 s.
+eliminate_constraints took 0.37684800000000002 s.
+Eliminated dimension: 8000 x 8000
+#nonzeros: 585833
+integer variables #: 658
+continuous variables #: 7342
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 252
+Number of CG    iterations  = 252
+Number of FULL  iterations  = 244
+Number of ROUNDING          = 658
+solve_multiple_rounding took 86.456581999999997 s.
+solve took 86.456656000000009 s.
+restore_eliminated_vars took 0.0015609999999999999 s.
+solve took 86.857475000000008 s.
+Initital dimension: 11452 x 11452, number of constraints: 3452, number of integer variables: 1608, use reordering: yes
+make_constraints_independent took 0.018949000000000001 s.
+Constraint integration took 0.29082999999999998 s.
+Constraint elimination took 0.083580000000000002 s.
+Reindexing took 0.00096400000000000001 s.
+eliminate_constraints took 0.37545300000000004 s.
+Eliminated dimension: 8000 x 8000
+#nonzeros: 586709
+integer variables #: 658
+continuous variables #: 7342
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 240
+Number of CG    iterations  = 240
+Number of FULL  iterations  = 236
+Number of ROUNDING          = 658
+solve_multiple_rounding took 87.774979000000002 s.
+solve took 87.775059999999996 s.
+restore_eliminated_vars took 0.002049 s.
+solve took 88.173653999999999 s.
+Initital dimension: 11452 x 11452, number of constraints: 3452, number of integer variables: 1608, use reordering: yes
+make_constraints_independent took 0.019275 s.
+Constraint integration took 0.29149599999999998 s.
+Constraint elimination took 0.083551 s.
+Reindexing took 0.00096999999999999994 s.
+eliminate_constraints took 0.376106 s.
+Eliminated dimension: 8000 x 8000
+#nonzeros: 586501
+integer variables #: 658
+continuous variables #: 7342
+initial full solution
+Initital dimension: 11452 x 11452, number of constraints: 3452, number of integer variables: 1608, use reordering: yes
+make_constraints_independent took 0.020170999999999998 s.
+Constraint integration took 0.28129999999999999 s.
+Constraint elimination took 0.08466899999999998 s.
+Reindexing took 0.00087900000000000001 s.
+eliminate_constraints took 0.36694700000000002 s.
+Eliminated dimension: 8000 x 8000
+#nonzeros: 585833
+integer variables #: 658
+continuous variables #: 7342
+solve took 0.11743099999999999 s.
+restore_eliminated_vars took 0.0022550000000000001 s.
+solve took 0.50877899999999998 s.
+Initital dimension: 11452 x 11452, number of constraints: 3452, number of integer variables: 1608, use reordering: yes
+make_constraints_independent took 0.018673000000000002 s.
+Constraint integration took 0.27970100000000003 s.
+Constraint elimination took 0.081916000000000003 s.
+Reindexing took 0.00089400000000000005 s.
+eliminate_constraints took 0.36261599999999999 s.
+Eliminated dimension: 8000 x 8000
+#nonzeros: 586973
+integer variables #: 658
+continuous variables #: 7342
+solve took 0.11267700000000001 s.
+restore_eliminated_vars took 0.0021710000000000002 s.
+solve took 0.49904599999999999 s.
+Initital dimension: 11452 x 11452, number of constraints: 3452, number of integer variables: 1608, use reordering: yes
+make_constraints_independent took 0.018817 s.
+Constraint integration took 0.28020100000000003 s.
+Constraint elimination took 0.082727000000000009 s.
+Reindexing took 0.00091399999999999999 s.
+eliminate_constraints took 0.36395399999999994 s.
+Eliminated dimension: 8000 x 8000
+#nonzeros: 586122
+integer variables #: 658
+continuous variables #: 7342
+solve took 0.111286 s.
+restore_eliminated_vars took 0.0021590000000000003 s.
+solve took 0.49935800000000002 s.
+Initital dimension: 11452 x 11452, number of constraints: 3452, number of integer variables: 1608, use reordering: yes
+make_constraints_independent took 0.018615000000000003 s.
+Constraint integration took 0.27693299999999998 s.
+Constraint elimination took 0.080886 s.
+Reindexing took 0.00089800000000000004 s.
+eliminate_constraints took 0.35880700000000004 s.
+Eliminated dimension: 8000 x 8000
+#nonzeros: 586161
+integer variables #: 658
+continuous variables #: 7342
+solve took 0.111806 s.
+restore_eliminated_vars took 0.0021640000000000001 s.
+solve took 0.49354500000000001 s.
+Initital dimension: 11452 x 11452, number of constraints: 3452, number of integer variables: 1608, use reordering: yes
+make_constraints_independent took 0.018457000000000001 s.
+Constraint integration took 0.27124000000000004 s.
+Constraint elimination took 0.080035999999999996 s.
+Reindexing took 0.00089700000000000001 s.
+eliminate_constraints took 0.35225899999999999 s.
+Eliminated dimension: 8000 x 8000
+#nonzeros: 586557
+integer variables #: 658
+continuous variables #: 7342
+solve took 0.109443 s.
+restore_eliminated_vars took 0.0021570000000000001 s.
+solve took 0.48463499999999998 s.
+[41mWarning: When tracing from GV 135, LEI 2 I hit GV 300, LEI 1.
+  However, this GV is already connected to GV 30, LEI 0[0m
+[41mWarning: When tracing from GV 136, LEI 2 I hit GV 301, LEI 1.
+  However, this GV is already connected to GV 31, LEI 0[0m
+[41mWarning: When tracing from GV 137, LEI 2 I hit GV 302, LEI 1.
+  However, this GV is already connected to GV 107, LEI 0[0m
+[41mWarning: When tracing from GV 139, LEI 2 I hit GV 303, LEI 1.
+  However, this GV is already connected to GV 14, LEI 3[0m
+[41mWarning: When tracing from GV 225, LEI 3 I hit GV 304, LEI 1.
+  However, this GV is already connected to GV 140, LEI 2[0m
+[41mWarning: When tracing from GV 254, LEI 1 I hit GV 305, LEI 1.
+  However, this GV is already connected to GV 223, LEI 3[0m
+[41mWarning: When tracing from GV 268, LEI 3 I hit GV 298, LEI 1.
+  However, this GV is already connected to GV 203, LEI 3[0m
+[41mWarning: When tracing from GV 298, LEI 3 I hit GV 203, LEI 3.
+  However, this GV is already connected to GV 298, LEI 1[0m
+[41mWarning: When tracing from GV 300, LEI 3 I hit GV 30, LEI 0.
+  However, this GV is already connected to GV 300, LEI 1[0m
+[41mWarning: When tracing from GV 301, LEI 3 I hit GV 31, LEI 0.
+  However, this GV is already connected to GV 301, LEI 1[0m
+[41mWarning: When tracing from GV 302, LEI 3 I hit GV 107, LEI 0.
+  However, this GV is already connected to GV 302, LEI 1[0m
+[41mWarning: When tracing from GV 303, LEI 3 I hit GV 14, LEI 3.
+  However, this GV is already connected to GV 303, LEI 1[0m
+[41mWarning: When tracing from GV 305, LEI 3 I hit GV 223, LEI 3.
+  However, this GV is already connected to GV 305, LEI 1[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 0.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(-1, 5), Point_2(-0.844481, 5.09506)),
+Segment 2: Segment_2(Point_2(-1, 6), Point_2(-0.844481, 5.09506)),
+Path: Segment_2(Point_2(-1, 4), Point_2(-1, 3))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (-1, 5) -- (-0.844481, 5.09506);
+\draw[black,->,>=latex] (-1, 6) -- (-0.844481, 5.09506);
+\draw[black,->,>=latex] (-1, 4) -- (-1, 3);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(-1, 5), Point_2(-0.844481, 5.09506), Point_2(-1, 6)
+path = Point_2(-1, 4) -> Point_2(-1, 3)
+orient2d(uv0, uv2, path[0]) = 0
+orient2d(uv0, uv2, path[1]) = 0
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 0.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(-1, 6), Point_2(-0.300864, 5.79881)),
+Segment 2: Segment_2(Point_2(0, 6), Point_2(-0.300864, 5.79881)),
+Path: Segment_2(Point_2(1, 6), Point_2(2, 6))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (-1, 6) -- (-0.300864, 5.79881);
+\draw[black,->,>=latex] (0, 6) -- (-0.300864, 5.79881);
+\draw[black,->,>=latex] (1, 6) -- (2, 6);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(-1, 6), Point_2(-0.300864, 5.79881), Point_2(0, 6)
+path = Point_2(1, 6) -> Point_2(2, 6)
+orient2d(uv0, uv2, path[0]) = 0
+orient2d(uv0, uv2, path[1]) = 0
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 0.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(0, 9), Point_2(0.811249, 8.30929)),
+Segment 2: Segment_2(Point_2(1, 9), Point_2(0.811249, 8.30929)),
+Path: Segment_2(Point_2(2, 9), Point_2(3, 9))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (0, 9) -- (0.811249, 8.30929);
+\draw[black,->,>=latex] (1, 9) -- (0.811249, 8.30929);
+\draw[black,->,>=latex] (2, 9) -- (3, 9);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(0, 9), Point_2(0.811249, 8.30929), Point_2(1, 9)
+path = Point_2(2, 9) -> Point_2(3, 9)
+orient2d(uv0, uv2, path[0]) = 0
+orient2d(uv0, uv2, path[1]) = 0
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 0.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(1, 9), Point_2(1.82536, 8.91932)),
+Segment 2: Segment_2(Point_2(2, 9), Point_2(1.82536, 8.91932)),
+Path: Segment_2(Point_2(0, 9), Point_2(-1, 9))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (1, 9) -- (1.82536, 8.91932);
+\draw[black,->,>=latex] (2, 9) -- (1.82536, 8.91932);
+\draw[black,->,>=latex] (0, 9) -- (-1, 9);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(1, 9), Point_2(1.82536, 8.91932), Point_2(2, 9)
+path = Point_2(0, 9) -> Point_2(-1, 9)
+orient2d(uv0, uv2, path[0]) = 0
+orient2d(uv0, uv2, path[1]) = 0
+tri_ori = 1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 0.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(-2, 8), Point_2(-2.25056, 6.56983)),
+Segment 2: Segment_2(Point_2(-3, 8), Point_2(-2.25056, 6.56983)),
+Path: Segment_2(Point_2(2, 8), Point_2(1, 8))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (-2, 8) -- (-2.25056, 6.56983);
+\draw[black,->,>=latex] (-3, 8) -- (-2.25056, 6.56983);
+\draw[black,->,>=latex] (2, 8) -- (1, 8);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(-2, 8), Point_2(-2.25056, 6.56983), Point_2(-3, 8)
+path = Point_2(2, 8) -> Point_2(1, 8)
+orient2d(uv0, uv2, path[0]) = 0
+orient2d(uv0, uv2, path[1]) = 0
+tri_ori = -1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[1;41mWarning: find_path didn't find the point where the path leaves a triangle in step 0.
+*********** DEBUG OUTPUT START ***********[0m
+triangle-path intersection: 0
+Segment 1: Segment_2(Point_2(-1, 8), Point_2(-2.05767, 7.9032)),
+Segment 2: Segment_2(Point_2(-4, 8), Point_2(-2.05767, 7.9032)),
+Path: Segment_2(Point_2(-6, 8), Point_2(-5, 8))
+Here's Tikz output for you so you can debug it more easily. You're welcome.
+\draw[black,->,>=latex] (-1, 8) -- (-2.05767, 7.9032);
+\draw[black,->,>=latex] (-4, 8) -- (-2.05767, 7.9032);
+\draw[black,->,>=latex] (-6, 8) -- (-5, 8);
+Debug info:
+vis{0,1,2} = 0, 0, 0
+is1, is2 = 0, 0
+uv{0,1,2} = Point_2(-1, 8), Point_2(-2.05767, 7.9032), Point_2(-4, 8)
+path = Point_2(-6, 8) -> Point_2(-5, 8)
+orient2d(uv0, uv2, path[0]) = 0
+orient2d(uv0, uv2, path[1]) = 0
+tri_ori = -1
+[1;41m*********** DEBUG OUTPUT END ***********[0m
+[41mSkipping face. (OpenMesh doesn't support non-manifold meshes. -> Might lead to a hole.)[0m
+create_faces: Skipping. Reason: Non-boundary edge.
+create_faces: Skipping. Reason: Non-boundary edge.
+create_faces: Skipping. Reason: Non-boundary edge.
+create_faces: Skipping. Reason: Non-boundary vertex.
+First check recognized non-manifold, second one didn't!
+First check recognized non-manifold, second one didn't!
+create_faces: Skipping. Reason: Non-boundary edge.
+create_faces: Skipping. Reason: Non-boundary edge.
+create_faces: Skipping. Reason: Non-boundary vertex.
+create_faces: Skipping. Reason: Non-boundary vertex.
+First check recognized non-manifold, second one didn't!
+First check recognized non-manifold, second one didn't!
+First check recognized non-manifold, second one didn't!
+create_faces: Skipping. Reason: Non-boundary edge.
+PolyMeshT::add_face: patch re-linking failed
+[41mcreate_face() failed. Most probable reason: Non-manifold face not filtered out.[0m
+Failing face vertices were: 555, 588, 600, 554
+create_faces: Skipping. Reason: Non-boundary edge.
+PolyMeshT::add_face: patch re-linking failed
+[41mcreate_face() failed. Most probable reason: Non-manifold face not filtered out.[0m
+Failing face vertices were: 587, 313, 605, 541
+create_faces: Skipping. Reason: Non-boundary vertex.
+
+ Closed: Wed May 13 21:26:13 2026
+
+Degenerate triangle in input mesh at face 7992
+Degenerate triangle in input mesh at face 7992
+Degenerate triangle in input mesh at face 7992
+Degenerate triangle in input mesh at face 7992
+Degenerate triangle in input mesh at face 7992
+Traceback (most recent call last):
+  File "/home/gmt/SemanPartmesh/extract_quad.py", line 1935, in <module>
+    main()
+  File "/home/gmt/SemanPartmesh/extract_quad.py", line 1878, in main
+    ok = extract_single(args.mesh, cf_path, output,
+  File "/home/gmt/SemanPartmesh/extract_quad.py", line 1407, in extract_single
+    pml_mesh_path, face_changed = pymeshlab_manifold_repair(
+  File "/home/gmt/SemanPartmesh/extract_quad.py", line 605, in pymeshlab_manifold_repair
+    ms.meshing_merge_close_vertices(threshold=pymeshlab.Percentage(0.5))
+AttributeError: module 'pymeshlab' has no attribute 'Percentage'
+Degenerate triangle in input mesh at face 7992
+Degenerate triangle in input mesh at face 7992
+Degenerate triangle in input mesh at face 7992
+Degenerate triangle in input mesh at face 7992
+Degenerate triangle in input mesh at face 7992
+Traceback (most recent call last):
+  File "/home/gmt/SemanPartmesh/extract_quad.py", line 1935, in <module>
+    main()
+  File "/home/gmt/SemanPartmesh/extract_quad.py", line 1878, in main
+    ok = extract_single(args.mesh, cf_path, output,
+  File "/home/gmt/SemanPartmesh/extract_quad.py", line 1407, in extract_single
+    pml_mesh_path, face_changed = pymeshlab_manifold_repair(
+  File "/home/gmt/SemanPartmesh/extract_quad.py", line 605, in pymeshlab_manifold_repair
+    ms.meshing_merge_close_vertices(threshold=pymeshlab.Percentage(0.5))
+AttributeError: module 'pymeshlab' has no attribute 'Percentage'

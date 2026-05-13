@@ -103,6 +103,24 @@ static bool matrix_is_finite(const Eigen::MatrixXd &M)
     return true;
 }
 
+static void free_tri_mesh(qex_TriMesh &mesh)
+{
+    free(mesh.vertices);
+    free(mesh.tris);
+    free(mesh.uvTris);
+    mesh.vertices = nullptr;
+    mesh.tris = nullptr;
+    mesh.uvTris = nullptr;
+}
+
+static void free_quad_mesh(qex_QuadMesh &mesh)
+{
+    free(mesh.vertices);
+    free(mesh.quads);
+    mesh.vertices = nullptr;
+    mesh.quads = nullptr;
+}
+
 static Eigen::RowVector3d fallback_tangent(
     const Eigen::MatrixXd &V,
     const Eigen::MatrixXi &F,
@@ -296,6 +314,7 @@ int main(int argc, char *argv[])
     int nf = static_cast<int>(F.rows());
 
     qex_TriMesh triMesh;
+    memset(&triMesh, 0, sizeof(triMesh));
     triMesh.vertex_count = static_cast<unsigned int>(nv);
     triMesh.tri_count    = static_cast<unsigned int>(nf);
 
@@ -304,9 +323,7 @@ int main(int argc, char *argv[])
     triMesh.uvTris   = (qex_UVTri*)calloc(nf, sizeof(qex_UVTri));
     if (triMesh.vertices == nullptr || triMesh.tris == nullptr || triMesh.uvTris == nullptr) {
         std::cerr << "Failed to allocate libQEx input buffers." << std::endl;
-        free(triMesh.vertices);
-        free(triMesh.tris);
-        free(triMesh.uvTris);
+        free_tri_mesh(triMesh);
         return 1;
     }
 
@@ -336,15 +353,11 @@ int main(int argc, char *argv[])
         qex_extractQuadMesh(&triMesh, nullptr, &quadMesh);
     } catch (const std::exception &e) {
         std::cerr << "libQEx failed: " << e.what() << std::endl;
-        free(triMesh.vertices);
-        free(triMesh.tris);
-        free(triMesh.uvTris);
+        free_tri_mesh(triMesh);
         return 1;
     } catch (...) {
         std::cerr << "libQEx failed with an unknown exception." << std::endl;
-        free(triMesh.vertices);
-        free(triMesh.tris);
-        free(triMesh.uvTris);
+        free_tri_mesh(triMesh);
         return 1;
     }
 
@@ -352,30 +365,21 @@ int main(int argc, char *argv[])
               << " Quad faces=" << quadMesh.quad_count << std::endl;
     if (quadMesh.vertex_count == 0 || quadMesh.quad_count == 0) {
         std::cerr << "libQEx produced an empty quad mesh." << std::endl;
-        free(triMesh.vertices);
-        free(triMesh.tris);
-        free(triMesh.uvTris);
-        free(quadMesh.vertices);
-        free(quadMesh.quads);
+        free_tri_mesh(triMesh);
+        free_quad_mesh(quadMesh);
         return 1;
     }
 
     // 5. Write output
     if (!write_quad_obj(output_path, quadMesh)) {
-        free(triMesh.vertices);
-        free(triMesh.tris);
-        free(triMesh.uvTris);
-        free(quadMesh.vertices);
-        free(quadMesh.quads);
+        free_tri_mesh(triMesh);
+        free_quad_mesh(quadMesh);
         return 1;
     }
     std::cout << "Output saved to: " << output_path << std::endl;
 
-    free(triMesh.vertices);
-    free(triMesh.tris);
-    free(triMesh.uvTris);
-    free(quadMesh.vertices);
-    free(quadMesh.quads);
+    free_tri_mesh(triMesh);
+    free_quad_mesh(quadMesh);
 
     return 0;
 }

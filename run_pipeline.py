@@ -34,6 +34,7 @@ from build_complexity_map import (
     robust_normalize,
 )
 from eval.label_utils import cluster_features
+from extract_quad import load_quad_obj, write_quad_obj
 try:
     from instruction_guidance import build_instruction_metadata
     from instruction_guidance import load_instruction_prototypes
@@ -235,14 +236,13 @@ def parse_args():
                    help="MIQ gradient size (controls quad density)")
     p.add_argument("--extract_timeout", type=int, default=600,
                    help="Timeout in seconds for each Stage 3 extract attempt")
-    p.add_argument("--size_field_path", default=None,
-                   help="Deprecated and ignored. Stage 3 now follows the pure MIQ -> libQEx pipeline.")
+    p.add_argument("--size_field_path", default=None, help=argparse.SUPPRESS)
     p.add_argument("--size_field_strength", type=float, default=0.75,
-                   help="Deprecated and ignored.")
+                   help=argparse.SUPPRESS)
     p.add_argument("--size_field_smooth_iters", type=int, default=6,
-                   help="Deprecated and ignored.")
+                   help=argparse.SUPPRESS)
     p.add_argument("--disable_semantic_size_field", action="store_true",
-                   help="Deprecated and ignored. Semantic size-field generation is disabled.")
+                   help=argparse.SUPPRESS)
     p.add_argument("--semantic_size_k", type=int, default=None,
                    help="Fixed cluster count for semantic size-field generation")
     p.add_argument("--semantic_size_k_min", type=int, default=2,
@@ -264,7 +264,7 @@ def parse_args():
     p.add_argument("--disable_extract_retry", action="store_true",
                    help="Disable fallback retry extraction with alternative settings")
     p.add_argument("--disable_size_field_relax", action="store_true",
-                   help="Deprecated and ignored.")
+                   help=argparse.SUPPRESS)
     p.add_argument("--sweep_values", nargs="+", type=float, default=None,
                    help="Optional gradient_size sweep values for safer extraction")
     p.add_argument("--keep_sweep_outputs", action="store_true",
@@ -285,8 +285,15 @@ def parse_args():
                    help="Relative tolerance band around the extraction quad budget")
     p.add_argument("--max_catmull_clark_iters", type=int, default=2,
                    help="Maximum automatic Catmull-Clark subdivision iterations")
-    p.add_argument("--disable_chunked_extract", action="store_true",
-                   help="Disable chunked extraction for assembled meshes")
+    p.add_argument("--enable_chunked_extract",
+                   dest="disable_chunked_extract",
+                   action="store_false",
+                   help="Enable experimental chunked extraction for assembled meshes")
+    p.add_argument("--disable_chunked_extract",
+                   dest="disable_chunked_extract",
+                   action="store_true",
+                   help=argparse.SUPPRESS)
+    p.set_defaults(disable_chunked_extract=True)
     p.add_argument("--allow_per_chunk_size", action="store_true",
                    help="Allow variable chunk density by merging each chunk's local auto-sweep best")
     p.add_argument("--extract_chunk_min_faces", type=int, default=200,
@@ -1116,40 +1123,6 @@ def write_subset_crossfield(rows, face_ids, output_path):
     return output_path
 
 
-def write_subset_scalar_field(values, face_ids, output_path):
-    os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
-    np.savetxt(output_path, values[np.asarray(face_ids, dtype=np.int64)], fmt="%.8f")
-    return output_path
-
-
-def load_quad_obj(path):
-    vertices = []
-    quads = []
-    with open(path, "r") as f:
-        for line in f:
-            if line.startswith("v "):
-                parts = line.strip().split()
-                vertices.append([float(parts[1]), float(parts[2]), float(parts[3])])
-            elif line.startswith("f "):
-                parts = line.strip().split()[1:]
-                indices = [int(p.split("/")[0]) - 1 for p in parts]
-                if len(indices) == 4:
-                    quads.append(indices)
-
-    if not vertices or not quads:
-        raise ValueError(f"No valid quad data in {path}")
-    return np.asarray(vertices, dtype=np.float64), np.asarray(quads, dtype=np.int64)
-
-
-def write_quad_obj(path, vertices, quads):
-    os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
-    with open(path, "w") as f:
-        for vertex in np.asarray(vertices, dtype=np.float64):
-            f.write(f"v {vertex[0]:.12g} {vertex[1]:.12g} {vertex[2]:.12g}\n")
-        for quad in np.asarray(quads, dtype=np.int64):
-            f.write(f"f {quad[0] + 1} {quad[1] + 1} {quad[2] + 1} {quad[3] + 1}\n")
-
-
 def merge_quad_chunks(chunk_obj_paths, output_path):
     merged_vertices = []
     merged_quads = []
@@ -1509,8 +1482,8 @@ def _merge_tiny_chunks(mesh, chunks):
     return result
 
 
-def run_chunked_quad_extract(input_mesh, feat_path, instruction_meta_path, crossfield_txt, output_obj, args,
-                             size_field_path=None):
+def run_chunked_quad_extract(input_mesh, feat_path, instruction_meta_path,
+                             crossfield_txt, output_obj, args):
     mesh = trimesh.load_mesh(input_mesh, process=False)
     chunks, strategy = plan_extraction_chunks(mesh, feat_path, instruction_meta_path, args)
 
@@ -1688,7 +1661,7 @@ def run_instruction_patch_extract(input_mesh, instruction_meta_path, crossfield_
 
 
 def run_quad_extract(input_mesh, crossfield_txt, output_obj, args,
-                     size_field_path=None, feat_path=None):
+                     feat_path=None):
     """Run safer quad extraction through extract_quad.py."""
     if not os.path.isfile(EXTRACT_QUAD_PY):
         sys.exit(f"Quad extraction script not found: {EXTRACT_QUAD_PY}")
@@ -1750,12 +1723,6 @@ def run_quad_extract(input_mesh, crossfield_txt, output_obj, args,
     print(f"  output      : {output_obj}")
     print(f"  gradient_size: {args.gradient_size}\n")
     print(f"  timeout     : {args.extract_timeout}")
-    if size_field_path is not None or args.size_field_path is not None:
-        print("  warning     : deprecated size-field options are ignored")
-    if not args.disable_semantic_size_field:
-        print("  warning     : semantic size-field generation is disabled for pure MIQ -> libQEx extraction")
-    print()
-
     print(f"  auto_sweep  : {not args.disable_auto_sweep}")
     print(f"  retry       : {not args.disable_extract_retry}")
     print(f"  min_quads   : {'default' if args.min_quads is None else args.min_quads}")
@@ -2208,7 +2175,7 @@ def main():
     if args.guidance_mode == "instruction":
         print(f"  instruction_meta/       Per-face instruction metadata (.npz)")
     print(f"  neurcross_logs/         NeurCross training results")
-    print(f"  quad_meshes/*_chunks/   Per-chunk extraction intermediates when chunking is used")
+    print(f"  quad_meshes/*_chunks/   Per-chunk intermediates when --enable_chunked_extract is used")
     print(f"  quad_meshes/*_target_patches/  Local target-patch extraction outputs when enabled")
     print(f"  quad_meshes/            Extracted quad meshes (.obj)")
     print()

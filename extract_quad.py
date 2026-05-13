@@ -69,16 +69,16 @@ def parse_args():
                    help="Output directory for quad meshes (batch mode)")
     p.add_argument("--gradient_size", type=float, default=30.0,
                    help="MIQ gradient size — controls quad density (default: 30.0)")
-    p.add_argument("--size_field", default=None,
-                   help="Deprecated and ignored. Extraction now follows the pure MIQ -> libQEx pipeline.")
+    # Backward-compatible no-op flags from the old size-field extractor.
+    p.add_argument("--size_field", default=None, help=argparse.SUPPRESS)
     p.add_argument("--size_field_strength", type=float, default=0.25,
-                   help="Deprecated and ignored.")
+                   help=argparse.SUPPRESS)
     p.add_argument("--size_field_smooth_iters", type=int, default=6,
-                   help="Deprecated and ignored.")
+                   help=argparse.SUPPRESS)
     p.add_argument("--size_field_relax", action="store_true",
-                   help="Deprecated and ignored.")
+                   help=argparse.SUPPRESS)
     p.add_argument("--timeout", type=int, default=6000,
-                   help="Timeout per extraction attempt in seconds (default: 600)")
+                   help="Timeout per extraction attempt in seconds (default: 6000)")
     p.add_argument("--retry", action="store_true",
                    help="Auto-retry with multiple gradient sizes and iterations on failure")
     p.add_argument("--max_fallback_attempts", type=int, default=None,
@@ -322,7 +322,6 @@ def resolve_nonmanifold(mesh_path, crossfield_path, output_mesh_path,
     repaired = trimesh.Trimesh(vertices=new_V, faces=new_F, process=False)
     repaired.export(output_mesh_path)
 
-    import shutil
     shutil.copy2(crossfield_path, output_crossfield_path)
 
     edge_to_faces2 = {}
@@ -743,9 +742,7 @@ def _cleanup_intermediate_dir(work_dir, keep_intermediates):
 
 def _run_extract_once(mesh_path, crossfield_path, output_path,
                       gradient_size=30.0, timeout=600, stiffness=5.0,
-                      direct_round=False, iters=5, local_iters=5,
-                      size_field_path=None, size_field_strength=0.25,
-                      size_field_smooth_iters=6):
+                      direct_round=False, iters=5, local_iters=5):
     """Run the C++ extract_quad_mesh binary once.
 
     Returns True on success, False on failure.
@@ -770,10 +767,6 @@ def _run_extract_once(mesh_path, crossfield_path, output_path,
     print(f"  cross field  : {crossfield_path}")
     print(f"  output       : {output_path}")
     print(f"  gradient_size: {gradient_size}  timeout: {timeout}s{tag}\n")
-    if size_field_path is not None:
-        print("  warning      : --size_field is deprecated and ignored")
-        print(f"  ignored_path : {size_field_path}\n")
-
     env = os.environ.copy()
     env["LD_LIBRARY_PATH"] = (
         "/usr/lib/x86_64-linux-gnu:" + env.get("LD_LIBRARY_PATH", ""))
@@ -802,9 +795,8 @@ _FALLBACK_CONFIGS = [
 
 
 def run_extract(mesh_path, crossfield_path, output_path,
-                gradient_size=30.0, timeout=600, size_field_path=None,
-                size_field_strength=0.25, size_field_smooth_iters=6,
-                size_field_relax=False, max_fallback_attempts=None):
+                gradient_size=30.0, timeout=600,
+                max_fallback_attempts=None):
     """Run extraction with automatic fallback through increasingly relaxed
     MIQ configurations when the default parameters crash or timeout."""
     os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
@@ -1161,10 +1153,6 @@ def auto_sweep_single(mesh_path, crossfield_path, output_path, args):
             candidate_output,
             gs,
             args.timeout,
-            size_field_path=args.size_field,
-            size_field_strength=args.size_field_strength,
-            size_field_smooth_iters=args.size_field_smooth_iters,
-            size_field_relax=args.size_field_relax,
             max_fallback_attempts=args.max_fallback_attempts,
         )
         if not ok:
@@ -1310,10 +1298,6 @@ def _attempt_extraction(mesh_path, crossfield_path, output_path,
         print(f"\n[Quad Extraction]")
         ok = run_extract(mesh_path, crossfield_path, output_path,
                          gradient_size, timeout,
-                         size_field_path=args.size_field if args is not None else None,
-                         size_field_strength=args.size_field_strength if args is not None else 0.25,
-                         size_field_smooth_iters=args.size_field_smooth_iters if args is not None else 6,
-                         size_field_relax=args.size_field_relax if args is not None else False,
                          max_fallback_attempts=(
                              args.max_fallback_attempts if args is not None else None))
         if ok:
@@ -1342,10 +1326,6 @@ def _attempt_extraction(mesh_path, crossfield_path, output_path,
             print(f"\n[Quad Extraction] Trying {cf_label}  gs={gs}")
             ok = run_extract(
                 mesh_path, cf_txt, output_path, gs, timeout,
-                size_field_path=args.size_field if args is not None else None,
-                size_field_strength=args.size_field_strength if args is not None else 0.25,
-                size_field_smooth_iters=args.size_field_smooth_iters if args is not None else 6,
-                size_field_relax=args.size_field_relax if args is not None else False,
                 max_fallback_attempts=(
                     args.max_fallback_attempts if args is not None else None),
             )

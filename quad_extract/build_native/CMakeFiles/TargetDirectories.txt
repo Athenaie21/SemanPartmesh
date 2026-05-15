@@ -1,0 +1,3 @@
+/home/gmt/SemanPartmesh/quad_extract/build_native/CMakeFiles/extract_quad_mesh.dir
+/home/gmt/SemanPartmesh/quad_extract/build_native/CMakeFiles/edit_cache.dir
+/home/gmt/SemanPartmesh/quad_extract/build_native/CMakeFiles/rebuild_cache.dir

@@ -102,14 +102,15 @@ class Tail(nn.Module):
 
 
 class UNet_predict_angle(nn.Module):
-    def __init__(self, C_in, C_out, depths=[3, 4, 6, 3], stem_dims=[256, 256, 512], dims=[256, 256, 256, 512],
-                 decode_out_dims=[256, 256, 256, 128], drop_path_rate=0., layer_scale_init_value=1e-6):
+    def __init__(self, C_in, C_out, depths=[3*2, 4*2, 6*2, 3*2], stem_dims=[512, 512, 1024], dims=[512, 512, 512, 1024],
+                 decode_out_dims=[512, 512, 512, 256], drop_path_rate=0., layer_scale_init_value=1e-6):
         super().__init__()
 
         self.C_in = C_in
         self.dims = dims
         self.class_num = C_out
         self.stem_dims = stem_dims
+        final_decode_dim = decode_out_dims[-1]
 
         self.stems = nn.ModuleList()
         for i in range(len(depths)):
@@ -145,21 +146,21 @@ class UNet_predict_angle(nn.Module):
                 decode_layer = nn.Sequential(Tail(dims[-1], decode_out_dims[i]))
             elif i == len(depths):
                 decode_layer = nn.Sequential(
-                    *[Block(dim=(decode_out_dims[-1] * 4), drop_path=dp_rates[cur + j],
+                    *[Block(dim=(final_decode_dim * 4), drop_path=dp_rates[cur + j],
                             layer_scale_init_value=layer_scale_init_value) for j in range(depths[-1])],
-                    Tail((decode_out_dims[-1] * 4), decode_out_dims[-1]),
+                    Tail((final_decode_dim * 4), final_decode_dim),
                 )
                 cur += depths[i - 1]
             self.decoders.append(decode_layer)
 
         self.decoders_cat = nn.ModuleList()
         for i in range(len(depths) - 1):
-            cat_layer = nn.Sequential(Tail(decode_out_dims[i], decode_out_dims[-1]))
+            cat_layer = nn.Sequential(Tail(decode_out_dims[i], final_decode_dim))
             self.decoders_cat.append(cat_layer)
 
         self.last_layer = nn.Sequential(
-            LayerNorm(128, eps=1e-6, data_format="channels_last"),
-            nn.Linear(128, 32),
+            LayerNorm(final_decode_dim, eps=1e-6, data_format="channels_last"),
+            nn.Linear(final_decode_dim, 32),
             nn.GELU(),
             nn.Linear(32, C_out),
         )

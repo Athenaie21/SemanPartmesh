@@ -1,7 +1,8 @@
 import os
 import sys
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+# Preserve an explicitly selected GPU from the parent process.
+os.environ.setdefault("CUDA_VISIBLE_DEVICES", "0")
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 import numpy as np

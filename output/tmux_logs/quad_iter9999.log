@@ -1,0 +1,910 @@
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=30, stiffness=5, iters=5)...
+
+ INITIALIZED SPARSE MATRIX OF 19020d x 19020d 
+
+ INITIALIZED SPARSE MATRIX OF 4890d x 20270d 
+
+ INITIALIZED VECTOR OF 19020d x 1 
+
+ INITIALIZED VECTOR OF 4890d x 1 
+Initital dimension: 20270 x 20270, number of constraints: 4890, number of integer variables: 2060, use reordering: yes
+make_constraints_independent took 0.025329000000000001 s.
+Constraint integration took 0.14886000000000002 s.
+Constraint elimination took 0.071415999999999993 s.
+Reindexing took 0.0016180000000000001 s.
+eliminate_constraints took 0.22208600000000001 s.
+Eliminated dimension: 15380 x 15380
+#nonzeros: 554086
+integer variables #: 866
+continuous variables #: 14514
+initial full solution
+CHOLMOD warning: matrix not positive definite. file: /home/conda/feedstock_root/build_artifacts/bld/rattler-build_libcholmod_1742288892/work/CHOLMOD/Supernodal/t_cholmod_super_numeric_worker.c line: 1090
+final full solution
+CHOLMOD warning: matrix not positive definite. file: /home/conda/feedstock_root/build_artifacts/bld/rattler-build_libcholmod_1742288892/work/CHOLMOD/Supernodal/t_cholmod_super_numeric_worker.c line: 1090
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 866
+Number of CG    iterations  = 866
+Number of FULL  iterations  = 2
+Number of ROUNDING          = 866
+solve_multiple_rounding took 7.9772509999999999 s.
+solve took 7.9773860000000001 s.
+restore_eliminated_vars took 0.0024359999999999998 s.
+solve took 8.2298790000000004 s.
+ITERATION 0 FLIPS 0 
+**** END OPTIMIZING #FLIPS 0  ****
+       UV=9510 FUV=15232
+Invalid MIQ output: UV=9510x2 FUV=15232x3
+
+ Closed: Fri May 15 12:30:17 2026
+
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=30, stiffness=50, iters=5)...
+
+ INITIALIZED SPARSE MATRIX OF 19020d x 19020d 
+
+ INITIALIZED SPARSE MATRIX OF 4890d x 20270d 
+
+ INITIALIZED VECTOR OF 19020d x 1 
+
+ INITIALIZED VECTOR OF 4890d x 1 
+Initital dimension: 20270 x 20270, number of constraints: 4890, number of integer variables: 2060, use reordering: yes
+make_constraints_independent took 0.025045999999999999 s.
+Constraint integration took 0.148421 s.
+Constraint elimination took 0.053849000000000001 s.
+Reindexing took 0.0014579999999999999 s.
+eliminate_constraints took 0.20385300000000001 s.
+Eliminated dimension: 15380 x 15380
+#nonzeros: 554224
+integer variables #: 866
+continuous variables #: 14514
+initial full solution
+CHOLMOD warning: matrix not positive definite. file: /home/conda/feedstock_root/build_artifacts/bld/rattler-build_libcholmod_1742288892/work/CHOLMOD/Supernodal/t_cholmod_super_numeric_worker.c line: 1090
+final full solution
+CHOLMOD warning: matrix not positive definite. file: /home/conda/feedstock_root/build_artifacts/bld/rattler-build_libcholmod_1742288892/work/CHOLMOD/Supernodal/t_cholmod_super_numeric_worker.c line: 1090
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 866
+Number of CG    iterations  = 866
+Number of FULL  iterations  = 2
+Number of ROUNDING          = 866
+solve_multiple_rounding took 7.4676049999999998 s.
+solve took 7.4677179999999996 s.
+restore_eliminated_vars took 0.0024380000000000001 s.
+solve took 7.7021800000000002 s.
+ITERATION 0 FLIPS 0 
+**** END OPTIMIZING #FLIPS 0  ****
+       UV=9510 FUV=15232
+Invalid MIQ output: UV=9510x2 FUV=15232x3
+
+ Closed: Fri May 15 12:30:26 2026
+
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=30, stiffness=5, iters=5)...
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=30, stiffness=50, iters=5)...
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=30, stiffness=200, iters=3)...
+
+ INITIALIZED SPARSE MATRIX OF 19020d x 19020d 
+
+ INITIALIZED SPARSE MATRIX OF 4890d x 20270d 
+
+ INITIALIZED VECTOR OF 19020d x 1 
+
+ INITIALIZED VECTOR OF 4890d x 1 
+Initital dimension: 20270 x 20270, number of constraints: 4890, number of integer variables: 2060, use reordering: yes
+make_constraints_independent took 0.025112000000000002 s.
+Constraint integration took 0.150201 s.
+Constraint elimination took 0.055428000000000005 s.
+Reindexing took 0.0014550000000000001 s.
+eliminate_constraints took 0.20722300000000002 s.
+Eliminated dimension: 15380 x 15380
+#nonzeros: 554224
+integer variables #: 866
+continuous variables #: 14514
+CHOLMOD warning: matrix not positive definite. file: /home/conda/feedstock_root/build_artifacts/bld/rattler-build_libcholmod_1742288892/work/CHOLMOD/Supernodal/t_cholmod_super_numeric_worker.c line: 1090
+CHOLMOD warning: matrix not positive definite. file: /home/conda/feedstock_root/build_artifacts/bld/rattler-build_libcholmod_1742288892/work/CHOLMOD/Supernodal/t_cholmod_super_numeric_worker.c line: 1090
+solve took 0.083957000000000004 s.
+restore_eliminated_vars took 0.0024399999999999999 s.
+solve took 0.320079 s.
+Maximum Distorsion 398546148853681946624.0000 
+Maximum Laplacian 0.0000 
+ITERATION 0 FLIPS 9 
+
+ INITIALIZED SPARSE MATRIX OF 19020d x 19020d 
+
+ INITIALIZED SPARSE MATRIX OF 4890d x 20270d 
+
+ INITIALIZED VECTOR OF 19020d x 1 
+
+ INITIALIZED VECTOR OF 4890d x 1 
+Initital dimension: 20270 x 20270, number of constraints: 4890, number of integer variables: 2060, use reordering: yes
+make_constraints_independent took 0.023057999999999999 s.
+Constraint integration took 0.14981700000000001 s.
+Constraint elimination took 0.07709400000000001 s.
+Reindexing took 0.0013929999999999999 s.
+eliminate_constraints took 0.22843100000000002 s.
+Eliminated dimension: 15380 x 15380
+#nonzeros: 685750
+integer variables #: 866
+continuous variables #: 14514
+solve took 0.16819599999999998 s.
+restore_eliminated_vars took 0.0033500000000000001 s.
+solve took 0.424485 s.
+Maximum Distorsion 398546148853681946624.0000 
+Maximum Laplacian 0.0000 
+ITERATION 1 FLIPS 9 
+
+ INITIALIZED SPARSE MATRIX OF 19020d x 19020d 
+
+ INITIALIZED SPARSE MATRIX OF 4890d x 20270d 
+
+ INITIALIZED VECTOR OF 19020d x 1 
+
+ INITIALIZED VECTOR OF 4890d x 1 
+Initital dimension: 20270 x 20270, number of constraints: 4890, number of integer variables: 2060, use reordering: yes
+make_constraints_independent took 0.022938 s.
+Constraint integration took 0.15106900000000001 s.
+Constraint elimination took 0.078646000000000008 s.
+Reindexing took 0.0014000000000000002 s.
+eliminate_constraints took 0.231239 s.
+Eliminated dimension: 15380 x 15380
+#nonzeros: 685750
+integer variables #: 866
+continuous variables #: 14514
+solve took 0.16386600000000001 s.
+restore_eliminated_vars took 0.003323 s.
+solve took 0.42293400000000003 s.
+Maximum Distorsion 398546148853681946624.0000 
+Maximum Laplacian 0.0000 
+ITERATION 2 FLIPS 9 
+**** END OPTIMIZING #FLIPS 9  ****
+       UV=9510 FUV=15232
+Invalid MIQ output: UV=9510x2 FUV=15232x3
+
+ Closed: Fri May 15 12:30:31 2026
+
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=50, stiffness=5, iters=5)...
+
+ INITIALIZED SPARSE MATRIX OF 19020d x 19020d 
+
+ INITIALIZED SPARSE MATRIX OF 4890d x 20270d 
+
+ INITIALIZED VECTOR OF 19020d x 1 
+
+ INITIALIZED VECTOR OF 4890d x 1 
+Initital dimension: 20270 x 20270, number of constraints: 4890, number of integer variables: 2060, use reordering: yes
+make_constraints_independent took 0.024934000000000001 s.
+Constraint integration took 0.14866699999999999 s.
+Constraint elimination took 0.053931000000000007 s.
+Reindexing took 0.001469 s.
+eliminate_constraints took 0.20418200000000003 s.
+Eliminated dimension: 15380 x 15380
+#nonzeros: 554224
+integer variables #: 866
+continuous variables #: 14514
+initial full solution
+CHOLMOD warning: matrix not positive definite. file: /home/conda/feedstock_root/build_artifacts/bld/rattler-build_libcholmod_1742288892/work/CHOLMOD/Supernodal/t_cholmod_super_numeric_worker.c line: 1090
+final full solution
+CHOLMOD warning: matrix not positive definite. file: /home/conda/feedstock_root/build_artifacts/bld/rattler-build_libcholmod_1742288892/work/CHOLMOD/Supernodal/t_cholmod_super_numeric_worker.c line: 1090
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 866
+Number of CG    iterations  = 866
+Number of FULL  iterations  = 2
+Number of ROUNDING          = 866
+solve_multiple_rounding took 7.5243000000000002 s.
+solve took 7.5244170000000006 s.
+restore_eliminated_vars took 0.0024660000000000003 s.
+solve took 7.758559 s.
+ITERATION 0 FLIPS 0 
+**** END OPTIMIZING #FLIPS 0  ****
+       UV=9510 FUV=15232
+Invalid MIQ output: UV=9510x2 FUV=15232x3
+
+ Closed: Fri May 15 12:30:41 2026
+
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=50, stiffness=50, iters=5)...
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=50, stiffness=5, iters=5)...
+
+==================================================
+  [Tier 0] Standard repair pipeline
+==================================================
+  [bridge] added 36 bridge faces, components: 19 -> 1
+  [repair] collapsed 6 degenerate edge(s), V: 7646->7640, F: 15248->15232
+
+[Quad Extraction] Trying 37624_33b6f949_iter9999_quad_repaired_cf.txt  gs=30.0
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 30.0  timeout: 6000s
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj', '30.0', '5.0', '0', '5', '5']' returned non-zero exit status 1.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 30.0  timeout: 6000s  [stiff=50.0 dr=0 it=5]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj', '30.0', '50.0', '0', '5', '5']' returned non-zero exit status 1.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 30.0  timeout: 6000s  [stiff=5.0 dr=1 it=5]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj', '30.0', '5.0', '1', '5', '5']' died with <Signals.SIGSEGV: 11>.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 30.0  timeout: 6000s  [stiff=50.0 dr=1 it=5]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj', '30.0', '50.0', '1', '5', '5']' died with <Signals.SIGSEGV: 11>.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 30.0  timeout: 6000s  [stiff=200.0 dr=1 it=3]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj', '30.0', '200.0', '1', '3', '5']' returned non-zero exit status 1.
+
+[Quad Extraction] Trying 37624_33b6f949_iter9999_quad_repaired_cf.txt  gs=50.0
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 50.0  timeout: 6000s
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj', '50.0', '5.0', '0', '5', '5']' returned non-zero exit status 1.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 50.0  timeout: 6000s  [stiff=50.0 dr=0 it=5]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj', '50.0', '50.0', '0', '5', '5']' died with <Signals.SIGSEGV: 11>.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 50.0  timeout: 6000s  [stiff=5.0 dr=1 it=5]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj', '50.0', '5.0', '1', '5', '5']' died with <Signals.SIGSEGV: 11>.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=50, stiffness=50, iters=5)...
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=50, stiffness=200, iters=3)...
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=15, stiffness=5, iters=5)...
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=15, stiffness=50, iters=5)...
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=15, stiffness=5, iters=5)...
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=15, stiffness=50, iters=5)...
+
+ INITIALIZED SPARSE MATRIX OF 19020d x 19020d 
+
+ INITIALIZED SPARSE MATRIX OF 4890d x 20270d 
+
+ INITIALIZED VECTOR OF 19020d x 1 
+
+ INITIALIZED VECTOR OF 4890d x 1 
+Initital dimension: 20270 x 20270, number of constraints: 4890, number of integer variables: 2060, use reordering: yes
+make_constraints_independent took 0.025863000000000001 s.
+Constraint integration took 0.152697 s.
+Constraint elimination took 0.055112000000000001 s.
+Reindexing took 0.001462 s.
+eliminate_constraints took 0.209399 s.
+Eliminated dimension: 15380 x 15380
+#nonzeros: 556740
+integer variables #: 866
+continuous variables #: 14514
+CHOLMOD warning: matrix not positive definite. file: /home/conda/feedstock_root/build_artifacts/bld/rattler-build_libcholmod_1742288892/work/CHOLMOD/Supernodal/t_cholmod_super_numeric_worker.c line: 1090
+CHOLMOD warning: matrix not positive definite. file: /home/conda/feedstock_root/build_artifacts/bld/rattler-build_libcholmod_1742288892/work/CHOLMOD/Supernodal/t_cholmod_super_numeric_worker.c line: 1090
+solve took 0.084183000000000008 s.
+restore_eliminated_vars took 0.0024510000000000001 s.
+solve took 0.32335799999999998 s.
+Maximum Distorsion 797092297707363893248.0000 
+Maximum Laplacian 0.0000 
+ITERATION 0 FLIPS 9 
+
+ INITIALIZED SPARSE MATRIX OF 19020d x 19020d 
+
+ INITIALIZED SPARSE MATRIX OF 4890d x 20270d 
+
+ INITIALIZED VECTOR OF 19020d x 1 
+
+ INITIALIZED VECTOR OF 4890d x 1 
+Initital dimension: 20270 x 20270, number of constraints: 4890, number of integer variables: 2060, use reordering: yes
+make_constraints_independent took 0.024530999999999997 s.
+Constraint integration took 0.15294199999999999 s.
+Constraint elimination took 0.078514 s.
+Reindexing took 0.0014350000000000001 s.
+eliminate_constraints took 0.23301500000000003 s.
+Eliminated dimension: 15380 x 15380
+#nonzeros: 690590
+integer variables #: 866
+continuous variables #: 14514
+solve took 0.56339899999999998 s.
+restore_eliminated_vars took 0.0032650000000000001 s.
+solve took 0.82596799999999992 s.
+Maximum Distorsion 797092297707363893248.0000 
+Maximum Laplacian 0.0000 
+ITERATION 1 FLIPS 9 
+
+ INITIALIZED SPARSE MATRIX OF 19020d x 19020d 
+
+ INITIALIZED SPARSE MATRIX OF 4890d x 20270d 
+
+ INITIALIZED VECTOR OF 19020d x 1 
+
+ INITIALIZED VECTOR OF 4890d x 1 
+Initital dimension: 20270 x 20270, number of constraints: 4890, number of integer variables: 2060, use reordering: yes
+make_constraints_independent took 0.022976 s.
+Constraint integration took 0.151363 s.
+Constraint elimination took 0.079338000000000006 s.
+Reindexing took 0.001418 s.
+eliminate_constraints took 0.23222800000000002 s.
+Eliminated dimension: 15380 x 15380
+#nonzeros: 690590
+integer variables #: 866
+continuous variables #: 14514
+solve took 0.181809 s.
+restore_eliminated_vars took 0.0033010000000000001 s.
+solve took 0.44245899999999999 s.
+Maximum Distorsion 797092297707363893248.0000 
+Maximum Laplacian 0.0000 
+ITERATION 2 FLIPS 9 
+
+ INITIALIZED SPARSE MATRIX OF 19020d x 19020d 
+
+ INITIALIZED SPARSE MATRIX OF 4890d x 20270d 
+
+ INITIALIZED VECTOR OF 19020d x 1 
+
+ INITIALIZED VECTOR OF 4890d x 1 
+Initital dimension: 20270 x 20270, number of constraints: 4890, number of integer variables: 2060, use reordering: yes
+make_constraints_independent took 0.023121000000000003 s.
+Constraint integration took 0.15361199999999997 s.
+Constraint elimination took 0.080625000000000002 s.
+Reindexing took 0.0014299999999999998 s.
+eliminate_constraints took 0.23579999999999995 s.
+Eliminated dimension: 15380 x 15380
+#nonzeros: 690590
+integer variables #: 866
+continuous variables #: 14514
+solve took 0.18566400000000002 s.
+restore_eliminated_vars took 0.003222 s.
+solve took 0.44974699999999995 s.
+Maximum Distorsion 797092297707363893248.0000 
+Maximum Laplacian 0.0000 
+ITERATION 3 FLIPS 9 
+
+ INITIALIZED SPARSE MATRIX OF 19020d x 19020d 
+
+ INITIALIZED SPARSE MATRIX OF 4890d x 20270d 
+
+ INITIALIZED VECTOR OF 19020d x 1 
+
+ INITIALIZED VECTOR OF 4890d x 1 
+Initital dimension: 20270 x 20270, number of constraints: 4890, number of integer variables: 2060, use reordering: yes
+make_constraints_independent took 0.023191 s.
+Constraint integration took 0.172179 s.
+Constraint elimination took 0.099585000000000007 s.
+Reindexing took 0.0014370000000000001 s.
+eliminate_constraints took 0.27334000000000003 s.
+Eliminated dimension: 15380 x 15380
+#nonzeros: 690590
+integer variables #: 866
+continuous variables #: 14514
+solve took 0.165883 s.
+restore_eliminated_vars took 0.0032650000000000001 s.
+solve took 0.46744999999999998 s.
+Maximum Distorsion 797092297707363893248.0000 
+Maximum Laplacian 0.0000 
+ITERATION 4 FLIPS 9 
+**** END OPTIMIZING #FLIPS 9  ****
+       UV=9510 FUV=15232
+Invalid MIQ output: UV=9510x2 FUV=15232x3
+
+ Closed: Fri May 15 12:30:51 2026
+
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=15, stiffness=200, iters=3)...
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=80, stiffness=5, iters=5)...
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=80, stiffness=50, iters=5)...
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 50.0  timeout: 6000s  [stiff=50.0 dr=1 it=5]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj', '50.0', '50.0', '1', '5', '5']' died with <Signals.SIGSEGV: 11>.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 50.0  timeout: 6000s  [stiff=200.0 dr=1 it=3]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj', '50.0', '200.0', '1', '3', '5']' died with <Signals.SIGSEGV: 11>.
+
+[Quad Extraction] Trying 37624_33b6f949_iter9999_quad_repaired_cf.txt  gs=15.0
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 15.0  timeout: 6000s
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj', '15.0', '5.0', '0', '5', '5']' died with <Signals.SIGSEGV: 11>.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 15.0  timeout: 6000s  [stiff=50.0 dr=0 it=5]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj', '15.0', '50.0', '0', '5', '5']' died with <Signals.SIGSEGV: 11>.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 15.0  timeout: 6000s  [stiff=5.0 dr=1 it=5]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj', '15.0', '5.0', '1', '5', '5']' died with <Signals.SIGSEGV: 11>.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 15.0  timeout: 6000s  [stiff=50.0 dr=1 it=5]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj', '15.0', '50.0', '1', '5', '5']' returned non-zero exit status 1.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 15.0  timeout: 6000s  [stiff=200.0 dr=1 it=3]
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj', '15.0', '200.0', '1', '3', '5']' died with <Signals.SIGSEGV: 11>.
+
+[Quad Extraction] Trying 37624_33b6f949_iter9999_quad_repaired_cf.txt  gs=80.0
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 80.0  timeout: 6000s
+
+  FAILED: Command '['/home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt', '/home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj', '80.0', '5.0', '0', '5', '5']' died with <Signals.SIGSEGV: 11>.
+  binary       : /home/gmt/SemanPartmesh/quad_extract/build/extract_quad_mesh
+  input mesh   : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+  cross field  : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+  output       : /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad.obj
+  gradient_size: 80.0  timeout: 6000s  [stiff=50.0 dr=0 it=5]
+
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=80, stiffness=5, iters=5)...
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=80, stiffness=50, iters=5)...
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired.obj
+       V=7640 F=15232
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_repaired_cf.txt
+       cross field rows=15232
+       repaired invalid cross-field directions=22
+[3/4] Running MIQ parameterization (gradient_size=80, stiffness=200, iters=3)...
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_pml_repaired.obj
+       V=7610 F=15212
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_pml_repaired_cf.txt
+       cross field rows=15212
+[3/4] Running MIQ parameterization (gradient_size=30, stiffness=5, iters=5)...
+
+ INITIALIZED SPARSE MATRIX OF 18738d x 18738d 
+
+ INITIALIZED SPARSE MATRIX OF 4702d x 19950d 
+
+ INITIALIZED VECTOR OF 18738d x 1 
+
+ INITIALIZED VECTOR OF 4702d x 1 
+Initital dimension: 19950 x 19950, number of constraints: 4702, number of integer variables: 2056, use reordering: yes
+make_constraints_independent took 0.024036999999999999 s.
+Constraint integration took 0.20052300000000001 s.
+Constraint elimination took 0.079760999999999999 s.
+Reindexing took 0.001635 s.
+eliminate_constraints took 0.28206999999999999 s.
+Eliminated dimension: 15248 x 15248
+#nonzeros: 652549
+integer variables #: 872
+continuous variables #: 14376
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 308
+Number of CG    iterations  = 308
+Number of FULL  iterations  = 260
+Number of ROUNDING          = 872
+solve_multiple_rounding took 156.74574799999999 s.
+solve took 156.74593299999998 s.
+restore_eliminated_vars took 0.0032800000000000004 s.
+solve took 157.05872600000001 s.
+Maximum Distorsion 83.8368 
+Maximum Laplacian 135.8987 
+ITERATION 0 FLIPS 1076 
+
+ INITIALIZED SPARSE MATRIX OF 18738d x 18738d 
+
+ INITIALIZED SPARSE MATRIX OF 4702d x 19950d 
+
+ INITIALIZED VECTOR OF 18738d x 1 
+
+ INITIALIZED VECTOR OF 4702d x 1 
+Initital dimension: 19950 x 19950, number of constraints: 4702, number of integer variables: 2056, use reordering: yes
+make_constraints_independent took 0.022382000000000003 s.
+Constraint integration took 0.20034300000000002 s.
+Constraint elimination took 0.085789000000000004 s.
+Reindexing took 0.0016120000000000002 s.
+eliminate_constraints took 0.28797800000000001 s.
+Eliminated dimension: 15248 x 15248
+#nonzeros: 652067
+integer variables #: 872
+continuous variables #: 14376
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 314
+Number of CG    iterations  = 314
+Number of FULL  iterations  = 279
+Number of ROUNDING          = 872
+solve_multiple_rounding took 173.64935299999999 s.
+solve took 173.64957800000002 s.
+restore_eliminated_vars took 0.003326 s.
+solve took 173.96592699999999 s.
+Maximum Distorsion 86.8205 
+Maximum Laplacian 141.6565 
+ITERATION 1 FLIPS 1162 
+
+ INITIALIZED SPARSE MATRIX OF 18738d x 18738d 
+
+ INITIALIZED SPARSE MATRIX OF 4702d x 19950d 
+
+ INITIALIZED VECTOR OF 18738d x 1 
+
+ INITIALIZED VECTOR OF 4702d x 1 
+Initital dimension: 19950 x 19950, number of constraints: 4702, number of integer variables: 2056, use reordering: yes
+make_constraints_independent took 0.02247 s.
+Constraint integration took 0.20111299999999999 s.
+Constraint elimination took 0.070093000000000003 s.
+Reindexing took 0.0013800000000000002 s.
+eliminate_constraints took 0.27276499999999998 s.
+Eliminated dimension: 15248 x 15248
+#nonzeros: 653804
+integer variables #: 872
+continuous variables #: 14376
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 317
+Number of CG    iterations  = 317
+Number of FULL  iterations  = 283
+Number of ROUNDING          = 872
+solve_multiple_rounding took 174.59803700000001 s.
+solve took 174.59819300000001 s.
+restore_eliminated_vars took 0.0032820000000000002 s.
+solve took 174.89924400000001 s.
+Maximum Distorsion 89.6195 
+Maximum Laplacian 147.8649 
+ITERATION 2 FLIPS 1052 
+
+ INITIALIZED SPARSE MATRIX OF 18738d x 18738d 
+
+ INITIALIZED SPARSE MATRIX OF 4702d x 19950d 
+
+ INITIALIZED VECTOR OF 18738d x 1 
+
+ INITIALIZED VECTOR OF 4702d x 1 
+Initital dimension: 19950 x 19950, number of constraints: 4702, number of integer variables: 2056, use reordering: yes
+make_constraints_independent took 0.022423999999999999 s.
+Constraint integration took 0.20066499999999995 s.
+Constraint elimination took 0.065512000000000001 s.
+Reindexing took 0.001397 s.
+eliminate_constraints took 0.267731 s.
+Eliminated dimension: 15248 x 15248
+#nonzeros: 652607
+integer variables #: 872
+continuous variables #: 14376
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 300
+Number of CG    iterations  = 300
+Number of FULL  iterations  = 268
+Number of ROUNDING          = 872
+solve_multiple_rounding took 148.162601 s.
+solve took 148.162744 s.
+restore_eliminated_vars took 0.0024109999999999999 s.
+solve took 148.45753400000001 s.
+Maximum Distorsion 87.5981 
+Maximum Laplacian 143.3769 
+ITERATION 3 FLIPS 1165 
+
+ INITIALIZED SPARSE MATRIX OF 18738d x 18738d 
+
+ INITIALIZED SPARSE MATRIX OF 4702d x 19950d 
+
+ INITIALIZED VECTOR OF 18738d x 1 
+
+ INITIALIZED VECTOR OF 4702d x 1 
+Initital dimension: 19950 x 19950, number of constraints: 4702, number of integer variables: 2056, use reordering: yes
+make_constraints_independent took 0.022376999999999998 s.
+Constraint integration took 0.20866499999999999 s.
+Constraint elimination took 0.091382000000000005 s.
+Reindexing took 0.0016130000000000001 s.
+eliminate_constraints took 0.30191299999999999 s.
+Eliminated dimension: 15248 x 15248
+#nonzeros: 653049
+integer variables #: 872
+continuous variables #: 14376
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 303
+Number of CG    iterations  = 303
+Number of FULL  iterations  = 274
+Number of ROUNDING          = 872
+solve_multiple_rounding took 144.18330499999999 s.
+solve took 144.18352299999998 s.
+restore_eliminated_vars took 0.0031770000000000001 s.
+solve took 144.51279099999999 s.
+Maximum Distorsion 87.6711 
+Maximum Laplacian 143.5471 
+ITERATION 4 FLIPS 1093 
+**** END OPTIMIZING #FLIPS 1093  ****
+       UV=9369 FUV=15212
+[4/4] Extracting quad mesh with libQEx...
+[1/4] Loading mesh: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_pml_repaired.obj
+       V=7610 F=15212
+[2/4] Loading cross field: /home/gmt/SemanPartmesh/output/37624_33b6f949_iter9999_quad_extract_work/37624_33b6f949_iter9999_quad_pml_repaired_cf.txt
+       cross field rows=15212
+[3/4] Running MIQ parameterization (gradient_size=30, stiffness=50, iters=5)...
+
+ INITIALIZED SPARSE MATRIX OF 18738d x 18738d 
+
+ INITIALIZED SPARSE MATRIX OF 4702d x 19950d 
+
+ INITIALIZED VECTOR OF 18738d x 1 
+
+ INITIALIZED VECTOR OF 4702d x 1 
+Initital dimension: 19950 x 19950, number of constraints: 4702, number of integer variables: 2056, use reordering: yes
+make_constraints_independent took 0.024497000000000001 s.
+Constraint integration took 0.22279500000000002 s.
+Constraint elimination took 0.091849 s.
+Reindexing took 0.0015770000000000001 s.
+eliminate_constraints took 0.31645100000000004 s.
+Eliminated dimension: 15248 x 15248
+#nonzeros: 652549
+integer variables #: 872
+continuous variables #: 14376
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 308
+Number of CG    iterations  = 308
+Number of FULL  iterations  = 260
+Number of ROUNDING          = 872
+solve_multiple_rounding took 207.617074 s.
+solve took 207.61732500000002 s.
+restore_eliminated_vars took 0.0024870000000000001 s.
+solve took 207.964834 s.
+Maximum Distorsion 83.8368 
+Maximum Laplacian 135.8987 
+ITERATION 0 FLIPS 1076 
+
+ INITIALIZED SPARSE MATRIX OF 18738d x 18738d 
+
+ INITIALIZED SPARSE MATRIX OF 4702d x 19950d 
+
+ INITIALIZED VECTOR OF 18738d x 1 
+
+ INITIALIZED VECTOR OF 4702d x 1 
+Initital dimension: 19950 x 19950, number of constraints: 4702, number of integer variables: 2056, use reordering: yes
+make_constraints_independent took 0.028216000000000001 s.
+Constraint integration took 0.21423900000000004 s.
+Constraint elimination took 0.091776999999999997 s.
+Reindexing took 0.001603 s.
+eliminate_constraints took 0.30780499999999994 s.
+Eliminated dimension: 15248 x 15248
+#nonzeros: 652067
+integer variables #: 872
+continuous variables #: 14376
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 314
+Number of CG    iterations  = 314
+Number of FULL  iterations  = 279
+Number of ROUNDING          = 872
+solve_multiple_rounding took 184.70738299999999 s.
+solve took 184.70754399999998 s.
+restore_eliminated_vars took 0.0024030000000000002 s.
+solve took 185.04875099999998 s.
+Maximum Distorsion 86.8205 
+Maximum Laplacian 141.6565 
+ITERATION 1 FLIPS 1162 
+
+ INITIALIZED SPARSE MATRIX OF 18738d x 18738d 
+
+ INITIALIZED SPARSE MATRIX OF 4702d x 19950d 
+
+ INITIALIZED VECTOR OF 18738d x 1 
+
+ INITIALIZED VECTOR OF 4702d x 1 
+Initital dimension: 19950 x 19950, number of constraints: 4702, number of integer variables: 2056, use reordering: yes
+make_constraints_independent took 0.035048000000000003 s.
+Constraint integration took 0.242757 s.
+Constraint elimination took 0.064878000000000005 s.
+Reindexing took 0.0013980000000000002 s.
+eliminate_constraints took 0.30920900000000001 s.
+Eliminated dimension: 15248 x 15248
+#nonzeros: 653804
+integer variables #: 872
+continuous variables #: 14376
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 317
+Number of CG    iterations  = 317
+Number of FULL  iterations  = 283
+Number of ROUNDING          = 872
+solve_multiple_rounding took 171.41888699999998 s.
+solve took 171.419093 s.
+restore_eliminated_vars took 0.0032640000000000004 s.
+solve took 171.771897 s.
+Maximum Distorsion 89.6195 
+Maximum Laplacian 147.8649 
+ITERATION 2 FLIPS 1052 
+
+ INITIALIZED SPARSE MATRIX OF 18738d x 18738d 
+
+ INITIALIZED SPARSE MATRIX OF 4702d x 19950d 
+
+ INITIALIZED VECTOR OF 18738d x 1 
+
+ INITIALIZED VECTOR OF 4702d x 1 
+Initital dimension: 19950 x 19950, number of constraints: 4702, number of integer variables: 2056, use reordering: yes
+make_constraints_independent took 0.035741999999999996 s.
+Constraint integration took 0.24942400000000001 s.
+Constraint elimination took 0.074755000000000002 s.
+Reindexing took 0.0013880000000000001 s.
+eliminate_constraints took 0.32689300000000004 s.
+Eliminated dimension: 15248 x 15248
+#nonzeros: 652607
+integer variables #: 872
+continuous variables #: 14376
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 300
+Number of CG    iterations  = 300
+Number of FULL  iterations  = 268
+Number of ROUNDING          = 872
+solve_multiple_rounding took 153.91187599999998 s.
+solve took 153.91206199999999 s.
+restore_eliminated_vars took 0.0032810000000000001 s.
+solve took 154.280824 s.
+Maximum Distorsion 87.5981 
+Maximum Laplacian 143.3769 
+ITERATION 3 FLIPS 1165 
+
+ INITIALIZED SPARSE MATRIX OF 18738d x 18738d 
+
+ INITIALIZED SPARSE MATRIX OF 4702d x 19950d 
+
+ INITIALIZED VECTOR OF 18738d x 1 
+
+ INITIALIZED VECTOR OF 4702d x 1 
+Initital dimension: 19950 x 19950, number of constraints: 4702, number of integer variables: 2056, use reordering: yes
+make_constraints_independent took 0.022277000000000002 s.
+Constraint integration took 0.19896200000000003 s.
+Constraint elimination took 0.065250000000000002 s.
+Reindexing took 0.0014250000000000001 s.
+eliminate_constraints took 0.265818 s.
+Eliminated dimension: 15248 x 15248
+#nonzeros: 653049
+integer variables #: 872
+continuous variables #: 14376
+initial full solution
+final full solution
+ *** Statistics of MiSo Solver ***
+Number of LOCAL iterations  = 303
+Number of CG    iterations  = 303
+Number of FULL  iterations  = 274
+Number of ROUNDING          = 872
+solve_multiple_rounding took 161.807346 s.
+solve took 161.80745499999998 s.
+restore_eliminated_vars took 0.0024170000000000003 s.
+solve took 162.10011799999998 s.
+Maximum Distorsion 87.6711 
+Maximum Laplacian 143.5471 
+ITERATION 4 FLIPS 1093 
+**** END OPTIMIZING #FLIPS 1093  ****
+       UV=9369 FUV=15212
+[4/4] Extracting quad mesh with libQEx...

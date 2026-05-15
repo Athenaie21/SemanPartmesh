@@ -130,9 +130,9 @@ def parse_args():
                      help="Path to a single input mesh file")
 
     # -- Conda environments -------------------------------------------------
-    p.add_argument("--env_partfield", default="partfield",
+    p.add_argument("--env_partfield", default="seman",
                    help="Conda env name for PartField  (default: partfield)")
-    p.add_argument("--env_neurcross", default="neurcross",
+    p.add_argument("--env_neurcross", default="seman",
                    help="Conda env name for NeurCross  (default: neurcross)")
     p.add_argument("--python_partfield", default=None,
                    help="Explicit python path for PartField env")

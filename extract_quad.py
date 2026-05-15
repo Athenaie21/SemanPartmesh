@@ -379,6 +379,8 @@ def bridge_connected_components(mesh_path, crossfield_path, output_mesh_path,
 
     face_centers = V[F].mean(axis=1)
     face_tree = cKDTree(face_centers)
+    bbox_diag = float(np.linalg.norm(V.max(axis=0) - V.min(axis=0)))
+    min_bridge_offset = max(bbox_diag * 1e-3, 1e-12)
 
     connected = {0}
     remaining = set(range(1, n_comp))
@@ -397,16 +399,23 @@ def bridge_connected_components(mesh_path, crossfield_path, output_mesh_path,
                     continue
                 pts_to = V[cv_to]
                 tree_to = cKDTree(pts_to)
-                dists, idxs = tree_to.query(pts_from, k=1)
-                best_i = int(np.argmin(dists))
-                d = dists[best_i]
-                if d < best_dist:
-                    best_dist = d
-                    vi_from = int(cv_from[best_i])
-                    vi_to = int(cv_to[idxs[best_i]])
-                    best_pair = (c_from, c_to, vi_from, vi_to)
+                k = min(8, len(cv_to))
+                dists, idxs = tree_to.query(pts_from, k=k)
+                if k == 1:
+                    dists = dists[:, None]
+                    idxs = idxs[:, None]
+                for from_i in range(dists.shape[0]):
+                    for nn_i in range(dists.shape[1]):
+                        d = float(dists[from_i, nn_i])
+                        if d <= 1e-12 or d >= best_dist:
+                            continue
+                        vi_from = int(cv_from[from_i])
+                        vi_to = int(cv_to[int(idxs[from_i, nn_i])])
+                        best_dist = d
+                        best_pair = (c_from, c_to, vi_from, vi_to)
 
         if best_pair is None:
+            print("  [bridge] skipped: no positive-distance component pair found")
             break
 
         c_from, c_to, vi_from, vi_to = best_pair
@@ -422,9 +431,11 @@ def bridge_connected_components(mesh_path, crossfield_path, output_mesh_path,
         if pn < 1e-12:
             perp = np.cross(edge_vec, np.array([0.0, 1.0, 0.0]))
             pn = np.linalg.norm(perp)
-        offset = max(edge_len * 0.3, best_dist * 0.05)
-        if pn > 1e-12:
-            perp = perp / pn * offset
+        if pn < 1e-12:
+            perp = np.array([1.0, 0.0, 0.0])
+            pn = 1.0
+        offset = max(edge_len * 0.3, best_dist * 0.05, min_bridge_offset)
+        perp = perp / pn * offset
 
         mid_idx_a = len(new_V)
         new_V.append(mid_pos + perp)
@@ -554,6 +565,52 @@ def repair_degenerate_triangles(mesh_path, crossfield_path, output_mesh_path,
     return output_mesh_path, output_crossfield_path, n_collapsed
 
 
+def remove_zero_area_faces_and_sync_crossfield(mesh_path, crossfield_path,
+                                               output_mesh_path,
+                                               output_crossfield_path,
+                                               area_eps=1e-12):
+    """Remove zero-area triangles and matching per-face cross-field rows."""
+    mesh = trimesh.load_mesh(mesh_path, process=False)
+    V = np.asarray(mesh.vertices, dtype=np.float64)
+    F = np.asarray(mesh.faces, dtype=np.int64)
+    cf_data = np.loadtxt(crossfield_path, dtype=np.float64)
+    if len(cf_data.shape) == 1:
+        cf_data = cf_data.reshape(1, -1)
+    if cf_data.shape[0] != len(F):
+        print(f"  [zero-area] cross-field rows ({cf_data.shape[0]}) != faces ({len(F)}), skipping")
+        return mesh_path, crossfield_path, 0
+    if len(F) == 0:
+        return mesh_path, crossfield_path, 0
+
+    tris = V[F]
+    double_area = np.linalg.norm(
+        np.cross(tris[:, 1] - tris[:, 0], tris[:, 2] - tris[:, 0]), axis=1)
+    has_dup = (F[:, 0] == F[:, 1]) | (F[:, 1] == F[:, 2]) | (F[:, 0] == F[:, 2])
+    keep = (double_area * 0.5 >= area_eps) & (~has_dup)
+    n_removed = int(len(F) - np.count_nonzero(keep))
+    if n_removed == 0:
+        return mesh_path, crossfield_path, 0
+
+    F = F[keep]
+    cf_data = cf_data[keep]
+    if len(F) == 0:
+        print("  [zero-area] all faces removed, keeping original mesh")
+        return mesh_path, crossfield_path, 0
+
+    unique_v, inv = np.unique(F.reshape(-1), return_inverse=True)
+    new_V = V[unique_v]
+    new_F = inv.reshape(-1, 3)
+
+    os.makedirs(os.path.dirname(os.path.abspath(output_mesh_path)), exist_ok=True)
+    cleaned = trimesh.Trimesh(vertices=new_V, faces=new_F, process=False)
+    cleaned.export(output_mesh_path)
+    np.savetxt(output_crossfield_path, cf_data, fmt="%.12f")
+
+    print(f"  [zero-area] removed {n_removed} face(s), "
+          f"V: {len(V)}->{len(new_V)}, F: {len(mesh.faces)}->{len(new_F)}")
+    return output_mesh_path, output_crossfield_path, n_removed
+
+
 def transfer_crossfield(src_mesh_path, src_cf_path, dst_mesh_path, dst_cf_path):
     """Transfer a per-face cross-field from one triangle mesh to another.
 
@@ -583,6 +640,18 @@ def transfer_crossfield(src_mesh_path, src_cf_path, dst_mesh_path, dst_cf_path):
     return max_dist
 
 
+def _pymeshlab_percentage(pymeshlab_module, value):
+    """Return a PyMeshLab percentage value across old and new API names."""
+    percentage_type = getattr(
+        pymeshlab_module,
+        "Percentage",
+        getattr(pymeshlab_module, "PercentageValue", None),
+    )
+    if percentage_type is None:
+        raise AttributeError("PyMeshLab has no Percentage/PercentageValue type")
+    return percentage_type(value)
+
+
 def pymeshlab_manifold_repair(mesh_path, output_path):
     """Tier 1 repair: use PyMeshLab to fix non-manifold topology and close holes.
 
@@ -602,7 +671,8 @@ def pymeshlab_manifold_repair(mesh_path, output_path):
     ms.load_new_mesh(os.path.abspath(mesh_path))
     nf_before = ms.current_mesh().face_number()
 
-    ms.meshing_merge_close_vertices(threshold=pymeshlab.Percentage(0.5))
+    ms.meshing_merge_close_vertices(
+        threshold=_pymeshlab_percentage(pymeshlab, 0.5))
     ms.meshing_repair_non_manifold_edges()
     ms.meshing_repair_non_manifold_vertices()
     ms.meshing_close_holes(maxholesize=1000)
@@ -640,14 +710,16 @@ def pymeshlab_isotropic_remesh(mesh_path, output_path, iterations=5,
     ms.load_new_mesh(os.path.abspath(mesh_path))
     nf_before = ms.current_mesh().face_number()
 
-    ms.meshing_merge_close_vertices(threshold=pymeshlab.Percentage(0.5))
+    ms.meshing_merge_close_vertices(
+        threshold=_pymeshlab_percentage(pymeshlab, 0.5))
     ms.meshing_repair_non_manifold_edges()
     ms.meshing_repair_non_manifold_vertices()
     ms.meshing_close_holes(maxholesize=1000)
     ms.meshing_repair_non_manifold_edges()
     ms.meshing_repair_non_manifold_vertices()
     ms.meshing_isotropic_explicit_remeshing(
-        iterations=iterations, targetlen=pymeshlab.Percentage(targetlen_pct))
+        iterations=iterations,
+        targetlen=_pymeshlab_percentage(pymeshlab, targetlen_pct))
 
     nf_after = ms.current_mesh().face_number()
     nv_after = ms.current_mesh().vertex_number()
@@ -740,6 +812,41 @@ def _cleanup_intermediate_dir(work_dir, keep_intermediates):
         shutil.rmtree(work_dir, ignore_errors=True)
 
 
+def _prepend_unique_path_list(existing, candidates):
+    paths = []
+    seen = set()
+    for path in candidates:
+        if not path or path in seen or not os.path.isdir(path):
+            continue
+        paths.append(path)
+        seen.add(path)
+    existing_paths = existing.split(os.pathsep) if existing else []
+    for path in existing_paths:
+        if not path or path in seen:
+            continue
+        paths.append(path)
+        seen.add(path)
+    return os.pathsep.join(paths)
+
+
+def build_extract_runtime_env():
+    env = os.environ.copy()
+    conda_lib = None
+    if sys.executable:
+        conda_lib = os.path.abspath(os.path.join(
+            os.path.dirname(sys.executable), os.pardir, "lib"))
+    preferred_libs = [
+        conda_lib,
+        os.environ.get("CONDA_PREFIX")
+        and os.path.join(os.environ["CONDA_PREFIX"], "lib"),
+        "/usr/local/lib",
+        "/usr/lib/x86_64-linux-gnu",
+    ]
+    env["LD_LIBRARY_PATH"] = _prepend_unique_path_list(
+        env.get("LD_LIBRARY_PATH", ""), preferred_libs)
+    return env
+
+
 def _run_extract_once(mesh_path, crossfield_path, output_path,
                       gradient_size=30.0, timeout=600, stiffness=5.0,
                       direct_round=False, iters=5, local_iters=5):
@@ -767,9 +874,7 @@ def _run_extract_once(mesh_path, crossfield_path, output_path,
     print(f"  cross field  : {crossfield_path}")
     print(f"  output       : {output_path}")
     print(f"  gradient_size: {gradient_size}  timeout: {timeout}s{tag}\n")
-    env = os.environ.copy()
-    env["LD_LIBRARY_PATH"] = (
-        "/usr/lib/x86_64-linux-gnu:" + env.get("LD_LIBRARY_PATH", ""))
+    env = build_extract_runtime_env()
 
     try:
         subprocess.run(cmd, env=env, check=True, timeout=timeout)
@@ -1374,16 +1479,28 @@ def extract_single(mesh_path, crossfield_path, output_path,
     nm_cf = os.path.join(work_dir, base_name + "_nm_fixed_cf.txt")
     mesh_path, crossfield_path, n_nm = resolve_nonmanifold(
         mesh_path, crossfield_path, nm_mesh, nm_cf)
+    nm_clean_mesh = os.path.join(work_dir, base_name + "_nm_clean.obj")
+    nm_clean_cf = os.path.join(work_dir, base_name + "_nm_clean_cf.txt")
+    mesh_path, crossfield_path, _ = remove_zero_area_faces_and_sync_crossfield(
+        mesh_path, crossfield_path, nm_clean_mesh, nm_clean_cf)
 
     bridged_mesh = os.path.join(work_dir, base_name + "_bridged_input.obj")
     bridged_cf = os.path.join(work_dir, base_name + "_bridged_crossfield.txt")
     mesh_path, crossfield_path, n_bridge, _ = bridge_connected_components(
         mesh_path, crossfield_path, bridged_mesh, bridged_cf)
+    bridged_clean_mesh = os.path.join(work_dir, base_name + "_bridged_clean.obj")
+    bridged_clean_cf = os.path.join(work_dir, base_name + "_bridged_clean_cf.txt")
+    mesh_path, crossfield_path, _ = remove_zero_area_faces_and_sync_crossfield(
+        mesh_path, crossfield_path, bridged_clean_mesh, bridged_clean_cf)
 
     repaired_mesh = os.path.join(work_dir, base_name + "_repaired.obj")
     repaired_cf = os.path.join(work_dir, base_name + "_repaired_cf.txt")
     mesh_path, crossfield_path, _ = repair_degenerate_triangles(
         mesh_path, crossfield_path, repaired_mesh, repaired_cf, min_angle_deg=1.0)
+    repaired_clean_mesh = os.path.join(work_dir, base_name + "_repaired_clean.obj")
+    repaired_clean_cf = os.path.join(work_dir, base_name + "_repaired_clean_cf.txt")
+    mesh_path, crossfield_path, _ = remove_zero_area_faces_and_sync_crossfield(
+        mesh_path, crossfield_path, repaired_clean_mesh, repaired_clean_cf)
 
     ok = _attempt_extraction(mesh_path, crossfield_path, output_path,
                              original_mesh_path, gradient_size, timeout,
@@ -1413,6 +1530,11 @@ def extract_single(mesh_path, crossfield_path, output_path,
         else:
             shutil.copy2(original_cf_path, pml_cf)
 
+        pml_clean_mesh = os.path.join(work_dir, base_name + "_pml_clean.obj")
+        pml_clean_cf = os.path.join(work_dir, base_name + "_pml_clean_cf.txt")
+        pml_mesh_path, pml_cf, _ = remove_zero_area_faces_and_sync_crossfield(
+            pml_mesh_path, pml_cf, pml_clean_mesh, pml_clean_cf)
+
         ok = _attempt_extraction(pml_mesh_path, pml_cf, output_path,
                                  original_mesh_path, gradient_size, timeout,
                                  retry, args)
@@ -1436,6 +1558,10 @@ def extract_single(mesh_path, crossfield_path, output_path,
     if iso_mesh_path != original_obj_path:
         transfer_crossfield(original_obj_path, original_cf_path,
                             iso_mesh_path, iso_cf)
+        iso_clean_mesh = os.path.join(work_dir, base_name + "_pml_isomesh_clean.obj")
+        iso_clean_cf = os.path.join(work_dir, base_name + "_pml_isomesh_clean_cf.txt")
+        iso_mesh_path, iso_cf, _ = remove_zero_area_faces_and_sync_crossfield(
+            iso_mesh_path, iso_cf, iso_clean_mesh, iso_clean_cf)
         ok = _attempt_extraction(iso_mesh_path, iso_cf, output_path,
                                  original_mesh_path, gradient_size, timeout,
                                  retry, args)
@@ -1459,6 +1585,10 @@ def extract_single(mesh_path, crossfield_path, output_path,
     if sdf_mesh_path != original_obj_path:
         transfer_crossfield(original_obj_path, original_cf_path,
                             sdf_mesh_path, sdf_cf)
+        sdf_clean_mesh = os.path.join(work_dir, base_name + "_sdf_recon_clean.obj")
+        sdf_clean_cf = os.path.join(work_dir, base_name + "_sdf_recon_clean_cf.txt")
+        sdf_mesh_path, sdf_cf, _ = remove_zero_area_faces_and_sync_crossfield(
+            sdf_mesh_path, sdf_cf, sdf_clean_mesh, sdf_clean_cf)
         ok = _attempt_extraction(sdf_mesh_path, sdf_cf, output_path,
                                  original_mesh_path, gradient_size, timeout,
                                  retry, args)

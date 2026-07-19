@@ -13,26 +13,26 @@ Usage
     # Minimal — geometry-only comparison (no GT labels needed):
     python -m eval.compare \
         --orig_dir input/ \
-        --baseline_log_root pipeline_output/baseline_logs \
-        --ours_log_root     pipeline_output/neurcross_logs \
-        --output_dir        pipeline_output/eval_compare
+        --baseline_log_root experiments/pipeline/baseline_logs \
+        --ours_log_root     experiments/pipeline/pipeline_output/neurcross_logs \
+        --output_dir        experiments/pipeline/eval_compare
 
     # Full — with GT labels and PartField features:
     python -m eval.compare \
         --orig_dir input/ \
-        --baseline_log_root pipeline_output/baseline_logs \
-        --ours_log_root     pipeline_output/neurcross_logs \
+        --baseline_log_root experiments/pipeline/baseline_logs \
+        --ours_log_root     experiments/pipeline/pipeline_output/neurcross_logs \
         --label_dir         input/labels/ \
-        --feat_dir          pipeline_output/partfield_features/ \
-        --output_dir        pipeline_output/eval_compare
+        --feat_dir          experiments/pipeline/pipeline_output/partfield_features/ \
+        --output_dir        experiments/pipeline/eval_compare
 
     # Evaluate only specific meshes:
     python -m eval.compare \
         --orig_dir input/ \
-        --baseline_log_root pipeline_output/baseline_logs \
-        --ours_log_root     pipeline_output/neurcross_logs \
+        --baseline_log_root experiments/pipeline/baseline_logs \
+        --ours_log_root     experiments/pipeline/pipeline_output/neurcross_logs \
         --meshes armadillo \
-        --output_dir        pipeline_output/eval_compare
+        --output_dir        experiments/pipeline/eval_compare
 """
 
 import os
@@ -74,7 +74,7 @@ def parse_args():
                    help="Directory of PartField feature .npy files "
                         "(enables clustering-based mIoU)")
 
-    p.add_argument("--output_dir", default="pipeline_output/eval_compare",
+    p.add_argument("--output_dir", default="experiments/pipeline/eval_compare",
                    help="Where to write extracted quad meshes and results")
     p.add_argument("--gradient_size", type=float, default=30.0,
                    help="MIQ gradient size for quad extraction")
@@ -432,6 +432,7 @@ def main():
         # the cross-field, then fall back to the raw input mesh.
         processed_candidates = [
             os.path.join(os.path.dirname(out_dir), "processed_meshes"),
+            os.path.join(orig_dir, "..", "experiments", "pipeline", "pipeline_output", "processed_meshes"),
             os.path.join(orig_dir, "..", "pipeline_output", "processed_meshes"),
             os.path.join(orig_dir, "..", "processed_meshes"),
         ]

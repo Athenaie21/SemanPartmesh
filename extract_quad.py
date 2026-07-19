@@ -9,17 +9,17 @@ Usage
 -----
     # Single cross-field file:
     python extract_quad.py --mesh input/cheburashka.obj \
-        --crossfield pipeline_output/neurcross_logs/cheburashka/save_crossField/cheburashka_iter_9999.txt \
+        --crossfield experiments/pipeline/pipeline_output/neurcross_logs/cheburashka/save_crossField/cheburashka_iter_9999.txt \
         --output output_quad.obj
 
     # Auto-detect latest cross-field from a NeurCross log directory:
     python extract_quad.py --mesh input/cheburashka.obj \
-        --crossfield_dir pipeline_output/neurcross_logs/cheburashka/save_crossField/
+        --crossfield_dir experiments/pipeline/pipeline_output/neurcross_logs/cheburashka/save_crossField/
 
     # Batch mode — process all meshes under a directory:
     python extract_quad.py --mesh_dir input/ \
-        --crossfield_root pipeline_output/neurcross_logs/ \
-        --output_dir pipeline_output/quad_meshes/
+        --crossfield_root experiments/pipeline/pipeline_output/neurcross_logs/ \
+        --output_dir experiments/pipeline/pipeline_output/quad_meshes/
 """
 
 import os

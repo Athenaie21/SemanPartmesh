@@ -311,7 +311,7 @@ def parse_args():
                    help="Laplacian smoothing step size (0-1)")
 
     # -- General ------------------------------------------------------------
-    p.add_argument("--output_dir", default="pipeline_output",
+    p.add_argument("--output_dir", default="experiments/pipeline/pipeline_output",
                    help="Root directory for all outputs "
                         "(a timestamp suffix is appended automatically)")
     p.add_argument("--no_timestamp", action="store_true",

@@ -24,8 +24,8 @@ def load_vertices_from_obj(path):
 
 
 pairs = {
-    "BASELINE": os.path.join(ROOT, "pipeline_output/eval_compare/baseline_quads/cheburashka_quad.obj"),
-    "OURS":     os.path.join(ROOT, "pipeline_output/eval_compare/ours_quads/cheburashka_quad.obj"),
+    "BASELINE": os.path.join(ROOT, "experiments/pipeline/eval_compare/baseline_quads/cheburashka_quad.obj"),
+    "OURS":     os.path.join(ROOT, "experiments/pipeline/eval_compare/ours_quads/cheburashka_quad.obj"),
 }
 
 results = {}

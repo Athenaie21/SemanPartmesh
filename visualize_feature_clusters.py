@@ -11,15 +11,15 @@ Examples
 --------
 python visualize_feature_clusters.py \
     --mesh input/cheburashka.obj \
-    --feat_path pipeline_output/partfield_features/part_feat_cheburashka_0_batch.npy \
-    --output cheburashka_clusters.ply
+    --feat_path experiments/pipeline/pipeline_output/partfield_features/part_feat_cheburashka_0_batch.npy \
+    --output experiments/cheburashka/output/cheburashka_clusters.ply
 
 python visualize_feature_clusters.py \
     --mesh input/cheburashka.obj \
-    --feat_path pipeline_output/partfield_features/part_feat_cheburashka_0_batch.npy \
-    --quad_mesh pipeline_output/neurcross_logs/cheburashka_quad.obj \
-    --output cheburashka_clusters.ply \
-    --quad_output cheburashka_quad_clusters.ply
+    --feat_path experiments/pipeline/pipeline_output/partfield_features/part_feat_cheburashka_0_batch.npy \
+    --quad_mesh experiments/pipeline/pipeline_output/quad_meshes/cheburashka_quad.obj \
+    --output experiments/cheburashka/output/cheburashka_clusters.ply \
+    --quad_output experiments/cheburashka/output/cheburashka_quad_clusters.ply
 """
 
 import argparse

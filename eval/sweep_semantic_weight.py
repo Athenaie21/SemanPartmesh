@@ -13,21 +13,21 @@ Usage
     # Sweep on cheburashka (fast, ~13k faces):
     python -m eval.sweep_semantic_weight \
         --mesh input/cheburashka.obj \
-        --part_feat pipeline_output/partfield_features/part_feat_cheburashka_0_batch.npy \
-        --output_dir pipeline_output/sweep_semantic
+        --part_feat experiments/pipeline/pipeline_output/partfield_features/part_feat_cheburashka_0_batch.npy \
+        --output_dir experiments/pipeline/sweep_semantic
 
     # Custom weight list:
     python -m eval.sweep_semantic_weight \
         --mesh input/cheburashka.obj \
-        --part_feat pipeline_output/partfield_features/part_feat_cheburashka_0_batch.npy \
+        --part_feat experiments/pipeline/pipeline_output/partfield_features/part_feat_cheburashka_0_batch.npy \
         --weights 0 1 5 10 20 50 100 \
-        --output_dir pipeline_output/sweep_semantic
+        --output_dir experiments/pipeline/sweep_semantic
 
-    /root/.conda/envs/neurcross/bin/python -m eval.sweep_semantic_weight \
+    python -m eval.sweep_semantic_weight \
         --mesh input/cheburashka.obj \
-        --part_feat pipeline_output/partfield_features/part_feat_cheburashka_0_batch.npy \
+        --part_feat experiments/pipeline/pipeline_output/partfield_features/part_feat_cheburashka_0_batch.npy \
         --weights 15 30 500 \
-        --output_dir pipeline_output/sweep_semantic2 \
+        --output_dir experiments/pipeline/sweep_semantic2 \
         --gpu_id 1
     # Include baseline (weight=0, no semantic features):
     # weight=0 is always included automatically as the baseline reference.
@@ -60,7 +60,7 @@ def parse_args():
     p.add_argument("--weights", nargs="+", type=float,
                    default=[0, 1, 5, 10, 20, 50, 100],
                    help="Semantic loss weights to sweep (default: 0 1 5 10 20 50 100)")
-    p.add_argument("--output_dir", default="pipeline_output/sweep_semantic",
+    p.add_argument("--output_dir", default="experiments/pipeline/sweep_semantic",
                    help="Root output directory")
 
     p.add_argument("--python", default=None,
@@ -93,7 +93,8 @@ def parse_args():
 def find_neurcross_python():
     candidates = [
         os.path.expanduser("~/.conda/envs/neurcross/bin/python"),
-        "/root/.conda/envs/neurcross/bin/python",
+        os.path.expanduser("~/miniconda3/envs/neurcross/bin/python"),
+        os.path.expanduser("~/anaconda3/envs/neurcross/bin/python"),
     ]
     for c in candidates:
         if os.path.isfile(c):

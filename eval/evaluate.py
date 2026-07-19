@@ -12,20 +12,20 @@ Usage
 -----
     # Evaluate a single quad mesh with GT labels:
     python -m eval.evaluate \
-        --quad_mesh  pipeline_output/quad_meshes/armadillo_quad.obj \
+        --quad_mesh  experiments/pipeline/pipeline_output/quad_meshes/armadillo_quad.obj \
         --orig_mesh  input/armadillo.obj \
         --gt_labels  input/armadillo_labels.npy
 
     # With PartField features (auto-cluster for mIoU):
     python -m eval.evaluate \
-        --quad_mesh  pipeline_output/quad_meshes/armadillo_quad.obj \
+        --quad_mesh  experiments/pipeline/pipeline_output/quad_meshes/armadillo_quad.obj \
         --orig_mesh  input/armadillo.obj \
         --gt_labels  input/armadillo_labels.npy \
-        --part_features pipeline_output/partfield_features/part_feat_armadillo_0.npy
+        --part_features experiments/pipeline/pipeline_output/partfield_features/part_feat_armadillo_0.npy
 
     # Batch mode — process all *_quad.obj files in a directory:
     python -m eval.evaluate \
-        --quad_dir   pipeline_output/quad_meshes/ \
+        --quad_dir   experiments/pipeline/pipeline_output/quad_meshes/ \
         --orig_dir   input/ \
         --label_dir  input/labels/ \
         --output_csv results.csv

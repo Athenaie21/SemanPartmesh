@@ -8,6 +8,10 @@
 exp_results/
 lightning_logs/
 wandb/
+experiments/pipeline/pipeline_output_*/
+experiments/baseline/baseline_output_*/
+experiments/reconstruction/reconstruction_batch_output/
+experiments/reconstruction/recon_complex_test_output/
 
 # Python
 __pycache__/
@@ -23,16 +27,17 @@ PartField/model/
 Baseline/
 googletest/
 input/
+input_new/
 libigl/
 libQEx/
 history_input/
-pipeline_output*/
 fusion/
 instruction_guidance/s1.0.0/
 instruction_guidance/s1.0.0/
 
-# Pipeline generated outputs
-assembly_*/
+# Pipeline generated outputs (legacy + new layout)
+pipeline_output*/
+experiments/pipeline/pipeline_output*/
 **/pipeline/newextract/
 **/pipeline/guidance_*/
 **/quad_meshes/
@@ -43,3 +48,6 @@ assembly_*/
 **/out.log
 **/*_sweep_summary.json
 **/global_chunk_sweep_summary.json
+
+# Local scratch data
+data/scratch/

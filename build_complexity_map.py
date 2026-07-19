@@ -16,11 +16,11 @@ Examples
 --------
 python build_complexity_map.py \
     --mesh input/cheburashka.obj \
-    --feat_path pipeline_output/partfield_features/part_feat_cheburashka_0_batch.npy \
-    --crossfield pipeline_output/neurcross_logs/cheburashka/save_crossField/cheburashka_iter_9999.txt \
-    --output output/cheburashka_complexity.ply \
-    --component_dir output/cheburashka_components \
-    --save_npz output/cheburashka_complexity.npz
+    --feat_path experiments/pipeline/pipeline_output/partfield_features/part_feat_cheburashka_0_batch.npy \
+    --crossfield experiments/pipeline/pipeline_output/neurcross_logs/cheburashka/save_crossField/cheburashka_iter_9999.txt \
+    --output experiments/cheburashka/output/cheburashka_complexity.ply \
+    --component_dir experiments/cheburashka/output/cheburashka_components \
+    --save_npz experiments/cheburashka/output/cheburashka_complexity.npz
 """
 
 import argparse

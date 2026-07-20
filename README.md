@@ -23,9 +23,6 @@ SemanPartmesh/
 ├── NeurCross/               # NeurCross source (vendored)
 ├── quad_extract/            # C++ quad extraction (CMake)
 │
-├── data/
-│   └── scratch/             # Temporary / test meshes and crossfields
-│
 ├── experiments/             # Historical experiment outputs
 │   ├── compare/             # Single-mesh baseline vs pipeline comparisons
 │   ├── reconstruction/      # Reconstruction dataset batch runs
@@ -36,7 +33,7 @@ SemanPartmesh/
 │   └── cheburashka/         # Complexity analysis outputs
 │
 └── docs/
-    └── exp.md               # Experiment notes
+    └── 脚本说明.md          # Script usage guide (Chinese)
 ```
 
 ## Quick Start

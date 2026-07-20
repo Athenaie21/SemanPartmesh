@@ -19,8 +19,8 @@ __pycache__/
 *.egg-info/
 .eggs/
 
-# Data (large datasets - add back if needed)
-# data/
+# Optional local datasets (not tracked)
+data/
 
 # Model
 PartField/model/
@@ -48,6 +48,3 @@ experiments/pipeline/pipeline_output*/
 **/out.log
 **/*_sweep_summary.json
 **/global_chunk_sweep_summary.json
-
-# Local scratch data
-data/scratch/
